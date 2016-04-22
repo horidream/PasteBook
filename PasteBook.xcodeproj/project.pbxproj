@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F72642EBC7837BBD4232DD8 /* libPods-PasteBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D56113D61243960A3815CEE2 /* libPods-PasteBook.a */; };
+		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
+		990716071B94885C00D1A903 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716061B94885C00D1A903 /* ContentViewController.swift */; };
+		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
+		9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9907160B1B94885C00D1A903 /* Assets.xcassets */; };
+		9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */; };
+		9907161A1B94885C00D1A903 /* PasteBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716191B94885C00D1A903 /* PasteBookTests.swift */; };
+		990716391B94A72400D1A903 /* DBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716381B94A72400D1A903 /* DBUtil.swift */; };
+		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
+		99BDF8771C3AC53500C4D768 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8751C3AC53500C4D768 /* test.html */; };
+		99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8761C3AC53500C4D768 /* marked.min.js */; };
+		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
+		99FC8A1A1C3EBE0600596BB3 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* default.css */; };
+		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
+		99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		990716161B94885C00D1A903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 990715F91B94885C00D1A903 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 990716001B94885C00D1A903;
+			remoteInfo = PasteBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		54A0AB85287B9E5070507146 /* Pods-PasteBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig"; sourceTree = "<group>"; };
+		7FFDEF417D20D1E931DFF39C /* Pods-PasteBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig"; sourceTree = "<group>"; };
+		990716011B94885C00D1A903 /* PasteBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		990716041B94885C00D1A903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		990716061B94885C00D1A903 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		990716091B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9907160B1B94885C00D1A903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9907160E1B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		990716101B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990716151B94885C00D1A903 /* PasteBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasteBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		990716191B94885C00D1A903 /* PasteBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBookTests.swift; sourceTree = "<group>"; };
+		9907161B1B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990716241B94885C00D1A903 /* PasteBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBookUITests.swift; sourceTree = "<group>"; };
+		990716261B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990716331B948EB300D1A903 /* PasteBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteBook-Bridging-Header.h"; sourceTree = "<group>"; };
+		990716381B94A72400D1A903 /* DBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBUtil.swift; sourceTree = "<group>"; };
+		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
+		99BDF8751C3AC53500C4D768 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = PasteBook/test.html; sourceTree = "<group>"; };
+		99BDF8761C3AC53500C4D768 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = PasteBook/marked.min.js; sourceTree = "<group>"; };
+		99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableVC.swift; sourceTree = "<group>"; };
+		99FC8A191C3EBE0600596BB3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = default.css; path = PasteBook/default.css; sourceTree = "<group>"; };
+		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
+		99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = highlight.pack.js; path = PasteBook/highlight.pack.js; sourceTree = "<group>"; };
+		D56113D61243960A3815CEE2 /* libPods-PasteBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PasteBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		990715FE1B94885C00D1A903 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F72642EBC7837BBD4232DD8 /* libPods-PasteBook.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990716121B94885C00D1A903 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5FBA612CB3612BE0FB0D4605 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D56113D61243960A3815CEE2 /* libPods-PasteBook.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		990715F81B94885C00D1A903 = {
+			isa = PBXGroup;
+			children = (
+				993E61C71CCA3EBE0055E7D5 /* Web */,
+				990716031B94885C00D1A903 /* PasteBook */,
+				990716181B94885C00D1A903 /* PasteBookTests */,
+				990716231B94885C00D1A903 /* PasteBookUITests */,
+				990716021B94885C00D1A903 /* Products */,
+				9D9C664732790EB1094E57A7 /* Pods */,
+				5FBA612CB3612BE0FB0D4605 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		990716021B94885C00D1A903 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				990716011B94885C00D1A903 /* PasteBook.app */,
+				990716151B94885C00D1A903 /* PasteBookTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		990716031B94885C00D1A903 /* PasteBook */ = {
+			isa = PBXGroup;
+			children = (
+				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
+				990716061B94885C00D1A903 /* ContentViewController.swift */,
+				990716381B94A72400D1A903 /* DBUtil.swift */,
+				990716371B94A6EB00D1A903 /* Settings */,
+				9907160B1B94885C00D1A903 /* Assets.xcassets */,
+			);
+			path = PasteBook;
+			sourceTree = "<group>";
+		};
+		990716181B94885C00D1A903 /* PasteBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				990716191B94885C00D1A903 /* PasteBookTests.swift */,
+				9907161B1B94885C00D1A903 /* Info.plist */,
+			);
+			path = PasteBookTests;
+			sourceTree = "<group>";
+		};
+		990716231B94885C00D1A903 /* PasteBookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				990716241B94885C00D1A903 /* PasteBookUITests.swift */,
+				990716261B94885C00D1A903 /* Info.plist */,
+			);
+			path = PasteBookUITests;
+			sourceTree = "<group>";
+		};
+		990716371B94A6EB00D1A903 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				993E61C81CCA88400055E7D5 /* moknow.db */,
+				990716041B94885C00D1A903 /* AppDelegate.swift */,
+				990716081B94885C00D1A903 /* Main.storyboard */,
+				9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */,
+				990716101B94885C00D1A903 /* Info.plist */,
+				990716331B948EB300D1A903 /* PasteBook-Bridging-Header.h */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		993E61C71CCA3EBE0055E7D5 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				99BDF8751C3AC53500C4D768 /* test.html */,
+				99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */,
+				99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */,
+				99BDF8761C3AC53500C4D768 /* marked.min.js */,
+				99FC8A191C3EBE0600596BB3 /* default.css */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
+		9D9C664732790EB1094E57A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				54A0AB85287B9E5070507146 /* Pods-PasteBook.debug.xcconfig */,
+				7FFDEF417D20D1E931DFF39C /* Pods-PasteBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		990716001B94885C00D1A903 /* PasteBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBook" */;
+			buildPhases = (
+				E0D3516851F9E00958926C46 /* Check Pods Manifest.lock */,
+				990715FD1B94885C00D1A903 /* Sources */,
+				990715FE1B94885C00D1A903 /* Frameworks */,
+				990715FF1B94885C00D1A903 /* Resources */,
+				1CFE0E230833C3CB9F2FAEDF /* Copy Pods Resources */,
+				DDD08E919F2CC5717B2B350B /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PasteBook;
+			productName = PasteBook;
+			productReference = 990716011B94885C00D1A903 /* PasteBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		990716141B94885C00D1A903 /* PasteBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9907162C1B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBookTests" */;
+			buildPhases = (
+				990716111B94885C00D1A903 /* Sources */,
+				990716121B94885C00D1A903 /* Frameworks */,
+				990716131B94885C00D1A903 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				990716171B94885C00D1A903 /* PBXTargetDependency */,
+			);
+			name = PasteBookTests;
+			productName = PasteBookTests;
+			productReference = 990716151B94885C00D1A903 /* PasteBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		990715F91B94885C00D1A903 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Baoli Zhai";
+				TargetAttributes = {
+					990716001B94885C00D1A903 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					990716141B94885C00D1A903 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 990716001B94885C00D1A903;
+					};
+				};
+			};
+			buildConfigurationList = 990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "PasteBook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 990715F81B94885C00D1A903;
+			productRefGroup = 990716021B94885C00D1A903 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				990716001B94885C00D1A903 /* PasteBook */,
+				990716141B94885C00D1A903 /* PasteBookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		990715FF1B94885C00D1A903 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */,
+				99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */,
+				993E61C91CCA88400055E7D5 /* moknow.db in Resources */,
+				99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */,
+				9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */,
+				99FC8A1A1C3EBE0600596BB3 /* default.css in Resources */,
+				99BDF8771C3AC53500C4D768 /* test.html in Resources */,
+				9907160A1B94885C00D1A903 /* Main.storyboard in Resources */,
+				99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990716131B94885C00D1A903 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CFE0E230833C3CB9F2FAEDF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDD08E919F2CC5717B2B350B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0D3516851F9E00958926C46 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		990715FD1B94885C00D1A903 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
+				990716071B94885C00D1A903 /* ContentViewController.swift in Sources */,
+				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
+				990716051B94885C00D1A903 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990716111B94885C00D1A903 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9907161A1B94885C00D1A903 /* PasteBookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		990716171B94885C00D1A903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 990716001B94885C00D1A903 /* PasteBook */;
+			targetProxy = 990716161B94885C00D1A903 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		990716081B94885C00D1A903 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				990716091B94885C00D1A903 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9907160E1B94885C00D1A903 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		990716271B94885C00D1A903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		990716281B94885C00D1A903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9907162A1B94885C00D1A903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54A0AB85287B9E5070507146 /* Pods-PasteBook.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = PasteBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9907162B1B94885C00D1A903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FFDEF417D20D1E931DFF39C /* Pods-PasteBook.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = PasteBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		9907162D1B94885C00D1A903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PasteBookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasteBook.app/PasteBook";
+			};
+			name = Debug;
+		};
+		9907162E1B94885C00D1A903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PasteBookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasteBook.app/PasteBook";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "PasteBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				990716271B94885C00D1A903 /* Debug */,
+				990716281B94885C00D1A903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9907162A1B94885C00D1A903 /* Debug */,
+				9907162B1B94885C00D1A903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9907162C1B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9907162D1B94885C00D1A903 /* Debug */,
+				9907162E1B94885C00D1A903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 990715F91B94885C00D1A903 /* Project object */;
+}
