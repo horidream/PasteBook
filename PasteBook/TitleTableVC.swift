@@ -14,7 +14,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = DBUtil.sharedInstance.fetchAllTitle()
+        data = PBDBHandler.sharedInstance.fetchAllTitle()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell")
         self.tableView.dataSource = self
         
@@ -38,8 +38,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             let nv = segue.destinationViewController as! UINavigationController
             let vc = nv.viewControllers[0] as! ContentViewController
             let id = (sender?.valueForKey("id")?.integerValue)!
-            let detail = DBUtil.sharedInstance.fetchDetail(id)
-            vc.tags = DBUtil.sharedInstance.fetchTagsById(id)
+            let detail = PBDBHandler.sharedInstance.fetchDetail(id)
+            vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)
             vc.contentTitle = detail.title
             vc.contentDetail = detail.detail
         }
@@ -64,7 +64,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     // MARK: search result
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        self.data = DBUtil.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
+        self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
         self.tableView.reloadData()
     }
  

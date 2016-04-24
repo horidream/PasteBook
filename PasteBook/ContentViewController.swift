@@ -19,7 +19,7 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        let url = NSBundle.mainBundle().URLForResource("test", withExtension: "html")
+        let url = NSBundle.mainBundle().URLForResource("template", withExtension: "html")
         webView.delegate = self
         webView.loadRequest(NSURLRequest(URL: url!))
     }
