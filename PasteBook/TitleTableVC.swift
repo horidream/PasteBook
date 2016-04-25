@@ -26,12 +26,21 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.searchController.searchBar.returnKeyType = .Done
         
         self.definesPresentationContext = true
-        self.navigationItem.titleView = searchController.searchBar
+//        self.navigationItem.titleView = searchController.searchBar
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addNewItem))
+        self.navigationItem.title = "Title"
+        let searchBar = searchController.searchBar
+        self.tableView.tableHeaderView = searchBar
+        self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBar.frame))
         
         self.splitViewController?.preferredDisplayMode = .AllVisible
         self.splitViewController?.delegate = self
     }
     
+    
+    func addNewItem(){
+        self.navigationController?.performSegueWithIdentifier("CreateNew", sender: self)
+    }
     // MARK: navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let id = segue.identifier where id == "showDetail"{

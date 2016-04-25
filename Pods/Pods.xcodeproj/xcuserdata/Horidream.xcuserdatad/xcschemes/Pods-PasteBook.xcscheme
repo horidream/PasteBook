@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B6297CC9B7809397ADA50C39'
+               BlueprintIdentifier = '8BECF66C090580CA0CAFA736'
                BlueprintName = 'Pods-PasteBook'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-PasteBook.a'>

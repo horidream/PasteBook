@@ -18,6 +18,7 @@
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
 		993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* DBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
+		99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */; };
 		99BDF8771C3AC53500C4D768 /* template.html in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8751C3AC53500C4D768 /* template.html */; };
 		99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8761C3AC53500C4D768 /* marked.min.js */; };
 		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
@@ -56,6 +57,7 @@
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
 		993E61CA1CCD116A0055E7D5 /* DBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
+		99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewItemVC.swift; sourceTree = "<group>"; };
 		99BDF8751C3AC53500C4D768 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = template.html; path = PasteBook/template.html; sourceTree = "<group>"; };
 		99BDF8761C3AC53500C4D768 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = PasteBook/marked.min.js; sourceTree = "<group>"; };
 		99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableVC.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				993E61CE1CCD16E90055E7D5 /* DataBase */,
 				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
 				990716061B94885C00D1A903 /* ContentViewController.swift */,
+				99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */,
 				990716371B94A6EB00D1A903 /* Settings */,
 				9907160B1B94885C00D1A903 /* Assets.xcassets */,
 			);
@@ -353,6 +356,7 @@
 				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
 				990716051B94885C00D1A903 /* AppDelegate.swift in Sources */,
+				99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
