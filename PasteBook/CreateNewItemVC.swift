@@ -26,7 +26,7 @@ class SegueFromLeft: UIStoryboardSegue {
     
 }
 
-class CreateNewItemVC: UIViewController {
+class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var tagsTF: UITextField!
@@ -79,4 +79,27 @@ class CreateNewItemVC: UIViewController {
         
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    // MARK: popover delegate
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SelectTag" {
+            let selectTagsVC = segue.destinationViewController
+            print(selectTagsVC)
+            selectTagsVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+            selectTagsVC.popoverPresentationController!.delegate = self
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
+//
+//    func popoverPresentationControllerShouldDismissPopover(popoverPresentationController: UIPopoverPresentationController) -> Bool {
+//        return true
+//    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        print("did dismiss")
+    }
+    
 }
