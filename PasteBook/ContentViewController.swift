@@ -15,6 +15,7 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
     var tags = [String]()
     var contentTitle:String!
     var contentDetail:String!
+    var itemID:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,26 +35,35 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
             .stringByReplacingOccurrencesOfString("\'",withString: "\\\'")
         
     }
-    func webViewDidFinishLoad(webView: UIWebView) {
+    
+    func refreshDisplay(){
         guard  contentTitle != nil else{
             return
         }
         self.title = contentTitle
         let tagsMark = self.tags.map { (item) -> String in
             "*"+item+"*"
-        }.joinWithSeparator(" ") + "\n\n"
+            }.joinWithSeparator(" ") + "\n\n"
         
         let jsCode = "document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+contentDetail))\\n\\n\")"
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('content').innerHTML="+jsCode)
         webView.stringByEvaluatingJavaScriptFromString("$('pre code').each(function(i, block) {hljs.highlightBlock(block);});")
+        
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        refreshDisplay()
     }
 
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "EditItem")
+        {
+            let vc:CreateNewItemVC = segue.destinationViewController as! CreateNewItemVC
+            vc.item = (id:itemID!, title:contentTitle, content:contentDetail, tags:tags)
+        }
+    }
 
 }
 

@@ -6,14 +6,20 @@
 //  Copyright © 2016 Baoli Zhai. All rights reserved.
 //
 
-class PBDBHandler: DBHandler {
+class PBDBHandler: DBHandler, NSFileManagerDelegate {
     
     // MARK: SINGLETON
     
     static let sharedInstance:PBDBHandler = {
+        let fm = NSFileManager.defaultManager()
         let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
         let path = NSString(string: documentsFolder).stringByAppendingPathComponent("moknow.db")
-        
+        let bundlePath = NSBundle.mainBundle().pathForResource("moknow", ofType: ".db")!
+        do{
+            if(!fm.fileExistsAtPath(path)){
+                try fm.copyItemAtPath(bundlePath, toPath: path)
+            }
+        }catch{}
         return PBDBHandler(dbPath:path)
     }()
     // MARK: CRUD
@@ -22,6 +28,13 @@ class PBDBHandler: DBHandler {
         self.query("INSERT INTO items (title, content) VALUES (?, ?)", withArgs:[title, content]){[$0]}
     }
     
+    func updateItemWithId(id:Int, title:String, content:String){
+        self.query("UPDATE items SET title=?, content=? WHERE id=?", withArgs:[title, content, id]){[$0]}
+    }
+    
+    func removeItemWithId(id:Int){
+        self.query("DELETE FROM items WHERE id=?", withArgs: [id]){$0}
+    }
     // MARK: find all
     
     func fetchAllTitle()->Array<(id:Int, title:String)>{

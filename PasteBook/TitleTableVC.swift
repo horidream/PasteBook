@@ -8,6 +8,11 @@
 
 import UIKit
 
+// define Item type
+typealias Item = (id:Int, title:String, content:String, tags:[String])
+
+
+
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     
     var data:Array<(id:Int,title:String)> = []
@@ -25,9 +30,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.searchController.searchBar.returnKeyType = .Done
         
         self.definesPresentationContext = true
-//        self.navigationItem.titleView = searchController.searchBar
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addNewItem))
-        self.navigationItem.title = "Title"
+        self.navigationItem.title = "Manage Your Knowledge"
         let searchBar = searchController.searchBar
         self.tableView.tableHeaderView = searchBar
         self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBar.frame))
@@ -37,6 +41,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     override func viewWillAppear(animated: Bool) {
+        refreshData()
+    }
+    
+    func refreshData(){
+        
         data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
         self.tableView.reloadData()
     }
@@ -54,6 +63,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)
             vc.contentTitle = detail.title
             vc.contentDetail = detail.detail
+            vc.itemID = id
         }
     }
     
@@ -72,6 +82,14 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("showDetail", sender: ["id":data[indexPath.row].id])
         searchController.searchBar.resignFirstResponder()
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == .Delete){
+            self.data.removeAtIndex(indexPath.row)
+            PBDBHandler.sharedInstance.removeItemWithId(self.data[indexPath.row].id)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
     }
     
     // MARK: search result
