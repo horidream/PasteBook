@@ -14,7 +14,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = PBDBHandler.sharedInstance.fetchAllTitle()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell")
         self.tableView.dataSource = self
         
@@ -37,9 +36,13 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.splitViewController?.delegate = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
+        self.tableView.reloadData()
+    }
     
     func addNewItem(){
-        self.navigationController?.performSegueWithIdentifier("CreateNew", sender: self)
+        self.performSegueWithIdentifier("CreateNew", sender: self)
     }
     // MARK: navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

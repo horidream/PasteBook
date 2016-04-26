@@ -20,8 +20,8 @@ class SegueFromLeft: UIStoryboardSegue {
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
-        (src as! UINavigationController).view.layer.addAnimation(transition, forKey: kCATransition)
-        (src as! UINavigationController).pushViewController(dst, animated: false)
+        src.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        src.navigationController!.pushViewController(dst, animated: false)
     }
     
 }
@@ -33,6 +33,7 @@ class CreateNewItemVC: UIViewController {
     
     @IBOutlet weak var contentTextView: UITextView!
     override func viewDidLoad() {
+        self.title = "Create New Item"
         // make the text view's border is same as text field
         contentTextView.layer.cornerRadius = 5
         contentTextView.layer.borderWidth = 1
@@ -46,6 +47,7 @@ class CreateNewItemVC: UIViewController {
     
     
     func didCreateNewItem(){
-        print("did create new item")
+        PBDBHandler.sharedInstance.addItem(titleTF.text!, content: contentTextView.text)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

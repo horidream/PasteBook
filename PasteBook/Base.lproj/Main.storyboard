@@ -147,6 +147,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rAK-LR-Jvd"/>
+                    <connections>
+                        <segue destination="ex1-yM-NCH" kind="showDetail" identifier="CreateNew" id="5Tm-FO-Wer"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFp-ir-dKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,7 +180,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="tzU-7A-C6n" kind="relationship" relationship="rootViewController" id="RD5-8i-hAW"/>
-                        <segue destination="ex1-yM-NCH" kind="show" identifier="CreateNew" customClass="SegueFromLeft" customModule="PasteBook" customModuleProvider="target" id="5Ke-Pf-XDd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdW-0R-XQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
