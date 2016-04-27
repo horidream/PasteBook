@@ -34,15 +34,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     @IBOutlet weak var tagsTF: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
     
-    private var _item:Item?
-    var item:Item?{
-        set(newValue){
-            _item = newValue
-        }
-        get{
-            return _item;
-        }
-    }
+    var item:Item?
     var isNewItem:Bool = true
     override func viewDidLoad() {
         self.title = "Create New Item"
@@ -68,7 +60,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         if let item = self.item{
             titleTF.text = item.title
             contentTextView.text = item.content
-            tagsTF.text = item.tags.joinWithSeparator(", ")
+            tagsTF.text = item.tags.map{$0.name}.joinWithSeparator(", ")
             self.title = "Update Item"
         }
     }

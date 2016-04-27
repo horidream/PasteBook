@@ -91,9 +91,9 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     }
     
     // MARK: find by id
-    func fetchTagsById(id:Int)->[String]{
-        let result = query("SELECT name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){
-            $0.stringForColumn("name")!
+    func fetchTagsById(id:Int)->[Tag]{
+        let result = query("SELECT id, name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){
+            (id: Int($0.intForColumn("id")), name:$0.stringForColumn("name")!)
         }
         return result
     }

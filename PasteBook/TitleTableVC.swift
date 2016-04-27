@@ -9,14 +9,17 @@
 import UIKit
 
 // define Item type
-typealias Item = (id:Int, title:String, content:String, tags:[String])
+typealias Tag = (id:Int, name:String)
+typealias Item = (id:Int, title:String, content:String, tags:[Tag])
 
-func == (t1:Item, t2:Item)->Bool{
-    return (t1.id==t2.id) && (t1.title==t2.title) && (t1.content == t2.content) && (t1.tags == t2.tags)
+func == <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
+{
+    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (tuple1.2 == tuple2.2) && (tuple1.3 == tuple2.3)
 }
 
-func != (t1:Item, t2:Item)->Bool{
-    return !(t1==t2)
+func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
+{
+    return !(tuple1==tuple2)
 }
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {

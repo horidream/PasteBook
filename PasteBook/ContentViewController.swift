@@ -12,7 +12,7 @@ import UIKit
 class ContentViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
-    var tags = [String]()
+    var tags = [Tag]()
     var contentTitle:String!
     var contentDetail:String!
     var itemID:Int?
@@ -42,7 +42,7 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
         }
         self.title = contentTitle
         let tagsMark = self.tags.map { (item) -> String in
-            "*"+item+"*"
+            "*"+item.name+"*"
             }.joinWithSeparator(" ") + "\n\n"
         
         let jsCode = "document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+contentDetail))\\n\\n\")"
