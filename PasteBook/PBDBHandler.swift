@@ -28,6 +28,10 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
         self.query("INSERT INTO items (title, content) VALUES (?, ?)", withArgs:[title, content]){[$0]}
     }
     
+    func addTag( tagID:Int, withItemID itemID:Int){
+        self.query("INSERT OR REPLACE INTO taged_items (tag_id, item_id) VALUES (?, ?)", withArgs: [tagID, itemID]){$0}
+    }
+    
     func updateItemWithId(id:Int, title:String, content:String){
         self.query("UPDATE items SET title=?, content=? WHERE id=?", withArgs:[title, content, id]){[$0]}
     }

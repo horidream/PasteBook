@@ -11,7 +11,13 @@ import UIKit
 // define Item type
 typealias Item = (id:Int, title:String, content:String, tags:[String])
 
+func == (t1:Item, t2:Item)->Bool{
+    return (t1.id==t2.id) && (t1.title==t2.title) && (t1.content == t2.content) && (t1.tags == t2.tags)
+}
 
+func != (t1:Item, t2:Item)->Bool{
+    return !(t1==t2)
+}
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     

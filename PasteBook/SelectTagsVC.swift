@@ -1,4 +1,3 @@
-//
 //  SelectTagsVC.swift
 //  PasteBook
 //
@@ -11,6 +10,7 @@ import UIKit
 class SelectTagsVC: UITableViewController {
     
     var data:Array<(id:Int, name:String)> = []
+    var currentItem:Item?
     override func viewDidLoad() {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "TagCell")
         self.data = PBDBHandler.sharedInstance.fetchAllTags()
@@ -32,7 +32,10 @@ class SelectTagsVC: UITableViewController {
         let newItemVC = self.navigationController!.popoverPresentationController!.delegate as! CreateNewItemVC
         self.dismissViewControllerAnimated(true) {
             let tf = newItemVC.tagsTF
+            PBDBHandler.sharedInstance.addTag(self.data[indexPath.row].id, withItemID: (self.currentItem?.id)!)
             tf.text = tf.text?.stringByAppendingString((tf.text == "" ? "" : ",")+self.data[indexPath.row].name)
+            newItemVC.item = self.currentItem
+            newItemVC.refreshUI()
         }
     }
 

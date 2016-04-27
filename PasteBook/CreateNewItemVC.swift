@@ -26,13 +26,23 @@ class SegueFromLeft: UIStoryboardSegue {
     
 }
 
+
+
 class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var tagsTF: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
     
-    var item:Item?
+    private var _item:Item?
+    var item:Item?{
+        set(newValue){
+            _item = newValue
+        }
+        get{
+            return _item;
+        }
+    }
     var isNewItem:Bool = true
     override func viewDidLoad() {
         self.title = "Create New Item"
@@ -49,16 +59,19 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        refreshUI()
+        self.isNewItem = false
+        
+    }
+    
+    func refreshUI(){
         if let item = self.item{
             titleTF.text = item.title
             contentTextView.text = item.content
             tagsTF.text = item.tags.joinWithSeparator(", ")
             self.title = "Update Item"
-            self.isNewItem = false
         }
-        
     }
-    
     override func viewDidDisappear(animated: Bool) {
         self.item = nil
         self.isNewItem = true
@@ -72,6 +85,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             PBDBHandler.sharedInstance.updateItemWithId((item?.id)!, title: titleTF.text!, content: contentTextView.text)
             let vcs = self.navigationController?.viewControllers
             let cv:ContentViewController = vcs![(vcs?.count)! - 2] as! ContentViewController
+            cv.tags = (item?.tags)!
             cv.contentTitle = titleTF.text!
             cv.contentDetail = contentTextView.text
             cv.refreshDisplay()
@@ -83,20 +97,17 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     // MARK: popover delegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SelectTag" {
-            let selectTagsVC = segue.destinationViewController
-            print(selectTagsVC)
-            selectTagsVC.modalPresentationStyle = UIModalPresentationStyle.Popover
-            selectTagsVC.popoverPresentationController!.delegate = self
+            let navigationVC = segue.destinationViewController as! UINavigationController
+            let selectTagVC = navigationVC.viewControllers.first as! SelectTagsVC
+            selectTagVC.currentItem = self.item
+            navigationVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+            navigationVC.popoverPresentationController!.delegate = self
         }
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
-//
-//    func popoverPresentationControllerShouldDismissPopover(popoverPresentationController: UIPopoverPresentationController) -> Bool {
-//        return true
-//    }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
         print("did dismiss")
