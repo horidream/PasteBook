@@ -10,7 +10,11 @@ import UIKit
 class SelectTagsVC: UITableViewController {
     
     var data:Array<(id:Int, name:String)> = []
-    var currentItem:Item?
+    var currentItem:Item?{
+        didSet{
+            selectedTags = currentItem?.tags ?? []
+        }
+    }
     var selectedTagIds:Array = [Int]()
     var selectedTags:Array<(id:Int, name:String)> = []{
         didSet{
@@ -22,6 +26,10 @@ class SelectTagsVC: UITableViewController {
         self.data = PBDBHandler.sharedInstance.fetchAllTags()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        print(self.selectedTags)
+    }
+    
     // MARK: datasource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -31,6 +39,7 @@ class SelectTagsVC: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TagCell") as! TagCell
         cell.textLabel?.text = data[indexPath.row].name
         cell.ticked = selectedTagIds.contains(data[indexPath.row].id)
+        
         return cell
     }
 
@@ -56,13 +65,10 @@ class SelectTagsVC: UITableViewController {
     
     @IBAction func onDonePressed(sender: AnyObject) {
         let newItemVC = self.navigationController!.popoverPresentationController!.delegate as! CreateNewItemVC
-        self.dismissViewControllerAnimated(true) {
-            newItemVC.item = self.currentItem
-//            let tf = newItemVC.tagsTF
-            //            PBDBHandler.sharedInstance.addTag(self.data[indexPath.row].id, withItemID: (self.currentItem?.id)!)
-//            tf.text = tf.text?.stringByAppendingString((tf.text == "" ? "" : ",")+self.data[indexPath.row].name)
-//            newItemVC.item = self.currentItem
-//            newItemVC.refreshUI()
+        newItemVC.item = self.currentItem
+        newItemVC.popoverPresentationControllerDidDismissPopover(self.navigationController!.popoverPresentationController!)
+        self.navigationController?.dismissViewControllerAnimated(true) {
+            print("dismiss animation complete")
         }
         
     }
