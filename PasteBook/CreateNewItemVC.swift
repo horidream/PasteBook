@@ -27,7 +27,6 @@ class SegueFromLeft: UIStoryboardSegue {
 }
 
 
-
 class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var titleTF: UITextField!
@@ -36,6 +35,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     var item:Item?
     var isNewItem:Bool = true
+    
     override func viewDidLoad() {
         self.title = "Create New Item"
         // make the text view's border is same as text field
@@ -102,6 +102,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        tagsTF.text = item?.tags.map{$0.name}.joinWithSeparator(", ") ?? ""
         print("did dismiss")
     }
     
