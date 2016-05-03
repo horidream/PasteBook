@@ -64,16 +64,25 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     // MARK: navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let id = segue.identifier where id == "showDetail"{
-            let nv = segue.destinationViewController as! UINavigationController
-            let vc = nv.viewControllers[0] as! ContentViewController
-            let id = (sender?.valueForKey("id")?.integerValue)!
-            let detail = PBDBHandler.sharedInstance.fetchDetail(id)
-            vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)
-            vc.contentTitle = detail.title
-            vc.contentDetail = detail.detail
-            vc.itemID = id
+        if let id = segue.identifier{
+            switch id {
+            case "showDetail":
+                let nv = segue.destinationViewController as! UINavigationController
+                let vc = nv.viewControllers[0] as! ContentViewController
+                let id = (sender?.valueForKey("id")?.integerValue)!
+                let detail = PBDBHandler.sharedInstance.fetchDetail(id)
+                vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)
+                vc.contentTitle = detail.title
+                vc.contentDetail = detail.detail
+                vc.itemID = id
+            case "CreateNew":
+                let cnvc = segue.destinationViewController as! CreateNewItemVC
+                cnvc.isNewItem = true
+            default:()
+            }
         }
+        
+        
     }
     
     // MARK: table view data source
@@ -95,8 +104,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == .Delete){
-            self.data.removeAtIndex(indexPath.row)
             PBDBHandler.sharedInstance.removeItemWithId(self.data[indexPath.row].id)
+            self.data.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

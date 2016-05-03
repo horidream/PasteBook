@@ -35,7 +35,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     var item:Item?
     var isNewItem:Bool = true
-    
+    var tagChanges:TagChanges?
     override func viewDidLoad() {
         self.title = "Create New Item"
         // make the text view's border is same as text field
@@ -51,8 +51,8 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.tagChanges = TagChanges(tags: isNewItem ? [] : (item?.tags)!)
         refreshUI()
-        self.isNewItem = false
         
     }
     
@@ -63,16 +63,11 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             tagsTF.text = item.tags.map{$0.name}.joinWithSeparator(", ")
             self.title = "Update Item"
         }
-    }
-    override func viewDidDisappear(animated: Bool) {
-        self.item = nil
-        self.isNewItem = true
-    }
-    
+    }    
     
     func didCreateNewItem(){
         if( isNewItem){
-            PBDBHandler.sharedInstance.addItem(titleTF.text!, content: contentTextView.text)
+            print(PBDBHandler.sharedInstance.addItem(titleTF.text!, content: contentTextView.text))
         }else{
             PBDBHandler.sharedInstance.updateItemWithId((item?.id)!, title: titleTF.text!, content: contentTextView.text)
             let vcs = self.navigationController?.viewControllers
@@ -92,6 +87,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             let navigationVC = segue.destinationViewController as! UINavigationController
             let selectTagVC = navigationVC.viewControllers.first as! SelectTagsVC
             selectTagVC.currentItem = self.item
+            selectTagVC.tagChanges = self.tagChanges
             navigationVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             navigationVC.popoverPresentationController!.delegate = self
         }
@@ -101,9 +97,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         return UIModalPresentationStyle.None
     }
     
-    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        tagsTF.text = item?.tags.map{$0.name}.joinWithSeparator(", ") ?? ""
-        print("did dismiss")
-    }
+//    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+//        tagsTF.text = item?.tags.map{$0.name}.joinWithSeparator(", ") ?? ""
+//        print("did dismiss")
+//    }
     
 }

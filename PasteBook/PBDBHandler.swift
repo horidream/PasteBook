@@ -17,6 +17,7 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
         let bundlePath = NSBundle.mainBundle().pathForResource("moknow", ofType: ".db")!
         do{
             if(!fm.fileExistsAtPath(path)){
+                print("copying db to folder")
                 try fm.copyItemAtPath(bundlePath, toPath: path)
             }
         }catch{}
@@ -25,7 +26,7 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     // MARK: CRUD
 
     func addItem(title:String, content:String){
-        self.query("INSERT INTO items (title, content) VALUES (?, ?)", withArgs:[title, content]){[$0]}
+        self.query("INSERT INTO items (title, content) VALUES (?, ?)", withArgs:[title, content]){$0}
     }
     
     func addTag( tagID:Int, withItemID itemID:Int){
@@ -36,6 +37,9 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
         self.query("UPDATE items SET title=?, content=? WHERE id=?", withArgs:[title, content, id]){[$0]}
     }
     
+    func removeTagWithId(id:Int){
+        self.query("DELETE FROM tags WHERE id=?", withArgs: [id]){$0}
+    }
     func removeItemWithId(id:Int){
         self.query("DELETE FROM items WHERE id=?", withArgs: [id]){$0}
     }

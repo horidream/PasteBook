@@ -14,7 +14,7 @@ extension SequenceType where Self.Generator.Element == Tag{
 }
 
 class TagChanges : CustomStringConvertible{
-    let tags:Array<Tag>
+    var tags:Array<Tag>
     var addedTags:[Tag] = []
     var removedTags:[Tag] = []
     init(tags:Array<Tag>){
@@ -40,6 +40,36 @@ class TagChanges : CustomStringConvertible{
             }
         }
     }
+    
+    
+    var selectedTags:[Tag]{
+        return ((self.tags + self.addedTags).filter{
+            !self.removedTags.contains($0)
+            })
+    }
+    
+    var displayedTags:String{
+        
+        return selectedTags.map({ (id, name) -> String in
+            return name
+        }).joinWithSeparator(",")
+    }
+    
+    func updateWithItemId(itemId:Int){
+        for t in removedTags{
+            PBDBHandler.sharedInstance.removeTagWithId(t.id)
+        }
+        
+        for t in addedTags{
+            PBDBHandler.sharedInstance.addTag(t.id, withItemID: itemId)
+        }
+        
+        self.tags = (self.tags + self.addedTags).filter{
+            !self.removedTags.contains($0)
+            }
+
+    }
+    
     
     var description:String {
         return "added: \(addedTags), removed:\(removedTags)"
@@ -67,9 +97,8 @@ class SelectTagsVC: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        tagChanges = TagChanges(tags: data)
         let allTagIds = data.map{$0.id}
-        for i in selectedTagIds{
+        for (i, _ )  in tagChanges!.selectedTags{
             if let index = allTagIds.indexOf(i){
                 self.tableView.selectRowAtIndexPath(NSIndexPath(forRow:index, inSection: 0),animated:false, scrollPosition:.None)
             }
@@ -84,7 +113,7 @@ class SelectTagsVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TagCell") as! TagCell
         cell.textLabel?.text = data[indexPath.row].name
-        cell.ticked = selectedTagIds.contains(data[indexPath.row].id)
+        cell.ticked = tagChanges!.selectedTags.map{$0.id}.contains(data[indexPath.row].id)
         
         return cell
     }
@@ -93,7 +122,6 @@ class SelectTagsVC: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! TagCell
         cell.ticked = true
-        self.selectedTags.append(data[indexPath.row])
         tagChanges?.add(data[indexPath.row])
         
         
@@ -102,11 +130,6 @@ class SelectTagsVC: UITableViewController {
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! TagCell
         cell.ticked = false
-        if let index = self.selectedTags.indexOf({ (id, name) -> Bool in
-            id == data[indexPath.row].id
-        }){
-            self.selectedTags.removeAtIndex(index)
-        }
         tagChanges?.remove(data[indexPath.row])
     }
     
@@ -115,9 +138,10 @@ class SelectTagsVC: UITableViewController {
     
     @IBAction func onDonePressed(sender: AnyObject) {
         let newItemVC = self.navigationController!.popoverPresentationController!.delegate as! CreateNewItemVC
-        newItemVC.popoverPresentationControllerDidDismissPopover(self.navigationController!.popoverPresentationController!)
+//        newItemVC.popoverPresentationControllerDidDismissPopover(self.navigationController!.popoverPresentationController!)
         self.navigationController?.dismissViewControllerAnimated(true) {
-            print(self.tagChanges)
+            newItemVC.tagChanges = self.tagChanges
+            newItemVC.tagsTF.text = self.tagChanges?.displayedTags
         }
         
     }

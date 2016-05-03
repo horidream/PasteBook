@@ -26,7 +26,9 @@ class DBHandler: NSObject{
                 
                 result.append(mapBlock(rs))
             }
+            
         }
+        
         self.database.close()
         return result
         
