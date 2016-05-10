@@ -14,7 +14,7 @@ class DBHandler: NSObject{
     init(dbPath:String){
         self.database = FMDatabase(path: dbPath)
     }
-    
+    var lastInsertRowId:NSNumber?
     func query<T>(sql:String, withArgs args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
         var result:Array<T> = []
         guard self.database.open() == true else{
@@ -28,7 +28,7 @@ class DBHandler: NSObject{
             }
             
         }
-        
+        lastInsertRowId = NSNumber(longLong:self.database.lastInsertRowId())
         self.database.close()
         return result
         

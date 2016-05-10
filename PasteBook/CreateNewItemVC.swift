@@ -67,7 +67,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func didCreateNewItem(){
         if( isNewItem){
-            print(PBDBHandler.sharedInstance.addItem(titleTF.text!, content: contentTextView.text))
+            let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text)
+            print(insertedRow)
+            
         }else{
             PBDBHandler.sharedInstance.updateItemWithId((item?.id)!, title: titleTF.text!, content: contentTextView.text)
             let vcs = self.navigationController?.viewControllers
@@ -96,10 +98,4 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
-    
-//    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-//        tagsTF.text = item?.tags.map{$0.name}.joinWithSeparator(", ") ?? ""
-//        print("did dismiss")
-//    }
-    
 }

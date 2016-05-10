@@ -25,8 +25,9 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     }()
     // MARK: CRUD
 
-    func addItem(title:String, content:String){
+    func addItem(title:String, content:String)->NSDictionary{
         self.query("INSERT INTO items (title, content) VALUES (?, ?)", withArgs:[title, content]){$0}
+        return self.query("SELECT * FROM items WHERE ROWID=?", withArgs: [lastInsertRowId!]){$0.resultDictionary()}[0]
     }
     
     func addTag( tagID:Int, withItemID itemID:Int){
