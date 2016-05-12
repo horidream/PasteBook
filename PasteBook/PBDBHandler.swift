@@ -25,36 +25,35 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     }()
     // MARK: CRUD
 
-    func addItem(title:String, content:String)->NSDictionary{
-        self.query("INSERT INTO items (title, content) VALUES (?, ?)", withArgs:[title, content]){$0}
-        return self.query("SELECT * FROM items WHERE ROWID=?", withArgs: [lastInsertRowId!]){$0.resultDictionary()}[0]
+    func addItem(title:String, content:String)->NSDictionary?{
+        return self.queryChange("INSERT INTO items (title, content) VALUES (?, ?)", [title, content])
     }
     
     func addTag( tagID:Int, withItemID itemID:Int){
-        self.query("INSERT OR REPLACE INTO taged_items (tag_id, item_id) VALUES (?, ?)", withArgs: [tagID, itemID]){$0}
+        self.queryChange("INSERT INTO taged_items (tag_id, item_id) VALUES (?, ?)", [tagID, itemID])
     }
     
     func updateItemWithId(id:Int, title:String, content:String){
-        self.query("UPDATE items SET title=?, content=? WHERE id=?", withArgs:[title, content, id]){[$0]}
+        self.queryChange("UPDATE items SET title=?, content=? WHERE id=?", [title, content, id])
     }
     
     func removeTagWithId(id:Int){
-        self.query("DELETE FROM tags WHERE id=?", withArgs: [id]){$0}
+        queryChange("DELETE FROM tags WHERE id=?", [id])
     }
     func removeItemWithId(id:Int){
-        self.query("DELETE FROM items WHERE id=?", withArgs: [id]){$0}
+        queryChange("DELETE FROM items WHERE id=?", [id])
     }
     // MARK: find all
     
     func fetchAllTitle()->Array<(id:Int, title:String)>{
-        let result = query("select id,title from items") { (rs) -> (id:Int, title:String) in
+        let result = queryFetch("select id,title from items") { (rs) -> (id:Int, title:String) in
             (id:Int(rs.intForColumn("id")),title:rs.stringForColumn("title"))
         }
         return result
     }
     
     func fetchAllTags()->Array<(id:Int, name:String)>{
-        let result = query("SELECT id, name from tags"){
+        let result = queryFetch("SELECT id, name from tags"){
             (id:Int($0.intForColumn("id")), name:$0.stringForColumn("name")!)
         }
         return result
@@ -62,14 +61,14 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     
     // MARK: find likes
     func fetchTagNameLikeIDs(likeString:String)->Array<Int>{
-        let result = query("SELECT items.id FROM items JOIN tags ON tags.display_name LIKE \"%\(likeString)%\" JOIN taged_items ON taged_items.tag_id = tags.id AND taged_items.item_id = items.id"){(rs)->Int in
+        let result = queryFetch("SELECT items.id FROM items JOIN tags ON tags.display_name LIKE \"%\(likeString)%\" JOIN taged_items ON taged_items.tag_id = tags.id AND taged_items.item_id = items.id"){(rs)->Int in
             Int(rs.intForColumn("id"))
         }
         return result
     }
     
     func fetchContentLikeIDs(likeString:String)->Array<Int>{
-        let result = query("select id,title,content from items where title like \"%\(likeString)%\" or content like \"%\(likeString)%\""){(rs)->Int in
+        let result = queryFetch("select id,title,content from items where title like \"%\(likeString)%\" or content like \"%\(likeString)%\""){(rs)->Int in
             Int(rs.intForColumn("id"))
         }
         return result
@@ -88,7 +87,7 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
         }
         
         let matchIDString = matchIds.map { String($0) }.joinWithSeparator(",")
-        return query("select id,title from items where id in (\(matchIDString))"){ (rs) -> (id:Int, title:String) in
+        return queryFetch("select id,title from items where id in (\(matchIDString))"){ (rs) -> (id:Int, title:String) in
             (id:Int(rs.intForColumn("id")),title:rs.stringForColumn("title"))
         }
         
@@ -97,7 +96,7 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     
     // MARK: find by id
     func fetchTagsById(id:Int)->[Tag]{
-        let result = query("SELECT id, name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){
+        let result = queryFetch("SELECT id, name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){
             (id: Int($0.intForColumn("id")), name:$0.stringForColumn("name")!)
         }
         return result
@@ -106,7 +105,7 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     
     func fetchDetail(id:Int)->(title:String, detail:String){
         
-        let result = query("select title, content from items where id=\(id)") { (rs) -> (title:String, detail:String) in
+        let result = queryFetch("select title, content from items where id=\(id)") { (rs) -> (title:String, detail:String) in
             (rs.stringForColumn("title"),rs.stringForColumn("content"))
         }
         

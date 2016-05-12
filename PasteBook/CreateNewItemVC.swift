@@ -36,6 +36,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     var item:Item?
     var isNewItem:Bool = true
     var tagChanges:TagChanges?
+    
+    var contentVC:ContentViewController?
+    
     override func viewDidLoad() {
         self.title = "Create New Item"
         // make the text view's border is same as text field
@@ -67,14 +70,24 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func didCreateNewItem(){
         if( isNewItem){
-            let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text)
+            let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text ?? "")
             print(insertedRow)
             
         }else{
-            PBDBHandler.sharedInstance.updateItemWithId((item?.id)!, title: titleTF.text!, content: contentTextView.text)
-            let vcs = self.navigationController?.viewControllers
-            let cv:ContentViewController = vcs![(vcs?.count)! - 2] as! ContentViewController
-            cv.tags = (item?.tags)!
+            PBDBHandler.sharedInstance.updateItemWithId(item!.id, title: titleTF.text!, content: contentTextView.text)
+            let cv:ContentViewController = self.contentVC!
+            cv.tags = tagChanges?.selectedTags ?? (item?.tags)!
+            
+            if let changes = tagChanges{
+                for tag in changes.addedTags{
+                    print("will add new tag \(tag.id) with item id \(item!.id)")
+                    PBDBHandler.sharedInstance.addTag(tag.id, withItemID: item!.id)
+                }
+                for tag in changes.removedTags{
+                    PBDBHandler.sharedInstance.removeTagWithId(tag.id)
+                }
+                
+            }
             cv.contentTitle = titleTF.text!
             cv.contentDetail = contentTextView.text
             cv.refreshDisplay()

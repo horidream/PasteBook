@@ -62,6 +62,8 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
         {
             let vc:CreateNewItemVC = segue.destinationViewController as! CreateNewItemVC
             vc.item = (id:itemID!, title:contentTitle, content:contentDetail, tags:tags)
+            vc.isNewItem = false
+            vc.contentVC = self
         }
     }
 

@@ -28,8 +28,13 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: #selector(refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(self.refreshControl!)
+
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell")
         self.tableView.dataSource = self
+        data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
         
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
@@ -47,16 +52,19 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         
         self.splitViewController?.preferredDisplayMode = .AllVisible
         self.splitViewController?.delegate = self
+        
+        
+        
+        // stop refresh when done
     }
     
-    override func viewWillAppear(animated: Bool) {
-        refreshData()
-    }
+
     
     func refreshData(){
         
         data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
         self.tableView.reloadData()
+        self.refreshControl!.endRefreshing()
     }
     
     func addNewItem(){

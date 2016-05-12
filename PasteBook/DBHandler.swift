@@ -15,7 +15,7 @@ class DBHandler: NSObject{
         self.database = FMDatabase(path: dbPath)
     }
     var lastInsertRowId:NSNumber?
-    func query<T>(sql:String, withArgs args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
+    func queryFetch<T>(sql:String, _ args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
         var result:Array<T> = []
         guard self.database.open() == true else{
             return result
@@ -28,9 +28,40 @@ class DBHandler: NSObject{
             }
             
         }
-        lastInsertRowId = NSNumber(longLong:self.database.lastInsertRowId())
         self.database.close()
         return result
+        
+    }
+    
+    
+    func queryChange(sql:String, _ args:[AnyObject]? = nil)->NSDictionary?{
+        guard self.database.open() == true else{
+            return nil
+        }
+        defer{
+            print("data base closing")
+            
+            self.database.close()
+        }
+        print("will change with query : \(sql) and args: \(args)")
+        let result = database.executeQuery(sql, withArgumentsInArray: args)
+        // must have
+        result.next()
+        let arr = sql.split("\\s+")
+        if arr[0].lowercaseString != "insert"{
+            return nil
+        }
+        lastInsertRowId = NSNumber(longLong:self.database.lastInsertRowId())
+        let idx = arr.map{$0.lowercaseString}.indexOf("into")
+        if let insertedId = lastInsertRowId where idx != nil{
+            let tableName = arr[idx! + 1]
+            print(tableName, lastInsertRowId)
+            let resultSet = database.executeQuery("SELECT * FROM \(tableName) WHERE ROWID=?", withArgumentsInArray:[insertedId])
+            resultSet.next()
+            return resultSet.resultDictionary()
+        }else{
+            return nil
+        }
         
     }
 
