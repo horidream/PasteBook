@@ -39,8 +39,6 @@ class DBHandler: NSObject{
             return nil
         }
         defer{
-            print("data base closing")
-            
             self.database.close()
         }
         print("will change with query : \(sql) and args: \(args)")

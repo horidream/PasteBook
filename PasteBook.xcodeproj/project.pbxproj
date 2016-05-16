@@ -24,6 +24,7 @@
 		99BDF8771C3AC53500C4D768 /* template.html in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8751C3AC53500C4D768 /* template.html */; };
 		99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8761C3AC53500C4D768 /* marked.min.js */; };
 		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
+		99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CD3D521CE945B8008250FD /* PBUtil.swift */; };
 		99FC8A1A1C3EBE0600596BB3 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* default.css */; };
 		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
 		99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */; };
@@ -65,6 +66,7 @@
 		99BDF8751C3AC53500C4D768 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = template.html; path = PasteBook/template.html; sourceTree = "<group>"; };
 		99BDF8761C3AC53500C4D768 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = PasteBook/marked.min.js; sourceTree = "<group>"; };
 		99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableVC.swift; sourceTree = "<group>"; };
+		99CD3D521CE945B8008250FD /* PBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBUtil.swift; sourceTree = "<group>"; };
 		99FC8A191C3EBE0600596BB3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = default.css; path = PasteBook/default.css; sourceTree = "<group>"; };
 		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
 		99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = highlight.pack.js; path = PasteBook/highlight.pack.js; sourceTree = "<group>"; };
@@ -123,14 +125,12 @@
 		990716031B94885C00D1A903 /* PasteBook */ = {
 			isa = PBXGroup;
 			children = (
+				99CD3D511CE9459F008250FD /* Utils */,
 				993E61CE1CCD16E90055E7D5 /* DataBase */,
-				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
-				990716061B94885C00D1A903 /* ContentViewController.swift */,
-				99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */,
-				99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */,
+				99CD3D501CE9458B008250FD /* ViewControllers */,
+				99CD3D4F1CE94576008250FD /* Components */,
 				990716371B94A6EB00D1A903 /* Settings */,
 				9907160B1B94885C00D1A903 /* Assets.xcassets */,
-				99A6E6161CD0F9FE00218213 /* TagCell.swift */,
 			);
 			path = PasteBook;
 			sourceTree = "<group>";
@@ -186,6 +186,33 @@
 				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
 			);
 			name = DataBase;
+			sourceTree = "<group>";
+		};
+		99CD3D4F1CE94576008250FD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				99A6E6161CD0F9FE00218213 /* TagCell.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		99CD3D501CE9458B008250FD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
+				990716061B94885C00D1A903 /* ContentViewController.swift */,
+				99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */,
+				99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		99CD3D511CE9459F008250FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				99CD3D521CE945B8008250FD /* PBUtil.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		9D9C664732790EB1094E57A7 /* Pods */ = {
@@ -361,6 +388,7 @@
 				990716071B94885C00D1A903 /* ContentViewController.swift in Sources */,
 				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
+				99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
 				990716051B94885C00D1A903 /* AppDelegate.swift in Sources */,

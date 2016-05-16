@@ -69,9 +69,19 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     }    
     
     func didCreateNewItem(){
+        var shouldRefresh = false
         if( isNewItem){
-            let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text ?? "")
-            print(insertedRow)
+            if let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text ?? ""){
+                shouldRefresh = true
+                print(insertedRow)
+                if let changes = tagChanges{
+                    for tag in changes.addedTags{
+                        print("will add new tag \(tag.id) with item id \(insertedRow["id"])")
+                        PBDBHandler.sharedInstance.addTag(tag.id, withItemID: insertedRow["id"] as! Int)
+                    }
+                }
+                
+            }
             
         }else{
             PBDBHandler.sharedInstance.updateItemWithId(item!.id, title: titleTF.text!, content: contentTextView.text)
@@ -79,6 +89,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             cv.tags = tagChanges?.selectedTags ?? (item?.tags)!
             
             if let changes = tagChanges{
+                shouldRefresh = true
                 for tag in changes.addedTags{
                     print("will add new tag \(tag.id) with item id \(item!.id)")
                     PBDBHandler.sharedInstance.addTag(tag.id, withItemID: item!.id)
@@ -93,7 +104,14 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             cv.refreshDisplay()
         }
         
+        
         self.navigationController?.popViewControllerAnimated(true)
+        if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC where shouldRefresh == true{
+            PBUtil.delay(0.3, closure: { 
+                titleVC.refreshData()
+                
+            })
+        }
     }
     
     // MARK: popover delegate

@@ -61,10 +61,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
 
     
     func refreshData(){
-        
+        self.refreshControl?.beginRefreshing()
         data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
         self.refreshControl!.endRefreshing()
+        self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Bottom)
     }
     
     func addNewItem(){
