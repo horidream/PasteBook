@@ -8,70 +8,85 @@
 
 import UIKit
 
-struct SensibleTableViewControl {
+// [StackOverflow](http://stackoverflow.com/questions/13845426/generic-uitableview-keyboard-resizing-algorithm)
+class SensibleTableViewControl:NSObject {
     let tableView:UITableView
-    var keyboardShow:Bool = false
-    mutating func keyboardWillShow(aNotification:NSNotification){
-        if keyboardShow{
+    let inputAccessoryView:UIView?
+    var keyboardShown:Bool = false
+    
+    init(tableView:UITableView, inputAccessoryView:UIView?) {
+        self.tableView = tableView
+        self.inputAccessoryView = inputAccessoryView
+    }
+    
+    convenience init(tableView:UITableView){
+        self.init(tableView: tableView, inputAccessoryView: nil)
+        start()
+    }
+    
+    func start(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        
+    }
+    
+    func keyboardWillShow(aNotification:NSNotification){
+        if keyboardShown{
             return
         }
-        keyboardShow = true
+        keyboardShown = true
         var tv:UIScrollView = self.tableView
         if(Mirror(reflecting: self.tableView.superview).subjectType == UIScrollView.self){
             tv = self.tableView.superview as! UIScrollView
         }
         if let userInfo = aNotification.userInfo{
             let aValue = userInfo[UIKeyboardFrameEndUserInfoKey]
-            let keybaordRect = tv.superview?.convertRect(aValue!.CGRectValue(), fromView: nil)
-            var animationDuration:NSTimeInterval
+            let keyboardRect = tv.superview?.convertRect(aValue!.CGRectValue(), fromView: nil)
+            var animationDuration:NSTimeInterval = 0
             userInfo[UIKeyboardAnimationDurationUserInfoKey]?.getValue(&animationDuration)
+            var animationCurve:UIViewAnimationCurve = .Linear
+            userInfo[UIKeyboardAnimationCurveUserInfoKey]?.getValue(&animationCurve)
+            
+            // Determine how much overlap exists between tableView and the keyboard
+            var tableFrame = tableView.frame
+            let tableLowerYCoord = tableFrame.origin.y + tableFrame.size.height
+            var keyboardOverlap = tableLowerYCoord - keyboardRect!.origin.y
+            if((self.inputAccessoryView != nil) && (keyboardOverlap > 0)){
+                let accessoryHeight = self.inputAccessoryView!.frame.size.height;
+                keyboardOverlap -= accessoryHeight;
+                tableView.contentInset = UIEdgeInsetsMake(0, 0, accessoryHeight, 0);
+                tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, accessoryHeight, 0);
+            }
+            if(keyboardOverlap < 0){
+                keyboardOverlap = 0;
+            }
+            
+            if(keyboardOverlap != 0)
+            {
+                tableFrame.size.height -= keyboardOverlap;
+                
+                var delay:NSTimeInterval = 0;
+                if(keyboardRect!.size.height > 0)
+                {
+                    delay = Double(1 - keyboardOverlap/keyboardRect!.size.height)*animationDuration;
+                    animationDuration = animationDuration * Double(keyboardOverlap/keyboardRect!.size.height);
+                }
+                
+                UIView.animateWithDuration(animationDuration, delay: delay, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                        print("animate table view frame from \(self.tableView.frame) to \(tableFrame)")
+                        self.tableView.frame = tableFrame
+                    }, completion: { (finished) in
+                    self.tableAnimationEnded()
+                })
+
+            }
         }
     }
+    func tableAnimationEnded(){
+    }
 }
-    
-//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-//    CGRect keyboardRect = [tableView.superview convertRect:[aValue CGRectValue] fromView:nil];
-//    
-//    // Get the keyboard's animation details
-//    NSTimeInterval animationDuration;
-//    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-//    UIViewAnimationCurve animationCurve;
-//    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-//    
-//    // Determine how much overlap exists between tableView and the keyboard
-//    CGRect tableFrame = tableView.frame;
-//    CGFloat tableLowerYCoord = tableFrame.origin.y + tableFrame.size.height;
-//    keyboardOverlap = tableLowerYCoord - keyboardRect.origin.y;
-//    if(self.inputAccessoryView && keyboardOverlap>0)
-//    {
-//    CGFloat accessoryHeight = self.inputAccessoryView.frame.size.height;
-//    keyboardOverlap -= accessoryHeight;
-//    
-//    tableView.contentInset = UIEdgeInsetsMake(0, 0, accessoryHeight, 0);
-//    tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, accessoryHeight, 0);
-//    }
-//    
-//    if(keyboardOverlap < 0)
-//    keyboardOverlap = 0;
-//    
-//    if(keyboardOverlap != 0)
-//    {
-//    tableFrame.size.height -= keyboardOverlap;
-//    
-//    NSTimeInterval delay = 0;
-//    if(keyboardRect.size.height)
-//    {
-//    delay = (1 - keyboardOverlap/keyboardRect.size.height)*animationDuration;
-//    animationDuration = animationDuration * keyboardOverlap/keyboardRect.size.height;
-//    }
-//    
-//    [UIView animateWithDuration:animationDuration delay:delay
-//    options:UIViewAnimationOptionBeginFromCurrentState
-//    animations:^{ tableView.frame = tableFrame; }
-//    completion:^(BOOL finished){ [self tableAnimationEnded:nil finished:nil contextInfo:nil]; }];
-//    }
-//    }
-//    
+
+
+//
 //    - (void)keyboardWillHide:(NSNotification *)aNotification
 //    {
 //    if(!keyboardShown)
