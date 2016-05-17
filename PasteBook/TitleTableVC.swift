@@ -63,7 +63,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     func refreshData(){
         self.refreshControl?.beginRefreshing()
         data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
-//        self.tableView.reloadData()
         self.refreshControl!.endRefreshing()
         self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Bottom)
     }
@@ -77,7 +76,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             switch id {
             case "showDetail":
                 let nv = segue.destinationViewController as! UINavigationController
-                let vc = nv.viewControllers[0] as! ContentViewController
+                let vc = nv.viewControllers[0] as! ContentDetailVC
                 let id = (sender?.valueForKey("id")?.integerValue)!
                 let detail = PBDBHandler.sharedInstance.fetchDetail(id)
                 vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)

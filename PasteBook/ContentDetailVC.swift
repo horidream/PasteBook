@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ContentViewController: UIViewController, UIWebViewDelegate {
+class ContentDetailVC: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
     var tags = [Tag]()

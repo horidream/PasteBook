@@ -37,7 +37,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     var isNewItem:Bool = true
     var tagChanges:TagChanges?
     
-    var contentVC:ContentViewController?
+    var contentVC:ContentDetailVC?
     
     override func viewDidLoad() {
         self.title = "Create New Item"
@@ -85,7 +85,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             
         }else{
             PBDBHandler.sharedInstance.updateItemWithId(item!.id, title: titleTF.text!, content: contentTextView.text)
-            let cv:ContentViewController = self.contentVC!
+            let cv:ContentDetailVC = self.contentVC!
             cv.tags = tagChanges?.selectedTags ?? (item?.tags)!
             
             if let changes = tagChanges{
@@ -123,6 +123,10 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
             selectTagVC.tagChanges = self.tagChanges
             navigationVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             navigationVC.popoverPresentationController!.delegate = self
+            
+            if let popoverPresentationController = segue.destinationViewController.popoverPresentationController, sourceView = sender as? UIView {
+                popoverPresentationController.sourceRect = sourceView.bounds
+            }
         }
     }
     

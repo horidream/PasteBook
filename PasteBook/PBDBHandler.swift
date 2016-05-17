@@ -29,6 +29,10 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
         return self.queryChange("INSERT INTO items (title, content) VALUES (?, ?)", [title, content])
     }
     
+    func createNewTag(name:String)->NSDictionary?{
+        return self.queryChange("INSERT INTO tags (name) VALUES (?)", [name])
+    }
+    
     func addTag( tagID:Int, withItemID itemID:Int){
         self.queryChange("INSERT INTO taged_items (tag_id, item_id) VALUES (?, ?)", [tagID, itemID])
     }
@@ -38,11 +42,16 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     }
     
     func removeTagWithId(id:Int){
+        queryChange("DELETE FROM taged_items WHERE tag_id=?", [id])
         queryChange("DELETE FROM tags WHERE id=?", [id])
     }
+    
     func removeItemWithId(id:Int){
+        queryChange("DELETE FROM taged_items WHERE item_id=?", [id])
         queryChange("DELETE FROM items WHERE id=?", [id])
     }
+    
+    
     // MARK: find all
     
     func fetchAllTitle()->Array<(id:Int, title:String)>{

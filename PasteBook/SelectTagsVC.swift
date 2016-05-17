@@ -133,7 +133,14 @@ class SelectTagsVC: UITableViewController {
         tagChanges?.remove(data[indexPath.row])
     }
     
-    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == .Delete){
+            tagChanges?.remove(data[indexPath.row])
+            PBDBHandler.sharedInstance.removeTagWithId(self.data[indexPath.row].id)
+            self.data.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
     
     
     @IBAction func onDonePressed(sender: AnyObject) {

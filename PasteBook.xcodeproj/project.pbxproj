@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		8F72642EBC7837BBD4232DD8 /* libPods-PasteBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D56113D61243960A3815CEE2 /* libPods-PasteBook.a */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
-		990716071B94885C00D1A903 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716061B94885C00D1A903 /* ContentViewController.swift */; };
+		990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716061B94885C00D1A903 /* ContentDetailVC.swift */; };
 		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
 		9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9907160B1B94885C00D1A903 /* Assets.xcassets */; };
 		9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */; };
 		9907161A1B94885C00D1A903 /* PasteBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716191B94885C00D1A903 /* PasteBookTests.swift */; };
 		990716391B94A72400D1A903 /* DBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716381B94A72400D1A903 /* DBUtil.swift */; };
+		991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34771CEA017B00316B55 /* AddNewTagVC.swift */; };
+		991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */; };
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
 		993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* DBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
@@ -45,7 +47,7 @@
 		7FFDEF417D20D1E931DFF39C /* Pods-PasteBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig"; sourceTree = "<group>"; };
 		990716011B94885C00D1A903 /* PasteBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		990716041B94885C00D1A903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		990716061B94885C00D1A903 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		990716061B94885C00D1A903 /* ContentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailVC.swift; sourceTree = "<group>"; };
 		990716091B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9907160B1B94885C00D1A903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9907160E1B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +59,8 @@
 		990716261B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		990716331B948EB300D1A903 /* PasteBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteBook-Bridging-Header.h"; sourceTree = "<group>"; };
 		990716381B94A72400D1A903 /* DBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBUtil.swift; sourceTree = "<group>"; };
+		991E34771CEA017B00316B55 /* AddNewTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTagVC.swift; sourceTree = "<group>"; };
+		991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensibleTableViewControl.swift; sourceTree = "<group>"; };
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
 		993E61CA1CCD116A0055E7D5 /* DBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
@@ -200,9 +204,10 @@
 			isa = PBXGroup;
 			children = (
 				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
-				990716061B94885C00D1A903 /* ContentViewController.swift */,
+				990716061B94885C00D1A903 /* ContentDetailVC.swift */,
 				99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */,
 				99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */,
+				991E34771CEA017B00316B55 /* AddNewTagVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				99CD3D521CE945B8008250FD /* PBUtil.swift */,
+				991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -385,9 +391,11 @@
 			files = (
 				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
 				993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */,
-				990716071B94885C00D1A903 /* ContentViewController.swift in Sources */,
+				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
 				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
+				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
+				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
 				99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
