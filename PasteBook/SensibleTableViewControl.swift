@@ -19,9 +19,11 @@ class SensibleTableViewControl:NSObject {
         self.inputAccessoryView = inputAccessoryView
     }
     
-    convenience init(tableView:UITableView){
-        self.init(tableView: tableView, inputAccessoryView: nil)
-        start()
+    convenience init(_ tableView:UITableView, _ inputAccessoryView:UIView? = nil, _ autoStart:Bool = true){
+        self.init(tableView: tableView, inputAccessoryView: inputAccessoryView)
+        if autoStart{
+            start()
+        }
     }
     
     func start(){
@@ -82,6 +84,11 @@ class SensibleTableViewControl:NSObject {
         }
     }
     func tableAnimationEnded(){
+    }
+    
+    deinit{
+        print("remove keyboard notification observer")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
 

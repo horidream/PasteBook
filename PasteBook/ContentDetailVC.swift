@@ -16,6 +16,7 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
     var contentTitle:String!
     var contentDetail:String!
     var itemID:Int?
+    var swipeGR:UISwipeGestureRecognizer?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +24,17 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
         let url = NSBundle.mainBundle().URLForResource("template", withExtension: "html")
         webView.delegate = self
         webView.loadRequest(NSURLRequest(URL: url!))
+        swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe))
+        swipeGR?.direction = .Left
+        webView.addGestureRecognizer(swipeGR!)
+    }
+    
+    func onSwipe(sender:UISwipeGestureRecognizer){
+        if self.webView.canGoBack{
+            UIView.transitionWithView(self.webView, duration: 0.5, options: [.TransitionFlipFromRight, .AllowAnimatedContent], animations: {
+                self.webView.goBack()
+                }, completion: nil)
+        }
     }
     
     func escapeString(str:String)->String{

@@ -26,8 +26,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     var data:Array<(id:Int,title:String)> = []
     let searchController = UISearchController(searchResultsController: nil)
+    var tvControl:SensibleTableViewControl?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(refreshData), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
