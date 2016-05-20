@@ -29,7 +29,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     var tvControl:SensibleTableViewControl?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
         
         self.refreshControl = UIRefreshControl()
@@ -62,7 +61,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         // stop refresh when done
     }
     
-
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.splitViewController?.performSegueWithIdentifier("HomeView", sender: self)
+        
+    }
     
     func refreshData(){
         self.refreshControl?.beginRefreshing()
