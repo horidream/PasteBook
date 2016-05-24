@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8FB-FO-WdX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8FB-FO-WdX">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -265,12 +265,48 @@
                     <view key="view" contentMode="scaleToFill" id="KPg-Xh-RZr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="HomeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="7iL-Sm-luR">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzK-6m-zgl" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="120" width="600" height="360"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="360" id="1Or-4v-xn7"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" placeholder="input search text" translatesAutoresizingMaskIntoConstraints="NO" id="Elz-Ko-Hhz">
+                                <rect key="frame" x="20" y="60" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="r8d-rQ-Rbm"/>
+                                </constraints>
+                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Elz-Ko-Hhz" secondAttribute="trailing" constant="20" id="2IF-Xq-MYm"/>
+                            <constraint firstAttribute="trailing" secondItem="7iL-Sm-luR" secondAttribute="trailing" id="IeL-eL-LLZ"/>
+                            <constraint firstItem="WzK-6m-zgl" firstAttribute="top" secondItem="Elz-Ko-Hhz" secondAttribute="bottom" constant="16" id="LDY-aU-Z9T"/>
+                            <constraint firstItem="NwP-Bh-qD7" firstAttribute="top" secondItem="7iL-Sm-luR" secondAttribute="bottom" id="WF6-7R-c7z"/>
+                            <constraint firstAttribute="trailing" secondItem="WzK-6m-zgl" secondAttribute="trailing" id="XaW-hb-z4s"/>
+                            <constraint firstItem="WzK-6m-zgl" firstAttribute="centerY" secondItem="KPg-Xh-RZr" secondAttribute="centerY" id="jWR-8A-bJ3"/>
+                            <constraint firstItem="Elz-Ko-Hhz" firstAttribute="leading" secondItem="KPg-Xh-RZr" secondAttribute="leading" constant="20" id="l95-Ao-kmz"/>
+                            <constraint firstItem="WzK-6m-zgl" firstAttribute="leading" secondItem="KPg-Xh-RZr" secondAttribute="leading" id="tPD-Ji-E6g"/>
+                            <constraint firstItem="7iL-Sm-luR" firstAttribute="top" secondItem="KPg-Xh-RZr" secondAttribute="top" id="tT9-cB-2y5"/>
+                            <constraint firstItem="7iL-Sm-luR" firstAttribute="leading" secondItem="KPg-Xh-RZr" secondAttribute="leading" id="xax-Uw-R3n"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="Elz-Ko-Hhz" id="8Om-fM-tgC"/>
+                        <outlet property="tagCarousel" destination="WzK-6m-zgl" id="SQ9-OZ-JGi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cha-nj-LZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="619"/>
+            <point key="canvasLocation" x="557" y="423"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="zIz-gU-erC">
@@ -344,6 +380,9 @@
             <point key="canvasLocation" x="3456" y="1408"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HomeBackground" width="256" height="256"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kyj-pt-eI2"/>
         <segue reference="scb-Cb-tbS"/>
