@@ -17,16 +17,12 @@ class TagTourVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         data = PBDBHandler.sharedInstance.fetchAllTags()
-        tagCarousel.type = .Wheel
+        tagCarousel.type = .CoverFlow2
         tagCarousel.dataSource = self
         tagCarousel.delegate = self
         
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard(){
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -88,5 +84,10 @@ extension TagTourVC:iCarouselDataSource{
 extension TagTourVC:iCarouselDelegate{
     func carousel(carousel: iCarousel, didSelectItemAtIndex index: Int) {
         print("select index at \(index)")
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }}
+            self.navigationController?.dismissViewControllerAnimated(true, completion: {
+                self.dismissViewControllerAnimated(true, completion: {})
+                
+            })
+            
+    }
+}
