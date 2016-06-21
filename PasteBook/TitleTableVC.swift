@@ -27,6 +27,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     var data:Array<(id:Int,title:String)> = []
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
+    var firstLaunch:Bool = true
+    var lastShowingIndex:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
@@ -56,14 +58,18 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.splitViewController?.preferredDisplayMode = .AllVisible
         self.splitViewController?.delegate = self
         
-        
+        self.tableView.estimatedRowHeight = 80
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         // stop refresh when done
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.splitViewController?.performSegueWithIdentifier("HomeView", sender: self)
+        if firstLaunch{
+            self.splitViewController?.performSegueWithIdentifier("HomeView", sender: self)
+            firstLaunch = false
+        }
         
     }
     
@@ -107,6 +113,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("myCell")!
+        cell.textLabel?.numberOfLines = 0;
+        cell.textLabel?.lineBreakMode = .ByWordWrapping;
         cell.textLabel?.text = data[indexPath.row].title
         return cell
     }
@@ -122,6 +130,20 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             PBDBHandler.sharedInstance.removeItemWithId(self.data[indexPath.row].id)
             self.data.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let currentShowingIndex = indexPath.row
+        
+        cell.alpha = 0
+        var trans = CATransform3DTranslate(CATransform3DIdentity, 0, lastShowingIndex > currentShowingIndex ? -200 : 200, -500)
+        lastShowingIndex = currentShowingIndex
+        trans.m34 = -1.0 / 500
+        cell.layer.transform = trans
+        UIView.animateWithDuration(0.5) {
+            cell.alpha = 1
+            cell.layer.transform = CATransform3DIdentity
         }
     }
     

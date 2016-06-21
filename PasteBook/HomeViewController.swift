@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        searchBar.delegate = self
         self.view.addGestureRecognizer(tap)
     }
 
@@ -29,4 +30,16 @@ class HomeViewController: UIViewController {
     
 }
 
+extension HomeViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("search button clicked")
+        guard let _ = self.searchBar.text else {
+            return
+        };
+        self.navigationController?.dismissViewControllerAnimated(true, completion: {
+            self.dismissViewControllerAnimated(true, completion: {})
+            
+        })
+    }
+}
 

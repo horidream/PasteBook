@@ -210,42 +210,6 @@
             </objects>
             <point key="canvasLocation" x="5031" y="1585"/>
         </scene>
-        <!--Tag TourVC-->
-        <scene sceneID="1Cn-eE-s3Q">
-            <objects>
-                <viewController id="hyU-51-QsD" customClass="TagTourVC" customModule="PasteBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zQ4-aX-CWt"/>
-                        <viewControllerLayoutGuide type="bottom" id="KU7-pN-c2k"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="X3V-R4-bLw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzK-6m-zgl" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="120" width="600" height="360"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="1Or-4v-xn7"/>
-                                    <constraint firstAttribute="width" constant="600" id="LTr-XZ-yB4"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="360" id="VC1-qE-fOH"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.55685897744929647" green="0.75966430738743984" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="WzK-6m-zgl" firstAttribute="centerX" secondItem="X3V-R4-bLw" secondAttribute="centerX" id="b25-fG-AcR"/>
-                            <constraint firstItem="WzK-6m-zgl" firstAttribute="centerY" secondItem="X3V-R4-bLw" secondAttribute="centerY" id="wAW-fF-pLC"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tagCarousel" destination="WzK-6m-zgl" id="X1f-5b-Frw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JJt-tm-ZaJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2161" y="423"/>
-        </scene>
         <!--Title TableVC-->
         <scene sceneID="VRr-LN-p1j">
             <objects>
@@ -310,25 +274,10 @@
                                 <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMM-Ju-VuB">
-                                <rect key="frame" x="503" y="322" width="79" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="79" id="iSS-UT-wpx"/>
-                                    <constraint firstAttribute="height" constant="30" id="sua-Xa-FuZ"/>
-                                </constraints>
-                                <state key="normal" title="Take a Tour">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="hyU-51-QsD" kind="show" id="ZJ0-Zl-Lax"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Elz-Ko-Hhz" firstAttribute="centerY" secondItem="KPg-Xh-RZr" secondAttribute="centerY" id="5of-jW-DX7"/>
-                            <constraint firstItem="kMM-Ju-VuB" firstAttribute="trailing" secondItem="Elz-Ko-Hhz" secondAttribute="trailing" constant="-8" id="7AU-LD-Ltm"/>
-                            <constraint firstItem="kMM-Ju-VuB" firstAttribute="top" secondItem="Elz-Ko-Hhz" secondAttribute="bottom" id="7Ea-xT-X4q"/>
                             <constraint firstAttribute="trailing" secondItem="7iL-Sm-luR" secondAttribute="trailing" id="IeL-eL-LLZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Elz-Ko-Hhz" secondAttribute="trailing" constant="-10" id="JYE-lc-ohZ"/>
                             <constraint firstItem="Elz-Ko-Hhz" firstAttribute="leading" secondItem="KPg-Xh-RZr" secondAttribute="leadingMargin" constant="10" id="KXe-XF-kSZ"/>
@@ -340,7 +289,6 @@
                     <navigationItem key="navigationItem" id="UaM-ih-q5o"/>
                     <connections>
                         <outlet property="searchBar" destination="Elz-Ko-Hhz" id="8Om-fM-tgC"/>
-                        <outlet property="tagCarousel" destination="WzK-6m-zgl" id="SQ9-OZ-JGi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cha-nj-LZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,13 +369,17 @@
         <!--Navigation Controller-->
         <scene sceneID="rD2-no-Det">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s4w-vt-ZAP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="s4w-vt-ZAP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z2B-fT-zGe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cp5-cp-PYx">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="gkc-JA-Wke" kind="relationship" relationship="rootViewController" id="qag-k7-6u8"/>
                     </connections>
