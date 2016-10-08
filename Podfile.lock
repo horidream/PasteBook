@@ -4,13 +4,16 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - FoldingCell (2.0.0)
 
 DEPENDENCIES:
   - FMDB
+  - FoldingCell
 
 SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  FoldingCell: 3dbb998dc67c1b000db77c82a8ba8bac68ce8d84
 
-PODFILE CHECKSUM: 60a88515eba08b6f9f6f8fcdb9c9d46f69081399
+PODFILE CHECKSUM: 8992f7cc0401b6082d3d671f67821d3d9d5dd915
 
 COCOAPODS: 1.0.1
