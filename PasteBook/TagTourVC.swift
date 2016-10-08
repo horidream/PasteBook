@@ -17,7 +17,7 @@ class TagTourVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         data = PBDBHandler.sharedInstance.fetchAllTags()
-        tagCarousel.type = .CoverFlow2
+        tagCarousel.type = .coverFlow2
         tagCarousel.dataSource = self
         tagCarousel.delegate = self
         
@@ -25,8 +25,8 @@ class TagTourVC: UIViewController {
         
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
 }
@@ -34,12 +34,12 @@ class TagTourVC: UIViewController {
 
 
 extension TagTourVC:iCarouselDataSource{
-    func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+    func numberOfItems(in carousel: iCarousel) -> Int {
         return self.data.count
     }
     
     
-    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         var label: UILabel
         var itemView: UIImageView
         
@@ -48,14 +48,14 @@ extension TagTourVC:iCarouselDataSource{
         {
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:200, height:200))
             itemView.image = UIImage(named: "page.png")
-            itemView.contentMode = .Center
+            itemView.contentMode = .center
             
             label = UILabel(frame:itemView.bounds)
-            label.backgroundColor = UIColor.clearColor()
+            label.backgroundColor = UIColor.clear
             label.numberOfLines = 0
-            label.textAlignment = .Center
-            label.textColor = UIColor.grayColor()
-            label.font = label.font.fontWithSize(32)
+            label.textAlignment = .center
+            label.textColor = UIColor.gray
+            label.font = label.font.withSize(32)
             label.tag = 1
             itemView.addSubview(label)
         }
@@ -65,15 +65,15 @@ extension TagTourVC:iCarouselDataSource{
             label = itemView.viewWithTag(1) as! UILabel!
         }
         
-        let attriTxt = NSAttributedString(string: "\(data[index].name.capitalizedString)", attributes: [NSTextEffectAttributeName: NSTextEffectLetterpressStyle])
+        let attriTxt = NSAttributedString(string: "\(data[index].name.capitalized)", attributes: [NSTextEffectAttributeName: NSTextEffectLetterpressStyle])
         label.attributedText = attriTxt
         
         return itemView
     }
     
-    func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+    @objc(carousel:valueForOption:withDefault:) func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
-        case .Spacing:
+        case .spacing:
             return value
         default:
             return value
@@ -82,10 +82,10 @@ extension TagTourVC:iCarouselDataSource{
 }
 
 extension TagTourVC:iCarouselDelegate{
-    func carousel(carousel: iCarousel, didSelectItemAtIndex index: Int) {
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         print("select index at \(index)")
-            self.navigationController?.dismissViewControllerAnimated(true, completion: {
-                self.dismissViewControllerAnimated(true, completion: {})
+            self.navigationController?.dismiss(animated: true, completion: {
+                self.dismiss(animated: true, completion: {})
                 
             })
             

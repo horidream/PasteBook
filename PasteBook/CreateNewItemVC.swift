@@ -12,15 +12,15 @@ import QuartzCore
 class SegueFromLeft: UIStoryboardSegue {
     
     override func perform() {
-        let src: UIViewController = self.sourceViewController
-        let dst: UIViewController = self.destinationViewController
+        let src: UIViewController = self.source
+        let dst: UIViewController = self.destination
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.duration = 0.25
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
-        src.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        src.navigationController!.view.layer.add(transition, forKey: kCATransition)
         src.navigationController!.pushViewController(dst, animated: false)
     }
     
@@ -45,14 +45,14 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         contentTextView.layer.cornerRadius = 5
         contentTextView.layer.borderWidth = 1
         let borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
-        contentTextView.layer.borderColor = borderColor.CGColor
+        contentTextView.layer.borderColor = borderColor.cgColor
         
         
         // done button
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(didCreateNewItem))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didCreateNewItem))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tagChanges = TagChanges(tags: isNewItem ? [] : (item?.tags)!)
         refreshUI()
@@ -63,7 +63,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         if let item = self.item{
             titleTF.text = item.title
             contentTextView.text = item.content
-            tagsTF.text = item.tags.map{$0.name}.joinWithSeparator(", ")
+            tagsTF.text = item.tags.map{$0.name}.joined(separator: ", ")
             self.title = "Update Item"
         }
     }    
@@ -105,8 +105,8 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         }
         
         
-        self.navigationController?.popViewControllerAnimated(true)
-        if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC where shouldRefresh == true{
+        let _ = self.navigationController?.popViewController(animated: true)
+        if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC , shouldRefresh == true{
             PBUtil.delay(0.3, closure: { 
                 titleVC.refreshData()
                 
@@ -115,22 +115,22 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     }
     
     // MARK: popover delegate
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SelectTag" {
-            let navigationVC = segue.destinationViewController as! UINavigationController
+            let navigationVC = segue.destination as! UINavigationController
             let selectTagVC = navigationVC.viewControllers.first as! SelectTagsVC
             selectTagVC.currentItem = self.item
             selectTagVC.tagChanges = self.tagChanges
-            navigationVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+            navigationVC.modalPresentationStyle = UIModalPresentationStyle.popover
             navigationVC.popoverPresentationController!.delegate = self
             
-            if let popoverPresentationController = segue.destinationViewController.popoverPresentationController, sourceView = sender as? UIView {
+            if let popoverPresentationController = segue.destination.popoverPresentationController, let sourceView = sender as? UIView {
                 popoverPresentationController.sourceRect = sourceView.bounds
             }
         }
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
 }

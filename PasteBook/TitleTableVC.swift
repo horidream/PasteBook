@@ -7,6 +7,26 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 // define Item type
 typealias Tag = (id:Int, name:String)
@@ -34,28 +54,28 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: #selector(refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
 
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
         self.tableView.dataSource = self
-        data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
+        data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
         
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.searchBar.delegate = self
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
-        self.searchController.searchBar.returnKeyType = .Done
+        self.searchController.searchBar.returnKeyType = .done
         
         self.definesPresentationContext = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addNewItem))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))
         self.navigationItem.title = "Manage Your Knowledge"
         let searchBar = searchController.searchBar
         self.tableView.tableHeaderView = searchBar
-        self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBar.frame))
+        self.tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
         
-        self.splitViewController?.preferredDisplayMode = .AllVisible
+        self.splitViewController?.preferredDisplayMode = .allVisible
         self.splitViewController?.delegate = self
         
         self.tableView.estimatedRowHeight = 80
@@ -64,10 +84,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         // stop refresh when done
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if firstLaunch{
-            self.splitViewController?.performSegueWithIdentifier("HomeView", sender: self)
+            self.splitViewController?.performSegue(withIdentifier: "HomeView", sender: self)
             firstLaunch = false
         }
         
@@ -75,29 +95,29 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     func refreshData(){
         self.refreshControl?.beginRefreshing()
-        data = PBDBHandler.sharedInstance.fetchAllTitle().reverse()
+        data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
         self.refreshControl!.endRefreshing()
-        self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Bottom)
+        self.tableView.reloadSections(IndexSet(integer:0), with: .bottom)
     }
     
     func addNewItem(){
-        self.performSegueWithIdentifier("CreateNew", sender: self)
+        self.performSegue(withIdentifier: "CreateNew", sender: self)
     }
     // MARK: navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier{
             switch id {
             case "showDetail":
-                let nv = segue.destinationViewController as! UINavigationController
+                let nv = segue.destination as! UINavigationController
                 let vc = nv.viewControllers[0] as! ContentDetailVC
-                let id = (sender?.valueForKey("id")?.integerValue)!
+                let id = ((sender as AnyObject).value(forKey: "id") as! Int)
                 let detail = PBDBHandler.sharedInstance.fetchDetail(id)
                 vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)
                 vc.contentTitle = detail.title
                 vc.contentDetail = detail.detail
                 vc.itemID = id
             case "CreateNew":
-                let cnvc = segue.destinationViewController as! CreateNewItemVC
+                let cnvc = segue.destination as! CreateNewItemVC
                 cnvc.isNewItem = true
             default:()
             }
@@ -107,53 +127,53 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     // MARK: table view data source
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell")!
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
         cell.textLabel?.numberOfLines = 0;
-        cell.textLabel?.lineBreakMode = .ByWordWrapping;
-        cell.textLabel?.text = data[indexPath.row].title
+        cell.textLabel?.lineBreakMode = .byWordWrapping;
+        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
         return cell
     }
     
     // MARK: table view delegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showDetail", sender: ["id":data[indexPath.row].id])
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
         searchController.searchBar.resignFirstResponder()
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if(editingStyle == .Delete){
-            PBDBHandler.sharedInstance.removeItemWithId(self.data[indexPath.row].id)
-            self.data.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete){
+            PBDBHandler.sharedInstance.removeItemWithId(self.data[(indexPath as NSIndexPath).row].id)
+            self.data.remove(at: (indexPath as NSIndexPath).row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let currentShowingIndex = indexPath.row
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let currentShowingIndex = (indexPath as NSIndexPath).row
         
         cell.alpha = 0
         var trans = CATransform3DTranslate(CATransform3DIdentity, 0, lastShowingIndex > currentShowingIndex ? -200 : 200, -500)
         lastShowingIndex = currentShowingIndex
         trans.m34 = -1.0 / 500
         cell.layer.transform = trans
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5, animations: {
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
-        }
+        }) 
     }
     
     // MARK: search result
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
         self.tableView.reloadData()
     }
  
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }
 }

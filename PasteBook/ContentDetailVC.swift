@@ -21,30 +21,30 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        let url = NSBundle.mainBundle().URLForResource("template", withExtension: "html")
+        let url = Bundle.main.url(forResource: "template", withExtension: "html")
         webView.delegate = self
-        webView.loadRequest(NSURLRequest(URL: url!))
+        webView.loadRequest(URLRequest(url: url!))
         swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe))
-        swipeGR?.direction = .Left
+        swipeGR?.direction = .left
         webView.addGestureRecognizer(swipeGR!)
     }
     
-    func onSwipe(sender:UISwipeGestureRecognizer){
+    func onSwipe(_ sender:UISwipeGestureRecognizer){
         if self.webView.canGoBack{
-            UIView.transitionWithView(self.webView, duration: 0.5, options: [.TransitionFlipFromRight, .AllowAnimatedContent], animations: {
+            UIView.transition(with: self.webView, duration: 0.5, options: [.transitionFlipFromRight, .allowAnimatedContent], animations: {
                 self.webView.goBack()
                 }, completion: nil)
         }
     }
     
-    func escapeString(str:String)->String{
+    func escapeString(_ str:String)->String{
         return str
-            .stringByReplacingOccurrencesOfString("\\",withString: "\\\\")
-            .stringByReplacingOccurrencesOfString("\n",withString: "\\n")
-            .stringByReplacingOccurrencesOfString("\r",withString: "\\r")
-            .stringByReplacingOccurrencesOfString("\t",withString: "\\t")
-            .stringByReplacingOccurrencesOfString("\"",withString: "\\\"")
-            .stringByReplacingOccurrencesOfString("\'",withString: "\\\'")
+            .replacingOccurrences(of: "\\",with: "\\\\")
+            .replacingOccurrences(of: "\n",with: "\\n")
+            .replacingOccurrences(of: "\r",with: "\\r")
+            .replacingOccurrences(of: "\t",with: "\\t")
+            .replacingOccurrences(of: "\"",with: "\\\"")
+            .replacingOccurrences(of: "\'",with: "\\\'")
         
     }
     
@@ -55,24 +55,24 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
         self.title = contentTitle
         let tagsMark = self.tags.map { (item) -> String in
             "*"+item.name+"*"
-            }.joinWithSeparator(" ") + "\n\n"
+            }.joined(separator: " ") + "\n\n"
         
         let jsCode = "document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+contentDetail))\\n\\n\")"
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('content').innerHTML="+jsCode)
-        webView.stringByEvaluatingJavaScriptFromString("$('pre code').each(function(i, block) {hljs.highlightBlock(block);});")
+        webView.stringByEvaluatingJavaScript(from: "document.getElementById('content').innerHTML="+jsCode)
+        webView.stringByEvaluatingJavaScript(from: "$('pre code').each(function(i, block) {hljs.highlightBlock(block);});")
         
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         refreshDisplay()
     }
 
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "EditItem")
         {
-            let vc:CreateNewItemVC = segue.destinationViewController as! CreateNewItemVC
+            let vc:CreateNewItemVC = segue.destination as! CreateNewItemVC
             vc.item = (id:itemID!, title:contentTitle, content:contentDetail, tags:tags)
             vc.isNewItem = false
             vc.contentVC = self

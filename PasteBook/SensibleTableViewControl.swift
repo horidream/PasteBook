@@ -27,11 +27,11 @@ class SensibleTableViewControl:NSObject {
     }
     
     func start(){
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
     }
     
-    func keyboardWillShow(aNotification:NSNotification){
+    func keyboardWillShow(_ aNotification:Notification){
         if keyboardShown{
             return
         }
@@ -40,13 +40,13 @@ class SensibleTableViewControl:NSObject {
         if(Mirror(reflecting: self.tableView.superview).subjectType == UIScrollView.self){
             tv = self.tableView.superview as! UIScrollView
         }
-        if let userInfo = aNotification.userInfo{
+        if let userInfo = (aNotification as NSNotification).userInfo{
             let aValue = userInfo[UIKeyboardFrameEndUserInfoKey]
-            let keyboardRect = tv.superview?.convertRect(aValue!.CGRectValue(), fromView: nil)
-            var animationDuration:NSTimeInterval = 0
-            userInfo[UIKeyboardAnimationDurationUserInfoKey]?.getValue(&animationDuration)
-            var animationCurve:UIViewAnimationCurve = .Linear
-            userInfo[UIKeyboardAnimationCurveUserInfoKey]?.getValue(&animationCurve)
+            let keyboardRect = tv.superview?.convert((aValue! as AnyObject).cgRectValue, from: nil)
+            var animationDuration:TimeInterval = 0
+            (userInfo[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).getValue(&animationDuration)
+            var animationCurve:UIViewAnimationCurve = .linear
+            (userInfo[UIKeyboardAnimationCurveUserInfoKey] as AnyObject).getValue(&animationCurve)
             
             // Determine how much overlap exists between tableView and the keyboard
             var tableFrame = tableView.frame
@@ -66,14 +66,14 @@ class SensibleTableViewControl:NSObject {
             {
                 tableFrame.size.height -= keyboardOverlap;
                 
-                var delay:NSTimeInterval = 0;
+                var delay:TimeInterval = 0;
                 if(keyboardRect!.size.height > 0)
                 {
                     delay = Double(1 - keyboardOverlap/keyboardRect!.size.height)*animationDuration;
                     animationDuration = animationDuration * Double(keyboardOverlap/keyboardRect!.size.height);
                 }
                 
-                UIView.animateWithDuration(animationDuration, delay: delay, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                UIView.animate(withDuration: animationDuration, delay: delay, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                         print("animate table view frame from \(self.tableView.frame) to \(tableFrame)")
                         self.tableView.frame = tableFrame
                     }, completion: { (finished) in
@@ -88,7 +88,7 @@ class SensibleTableViewControl:NSObject {
     
     deinit{
         print("remove keyboard notification observer")
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

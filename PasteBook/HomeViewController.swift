@@ -24,20 +24,20 @@ class HomeViewController: UIViewController {
         self.searchBar.resignFirstResponder()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
 }
 
 extension HomeViewController: UISearchBarDelegate{
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("search button clicked")
         guard let _ = self.searchBar.text else {
             return
         };
-        self.navigationController?.dismissViewControllerAnimated(true, completion: {
-            self.dismissViewControllerAnimated(true, completion: {})
+        self.navigationController?.dismiss(animated: true, completion: {
+            self.dismiss(animated: true, completion: {})
             
         })
     }

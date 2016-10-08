@@ -13,16 +13,16 @@ class AddNewTagVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(onAddNewTag))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onAddNewTag))
     }
     
     func onAddNewTag(){
         if let newTag = self.newTagInput.text{
             let newTag = PBDBHandler.sharedInstance.createNewTag(newTag)
-            self.navigationController?.popViewControllerAnimated(true)
-            if let tagsVC = self.navigationController?.viewControllers.last as? SelectTagsVC, newTag = newTag{
+            let _ = self.navigationController?.popViewController(animated: true)
+            if let tagsVC = self.navigationController?.viewControllers.last as? SelectTagsVC, let newTag = newTag{
                 tagsVC.data.append((id:newTag["id"] as! Int, name:newTag["name"] as! String))
-                tagsVC.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
+                tagsVC.tableView.reloadSections(IndexSet(integer:0), with: .fade)
             }
         }
     }

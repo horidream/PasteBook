@@ -11,15 +11,11 @@ import Foundation
 public struct PBUtil {
     
     //delay \(delay) seconds to call the closure
-    static var token:dispatch_once_t = 0
-    public static func delay(delay:Double, queue:dispatch_queue_t? = nil, closure:()->()) {
-        let q = queue ?? dispatch_get_main_queue() as dispatch_queue_t
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            q, closure)
+    static var token:Int = 0
+    public static func delay(_ delay:Double, queue:DispatchQueue? = nil, closure:@escaping ()->()) {
+        let q = queue ?? DispatchQueue.main as DispatchQueue
+        q.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
 }

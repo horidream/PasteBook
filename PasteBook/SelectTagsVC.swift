@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension SequenceType where Self.Generator.Element == Tag{
-    func contains(tag:Tag)->Bool{
+extension Sequence where Self.Iterator.Element == Tag{
+    func contains(_ tag:Tag)->Bool{
         return self.contains {($0.id == tag.id) && ($0.name == tag.name)}
     }
 }
@@ -21,22 +21,22 @@ class TagChanges : CustomStringConvertible{
         self.tags = tags
     }
     
-    func add(tag:Tag){
+    func add(_ tag:Tag){
         if !removedTags.contains(tag){
             addedTags.append(tag)
         }else{
-            if let index = removedTags.indexOf({$0.id == tag.id && $0.name == tag.name}){
-                removedTags.removeAtIndex(index)
+            if let index = removedTags.index(where: {$0.id == tag.id && $0.name == tag.name}){
+                removedTags.remove(at: index)
             }
         }
     }
     
-    func remove(tag:Tag){
+    func remove(_ tag:Tag){
         if !addedTags.contains(tag){
             removedTags.append(tag)
         }else{
-            if let index = addedTags.indexOf({$0.id == tag.id && $0.name == tag.name}){
-                addedTags.removeAtIndex(index)
+            if let index = addedTags.index(where: {$0.id == tag.id && $0.name == tag.name}){
+                addedTags.remove(at: index)
             }
         }
     }
@@ -52,10 +52,10 @@ class TagChanges : CustomStringConvertible{
         
         return selectedTags.map({ (id, name) -> String in
             return name
-        }).joinWithSeparator(",")
+        }).joined(separator: ",")
     }
     
-    func updateWithItemId(itemId:Int){
+    func updateWithItemId(_ itemId:Int){
         for t in removedTags{
             PBDBHandler.sharedInstance.removeTagWithId(t.id)
         }
@@ -92,61 +92,61 @@ class SelectTagsVC: UITableViewController {
     }
     var tagChanges:TagChanges?
     override func viewDidLoad() {
-        self.tableView.registerClass(TagCell.self, forCellReuseIdentifier: "TagCell")
+        self.tableView.register(TagCell.self, forCellReuseIdentifier: "TagCell")
         self.data = PBDBHandler.sharedInstance.fetchAllTags()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let allTagIds = data.map{$0.id}
         for (i, _ )  in tagChanges!.selectedTags{
-            if let index = allTagIds.indexOf(i){
-                self.tableView.selectRowAtIndexPath(NSIndexPath(forRow:index, inSection: 0),animated:false, scrollPosition:.None)
+            if let index = allTagIds.index(of: i){
+                self.tableView.selectRow(at: IndexPath(row:index, section: 0),animated:false, scrollPosition:.none)
             }
         }
     }
     
     // MARK: datasource
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TagCell") as! TagCell
-        cell.textLabel?.text = data[indexPath.row].name
-        cell.ticked = tagChanges!.selectedTags.map{$0.id}.contains(data[indexPath.row].id)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as! TagCell
+        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].name
+        cell.ticked = tagChanges!.selectedTags.map{$0.id}.contains(data[(indexPath as NSIndexPath).row].id)
         
         return cell
     }
 
     // MARK: table view delegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TagCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TagCell
         cell.ticked = true
-        tagChanges?.add(data[indexPath.row])
+        tagChanges?.add(data[(indexPath as NSIndexPath).row])
         
         
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TagCell
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TagCell
         cell.ticked = false
-        tagChanges?.remove(data[indexPath.row])
+        tagChanges?.remove(data[(indexPath as NSIndexPath).row])
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if(editingStyle == .Delete){
-            tagChanges?.remove(data[indexPath.row])
-            PBDBHandler.sharedInstance.removeTagWithId(self.data[indexPath.row].id)
-            self.data.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete){
+            tagChanges?.remove(data[(indexPath as NSIndexPath).row])
+            PBDBHandler.sharedInstance.removeTagWithId(self.data[(indexPath as NSIndexPath).row].id)
+            self.data.remove(at: (indexPath as NSIndexPath).row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     
-    @IBAction func onDonePressed(sender: AnyObject) {
+    @IBAction func onDonePressed(_ sender: AnyObject) {
         let newItemVC = self.navigationController!.popoverPresentationController!.delegate as! CreateNewItemVC
 //        newItemVC.popoverPresentationControllerDidDismissPopover(self.navigationController!.popoverPresentationController!)
-        self.navigationController?.dismissViewControllerAnimated(true) {
+        self.navigationController?.dismiss(animated: true) {
             newItemVC.tagChanges = self.tagChanges
             newItemVC.tagsTF.text = self.tagChanges?.displayedTags
         }

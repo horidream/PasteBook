@@ -11,7 +11,7 @@ import UIKit
 class TagCell: UITableViewCell {
     var ticked:Bool = false{
         didSet{
-            self.accessoryType = ticked ? .Checkmark : .None
+            self.accessoryType = ticked ? .checkmark : .none
         }
     }
 }

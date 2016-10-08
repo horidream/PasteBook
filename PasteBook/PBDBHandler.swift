@@ -6,49 +6,49 @@
 //  Copyright © 2016 Baoli Zhai. All rights reserved.
 //
 
-class PBDBHandler: DBHandler, NSFileManagerDelegate {
+class PBDBHandler: DBHandler, FileManagerDelegate {
     
     // MARK: SINGLETON
     
     static let sharedInstance:PBDBHandler = {
-        let fm = NSFileManager.defaultManager()
-        let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
-        let path = NSString(string: documentsFolder).stringByAppendingPathComponent("moknow.db")
-        let bundlePath = NSBundle.mainBundle().pathForResource("moknow", ofType: ".db")!
+        let fm = FileManager.default
+        let documentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as String
+        let path = NSString(string: documentsFolder).appendingPathComponent("moknow.db")
+        let bundlePath = Bundle.main.path(forResource: "moknow", ofType: ".db")!
         do{
-            if(!fm.fileExistsAtPath(path)){
+            if(!fm.fileExists(atPath: path)){
                 print("copying db to folder")
-                try fm.copyItemAtPath(bundlePath, toPath: path)
+                try fm.copyItem(atPath: bundlePath, toPath: path)
             }
         }catch{}
         return PBDBHandler(dbPath:path)
     }()
     // MARK: CRUD
 
-    func addItem(title:String, content:String)->NSDictionary?{
-        return self.queryChange("INSERT INTO items (title, content) VALUES (?, ?)", [title, content])
+    func addItem(_ title:String, content:String)->NSDictionary?{
+        return self.queryChange("INSERT INTO items (title, content) VALUES (?, ?)", [title as AnyObject, content as AnyObject])
     }
     
-    func createNewTag(name:String)->NSDictionary?{
-        return self.queryChange("INSERT INTO tags (name) VALUES (?)", [name])
+    func createNewTag(_ name:String)->NSDictionary?{
+        return self.queryChange("INSERT INTO tags (name) VALUES (?)", [name as AnyObject])
     }
     
-    func addTag( tagID:Int, withItemID itemID:Int){
-        self.queryChange("INSERT INTO taged_items (tag_id, item_id) VALUES (?, ?)", [tagID, itemID])
+    func addTag( _ tagID:Int, withItemID itemID:Int){
+        let _ = self.queryChange("INSERT INTO taged_items (tag_id, item_id) VALUES (?, ?)", [tagID as AnyObject, itemID as AnyObject])
     }
     
-    func updateItemWithId(id:Int, title:String, content:String){
-        self.queryChange("UPDATE items SET title=?, content=? WHERE id=?", [title, content, id])
+    func updateItemWithId(_ id:Int, title:String, content:String){
+        let _ = self.queryChange("UPDATE items SET title=?, content=? WHERE id=?", [title as AnyObject, content as AnyObject, id as AnyObject])
     }
     
-    func removeTagWithId(id:Int){
-        queryChange("DELETE FROM taged_items WHERE tag_id=?", [id])
-        queryChange("DELETE FROM tags WHERE id=?", [id])
+    func removeTagWithId(_ id:Int){
+        let _ = queryChange("DELETE FROM taged_items WHERE tag_id=?", [id as AnyObject])
+        let _ = queryChange("DELETE FROM tags WHERE id=?", [id as AnyObject])
     }
     
-    func removeItemWithId(id:Int){
-        queryChange("DELETE FROM taged_items WHERE item_id=?", [id])
-        queryChange("DELETE FROM items WHERE id=?", [id])
+    func removeItemWithId(_ id:Int){
+        let _ = queryChange("DELETE FROM taged_items WHERE item_id=?", [id as AnyObject])
+        let _ = queryChange("DELETE FROM items WHERE id=?", [id as AnyObject])
     }
     
     
@@ -56,66 +56,66 @@ class PBDBHandler: DBHandler, NSFileManagerDelegate {
     
     func fetchAllTitle()->Array<(id:Int, title:String)>{
         let result = queryFetch("select id,title from items") { (rs) -> (id:Int, title:String) in
-            (id:Int(rs.intForColumn("id")),title:rs.stringForColumn("title"))
+            (id:Int(rs.int(forColumn: "id")),title:rs.string(forColumn: "title"))
         }
         return result
     }
     
     func fetchAllTags()->Array<(id:Int, name:String)>{
         let result = queryFetch("SELECT id, name from tags"){
-            (id:Int($0.intForColumn("id")), name:$0.stringForColumn("name")!)
+            (id:Int($0.int(forColumn: "id")), name:$0.string(forColumn: "name")!)
         }
         return result
     }
     
     // MARK: find likes
-    func fetchTagNameLikeIDs(likeString:String)->Array<Int>{
+    func fetchTagNameLikeIDs(_ likeString:String)->Array<Int>{
         let result = queryFetch("SELECT items.id FROM items JOIN tags ON tags.display_name LIKE \"%\(likeString)%\" JOIN taged_items ON taged_items.tag_id = tags.id AND taged_items.item_id = items.id"){(rs)->Int in
-            Int(rs.intForColumn("id"))
+            Int(rs.int(forColumn: "id"))
         }
         return result
     }
     
-    func fetchContentLikeIDs(likeString:String)->Array<Int>{
+    func fetchContentLikeIDs(_ likeString:String)->Array<Int>{
         let result = queryFetch("select id,title,content from items where title like \"%\(likeString)%\" or content like \"%\(likeString)%\""){(rs)->Int in
-            Int(rs.intForColumn("id"))
+            Int(rs.int(forColumn: "id"))
         }
         return result
     }
     
-    func fetchTitlesLike(likeStrings:String)->Array<(id:Int, title:String)>{
+    func fetchTitlesLike(_ likeStrings:String)->Array<(id:Int, title:String)>{
         var matchIds:Set<Int> = Set()
         let arr = likeStrings.split("\\s+")
-        for (idx,likeString) in arr.enumerate(){
+        for (idx,likeString) in arr.enumerated(){
             let anyMatches = Set(fetchTagNameLikeIDs(likeString)).union(Set(fetchContentLikeIDs(likeString)))
             if(idx == 0){
                 matchIds = anyMatches
             }else{
-                matchIds.intersectInPlace(anyMatches)
+                matchIds.formIntersection(anyMatches)
             }
         }
         
-        let matchIDString = matchIds.map { String($0) }.joinWithSeparator(",")
+        let matchIDString = matchIds.map { String($0) }.joined(separator: ",")
         return queryFetch("select id,title from items where id in (\(matchIDString))"){ (rs) -> (id:Int, title:String) in
-            (id:Int(rs.intForColumn("id")),title:rs.stringForColumn("title"))
+            (id:Int(rs.int(forColumn: "id")),title:rs.string(forColumn: "title"))
         }
         
         
     }
     
     // MARK: find by id
-    func fetchTagsById(id:Int)->[Tag]{
+    func fetchTagsById(_ id:Int)->[Tag]{
         let result = queryFetch("SELECT id, name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){
-            (id: Int($0.intForColumn("id")), name:$0.stringForColumn("name")!)
+            (id: Int($0.int(forColumn: "id")), name:$0.string(forColumn: "name")!)
         }
         return result
     }
     
     
-    func fetchDetail(id:Int)->(title:String, detail:String){
+    func fetchDetail(_ id:Int)->(title:String, detail:String){
         
         let result = queryFetch("select title, content from items where id=\(id)") { (rs) -> (title:String, detail:String) in
-            (rs.stringForColumn("title"),rs.stringForColumn("content"))
+            (rs.string(forColumn: "title"),rs.string(forColumn: "content"))
         }
         
         return result.first!
