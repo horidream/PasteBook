@@ -1,1553 +1,1014 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>0E05FD856064F4606E382673</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>[CP] Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>151B895B1CFD40B200630EF8</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>TagTourVC.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>151B895C1CFD40B200630EF8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>151B895B1CFD40B200630EF8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>15B608351CEEEAD600D19210</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>HomeViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>15B608361CEEEAD600D19210</key>
-		<dict>
-			<key>fileRef</key>
-			<string>15B608351CEEEAD600D19210</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>26060F08BEDA9C86FFB728A6</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>[CP] Embed Pods Frameworks</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-frameworks.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>45A645072F86156F7217E393</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-PasteBook.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>54DA19EF1B029B422DBE6156</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6E064DA690C1423B07C5E887</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>671B8EC524201EA501761956</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>45A645072F86156F7217E393</string>
-				<string>F461B43A6194F1D8F7CC9F7D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6E064DA690C1423B07C5E887</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods_PasteBook.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>8980CA650F9F43A186DA3DE4</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>[CP] Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>990715F81B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>993B41591CF48B6F00044B3A</string>
-				<string>993E61C71CCA3EBE0055E7D5</string>
-				<string>990716031B94885C00D1A903</string>
-				<string>990716181B94885C00D1A903</string>
-				<string>990716231B94885C00D1A903</string>
-				<string>990716021B94885C00D1A903</string>
-				<string>671B8EC524201EA501761956</string>
-				<string>AA59E43E38BC80D0E67A07A9</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990715F91B94885C00D1A903</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastSwiftUpdateCheck</key>
-				<string>0700</string>
-				<key>LastUpgradeCheck</key>
-				<string>0800</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>Baoli Zhai</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>990716001B94885C00D1A903</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.0</string>
-						<key>DevelopmentTeam</key>
-						<string>5296P9QS3C</string>
-						<key>LastSwiftMigration</key>
-						<string>0800</string>
-					</dict>
-					<key>990716141B94885C00D1A903</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.0</string>
-						<key>LastSwiftMigration</key>
-						<string>0800</string>
-						<key>TestTargetID</key>
-						<string>990716001B94885C00D1A903</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>990715FC1B94885C00D1A903</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>Base</string>
-			</array>
-			<key>mainGroup</key>
-			<string>990715F81B94885C00D1A903</string>
-			<key>productRefGroup</key>
-			<string>990716021B94885C00D1A903</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>990716001B94885C00D1A903</string>
-				<string>990716141B94885C00D1A903</string>
-			</array>
-		</dict>
-		<key>990715FC1B94885C00D1A903</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>990716271B94885C00D1A903</string>
-				<string>990716281B94885C00D1A903</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>990715FD1B94885C00D1A903</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>99BDF87C1C3C098E00C4D768</string>
-				<string>993E61CB1CCD116A0055E7D5</string>
-				<string>990716071B94885C00D1A903</string>
-				<string>990716391B94A72400D1A903</string>
-				<string>991E34781CEA017B00316B55</string>
-				<string>151B895C1CFD40B200630EF8</string>
-				<string>993B415C1CF48B8600044B3A</string>
-				<string>993E61CD1CCD15F40055E7D5</string>
-				<string>991E347A1CEA069F00316B55</string>
-				<string>99CD3D531CE945B8008250FD</string>
-				<string>99A6E6171CD0F9FE00218213</string>
-				<string>99A6E6151CCFAE9F00218213</string>
-				<string>990716051B94885C00D1A903</string>
-				<string>15B608361CEEEAD600D19210</string>
-				<string>99A6E6131CCE5CFD00218213</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>990715FE1B94885C00D1A903</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>54DA19EF1B029B422DBE6156</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>990715FF1B94885C00D1A903</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>9907160F1B94885C00D1A903</string>
-				<string>99FC8A1E1C3EC12200596BB3</string>
-				<string>993E61C91CCA88400055E7D5</string>
-				<string>99BDF8781C3AC53500C4D768</string>
-				<string>9907160C1B94885C00D1A903</string>
-				<string>99FC8A1A1C3EBE0600596BB3</string>
-				<string>99BDF8771C3AC53500C4D768</string>
-				<string>9907160A1B94885C00D1A903</string>
-				<string>99FC8A201C3ECDA900596BB3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>990716001B94885C00D1A903</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>990716291B94885C00D1A903</string>
-			<key>buildPhases</key>
-			<array>
-				<string>8980CA650F9F43A186DA3DE4</string>
-				<string>990715FD1B94885C00D1A903</string>
-				<string>990715FE1B94885C00D1A903</string>
-				<string>990715FF1B94885C00D1A903</string>
-				<string>26060F08BEDA9C86FFB728A6</string>
-				<string>0E05FD856064F4606E382673</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>PasteBook</string>
-			<key>productName</key>
-			<string>PasteBook</string>
-			<key>productReference</key>
-			<string>990716011B94885C00D1A903</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>990716011B94885C00D1A903</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>PasteBook.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>990716021B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>990716011B94885C00D1A903</string>
-				<string>990716151B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716031B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>99CD3D511CE9459F008250FD</string>
-				<string>993E61CE1CCD16E90055E7D5</string>
-				<string>99CD3D501CE9458B008250FD</string>
-				<string>99CD3D4F1CE94576008250FD</string>
-				<string>990716371B94A6EB00D1A903</string>
-				<string>9907160B1B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>PasteBook</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716041B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>AppDelegate.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716051B94885C00D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>990716041B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>990716061B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ContentDetailVC.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716071B94885C00D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>990716061B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>990716081B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>990716091B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716091B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9907160A1B94885C00D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>990716081B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>9907160B1B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Assets.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9907160C1B94885C00D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9907160B1B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>9907160D1B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>9907160E1B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>LaunchScreen.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9907160E1B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/LaunchScreen.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9907160F1B94885C00D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9907160D1B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>990716101B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716111B94885C00D1A903</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>9907161A1B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>990716121B94885C00D1A903</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>990716131B94885C00D1A903</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>990716141B94885C00D1A903</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>9907162C1B94885C00D1A903</string>
-			<key>buildPhases</key>
-			<array>
-				<string>990716111B94885C00D1A903</string>
-				<string>990716121B94885C00D1A903</string>
-				<string>990716131B94885C00D1A903</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>990716171B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>PasteBookTests</string>
-			<key>productName</key>
-			<string>PasteBookTests</string>
-			<key>productReference</key>
-			<string>990716151B94885C00D1A903</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>990716151B94885C00D1A903</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>PasteBookTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>990716161B94885C00D1A903</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>990715F91B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>990716001B94885C00D1A903</string>
-			<key>remoteInfo</key>
-			<string>PasteBook</string>
-		</dict>
-		<key>990716171B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>990716001B94885C00D1A903</string>
-			<key>targetProxy</key>
-			<string>990716161B94885C00D1A903</string>
-		</dict>
-		<key>990716181B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>990716191B94885C00D1A903</string>
-				<string>9907161B1B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>PasteBookTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716191B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>PasteBookTests.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9907161A1B94885C00D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>990716191B94885C00D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>9907161B1B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716231B94885C00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>990716241B94885C00D1A903</string>
-				<string>990716261B94885C00D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>PasteBookUITests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716241B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>PasteBookUITests.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716261B94885C00D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716271B94885C00D1A903</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INFINITE_RECURSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>ENABLE_TESTABILITY</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>USER_HEADER_SEARCH_PATHS</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>990716281B94885C00D1A903</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INFINITE_RECURSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Owholemodule</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>USER_HEADER_SEARCH_PATHS</key>
-				<string></string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>990716291B94885C00D1A903</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>9907162A1B94885C00D1A903</string>
-				<string>9907162B1B94885C00D1A903</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>9907162A1B94885C00D1A903</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>45A645072F86156F7217E393</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>INFOPLIST_FILE</key>
-				<string>PasteBook/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.horidream.PasteBook</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PROVISIONING_PROFILE</key>
-				<string></string>
-				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
-				<string>PasteBook/PasteBook-Bridging-Header.h</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>SWIFT_VERSION</key>
-				<string>3.0</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>9907162B1B94885C00D1A903</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>F461B43A6194F1D8F7CC9F7D</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>INFOPLIST_FILE</key>
-				<string>PasteBook/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.horidream.PasteBook</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PROVISIONING_PROFILE</key>
-				<string></string>
-				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
-				<string>PasteBook/PasteBook-Bridging-Header.h</string>
-				<key>SWIFT_VERSION</key>
-				<string>3.0</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>9907162C1B94885C00D1A903</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>9907162D1B94885C00D1A903</string>
-				<string>9907162E1B94885C00D1A903</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>9907162D1B94885C00D1A903</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>PasteBookTests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.horidream.PasteBookTests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SWIFT_VERSION</key>
-				<string>3.0</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/PasteBook.app/PasteBook</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>9907162E1B94885C00D1A903</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>PasteBookTests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.horidream.PasteBookTests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SWIFT_VERSION</key>
-				<string>3.0</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/PasteBook.app/PasteBook</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>990716331B948EB300D1A903</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>PasteBook-Bridging-Header.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716371B94A6EB00D1A903</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>993E61C81CCA88400055E7D5</string>
-				<string>990716041B94885C00D1A903</string>
-				<string>990716081B94885C00D1A903</string>
-				<string>9907160D1B94885C00D1A903</string>
-				<string>990716101B94885C00D1A903</string>
-				<string>990716331B948EB300D1A903</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Settings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716381B94A72400D1A903</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>DBUtil.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>990716391B94A72400D1A903</key>
-		<dict>
-			<key>fileRef</key>
-			<string>990716381B94A72400D1A903</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>991E34771CEA017B00316B55</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>AddNewTagVC.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>991E34781CEA017B00316B55</key>
-		<dict>
-			<key>fileRef</key>
-			<string>991E34771CEA017B00316B55</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>991E34791CEA069F00316B55</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SensibleTableViewControl.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>991E347A1CEA069F00316B55</key>
-		<dict>
-			<key>fileRef</key>
-			<string>991E34791CEA069F00316B55</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>993B41591CF48B6F00044B3A</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>993B415A1CF48B8600044B3A</string>
-				<string>993B415B1CF48B8600044B3A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>iCarousel</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993B415A1CF48B8600044B3A</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>iCarousel.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993B415B1CF48B8600044B3A</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>iCarousel.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993B415C1CF48B8600044B3A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>993B415B1CF48B8600044B3A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>993E61C71CCA3EBE0055E7D5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>99BDF8751C3AC53500C4D768</string>
-				<string>99FC8A1F1C3ECDA900596BB3</string>
-				<string>99FC8A1D1C3EC12200596BB3</string>
-				<string>99BDF8761C3AC53500C4D768</string>
-				<string>99FC8A191C3EBE0600596BB3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Web</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993E61C81CCA88400055E7D5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file</string>
-			<key>path</key>
-			<string>moknow.db</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993E61C91CCA88400055E7D5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>993E61C81CCA88400055E7D5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>993E61CA1CCD116A0055E7D5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>DBHandler.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993E61CB1CCD116A0055E7D5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>993E61CA1CCD116A0055E7D5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>993E61CC1CCD15F40055E7D5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>PBDBHandler.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>993E61CD1CCD15F40055E7D5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>993E61CC1CCD15F40055E7D5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>993E61CE1CCD16E90055E7D5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>990716381B94A72400D1A903</string>
-				<string>993E61CA1CCD116A0055E7D5</string>
-				<string>993E61CC1CCD15F40055E7D5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>DataBase</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99A6E6121CCE5CFD00218213</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>CreateNewItemVC.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99A6E6131CCE5CFD00218213</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99A6E6121CCE5CFD00218213</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99A6E6141CCFAE9F00218213</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SelectTagsVC.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99A6E6151CCFAE9F00218213</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99A6E6141CCFAE9F00218213</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99A6E6161CD0F9FE00218213</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>TagCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99A6E6171CD0F9FE00218213</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99A6E6161CD0F9FE00218213</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99BDF8751C3AC53500C4D768</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.html</string>
-			<key>name</key>
-			<string>template.html</string>
-			<key>path</key>
-			<string>PasteBook/template.html</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99BDF8761C3AC53500C4D768</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.javascript</string>
-			<key>name</key>
-			<string>marked.min.js</string>
-			<key>path</key>
-			<string>PasteBook/marked.min.js</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99BDF8771C3AC53500C4D768</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99BDF8751C3AC53500C4D768</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99BDF8781C3AC53500C4D768</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99BDF8761C3AC53500C4D768</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99BDF87B1C3C098E00C4D768</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>TitleTableVC.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99BDF87C1C3C098E00C4D768</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99BDF87B1C3C098E00C4D768</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99CD3D4F1CE94576008250FD</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>99A6E6161CD0F9FE00218213</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Components</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99CD3D501CE9458B008250FD</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>151B895B1CFD40B200630EF8</string>
-				<string>99BDF87B1C3C098E00C4D768</string>
-				<string>990716061B94885C00D1A903</string>
-				<string>99A6E6121CCE5CFD00218213</string>
-				<string>99A6E6141CCFAE9F00218213</string>
-				<string>991E34771CEA017B00316B55</string>
-				<string>15B608351CEEEAD600D19210</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>ViewControllers</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99CD3D511CE9459F008250FD</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>99CD3D521CE945B8008250FD</string>
-				<string>991E34791CEA069F00316B55</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Utils</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99CD3D521CE945B8008250FD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>PBUtil.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99CD3D531CE945B8008250FD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99CD3D521CE945B8008250FD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99FC8A191C3EBE0600596BB3</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.css</string>
-			<key>name</key>
-			<string>default.css</string>
-			<key>path</key>
-			<string>PasteBook/default.css</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99FC8A1A1C3EBE0600596BB3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99FC8A191C3EBE0600596BB3</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99FC8A1D1C3EC12200596BB3</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.javascript</string>
-			<key>name</key>
-			<string>jquery-2.1.4.min.js</string>
-			<key>path</key>
-			<string>PasteBook/jquery-2.1.4.min.js</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99FC8A1E1C3EC12200596BB3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99FC8A1D1C3EC12200596BB3</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>99FC8A1F1C3ECDA900596BB3</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.javascript</string>
-			<key>name</key>
-			<string>highlight.pack.js</string>
-			<key>path</key>
-			<string>PasteBook/highlight.pack.js</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>99FC8A201C3ECDA900596BB3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>99FC8A1F1C3ECDA900596BB3</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AA59E43E38BC80D0E67A07A9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>6E064DA690C1423B07C5E887</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F461B43A6194F1D8F7CC9F7D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-PasteBook.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>990715F91B94885C00D1A903</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151B895B1CFD40B200630EF8 /* TagTourVC.swift */; };
+		157292BF1DE6F91A0070D52C /* copy_db.py in Resources */ = {isa = PBXBuildFile; fileRef = 157292BE1DE6F91A0070D52C /* copy_db.py */; };
+		157293131DE6FD210070D52C /* agate.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C31DE6FD210070D52C /* agate.css */; };
+		157293141DE6FD210070D52C /* androidstudio.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C41DE6FD210070D52C /* androidstudio.css */; };
+		157293151DE6FD210070D52C /* arduino-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C51DE6FD210070D52C /* arduino-light.css */; };
+		157293161DE6FD210070D52C /* arta.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C61DE6FD210070D52C /* arta.css */; };
+		157293171DE6FD210070D52C /* ascetic.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C71DE6FD210070D52C /* ascetic.css */; };
+		157293181DE6FD210070D52C /* atelier-cave-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C81DE6FD210070D52C /* atelier-cave-dark.css */; };
+		157293191DE6FD210070D52C /* atelier-cave-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C91DE6FD210070D52C /* atelier-cave-light.css */; };
+		1572931A1DE6FD210070D52C /* atelier-dune-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292CA1DE6FD210070D52C /* atelier-dune-dark.css */; };
+		1572931B1DE6FD210070D52C /* atelier-dune-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292CB1DE6FD210070D52C /* atelier-dune-light.css */; };
+		1572931C1DE6FD210070D52C /* atelier-estuary-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292CC1DE6FD210070D52C /* atelier-estuary-dark.css */; };
+		1572931D1DE6FD210070D52C /* atelier-estuary-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292CD1DE6FD210070D52C /* atelier-estuary-light.css */; };
+		1572931E1DE6FD210070D52C /* atelier-forest-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292CE1DE6FD210070D52C /* atelier-forest-dark.css */; };
+		1572931F1DE6FD210070D52C /* atelier-forest-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292CF1DE6FD210070D52C /* atelier-forest-light.css */; };
+		157293201DE6FD210070D52C /* atelier-heath-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D01DE6FD210070D52C /* atelier-heath-dark.css */; };
+		157293211DE6FD210070D52C /* atelier-heath-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D11DE6FD210070D52C /* atelier-heath-light.css */; };
+		157293221DE6FD210070D52C /* atelier-lakeside-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D21DE6FD210070D52C /* atelier-lakeside-dark.css */; };
+		157293231DE6FD210070D52C /* atelier-lakeside-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D31DE6FD210070D52C /* atelier-lakeside-light.css */; };
+		157293241DE6FD210070D52C /* atelier-plateau-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D41DE6FD210070D52C /* atelier-plateau-dark.css */; };
+		157293251DE6FD210070D52C /* atelier-plateau-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D51DE6FD210070D52C /* atelier-plateau-light.css */; };
+		157293261DE6FD210070D52C /* atelier-savanna-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D61DE6FD210070D52C /* atelier-savanna-dark.css */; };
+		157293271DE6FD210070D52C /* atelier-savanna-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D71DE6FD210070D52C /* atelier-savanna-light.css */; };
+		157293281DE6FD210070D52C /* atelier-seaside-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D81DE6FD210070D52C /* atelier-seaside-dark.css */; };
+		157293291DE6FD210070D52C /* atelier-seaside-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292D91DE6FD210070D52C /* atelier-seaside-light.css */; };
+		1572932A1DE6FD210070D52C /* atelier-sulphurpool-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292DA1DE6FD210070D52C /* atelier-sulphurpool-dark.css */; };
+		1572932B1DE6FD210070D52C /* atelier-sulphurpool-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292DB1DE6FD210070D52C /* atelier-sulphurpool-light.css */; };
+		1572932C1DE6FD210070D52C /* atom-one-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292DC1DE6FD210070D52C /* atom-one-dark.css */; };
+		1572932D1DE6FD210070D52C /* atom-one-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292DD1DE6FD210070D52C /* atom-one-light.css */; };
+		1572932E1DE6FD210070D52C /* brown-paper.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292DE1DE6FD210070D52C /* brown-paper.css */; };
+		1572932F1DE6FD210070D52C /* brown-papersq.png in Resources */ = {isa = PBXBuildFile; fileRef = 157292DF1DE6FD210070D52C /* brown-papersq.png */; };
+		157293301DE6FD210070D52C /* codepen-embed.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E01DE6FD210070D52C /* codepen-embed.css */; };
+		157293311DE6FD210070D52C /* color-brewer.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E11DE6FD210070D52C /* color-brewer.css */; };
+		157293321DE6FD210070D52C /* darcula.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E21DE6FD210070D52C /* darcula.css */; };
+		157293331DE6FD210070D52C /* dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E31DE6FD210070D52C /* dark.css */; };
+		157293341DE6FD210070D52C /* darkula.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E41DE6FD210070D52C /* darkula.css */; };
+		157293351DE6FD210070D52C /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E51DE6FD210070D52C /* default.css */; };
+		157293361DE6FD210070D52C /* docco.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E61DE6FD210070D52C /* docco.css */; };
+		157293371DE6FD210070D52C /* dracula.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E71DE6FD210070D52C /* dracula.css */; };
+		157293381DE6FD210070D52C /* far.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E81DE6FD210070D52C /* far.css */; };
+		157293391DE6FD210070D52C /* foundation.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292E91DE6FD210070D52C /* foundation.css */; };
+		1572933A1DE6FD210070D52C /* github-gist.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292EA1DE6FD210070D52C /* github-gist.css */; };
+		1572933B1DE6FD210070D52C /* github.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292EB1DE6FD210070D52C /* github.css */; };
+		1572933C1DE6FD210070D52C /* googlecode.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292EC1DE6FD210070D52C /* googlecode.css */; };
+		1572933D1DE6FD210070D52C /* grayscale.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292ED1DE6FD210070D52C /* grayscale.css */; };
+		1572933E1DE6FD210070D52C /* gruvbox-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292EE1DE6FD210070D52C /* gruvbox-dark.css */; };
+		1572933F1DE6FD210070D52C /* gruvbox-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292EF1DE6FD210070D52C /* gruvbox-light.css */; };
+		157293401DE6FD210070D52C /* hopscotch.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F01DE6FD210070D52C /* hopscotch.css */; };
+		157293411DE6FD210070D52C /* hybrid.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F11DE6FD210070D52C /* hybrid.css */; };
+		157293421DE6FD210070D52C /* idea.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F21DE6FD210070D52C /* idea.css */; };
+		157293431DE6FD210070D52C /* ir-black.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F31DE6FD210070D52C /* ir-black.css */; };
+		157293441DE6FD210070D52C /* kimbie.dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F41DE6FD210070D52C /* kimbie.dark.css */; };
+		157293451DE6FD210070D52C /* kimbie.light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F51DE6FD210070D52C /* kimbie.light.css */; };
+		157293461DE6FD210070D52C /* magula.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F61DE6FD210070D52C /* magula.css */; };
+		157293471DE6FD210070D52C /* mono-blue.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F71DE6FD210070D52C /* mono-blue.css */; };
+		157293481DE6FD210070D52C /* monokai-sublime.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F81DE6FD210070D52C /* monokai-sublime.css */; };
+		157293491DE6FD210070D52C /* monokai.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292F91DE6FD210070D52C /* monokai.css */; };
+		1572934A1DE6FD210070D52C /* obsidian.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292FA1DE6FD210070D52C /* obsidian.css */; };
+		1572934B1DE6FD210070D52C /* ocean.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292FB1DE6FD210070D52C /* ocean.css */; };
+		1572934C1DE6FD210070D52C /* paraiso-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292FC1DE6FD210070D52C /* paraiso-dark.css */; };
+		1572934D1DE6FD210070D52C /* paraiso-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292FD1DE6FD210070D52C /* paraiso-light.css */; };
+		1572934E1DE6FD210070D52C /* pojoaque.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292FE1DE6FD210070D52C /* pojoaque.css */; };
+		1572934F1DE6FD210070D52C /* pojoaque.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 157292FF1DE6FD210070D52C /* pojoaque.jpg */; };
+		157293501DE6FD210070D52C /* purebasic.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293001DE6FD210070D52C /* purebasic.css */; };
+		157293511DE6FD210070D52C /* qtcreator_dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293011DE6FD210070D52C /* qtcreator_dark.css */; };
+		157293521DE6FD210070D52C /* qtcreator_light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293021DE6FD210070D52C /* qtcreator_light.css */; };
+		157293531DE6FD210070D52C /* railscasts.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293031DE6FD210070D52C /* railscasts.css */; };
+		157293541DE6FD210070D52C /* rainbow.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293041DE6FD210070D52C /* rainbow.css */; };
+		157293551DE6FD210070D52C /* school-book.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293051DE6FD210070D52C /* school-book.css */; };
+		157293561DE6FD210070D52C /* school-book.png in Resources */ = {isa = PBXBuildFile; fileRef = 157293061DE6FD210070D52C /* school-book.png */; };
+		157293571DE6FD210070D52C /* solarized-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293071DE6FD210070D52C /* solarized-dark.css */; };
+		157293581DE6FD210070D52C /* solarized-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293081DE6FD210070D52C /* solarized-light.css */; };
+		157293591DE6FD210070D52C /* sunburst.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293091DE6FD210070D52C /* sunburst.css */; };
+		1572935A1DE6FD210070D52C /* tomorrow-night-blue.css in Resources */ = {isa = PBXBuildFile; fileRef = 1572930A1DE6FD210070D52C /* tomorrow-night-blue.css */; };
+		1572935B1DE6FD210070D52C /* tomorrow-night-bright.css in Resources */ = {isa = PBXBuildFile; fileRef = 1572930B1DE6FD210070D52C /* tomorrow-night-bright.css */; };
+		1572935C1DE6FD210070D52C /* tomorrow-night-eighties.css in Resources */ = {isa = PBXBuildFile; fileRef = 1572930C1DE6FD210070D52C /* tomorrow-night-eighties.css */; };
+		1572935D1DE6FD210070D52C /* tomorrow-night.css in Resources */ = {isa = PBXBuildFile; fileRef = 1572930D1DE6FD210070D52C /* tomorrow-night.css */; };
+		1572935E1DE6FD210070D52C /* tomorrow.css in Resources */ = {isa = PBXBuildFile; fileRef = 1572930E1DE6FD210070D52C /* tomorrow.css */; };
+		1572935F1DE6FD210070D52C /* vs.css in Resources */ = {isa = PBXBuildFile; fileRef = 1572930F1DE6FD210070D52C /* vs.css */; };
+		157293601DE6FD210070D52C /* xcode.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293101DE6FD210070D52C /* xcode.css */; };
+		157293611DE6FD210070D52C /* xt256.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293111DE6FD210070D52C /* xt256.css */; };
+		157293621DE6FD210070D52C /* zenburn.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293121DE6FD210070D52C /* zenburn.css */; };
+		15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B608351CEEEAD600D19210 /* HomeViewController.swift */; };
+		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
+		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
+		990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716061B94885C00D1A903 /* ContentDetailVC.swift */; };
+		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
+		9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9907160B1B94885C00D1A903 /* Assets.xcassets */; };
+		9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */; };
+		9907161A1B94885C00D1A903 /* PasteBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716191B94885C00D1A903 /* PasteBookTests.swift */; };
+		990716391B94A72400D1A903 /* DBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716381B94A72400D1A903 /* DBUtil.swift */; };
+		991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34771CEA017B00316B55 /* AddNewTagVC.swift */; };
+		991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */; };
+		993B415C1CF48B8600044B3A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B415B1CF48B8600044B3A /* iCarousel.m */; };
+		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
+		993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* DBHandler.swift */; };
+		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
+		99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */; };
+		99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */; };
+		99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6161CD0F9FE00218213 /* TagCell.swift */; };
+		99BDF8771C3AC53500C4D768 /* template.html in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8751C3AC53500C4D768 /* template.html */; };
+		99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8761C3AC53500C4D768 /* marked.min.js */; };
+		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
+		99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CD3D521CE945B8008250FD /* PBUtil.swift */; };
+		99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* page.css */; };
+		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
+		99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		990716161B94885C00D1A903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 990715F91B94885C00D1A903 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 990716001B94885C00D1A903;
+			remoteInfo = PasteBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		151B895B1CFD40B200630EF8 /* TagTourVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTourVC.swift; sourceTree = "<group>"; };
+		157292BE1DE6F91A0070D52C /* copy_db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = copy_db.py; sourceTree = "<group>"; };
+		157292C31DE6FD210070D52C /* agate.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = agate.css; sourceTree = "<group>"; };
+		157292C41DE6FD210070D52C /* androidstudio.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = androidstudio.css; sourceTree = "<group>"; };
+		157292C51DE6FD210070D52C /* arduino-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "arduino-light.css"; sourceTree = "<group>"; };
+		157292C61DE6FD210070D52C /* arta.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = arta.css; sourceTree = "<group>"; };
+		157292C71DE6FD210070D52C /* ascetic.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ascetic.css; sourceTree = "<group>"; };
+		157292C81DE6FD210070D52C /* atelier-cave-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-cave-dark.css"; sourceTree = "<group>"; };
+		157292C91DE6FD210070D52C /* atelier-cave-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-cave-light.css"; sourceTree = "<group>"; };
+		157292CA1DE6FD210070D52C /* atelier-dune-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-dune-dark.css"; sourceTree = "<group>"; };
+		157292CB1DE6FD210070D52C /* atelier-dune-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-dune-light.css"; sourceTree = "<group>"; };
+		157292CC1DE6FD210070D52C /* atelier-estuary-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-estuary-dark.css"; sourceTree = "<group>"; };
+		157292CD1DE6FD210070D52C /* atelier-estuary-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-estuary-light.css"; sourceTree = "<group>"; };
+		157292CE1DE6FD210070D52C /* atelier-forest-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-forest-dark.css"; sourceTree = "<group>"; };
+		157292CF1DE6FD210070D52C /* atelier-forest-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-forest-light.css"; sourceTree = "<group>"; };
+		157292D01DE6FD210070D52C /* atelier-heath-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-heath-dark.css"; sourceTree = "<group>"; };
+		157292D11DE6FD210070D52C /* atelier-heath-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-heath-light.css"; sourceTree = "<group>"; };
+		157292D21DE6FD210070D52C /* atelier-lakeside-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-lakeside-dark.css"; sourceTree = "<group>"; };
+		157292D31DE6FD210070D52C /* atelier-lakeside-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-lakeside-light.css"; sourceTree = "<group>"; };
+		157292D41DE6FD210070D52C /* atelier-plateau-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-plateau-dark.css"; sourceTree = "<group>"; };
+		157292D51DE6FD210070D52C /* atelier-plateau-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-plateau-light.css"; sourceTree = "<group>"; };
+		157292D61DE6FD210070D52C /* atelier-savanna-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-savanna-dark.css"; sourceTree = "<group>"; };
+		157292D71DE6FD210070D52C /* atelier-savanna-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-savanna-light.css"; sourceTree = "<group>"; };
+		157292D81DE6FD210070D52C /* atelier-seaside-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-seaside-dark.css"; sourceTree = "<group>"; };
+		157292D91DE6FD210070D52C /* atelier-seaside-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-seaside-light.css"; sourceTree = "<group>"; };
+		157292DA1DE6FD210070D52C /* atelier-sulphurpool-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-sulphurpool-dark.css"; sourceTree = "<group>"; };
+		157292DB1DE6FD210070D52C /* atelier-sulphurpool-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atelier-sulphurpool-light.css"; sourceTree = "<group>"; };
+		157292DC1DE6FD210070D52C /* atom-one-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atom-one-dark.css"; sourceTree = "<group>"; };
+		157292DD1DE6FD210070D52C /* atom-one-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atom-one-light.css"; sourceTree = "<group>"; };
+		157292DE1DE6FD210070D52C /* brown-paper.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "brown-paper.css"; sourceTree = "<group>"; };
+		157292DF1DE6FD210070D52C /* brown-papersq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brown-papersq.png"; sourceTree = "<group>"; };
+		157292E01DE6FD210070D52C /* codepen-embed.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "codepen-embed.css"; sourceTree = "<group>"; };
+		157292E11DE6FD210070D52C /* color-brewer.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "color-brewer.css"; sourceTree = "<group>"; };
+		157292E21DE6FD210070D52C /* darcula.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = darcula.css; sourceTree = "<group>"; };
+		157292E31DE6FD210070D52C /* dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = dark.css; sourceTree = "<group>"; };
+		157292E41DE6FD210070D52C /* darkula.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = darkula.css; sourceTree = "<group>"; };
+		157292E51DE6FD210070D52C /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
+		157292E61DE6FD210070D52C /* docco.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = docco.css; sourceTree = "<group>"; };
+		157292E71DE6FD210070D52C /* dracula.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = dracula.css; sourceTree = "<group>"; };
+		157292E81DE6FD210070D52C /* far.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = far.css; sourceTree = "<group>"; };
+		157292E91DE6FD210070D52C /* foundation.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = foundation.css; sourceTree = "<group>"; };
+		157292EA1DE6FD210070D52C /* github-gist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "github-gist.css"; sourceTree = "<group>"; };
+		157292EB1DE6FD210070D52C /* github.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = github.css; sourceTree = "<group>"; };
+		157292EC1DE6FD210070D52C /* googlecode.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = googlecode.css; sourceTree = "<group>"; };
+		157292ED1DE6FD210070D52C /* grayscale.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = grayscale.css; sourceTree = "<group>"; };
+		157292EE1DE6FD210070D52C /* gruvbox-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "gruvbox-dark.css"; sourceTree = "<group>"; };
+		157292EF1DE6FD210070D52C /* gruvbox-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "gruvbox-light.css"; sourceTree = "<group>"; };
+		157292F01DE6FD210070D52C /* hopscotch.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = hopscotch.css; sourceTree = "<group>"; };
+		157292F11DE6FD210070D52C /* hybrid.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = hybrid.css; sourceTree = "<group>"; };
+		157292F21DE6FD210070D52C /* idea.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = idea.css; sourceTree = "<group>"; };
+		157292F31DE6FD210070D52C /* ir-black.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "ir-black.css"; sourceTree = "<group>"; };
+		157292F41DE6FD210070D52C /* kimbie.dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kimbie.dark.css; sourceTree = "<group>"; };
+		157292F51DE6FD210070D52C /* kimbie.light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kimbie.light.css; sourceTree = "<group>"; };
+		157292F61DE6FD210070D52C /* magula.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = magula.css; sourceTree = "<group>"; };
+		157292F71DE6FD210070D52C /* mono-blue.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "mono-blue.css"; sourceTree = "<group>"; };
+		157292F81DE6FD210070D52C /* monokai-sublime.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "monokai-sublime.css"; sourceTree = "<group>"; };
+		157292F91DE6FD210070D52C /* monokai.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = monokai.css; sourceTree = "<group>"; };
+		157292FA1DE6FD210070D52C /* obsidian.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = obsidian.css; sourceTree = "<group>"; };
+		157292FB1DE6FD210070D52C /* ocean.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ocean.css; sourceTree = "<group>"; };
+		157292FC1DE6FD210070D52C /* paraiso-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "paraiso-dark.css"; sourceTree = "<group>"; };
+		157292FD1DE6FD210070D52C /* paraiso-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "paraiso-light.css"; sourceTree = "<group>"; };
+		157292FE1DE6FD210070D52C /* pojoaque.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pojoaque.css; sourceTree = "<group>"; };
+		157292FF1DE6FD210070D52C /* pojoaque.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pojoaque.jpg; sourceTree = "<group>"; };
+		157293001DE6FD210070D52C /* purebasic.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = purebasic.css; sourceTree = "<group>"; };
+		157293011DE6FD210070D52C /* qtcreator_dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = qtcreator_dark.css; sourceTree = "<group>"; };
+		157293021DE6FD210070D52C /* qtcreator_light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = qtcreator_light.css; sourceTree = "<group>"; };
+		157293031DE6FD210070D52C /* railscasts.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = railscasts.css; sourceTree = "<group>"; };
+		157293041DE6FD210070D52C /* rainbow.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = rainbow.css; sourceTree = "<group>"; };
+		157293051DE6FD210070D52C /* school-book.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "school-book.css"; sourceTree = "<group>"; };
+		157293061DE6FD210070D52C /* school-book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "school-book.png"; sourceTree = "<group>"; };
+		157293071DE6FD210070D52C /* solarized-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "solarized-dark.css"; sourceTree = "<group>"; };
+		157293081DE6FD210070D52C /* solarized-light.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "solarized-light.css"; sourceTree = "<group>"; };
+		157293091DE6FD210070D52C /* sunburst.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = sunburst.css; sourceTree = "<group>"; };
+		1572930A1DE6FD210070D52C /* tomorrow-night-blue.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "tomorrow-night-blue.css"; sourceTree = "<group>"; };
+		1572930B1DE6FD210070D52C /* tomorrow-night-bright.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "tomorrow-night-bright.css"; sourceTree = "<group>"; };
+		1572930C1DE6FD210070D52C /* tomorrow-night-eighties.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "tomorrow-night-eighties.css"; sourceTree = "<group>"; };
+		1572930D1DE6FD210070D52C /* tomorrow-night.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "tomorrow-night.css"; sourceTree = "<group>"; };
+		1572930E1DE6FD210070D52C /* tomorrow.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = tomorrow.css; sourceTree = "<group>"; };
+		1572930F1DE6FD210070D52C /* vs.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = vs.css; sourceTree = "<group>"; };
+		157293101DE6FD210070D52C /* xcode.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = xcode.css; sourceTree = "<group>"; };
+		157293111DE6FD210070D52C /* xt256.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = xt256.css; sourceTree = "<group>"; };
+		157293121DE6FD210070D52C /* zenburn.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = zenburn.css; sourceTree = "<group>"; };
+		15B608351CEEEAD600D19210 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig"; sourceTree = "<group>"; };
+		6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PasteBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		990716011B94885C00D1A903 /* PasteBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		990716041B94885C00D1A903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		990716061B94885C00D1A903 /* ContentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailVC.swift; sourceTree = "<group>"; };
+		990716091B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9907160B1B94885C00D1A903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9907160E1B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		990716101B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990716151B94885C00D1A903 /* PasteBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasteBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		990716191B94885C00D1A903 /* PasteBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBookTests.swift; sourceTree = "<group>"; };
+		9907161B1B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990716241B94885C00D1A903 /* PasteBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBookUITests.swift; sourceTree = "<group>"; };
+		990716261B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990716331B948EB300D1A903 /* PasteBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteBook-Bridging-Header.h"; sourceTree = "<group>"; };
+		990716381B94A72400D1A903 /* DBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBUtil.swift; sourceTree = "<group>"; };
+		991E34771CEA017B00316B55 /* AddNewTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTagVC.swift; sourceTree = "<group>"; };
+		991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensibleTableViewControl.swift; sourceTree = "<group>"; };
+		993B415A1CF48B8600044B3A /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		993B415B1CF48B8600044B3A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
+		993E61CA1CCD116A0055E7D5 /* DBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHandler.swift; sourceTree = "<group>"; };
+		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
+		99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewItemVC.swift; sourceTree = "<group>"; };
+		99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTagsVC.swift; sourceTree = "<group>"; };
+		99A6E6161CD0F9FE00218213 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		99BDF8751C3AC53500C4D768 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = template.html; path = PasteBook/template.html; sourceTree = "<group>"; };
+		99BDF8761C3AC53500C4D768 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = PasteBook/marked.min.js; sourceTree = "<group>"; };
+		99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableVC.swift; sourceTree = "<group>"; };
+		99CD3D521CE945B8008250FD /* PBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBUtil.swift; sourceTree = "<group>"; };
+		99FC8A191C3EBE0600596BB3 /* page.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = page.css; path = PasteBook/page.css; sourceTree = "<group>"; };
+		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
+		99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = highlight.pack.js; path = PasteBook/highlight.pack.js; sourceTree = "<group>"; };
+		F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		990715FE1B94885C00D1A903 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990716121B94885C00D1A903 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		157292BD1DE6F8FC0070D52C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				157292BE1DE6F91A0070D52C /* copy_db.py */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		157292C21DE6FD210070D52C /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				157292C31DE6FD210070D52C /* agate.css */,
+				157292C41DE6FD210070D52C /* androidstudio.css */,
+				157292C51DE6FD210070D52C /* arduino-light.css */,
+				157292C61DE6FD210070D52C /* arta.css */,
+				157292C71DE6FD210070D52C /* ascetic.css */,
+				157292C81DE6FD210070D52C /* atelier-cave-dark.css */,
+				157292C91DE6FD210070D52C /* atelier-cave-light.css */,
+				157292CA1DE6FD210070D52C /* atelier-dune-dark.css */,
+				157292CB1DE6FD210070D52C /* atelier-dune-light.css */,
+				157292CC1DE6FD210070D52C /* atelier-estuary-dark.css */,
+				157292CD1DE6FD210070D52C /* atelier-estuary-light.css */,
+				157292CE1DE6FD210070D52C /* atelier-forest-dark.css */,
+				157292CF1DE6FD210070D52C /* atelier-forest-light.css */,
+				157292D01DE6FD210070D52C /* atelier-heath-dark.css */,
+				157292D11DE6FD210070D52C /* atelier-heath-light.css */,
+				157292D21DE6FD210070D52C /* atelier-lakeside-dark.css */,
+				157292D31DE6FD210070D52C /* atelier-lakeside-light.css */,
+				157292D41DE6FD210070D52C /* atelier-plateau-dark.css */,
+				157292D51DE6FD210070D52C /* atelier-plateau-light.css */,
+				157292D61DE6FD210070D52C /* atelier-savanna-dark.css */,
+				157292D71DE6FD210070D52C /* atelier-savanna-light.css */,
+				157292D81DE6FD210070D52C /* atelier-seaside-dark.css */,
+				157292D91DE6FD210070D52C /* atelier-seaside-light.css */,
+				157292DA1DE6FD210070D52C /* atelier-sulphurpool-dark.css */,
+				157292DB1DE6FD210070D52C /* atelier-sulphurpool-light.css */,
+				157292DC1DE6FD210070D52C /* atom-one-dark.css */,
+				157292DD1DE6FD210070D52C /* atom-one-light.css */,
+				157292DE1DE6FD210070D52C /* brown-paper.css */,
+				157292DF1DE6FD210070D52C /* brown-papersq.png */,
+				157292E01DE6FD210070D52C /* codepen-embed.css */,
+				157292E11DE6FD210070D52C /* color-brewer.css */,
+				157292E21DE6FD210070D52C /* darcula.css */,
+				157292E31DE6FD210070D52C /* dark.css */,
+				157292E41DE6FD210070D52C /* darkula.css */,
+				157292E51DE6FD210070D52C /* default.css */,
+				157292E61DE6FD210070D52C /* docco.css */,
+				157292E71DE6FD210070D52C /* dracula.css */,
+				157292E81DE6FD210070D52C /* far.css */,
+				157292E91DE6FD210070D52C /* foundation.css */,
+				157292EA1DE6FD210070D52C /* github-gist.css */,
+				157292EB1DE6FD210070D52C /* github.css */,
+				157292EC1DE6FD210070D52C /* googlecode.css */,
+				157292ED1DE6FD210070D52C /* grayscale.css */,
+				157292EE1DE6FD210070D52C /* gruvbox-dark.css */,
+				157292EF1DE6FD210070D52C /* gruvbox-light.css */,
+				157292F01DE6FD210070D52C /* hopscotch.css */,
+				157292F11DE6FD210070D52C /* hybrid.css */,
+				157292F21DE6FD210070D52C /* idea.css */,
+				157292F31DE6FD210070D52C /* ir-black.css */,
+				157292F41DE6FD210070D52C /* kimbie.dark.css */,
+				157292F51DE6FD210070D52C /* kimbie.light.css */,
+				157292F61DE6FD210070D52C /* magula.css */,
+				157292F71DE6FD210070D52C /* mono-blue.css */,
+				157292F81DE6FD210070D52C /* monokai-sublime.css */,
+				157292F91DE6FD210070D52C /* monokai.css */,
+				157292FA1DE6FD210070D52C /* obsidian.css */,
+				157292FB1DE6FD210070D52C /* ocean.css */,
+				157292FC1DE6FD210070D52C /* paraiso-dark.css */,
+				157292FD1DE6FD210070D52C /* paraiso-light.css */,
+				157292FE1DE6FD210070D52C /* pojoaque.css */,
+				157292FF1DE6FD210070D52C /* pojoaque.jpg */,
+				157293001DE6FD210070D52C /* purebasic.css */,
+				157293011DE6FD210070D52C /* qtcreator_dark.css */,
+				157293021DE6FD210070D52C /* qtcreator_light.css */,
+				157293031DE6FD210070D52C /* railscasts.css */,
+				157293041DE6FD210070D52C /* rainbow.css */,
+				157293051DE6FD210070D52C /* school-book.css */,
+				157293061DE6FD210070D52C /* school-book.png */,
+				157293071DE6FD210070D52C /* solarized-dark.css */,
+				157293081DE6FD210070D52C /* solarized-light.css */,
+				157293091DE6FD210070D52C /* sunburst.css */,
+				1572930A1DE6FD210070D52C /* tomorrow-night-blue.css */,
+				1572930B1DE6FD210070D52C /* tomorrow-night-bright.css */,
+				1572930C1DE6FD210070D52C /* tomorrow-night-eighties.css */,
+				1572930D1DE6FD210070D52C /* tomorrow-night.css */,
+				1572930E1DE6FD210070D52C /* tomorrow.css */,
+				1572930F1DE6FD210070D52C /* vs.css */,
+				157293101DE6FD210070D52C /* xcode.css */,
+				157293111DE6FD210070D52C /* xt256.css */,
+				157293121DE6FD210070D52C /* zenburn.css */,
+			);
+			path = styles;
+			sourceTree = "<group>";
+		};
+		671B8EC524201EA501761956 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */,
+				F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		990715F81B94885C00D1A903 = {
+			isa = PBXGroup;
+			children = (
+				993B41591CF48B6F00044B3A /* iCarousel */,
+				993E61C71CCA3EBE0055E7D5 /* Web */,
+				990716031B94885C00D1A903 /* PasteBook */,
+				990716181B94885C00D1A903 /* PasteBookTests */,
+				990716231B94885C00D1A903 /* PasteBookUITests */,
+				990716021B94885C00D1A903 /* Products */,
+				671B8EC524201EA501761956 /* Pods */,
+				AA59E43E38BC80D0E67A07A9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		990716021B94885C00D1A903 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				990716011B94885C00D1A903 /* PasteBook.app */,
+				990716151B94885C00D1A903 /* PasteBookTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		990716031B94885C00D1A903 /* PasteBook */ = {
+			isa = PBXGroup;
+			children = (
+				157292BD1DE6F8FC0070D52C /* Tools */,
+				99CD3D511CE9459F008250FD /* Utils */,
+				993E61CE1CCD16E90055E7D5 /* DataBase */,
+				99CD3D501CE9458B008250FD /* ViewControllers */,
+				99CD3D4F1CE94576008250FD /* Components */,
+				990716371B94A6EB00D1A903 /* Settings */,
+				9907160B1B94885C00D1A903 /* Assets.xcassets */,
+			);
+			path = PasteBook;
+			sourceTree = "<group>";
+		};
+		990716181B94885C00D1A903 /* PasteBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				990716191B94885C00D1A903 /* PasteBookTests.swift */,
+				9907161B1B94885C00D1A903 /* Info.plist */,
+			);
+			path = PasteBookTests;
+			sourceTree = "<group>";
+		};
+		990716231B94885C00D1A903 /* PasteBookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				990716241B94885C00D1A903 /* PasteBookUITests.swift */,
+				990716261B94885C00D1A903 /* Info.plist */,
+			);
+			path = PasteBookUITests;
+			sourceTree = "<group>";
+		};
+		990716371B94A6EB00D1A903 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				993E61C81CCA88400055E7D5 /* moknow.db */,
+				990716041B94885C00D1A903 /* AppDelegate.swift */,
+				990716081B94885C00D1A903 /* Main.storyboard */,
+				9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */,
+				990716101B94885C00D1A903 /* Info.plist */,
+				990716331B948EB300D1A903 /* PasteBook-Bridging-Header.h */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		993B41591CF48B6F00044B3A /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				993B415A1CF48B8600044B3A /* iCarousel.h */,
+				993B415B1CF48B8600044B3A /* iCarousel.m */,
+			);
+			name = iCarousel;
+			sourceTree = "<group>";
+		};
+		993E61C71CCA3EBE0055E7D5 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				157292C21DE6FD210070D52C /* styles */,
+				99BDF8751C3AC53500C4D768 /* template.html */,
+				99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */,
+				99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */,
+				99BDF8761C3AC53500C4D768 /* marked.min.js */,
+				99FC8A191C3EBE0600596BB3 /* page.css */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
+		993E61CE1CCD16E90055E7D5 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				990716381B94A72400D1A903 /* DBUtil.swift */,
+				993E61CA1CCD116A0055E7D5 /* DBHandler.swift */,
+				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
+			);
+			name = DataBase;
+			sourceTree = "<group>";
+		};
+		99CD3D4F1CE94576008250FD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				99A6E6161CD0F9FE00218213 /* TagCell.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		99CD3D501CE9458B008250FD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				151B895B1CFD40B200630EF8 /* TagTourVC.swift */,
+				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
+				990716061B94885C00D1A903 /* ContentDetailVC.swift */,
+				99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */,
+				99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */,
+				991E34771CEA017B00316B55 /* AddNewTagVC.swift */,
+				15B608351CEEEAD600D19210 /* HomeViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		99CD3D511CE9459F008250FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				99CD3D521CE945B8008250FD /* PBUtil.swift */,
+				991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		AA59E43E38BC80D0E67A07A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		990716001B94885C00D1A903 /* PasteBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBook" */;
+			buildPhases = (
+				8980CA650F9F43A186DA3DE4 /* [CP] Check Pods Manifest.lock */,
+				157292C11DE6F9CE0070D52C /* Copy DB from Moknow */,
+				990715FD1B94885C00D1A903 /* Sources */,
+				990715FE1B94885C00D1A903 /* Frameworks */,
+				990715FF1B94885C00D1A903 /* Resources */,
+				26060F08BEDA9C86FFB728A6 /* [CP] Embed Pods Frameworks */,
+				0E05FD856064F4606E382673 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PasteBook;
+			productName = PasteBook;
+			productReference = 990716011B94885C00D1A903 /* PasteBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		990716141B94885C00D1A903 /* PasteBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9907162C1B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBookTests" */;
+			buildPhases = (
+				990716111B94885C00D1A903 /* Sources */,
+				990716121B94885C00D1A903 /* Frameworks */,
+				990716131B94885C00D1A903 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				990716171B94885C00D1A903 /* PBXTargetDependency */,
+			);
+			name = PasteBookTests;
+			productName = PasteBookTests;
+			productReference = 990716151B94885C00D1A903 /* PasteBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		990715F91B94885C00D1A903 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Baoli Zhai";
+				TargetAttributes = {
+					990716001B94885C00D1A903 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 5296P9QS3C;
+						LastSwiftMigration = 0800;
+					};
+					990716141B94885C00D1A903 = {
+						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
+						TestTargetID = 990716001B94885C00D1A903;
+					};
+				};
+			};
+			buildConfigurationList = 990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "PasteBook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 990715F81B94885C00D1A903;
+			productRefGroup = 990716021B94885C00D1A903 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				990716001B94885C00D1A903 /* PasteBook */,
+				990716141B94885C00D1A903 /* PasteBookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		990715FF1B94885C00D1A903 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1572935D1DE6FD210070D52C /* tomorrow-night.css in Resources */,
+				1572934B1DE6FD210070D52C /* ocean.css in Resources */,
+				9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */,
+				157293561DE6FD210070D52C /* school-book.png in Resources */,
+				157293201DE6FD210070D52C /* atelier-heath-dark.css in Resources */,
+				157293411DE6FD210070D52C /* hybrid.css in Resources */,
+				157293161DE6FD210070D52C /* arta.css in Resources */,
+				1572932C1DE6FD210070D52C /* atom-one-dark.css in Resources */,
+				99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */,
+				157293461DE6FD210070D52C /* magula.css in Resources */,
+				157293431DE6FD210070D52C /* ir-black.css in Resources */,
+				1572932F1DE6FD210070D52C /* brown-papersq.png in Resources */,
+				1572935E1DE6FD210070D52C /* tomorrow.css in Resources */,
+				1572933B1DE6FD210070D52C /* github.css in Resources */,
+				157293581DE6FD210070D52C /* solarized-light.css in Resources */,
+				1572933E1DE6FD210070D52C /* gruvbox-dark.css in Resources */,
+				157292BF1DE6F91A0070D52C /* copy_db.py in Resources */,
+				1572934C1DE6FD210070D52C /* paraiso-dark.css in Resources */,
+				1572933D1DE6FD210070D52C /* grayscale.css in Resources */,
+				157293371DE6FD210070D52C /* dracula.css in Resources */,
+				157293451DE6FD210070D52C /* kimbie.light.css in Resources */,
+				1572931F1DE6FD210070D52C /* atelier-forest-light.css in Resources */,
+				993E61C91CCA88400055E7D5 /* moknow.db in Resources */,
+				157293271DE6FD210070D52C /* atelier-savanna-light.css in Resources */,
+				1572932E1DE6FD210070D52C /* brown-paper.css in Resources */,
+				1572933C1DE6FD210070D52C /* googlecode.css in Resources */,
+				1572931D1DE6FD210070D52C /* atelier-estuary-light.css in Resources */,
+				99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */,
+				157293481DE6FD210070D52C /* monokai-sublime.css in Resources */,
+				1572931A1DE6FD210070D52C /* atelier-dune-dark.css in Resources */,
+				157293311DE6FD210070D52C /* color-brewer.css in Resources */,
+				157293291DE6FD210070D52C /* atelier-seaside-light.css in Resources */,
+				157293321DE6FD210070D52C /* darcula.css in Resources */,
+				9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */,
+				157293521DE6FD210070D52C /* qtcreator_light.css in Resources */,
+				1572935C1DE6FD210070D52C /* tomorrow-night-eighties.css in Resources */,
+				99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */,
+				1572933F1DE6FD210070D52C /* gruvbox-light.css in Resources */,
+				157293131DE6FD210070D52C /* agate.css in Resources */,
+				1572931E1DE6FD210070D52C /* atelier-forest-dark.css in Resources */,
+				157293281DE6FD210070D52C /* atelier-seaside-dark.css in Resources */,
+				157293341DE6FD210070D52C /* darkula.css in Resources */,
+				1572934A1DE6FD210070D52C /* obsidian.css in Resources */,
+				157293601DE6FD210070D52C /* xcode.css in Resources */,
+				157293611DE6FD210070D52C /* xt256.css in Resources */,
+				157293331DE6FD210070D52C /* dark.css in Resources */,
+				157293361DE6FD210070D52C /* docco.css in Resources */,
+				157293231DE6FD210070D52C /* atelier-lakeside-light.css in Resources */,
+				99BDF8771C3AC53500C4D768 /* template.html in Resources */,
+				1572934F1DE6FD210070D52C /* pojoaque.jpg in Resources */,
+				157293621DE6FD210070D52C /* zenburn.css in Resources */,
+				157293551DE6FD210070D52C /* school-book.css in Resources */,
+				1572935F1DE6FD210070D52C /* vs.css in Resources */,
+				157293141DE6FD210070D52C /* androidstudio.css in Resources */,
+				1572933A1DE6FD210070D52C /* github-gist.css in Resources */,
+				157293571DE6FD210070D52C /* solarized-dark.css in Resources */,
+				1572932A1DE6FD210070D52C /* atelier-sulphurpool-dark.css in Resources */,
+				157293511DE6FD210070D52C /* qtcreator_dark.css in Resources */,
+				157293211DE6FD210070D52C /* atelier-heath-light.css in Resources */,
+				157293421DE6FD210070D52C /* idea.css in Resources */,
+				157293171DE6FD210070D52C /* ascetic.css in Resources */,
+				1572935B1DE6FD210070D52C /* tomorrow-night-bright.css in Resources */,
+				157293261DE6FD210070D52C /* atelier-savanna-dark.css in Resources */,
+				157293401DE6FD210070D52C /* hopscotch.css in Resources */,
+				157293501DE6FD210070D52C /* purebasic.css in Resources */,
+				157293221DE6FD210070D52C /* atelier-lakeside-dark.css in Resources */,
+				157293471DE6FD210070D52C /* mono-blue.css in Resources */,
+				1572935A1DE6FD210070D52C /* tomorrow-night-blue.css in Resources */,
+				157293251DE6FD210070D52C /* atelier-plateau-light.css in Resources */,
+				157293591DE6FD210070D52C /* sunburst.css in Resources */,
+				157293191DE6FD210070D52C /* atelier-cave-light.css in Resources */,
+				157293531DE6FD210070D52C /* railscasts.css in Resources */,
+				1572932B1DE6FD210070D52C /* atelier-sulphurpool-light.css in Resources */,
+				157293441DE6FD210070D52C /* kimbie.dark.css in Resources */,
+				157293541DE6FD210070D52C /* rainbow.css in Resources */,
+				157293241DE6FD210070D52C /* atelier-plateau-dark.css in Resources */,
+				157293301DE6FD210070D52C /* codepen-embed.css in Resources */,
+				157293381DE6FD210070D52C /* far.css in Resources */,
+				1572931C1DE6FD210070D52C /* atelier-estuary-dark.css in Resources */,
+				157293491DE6FD210070D52C /* monokai.css in Resources */,
+				1572931B1DE6FD210070D52C /* atelier-dune-light.css in Resources */,
+				9907160A1B94885C00D1A903 /* Main.storyboard in Resources */,
+				1572934D1DE6FD210070D52C /* paraiso-light.css in Resources */,
+				1572932D1DE6FD210070D52C /* atom-one-light.css in Resources */,
+				157293181DE6FD210070D52C /* atelier-cave-dark.css in Resources */,
+				157293391DE6FD210070D52C /* foundation.css in Resources */,
+				157293151DE6FD210070D52C /* arduino-light.css in Resources */,
+				1572934E1DE6FD210070D52C /* pojoaque.css in Resources */,
+				99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */,
+				157293351DE6FD210070D52C /* default.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990716131B94885C00D1A903 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E05FD856064F4606E382673 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		157292C11DE6F9CE0070D52C /* Copy DB from Moknow */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy DB from Moknow";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python3 \"$PROJECT_DIR/PasteBook/copy_db.py\"\n";
+		};
+		26060F08BEDA9C86FFB728A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8980CA650F9F43A186DA3DE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		990715FD1B94885C00D1A903 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
+				993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */,
+				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
+				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
+				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
+				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
+				993B415C1CF48B8600044B3A /* iCarousel.m in Sources */,
+				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
+				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
+				99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */,
+				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
+				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
+				990716051B94885C00D1A903 /* AppDelegate.swift in Sources */,
+				15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */,
+				99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990716111B94885C00D1A903 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9907161A1B94885C00D1A903 /* PasteBookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		990716171B94885C00D1A903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 990716001B94885C00D1A903 /* PasteBook */;
+			targetProxy = 990716161B94885C00D1A903 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		990716081B94885C00D1A903 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				990716091B94885C00D1A903 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9907160E1B94885C00D1A903 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		990716271B94885C00D1A903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		990716281B94885C00D1A903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9907162A1B94885C00D1A903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = PasteBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9907162B1B94885C00D1A903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = PasteBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9907162D1B94885C00D1A903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PasteBookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasteBook.app/PasteBook";
+			};
+			name = Debug;
+		};
+		9907162E1B94885C00D1A903 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PasteBookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasteBook.app/PasteBook";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "PasteBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				990716271B94885C00D1A903 /* Debug */,
+				990716281B94885C00D1A903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9907162A1B94885C00D1A903 /* Debug */,
+				9907162B1B94885C00D1A903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9907162C1B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9907162D1B94885C00D1A903 /* Debug */,
+				9907162E1B94885C00D1A903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 990715F91B94885C00D1A903 /* Project object */;
+}

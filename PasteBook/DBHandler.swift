@@ -53,7 +53,6 @@ class DBHandler: NSObject{
         let idx = arr.map{$0.lowercased()}.index(of: "into")
         if let insertedId = lastInsertRowId , idx != nil{
             let tableName = arr[idx! + 1]
-            print(tableName, lastInsertRowId)
             let resultSet = database.executeQuery("SELECT * FROM \(tableName) WHERE ROWID=?", withArgumentsIn:[insertedId])
             resultSet?.next()
             return resultSet?.resultDictionary() as NSDictionary?

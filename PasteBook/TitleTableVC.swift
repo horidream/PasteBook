@@ -86,10 +86,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if firstLaunch{
-            self.splitViewController?.performSegue(withIdentifier: "HomeView", sender: self)
-            firstLaunch = false
-        }
+//        if firstLaunch{
+//            self.splitViewController?.performSegue(withIdentifier: "HomeView", sender: self)
+//            firstLaunch = false
+//        }
         
     }
     
@@ -154,17 +154,17 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let currentShowingIndex = (indexPath as NSIndexPath).row
-        
-        cell.alpha = 0
-        var trans = CATransform3DTranslate(CATransform3DIdentity, 0, lastShowingIndex > currentShowingIndex ? -200 : 200, -500)
-        lastShowingIndex = currentShowingIndex
-        trans.m34 = -1.0 / 500
-        cell.layer.transform = trans
-        UIView.animate(withDuration: 0.5, animations: {
-            cell.alpha = 1
-            cell.layer.transform = CATransform3DIdentity
-        }) 
+//        let currentShowingIndex = (indexPath as NSIndexPath).row
+//        
+//        cell.alpha = 0
+//        var trans = CATransform3DTranslate(CATransform3DIdentity, 0, lastShowingIndex > currentShowingIndex ? -200 : 200, -500)
+//        lastShowingIndex = currentShowingIndex
+//        trans.m34 = -1.0 / 500
+//        cell.layer.transform = trans
+//        UIView.animate(withDuration: 0.5, animations: {
+//            cell.alpha = 1
+//            cell.layer.transform = CATransform3DIdentity
+//        }) 
     }
     
     // MARK: search result

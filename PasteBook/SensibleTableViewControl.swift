@@ -37,7 +37,7 @@ class SensibleTableViewControl:NSObject {
         }
         keyboardShown = true
         var tv:UIScrollView = self.tableView
-        if(Mirror(reflecting: self.tableView.superview).subjectType == UIScrollView.self){
+        if(Mirror(reflecting: self.tableView.superview as Any).subjectType == UIScrollView.self){
             tv = self.tableView.superview as! UIScrollView
         }
         if let userInfo = (aNotification as NSNotification).userInfo{
