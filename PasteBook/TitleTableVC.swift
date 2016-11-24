@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FoldingCell
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -42,8 +44,16 @@ func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
     return !(tuple1==tuple2)
 }
 
+fileprivate struct C {
+    struct CellHeight {
+        static let close: CGFloat = 100 // equal or greater foregroundView height
+        static let open: CGFloat = 200 // equal or greater containerView height
+    }
+}
+
+
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
-    
+    var cellHeights:[CGFloat]!
     var data:Array<(id:Int,title:String)> = []
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
@@ -57,10 +67,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
 
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
+//        self.tableView.register(TitleCell.self, forCellReuseIdentifier: "myCell")
+        tableView.register(UINib.init(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier:"myCell")
         self.tableView.dataSource = self
         data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
-        
+        cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.searchBar.delegate = self
@@ -133,16 +144,39 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-        cell.textLabel?.numberOfLines = 0;
-        cell.textLabel?.lineBreakMode = .byWordWrapping;
-        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
+//        cell.textLabel?.numberOfLines = 0;
+//        cell.textLabel?.lineBreakMode = .byWordWrapping;
+//        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath.row]
     }
     
     // MARK: table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
-        searchController.searchBar.resignFirstResponder()
+        guard case let cell as FoldingCell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        var duration = 0.0
+        if cellHeights[indexPath.row] ==  C.CellHeight.close{ // open cell
+            cellHeights[indexPath.row] = C.CellHeight.open
+            cell.selectedAnimation(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {// close cell
+            cellHeights[indexPath.row] = C.CellHeight.close
+            cell.selectedAnimation(false, animated: true, completion: nil)
+            duration = 1.1
+        }
+        
+        UIView.animate(withDuration:duration, delay: 0, options: .curveEaseOut, animations: { _ in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
+//        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
+//        searchController.searchBar.resignFirstResponder()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -154,18 +188,15 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let currentShowingIndex = (indexPath as NSIndexPath).row
-//        
-//        cell.alpha = 0
-//        var trans = CATransform3DTranslate(CATransform3DIdentity, 0, lastShowingIndex > currentShowingIndex ? -200 : 200, -500)
-//        lastShowingIndex = currentShowingIndex
-//        trans.m34 = -1.0 / 500
-//        cell.layer.transform = trans
-//        UIView.animate(withDuration: 0.5, animations: {
-//            cell.alpha = 1
-//            cell.layer.transform = CATransform3DIdentity
-//        }) 
+        if let cell = cell as? FoldingCell {
+            if cellHeights![indexPath.row] == C.CellHeight.close {
+                cell.selectedAnimation(false, animated: false, completion:nil)
+            } else {
+                cell.selectedAnimation(true, animated: false, completion: nil)
+            }
+        }
     }
+    
     
     // MARK: search result
     func updateSearchResults(for searchController: UISearchController) {

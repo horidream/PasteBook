@@ -89,6 +89,8 @@
 		157293601DE6FD210070D52C /* xcode.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293101DE6FD210070D52C /* xcode.css */; };
 		157293611DE6FD210070D52C /* xt256.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293111DE6FD210070D52C /* xt256.css */; };
 		157293621DE6FD210070D52C /* zenburn.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293121DE6FD210070D52C /* zenburn.css */; };
+		15A47B8F1DE715B1004D7397 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A47B8E1DE715B1004D7397 /* TitleCell.swift */; };
+		15A47B911DE715F0004D7397 /* TitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15A47B901DE715F0004D7397 /* TitleCell.xib */; };
 		15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B608351CEEEAD600D19210 /* HomeViewController.swift */; };
 		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
@@ -209,6 +211,8 @@
 		157293101DE6FD210070D52C /* xcode.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = xcode.css; sourceTree = "<group>"; };
 		157293111DE6FD210070D52C /* xt256.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = xt256.css; sourceTree = "<group>"; };
 		157293121DE6FD210070D52C /* zenburn.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = zenburn.css; sourceTree = "<group>"; };
+		15A47B8E1DE715B1004D7397 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		15A47B901DE715F0004D7397 /* TitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
 		15B608351CEEEAD600D19210 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig"; sourceTree = "<group>"; };
 		6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PasteBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -473,6 +477,8 @@
 			isa = PBXGroup;
 			children = (
 				99A6E6161CD0F9FE00218213 /* TagCell.swift */,
+				15A47B8E1DE715B1004D7397 /* TitleCell.swift */,
+				15A47B901DE715F0004D7397 /* TitleCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				157293211DE6FD210070D52C /* atelier-heath-light.css in Resources */,
 				157293421DE6FD210070D52C /* idea.css in Resources */,
 				157293171DE6FD210070D52C /* ascetic.css in Resources */,
+				15A47B911DE715F0004D7397 /* TitleCell.xib in Resources */,
 				1572935B1DE6FD210070D52C /* tomorrow-night-bright.css in Resources */,
 				157293261DE6FD210070D52C /* atelier-savanna-dark.css in Resources */,
 				157293401DE6FD210070D52C /* hopscotch.css in Resources */,
@@ -777,6 +784,7 @@
 				99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
+				15A47B8F1DE715B1004D7397 /* TitleCell.swift in Sources */,
 				990716051B94885C00D1A903 /* AppDelegate.swift in Sources */,
 				15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */,
 				99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */,
