@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11542"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,18 +15,24 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkR-jI-QSs">
+                    <rect key="frame" x="8" y="97" width="359" height="225"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="AaC-cj-oHP">
+                            <rect key="frame" x="8" y="8" width="343" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.55685897740000001" green="0.75966430740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="225" id="ucJ-XV-V7m"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azb-dG-49p" customClass="RotatedView" customModule="FoldingCell">
                     <rect key="frame" x="8" y="8" width="359" height="75"/>
                     <color key="backgroundColor" red="1" green="0.52480498689999999" blue="0.23290805610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="75" id="0j5-LJ-V8k"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkR-jI-QSs">
-                    <rect key="frame" x="8" y="97" width="359" height="150"/>
-                    <color key="backgroundColor" red="0.55685897740000001" green="0.75966430740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="ucJ-XV-V7m"/>
                     </constraints>
                 </view>
             </subviews>
@@ -43,6 +50,9 @@
                 <userDefinedRuntimeAttribute type="number" keyPath="itemCount">
                     <integer key="value" value="3"/>
                 </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="backViewColor">
+                    <color key="value" red="1" green="0.2099986207" blue="0.1479780893" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="containerView" destination="GkR-jI-QSs" id="4dG-rj-bF6"/>
@@ -53,4 +63,7 @@
             <point key="canvasLocation" x="34.5" y="98"/>
         </view>
     </objects>
+    <resources>
+        <image name="HomeBackground" width="256" height="256"/>
+    </resources>
 </document>

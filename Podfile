@@ -1,10 +1,10 @@
 
-# platform :ios, '9.0'
+# platform :ios, '9.3'
 
 target 'PasteBook' do
 use_frameworks!
-	pod 'FMDB'
-	pod 'FoldingCell', '~> 2.0.1'
+    pod 'FMDB'
+	pod 'FoldingCell', :git => 'https://github.com/Ramotion/folding-cell.git'
 end
 
 

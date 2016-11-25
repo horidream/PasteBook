@@ -46,8 +46,8 @@ func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
 
 fileprivate struct C {
     struct CellHeight {
-        static let close: CGFloat = 100 // equal or greater foregroundView height
-        static let open: CGFloat = 200 // equal or greater containerView height
+        static let close: CGFloat = 80 // equal or greater foregroundView height
+        static let open: CGFloat = 240 // equal or greater containerView height
     }
 }
 
