@@ -6,21 +6,12 @@ PODS:
 
 DEPENDENCIES:
   - FMDB
-  - FoldingCell (from `https://github.com/Ramotion/folding-cell.git`)
-
-EXTERNAL SOURCES:
-  FoldingCell:
-    :git: https://github.com/Ramotion/folding-cell.git
-
-CHECKOUT OPTIONS:
-  FoldingCell:
-    :commit: 63e9ff9410df8c6c7f8725423e3410b5b7e49eeb
-    :git: https://github.com/Ramotion/folding-cell.git
+  - FoldingCell (~> 2.0.1)
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FoldingCell: cfa0c9b0f1ee94d4443e3679bd6e5ebe3b386ebf
 
-PODFILE CHECKSUM: 275a79eafa0ec352867a4437e7dec2ff7f835663
+PODFILE CHECKSUM: 41c65e6e2b1ed34afe12aca406693ed5e39eeb1d
 
 COCOAPODS: 1.1.1

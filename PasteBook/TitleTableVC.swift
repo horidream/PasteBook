@@ -10,23 +10,23 @@ import UIKit
 import FoldingCell
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
@@ -46,8 +46,8 @@ func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
 
 fileprivate struct C {
     struct CellHeight {
-        static let close: CGFloat = 80 // equal or greater foregroundView height
-        static let open: CGFloat = 240 // equal or greater containerView height
+        static let close: CGFloat = 75 // equal or greater foregroundView height
+        static let open: CGFloat = 225 // equal or greater containerView height
     }
 }
 
@@ -63,11 +63,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         super.viewDidLoad()
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
         
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
-        self.tableView.addSubview(self.refreshControl!)
-
-//        self.tableView.register(TitleCell.self, forCellReuseIdentifier: "myCell")
+        //        self.refreshControl = UIRefreshControl()
+        //        self.refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
+        //        self.tableView.addSubview(self.refreshControl!)
+        
+        //        self.tableView.register(TitleCell.self, forCellReuseIdentifier: "myCell")
         tableView.register(UINib.init(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier:"myCell")
         self.tableView.dataSource = self
         data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
@@ -97,10 +97,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if firstLaunch{
-//            self.splitViewController?.performSegue(withIdentifier: "HomeView", sender: self)
-//            firstLaunch = false
-//        }
+        //        if firstLaunch{
+        //            self.splitViewController?.performSegue(withIdentifier: "HomeView", sender: self)
+        //            firstLaunch = false
+        //        }
         
     }
     
@@ -144,9 +144,9 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-//        cell.textLabel?.numberOfLines = 0;
-//        cell.textLabel?.lineBreakMode = .byWordWrapping;
-//        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
+        //        cell.textLabel?.numberOfLines = 0;
+        //        cell.textLabel?.lineBreakMode = .byWordWrapping;
+        //        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
         return cell
     }
     
@@ -175,8 +175,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
-//        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
-//        searchController.searchBar.resignFirstResponder()
+        //        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
+        //        searchController.searchBar.resignFirstResponder()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -203,7 +203,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
         self.tableView.reloadData()
     }
- 
+    
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }
