@@ -8,7 +8,12 @@ if platform.system() == "Windows":
     rootpath = r"~\GIT\myPrototype\Moknow"
 elif platform.system() == "Darwin":
     rootpath = r"~/Documents/Projects/myPrototype/Moknow"
-dbpath = os.path.join(rootpath, r"moknow.db")
-ios_dbpath = os.path.join(sys.argv[1], "PasteBook/moknow.db")
+src = os.path.expanduser(os.path.join(rootpath, r"moknow.db"))
+dst = os.path.expanduser(os.path.join(sys.argv[1], "PasteBook/moknow.db"))
 
-shutil.copy(os.path.expanduser(dbpath), os.path.expanduser(ios_dbpath))
+
+if os.stat(src).st_mtime - os.stat(dst).st_mtime > 1:
+    shutil.copy2 (src, dst)
+    print("db file copied")
+else:
+    print("time same, no need to copy db file")

@@ -31,7 +31,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 // define Item type
-typealias Tag = (id:Int, name:String)
+//typealias Tag = (id:Int, name:String)
 typealias Item = (id:Int, title:String, content:String, tags:[Tag])
 
 func == <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool

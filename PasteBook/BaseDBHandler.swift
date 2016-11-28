@@ -9,14 +9,15 @@
 import Foundation
 import FMDB
 
-class DBHandler: NSObject{
+class BaseDBHandler: NSObject{
     
-    var database:FMDatabase
+    private var database:FMDatabase
+    private var lastInsertRowId:NSNumber?
     init(dbPath:String){
         self.database = FMDatabase(path: dbPath)
     }
-    var lastInsertRowId:NSNumber?
-    func queryFetch<T>(_ sql:String, _ args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
+    
+    func queryFetch<T>(_ sql:String, args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
         var result:Array<T> = []
         guard self.database.open() == true else{
             return result
@@ -35,7 +36,9 @@ class DBHandler: NSObject{
     }
     
     
-    func queryChange(_ sql:String, _ args:[AnyObject]? = nil)->NSDictionary?{
+    
+    
+    func queryChange(_ sql:String, args:[AnyObject]? = nil)->NSDictionary?{
         guard self.database.open() == true else{
             return nil
         }

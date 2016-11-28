@@ -102,15 +102,16 @@
 		991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34771CEA017B00316B55 /* AddNewTagVC.swift */; };
 		991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */; };
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
-		993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* DBHandler.swift */; };
+		993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
+		99A0365D1DEA86B100A74C88 /* PBDBModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0365C1DEA86B100A74C88 /* PBDBModels.swift */; };
 		99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */; };
 		99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */; };
 		99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6161CD0F9FE00218213 /* TagCell.swift */; };
 		99BDF8771C3AC53500C4D768 /* template.html in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8751C3AC53500C4D768 /* template.html */; };
 		99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8761C3AC53500C4D768 /* marked.min.js */; };
 		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
-		99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CD3D521CE945B8008250FD /* PBUtil.swift */; };
+		99CD3D531CE945B8008250FD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CD3D521CE945B8008250FD /* Extensions.swift */; };
 		99E4B2F01DE7442B0085718A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E4B2EF1DE7442B0085718A /* iCarousel.m */; };
 		99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* page.css */; };
 		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
@@ -216,15 +217,16 @@
 		991E34771CEA017B00316B55 /* AddNewTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTagVC.swift; sourceTree = "<group>"; };
 		991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensibleTableViewControl.swift; sourceTree = "<group>"; };
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
-		993E61CA1CCD116A0055E7D5 /* DBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHandler.swift; sourceTree = "<group>"; };
+		993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
+		99A0365C1DEA86B100A74C88 /* PBDBModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBModels.swift; sourceTree = "<group>"; };
 		99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewItemVC.swift; sourceTree = "<group>"; };
 		99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTagsVC.swift; sourceTree = "<group>"; };
 		99A6E6161CD0F9FE00218213 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		99BDF8751C3AC53500C4D768 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = template.html; path = PasteBook/template.html; sourceTree = "<group>"; };
 		99BDF8761C3AC53500C4D768 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = PasteBook/marked.min.js; sourceTree = "<group>"; };
 		99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableVC.swift; sourceTree = "<group>"; };
-		99CD3D521CE945B8008250FD /* PBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBUtil.swift; sourceTree = "<group>"; };
+		99CD3D521CE945B8008250FD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		99E4B2ED1DE7442A0085718A /* PasteBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteBook-Bridging-Header.h"; sourceTree = "<group>"; };
 		99E4B2EE1DE7442B0085718A /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
 		99E4B2EF1DE7442B0085718A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = SOURCE_ROOT; };
@@ -425,8 +427,9 @@
 			isa = PBXGroup;
 			children = (
 				990716381B94A72400D1A903 /* DBUtil.swift */,
-				993E61CA1CCD116A0055E7D5 /* DBHandler.swift */,
+				993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */,
 				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
+				99A0365C1DEA86B100A74C88 /* PBDBModels.swift */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -458,7 +461,7 @@
 		99CD3D511CE9459F008250FD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				99CD3D521CE945B8008250FD /* PBUtil.swift */,
+				99CD3D521CE945B8008250FD /* Extensions.swift */,
 				991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */,
 			);
 			name = Utils;
@@ -700,14 +703,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
-				993E61CB1CCD116A0055E7D5 /* DBHandler.swift in Sources */,
+				993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */,
 				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
 				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
 				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
 				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
+				99A0365D1DEA86B100A74C88 /* PBDBModels.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
 				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
-				99CD3D531CE945B8008250FD /* PBUtil.swift in Sources */,
+				99CD3D531CE945B8008250FD /* Extensions.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
 				15A47B8F1DE715B1004D7397 /* TitleCell.swift in Sources */,
@@ -834,7 +838,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -847,9 +851,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -858,7 +861,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -871,8 +874,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

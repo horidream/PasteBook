@@ -6,7 +6,8 @@
 //  Copyright © 2016 Baoli Zhai. All rights reserved.
 //
 
-class PBDBHandler: DBHandler, FileManagerDelegate {
+
+class PBDBHandler: BaseDBHandler, FileManagerDelegate {
     
     // MARK: SINGLETON
     
@@ -26,29 +27,29 @@ class PBDBHandler: DBHandler, FileManagerDelegate {
     // MARK: CRUD
 
     func addItem(_ title:String, content:String)->NSDictionary?{
-        return self.queryChange("INSERT INTO items (title, content) VALUES (?, ?)", [title as AnyObject, content as AnyObject])
+        return self.queryChange("INSERT INTO items (title, content) VALUES (?, ?)", args: [title as AnyObject, content as AnyObject])
     }
     
     func createNewTag(_ name:String)->NSDictionary?{
-        return self.queryChange("INSERT INTO tags (name) VALUES (?)", [name as AnyObject])
+        return self.queryChange("INSERT INTO tags (name) VALUES (?)", args: [name as AnyObject])
     }
     
     func addTag( _ tagID:Int, withItemID itemID:Int){
-        let _ = self.queryChange("INSERT INTO taged_items (tag_id, item_id) VALUES (?, ?)", [tagID as AnyObject, itemID as AnyObject])
+        let _ = self.queryChange("INSERT INTO taged_items (tag_id, item_id) VALUES (?, ?)", args: [tagID as AnyObject, itemID as AnyObject])
     }
     
     func updateItemWithId(_ id:Int, title:String, content:String){
-        let _ = self.queryChange("UPDATE items SET title=?, content=? WHERE id=?", [title as AnyObject, content as AnyObject, id as AnyObject])
+        let _ = self.queryChange("UPDATE items SET title=?, content=? WHERE id=?", args: [title as AnyObject, content as AnyObject, id as AnyObject])
     }
     
     func removeTagWithId(_ id:Int){
-        let _ = queryChange("DELETE FROM taged_items WHERE tag_id=?", [id as AnyObject])
-        let _ = queryChange("DELETE FROM tags WHERE id=?", [id as AnyObject])
+        let _ = queryChange("DELETE FROM taged_items WHERE tag_id=?", args: [id as AnyObject])
+        let _ = queryChange("DELETE FROM tags WHERE id=?", args: [id as AnyObject])
     }
     
     func removeItemWithId(_ id:Int){
-        let _ = queryChange("DELETE FROM taged_items WHERE item_id=?", [id as AnyObject])
-        let _ = queryChange("DELETE FROM items WHERE id=?", [id as AnyObject])
+        let _ = queryChange("DELETE FROM taged_items WHERE item_id=?", args: [id as AnyObject])
+        let _ = queryChange("DELETE FROM items WHERE id=?", args: [id as AnyObject])
     }
     
     
@@ -61,9 +62,12 @@ class PBDBHandler: DBHandler, FileManagerDelegate {
         return result
     }
     
-    func fetchAllTags()->Array<(id:Int, name:String)>{
-        let result = queryFetch("SELECT id, name from tags"){
-            (id:Int($0.int(forColumn: "id")), name:$0.string(forColumn: "name")!)
+    func fetchAllTags()->Array<Tag>{
+        let result = queryFetch("SELECT id, name from tags"){ result -> Tag in
+            var tag:Tag = Tag(name: result.string(forColumn: "name")!)
+            tag.id = result.unsignedLongLongInt(forColumn: "id")
+            return tag
+
         }
         return result
     }
@@ -105,9 +109,7 @@ class PBDBHandler: DBHandler, FileManagerDelegate {
     
     // MARK: find by id
     func fetchTagsById(_ id:Int)->[Tag]{
-        let result = queryFetch("SELECT id, name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){
-            (id: Int($0.int(forColumn: "id")), name:$0.string(forColumn: "name")!)
-        }
+        let result = queryFetch("SELECT id, name from tags WHERE id in (SELECT tag_id from taged_items WHERE item_id=\(id))"){ Tag(fetchResult:$0) }
         return result
     }
     

@@ -21,7 +21,7 @@ class AddNewTagVC: UIViewController {
             let newTag = PBDBHandler.sharedInstance.createNewTag(newTag)
             let _ = self.navigationController?.popViewController(animated: true)
             if let tagsVC = self.navigationController?.viewControllers.last as? SelectTagsVC, let newTag = newTag{
-                tagsVC.data.append((id:newTag["id"] as! Int, name:newTag["name"] as! String))
+//                tagsVC.data.append((id:newTag["id"] as! Int, name:newTag["name"] as! String))
                 tagsVC.tableView.reloadSections(IndexSet(integer:0), with: .fade)
             }
         }
