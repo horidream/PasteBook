@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,21 +16,48 @@
             <rect key="frame" x="0.0" y="0.0" width="409" height="375"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KZu-Rl-qKr" id="GAF-hl-Jwh">
-                <rect key="frame" x="0.0" y="0.0" width="409" height="375"/>
+                <rect key="frame" x="0.0" y="0.0" width="409" height="374"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azb-dG-49p" customClass="RotatedView" customModule="FoldingCell">
-                        <rect key="frame" x="8" y="12" width="393" height="75"/>
-                        <color key="backgroundColor" red="1" green="0.52480498689999999" blue="0.23290805610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="8" y="12" width="393" height="80"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6k2-3B-guz">
+                                <rect key="frame" x="8" y="8" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Py" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-2K-z9g">
+                                        <rect key="frame" x="0.0" y="8" width="64" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.15634022221783517" blue="0.26770668885500626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016-11-29 18:17:00.569243 PasteBook[4977:1932914] Cannot snapshot view" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKP-bo-Pt6">
+                                <rect key="frame" x="95" y="8" width="260" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-wS-zjX">
+                                <rect key="frame" x="363" y="29" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.55685897740000001" green="0.75966430740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="75" id="0j5-LJ-V8k"/>
+                            <constraint firstAttribute="height" constant="80" id="0j5-LJ-V8k"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkR-jI-QSs">
-                        <rect key="frame" x="8" y="75" width="393" height="225"/>
-                        <color key="backgroundColor" red="0.55685897740000001" green="0.75966430740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="8" y="80" width="393" height="240"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="225" id="ucJ-XV-V7m"/>
+                            <constraint firstAttribute="height" constant="240" id="ucJ-XV-V7m"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -40,9 +67,10 @@
                     <constraint firstItem="azb-dG-49p" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="12" identifier="ForegroundViewTop" id="SnE-7X-32G"/>
                     <constraint firstItem="azb-dG-49p" firstAttribute="leading" secondItem="GAF-hl-Jwh" secondAttribute="leading" constant="8" id="Xd8-kE-sXX"/>
                     <constraint firstAttribute="leadingMargin" secondItem="GkR-jI-QSs" secondAttribute="leading" id="tgu-xh-mZD"/>
-                    <constraint firstItem="GkR-jI-QSs" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="75" identifier="containerViewTop" id="z2w-fF-GDw"/>
+                    <constraint firstItem="GkR-jI-QSs" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="80" identifier="containerViewTop" id="z2w-fF-GDw"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="itemCount">
                     <integer key="value" value="3"/>
@@ -51,8 +79,12 @@
             <connections>
                 <outlet property="containerView" destination="GkR-jI-QSs" id="hkV-e9-IRS"/>
                 <outlet property="containerViewTop" destination="z2w-fF-GDw" id="kyg-Q7-bnb"/>
+                <outlet property="detailBtn" destination="Zl5-wS-zjX" id="LpK-3j-RDg"/>
                 <outlet property="foregroundView" destination="azb-dG-49p" id="oMd-uQ-mPe"/>
                 <outlet property="foregroundViewTop" destination="SnE-7X-32G" id="aaS-cZ-Jmd"/>
+                <outlet property="iconBg" destination="6k2-3B-guz" id="nfN-x8-6li"/>
+                <outlet property="iconTitle" destination="FDF-2K-z9g" id="K3l-1Z-XFm"/>
+                <outlet property="title" destination="LKP-bo-Pt6" id="Ggv-6r-TkV"/>
             </connections>
             <point key="canvasLocation" x="-217.5" y="423.5"/>
         </tableViewCell>

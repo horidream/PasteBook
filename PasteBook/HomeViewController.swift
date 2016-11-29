@@ -15,12 +15,12 @@ class HomeViewController: UIViewController {
     var data:[Tag] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(_dismissKeyboard))
         searchBar.delegate = self
         self.view.addGestureRecognizer(tap)
     }
 
-    func dismissKeyboard(){
+    func _dismissKeyboard(){
         self.searchBar.resignFirstResponder()
     }
     

@@ -46,8 +46,8 @@ func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
 
 fileprivate struct C {
     struct CellHeight {
-        static let close: CGFloat = 75 // equal or greater foregroundView height
-        static let open: CGFloat = 225 // equal or greater containerView height
+        static let close: CGFloat = 95 // equal or greater foregroundView height
+        static let open: CGFloat = 270 // equal or greater containerView height
     }
 }
 
@@ -67,8 +67,9 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         //        self.refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
         //        self.tableView.addSubview(self.refreshControl!)
         
-        //        self.tableView.register(TitleCell.self, forCellReuseIdentifier: "myCell")
+//        self.tableView.register(TitleCell.self, forCellReuseIdentifier: "myCell")
         tableView.register(UINib.init(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier:"myCell")
+        self.tableView.separatorStyle = .none
         self.tableView.dataSource = self
         data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
         cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
@@ -143,7 +144,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
+        cell.tableView = self.tableView
+        cell.title.text = data[(indexPath as NSIndexPath).row].title
+        cell.iconTitle.text = data[(indexPath as NSIndexPath).row].title[1..<3]
         //        cell.textLabel?.numberOfLines = 0;
         //        cell.textLabel?.lineBreakMode = .byWordWrapping;
         //        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
@@ -175,8 +179,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
-        //        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
-        //        searchController.searchBar.resignFirstResponder()
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("accessory button tapped")
+        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
+        searchController.searchBar.resignFirstResponder()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

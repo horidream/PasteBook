@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151B895B1CFD40B200630EF8 /* TagTourVC.swift */; };
-		157292BF1DE6F91A0070D52C /* copy_db.py in Resources */ = {isa = PBXBuildFile; fileRef = 157292BE1DE6F91A0070D52C /* copy_db.py */; };
 		157293131DE6FD210070D52C /* agate.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C31DE6FD210070D52C /* agate.css */; };
 		157293141DE6FD210070D52C /* androidstudio.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C41DE6FD210070D52C /* androidstudio.css */; };
 		157293151DE6FD210070D52C /* arduino-light.css in Resources */ = {isa = PBXBuildFile; fileRef = 157292C51DE6FD210070D52C /* arduino-light.css */; };
@@ -91,6 +90,7 @@
 		157293621DE6FD210070D52C /* zenburn.css in Resources */ = {isa = PBXBuildFile; fileRef = 157293121DE6FD210070D52C /* zenburn.css */; };
 		15A47B8F1DE715B1004D7397 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A47B8E1DE715B1004D7397 /* TitleCell.swift */; };
 		15A47B911DE715F0004D7397 /* TitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15A47B901DE715F0004D7397 /* TitleCell.xib */; };
+		15A876081DEDA860001720D4 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 15A876071DEDA860001720D4 /* highlight.pack.js */; };
 		15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B608351CEEEAD600D19210 /* HomeViewController.swift */; };
 		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
@@ -104,7 +104,7 @@
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
 		993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
-		99A0365D1DEA86B100A74C88 /* PBDBModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0365C1DEA86B100A74C88 /* PBDBModels.swift */; };
+		99A0365D1DEA86B100A74C88 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0365C1DEA86B100A74C88 /* Models.swift */; };
 		99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */; };
 		99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */; };
 		99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6161CD0F9FE00218213 /* TagCell.swift */; };
@@ -115,7 +115,6 @@
 		99E4B2F01DE7442B0085718A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E4B2EF1DE7442B0085718A /* iCarousel.m */; };
 		99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* page.css */; };
 		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
-		99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +202,7 @@
 		157293121DE6FD210070D52C /* zenburn.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = zenburn.css; sourceTree = "<group>"; };
 		15A47B8E1DE715B1004D7397 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		15A47B901DE715F0004D7397 /* TitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
+		15A876071DEDA860001720D4 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highlight.pack.js; sourceTree = "<group>"; };
 		15B608351CEEEAD600D19210 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig"; sourceTree = "<group>"; };
 		6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PasteBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +219,7 @@
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
 		993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
-		99A0365C1DEA86B100A74C88 /* PBDBModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBModels.swift; sourceTree = "<group>"; };
+		99A0365C1DEA86B100A74C88 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewItemVC.swift; sourceTree = "<group>"; };
 		99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTagsVC.swift; sourceTree = "<group>"; };
 		99A6E6161CD0F9FE00218213 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
@@ -232,7 +232,6 @@
 		99E4B2EF1DE7442B0085718A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = SOURCE_ROOT; };
 		99FC8A191C3EBE0600596BB3 /* page.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = page.css; path = PasteBook/page.css; sourceTree = "<group>"; };
 		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
-		99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = highlight.pack.js; path = PasteBook/highlight.pack.js; sourceTree = "<group>"; };
 		F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,7 +413,7 @@
 			children = (
 				157292C21DE6FD210070D52C /* styles */,
 				99BDF8751C3AC53500C4D768 /* template.html */,
-				99FC8A1F1C3ECDA900596BB3 /* highlight.pack.js */,
+				15A876071DEDA860001720D4 /* highlight.pack.js */,
 				99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */,
 				99BDF8761C3AC53500C4D768 /* marked.min.js */,
 				99FC8A191C3EBE0600596BB3 /* page.css */,
@@ -429,7 +428,7 @@
 				990716381B94A72400D1A903 /* DBUtil.swift */,
 				993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */,
 				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
-				99A0365C1DEA86B100A74C88 /* PBDBModels.swift */,
+				99A0365C1DEA86B100A74C88 /* Models.swift */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -555,7 +554,6 @@
 				1572933B1DE6FD210070D52C /* github.css in Resources */,
 				157293581DE6FD210070D52C /* solarized-light.css in Resources */,
 				1572933E1DE6FD210070D52C /* gruvbox-dark.css in Resources */,
-				157292BF1DE6F91A0070D52C /* copy_db.py in Resources */,
 				1572934C1DE6FD210070D52C /* paraiso-dark.css in Resources */,
 				1572933D1DE6FD210070D52C /* grayscale.css in Resources */,
 				157293371DE6FD210070D52C /* dracula.css in Resources */,
@@ -628,8 +626,8 @@
 				157293391DE6FD210070D52C /* foundation.css in Resources */,
 				157293151DE6FD210070D52C /* arduino-light.css in Resources */,
 				1572934E1DE6FD210070D52C /* pojoaque.css in Resources */,
-				99FC8A201C3ECDA900596BB3 /* highlight.pack.js in Resources */,
 				157293351DE6FD210070D52C /* default.css in Resources */,
+				15A876081DEDA860001720D4 /* highlight.pack.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,7 +706,7 @@
 				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
 				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
 				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
-				99A0365D1DEA86B100A74C88 /* PBDBModels.swift in Sources */,
+				99A0365D1DEA86B100A74C88 /* Models.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
 				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
 				99CD3D531CE945B8008250FD /* Extensions.swift in Sources */,
@@ -851,7 +849,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
