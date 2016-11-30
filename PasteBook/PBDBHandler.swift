@@ -63,11 +63,8 @@ class PBDBHandler: BaseDBHandler, FileManagerDelegate {
     }
     
     func fetchAllTags()->Array<Tag>{
-        let result = queryFetch("SELECT id, name from tags"){ result -> Tag in
-            var tag:Tag = Tag(name: result.string(forColumn: "name")!)
-            tag.id = result.unsignedLongLongInt(forColumn: "id")
-            return tag
-
+        let result = queryFetch("SELECT id, name from tags"){
+            Tag(fetchResult: $0)
         }
         return result
     }

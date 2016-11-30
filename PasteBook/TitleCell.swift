@@ -19,9 +19,14 @@ class TitleCell: FoldingCell {
     @IBOutlet weak var detailBtn: UIButton!
     
     weak var tableView:UITableView?
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.foregroundView.layer.cornerRadius = 10
+        let foreLayer = self.foregroundView.layer
+        foreLayer.cornerRadius = 10
+        foreLayer.shadowOffset = CGSize(width: 0, height: 0)
+        foreLayer.shadowRadius = 2
+        foreLayer.shadowOpacity = 0.7
         self.containerView.layer.cornerRadius = 10
         self.containerView.layer.contents = #imageLiteral(resourceName: "cell_open").cgImage
         self.accessoryView?.backgroundColor = self.containerView.backgroundColor

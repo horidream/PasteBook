@@ -9,7 +9,7 @@ import UIKit
 
 extension Sequence where Self.Iterator.Element == Tag{
     func contains(_ tag:Tag)->Bool{
-        return self.contains {($0.id == tag.id) && ($0.name == tag.name)}
+        return self.contains {($0.isSaved == tag.isSaved) && ($0.name == tag.name)}
     }
 }
 

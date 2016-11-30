@@ -46,7 +46,7 @@ func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
 
 fileprivate struct C {
     struct CellHeight {
-        static let close: CGFloat = 95 // equal or greater foregroundView height
+        static let close: CGFloat = 100 // equal or greater foregroundView height
         static let open: CGFloat = 270 // equal or greater containerView height
     }
 }
@@ -90,7 +90,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.splitViewController?.preferredDisplayMode = .allVisible
         self.splitViewController?.delegate = self
         
-        self.tableView.estimatedRowHeight = 80
+        self.tableView.estimatedRowHeight = 75
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         // stop refresh when done

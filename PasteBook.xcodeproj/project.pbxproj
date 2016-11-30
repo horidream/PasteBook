@@ -98,7 +98,6 @@
 		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
 		9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9907160B1B94885C00D1A903 /* Assets.xcassets */; };
 		9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */; };
-		990716391B94A72400D1A903 /* DBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716381B94A72400D1A903 /* DBUtil.swift */; };
 		991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34771CEA017B00316B55 /* AddNewTagVC.swift */; };
 		991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */; };
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
@@ -213,7 +212,6 @@
 		9907160B1B94885C00D1A903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9907160E1B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		990716101B94885C00D1A903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		990716381B94A72400D1A903 /* DBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBUtil.swift; sourceTree = "<group>"; };
 		991E34771CEA017B00316B55 /* AddNewTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTagVC.swift; sourceTree = "<group>"; };
 		991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensibleTableViewControl.swift; sourceTree = "<group>"; };
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
@@ -374,41 +372,40 @@
 		990716031B94885C00D1A903 /* PasteBook */ = {
 			isa = PBXGroup;
 			children = (
-				993E61C71CCA3EBE0055E7D5 /* Web */,
-				990719B11DE7379B00C9DF79 /* ThirdParty */,
-				99CD3D511CE9459F008250FD /* Utils */,
-				993E61CE1CCD16E90055E7D5 /* DataBase */,
-				99CD3D501CE9458B008250FD /* ViewControllers */,
-				99CD3D4F1CE94576008250FD /* Components */,
-				990716371B94A6EB00D1A903 /* Settings */,
+				993E61C71CCA3EBE0055E7D5 /* web */,
+				990719B11DE7379B00C9DF79 /* third_parties */,
+				99CD3D511CE9459F008250FD /* utils */,
+				993E61CE1CCD16E90055E7D5 /* models */,
+				99CD3D501CE9458B008250FD /* views */,
+				990716371B94A6EB00D1A903 /* settings */,
 				9907160B1B94885C00D1A903 /* Assets.xcassets */,
 			);
 			path = PasteBook;
 			sourceTree = "<group>";
 		};
-		990716371B94A6EB00D1A903 /* Settings */ = {
+		990716371B94A6EB00D1A903 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				99E4B2ED1DE7442A0085718A /* PasteBook-Bridging-Header.h */,
 				993E61C81CCA88400055E7D5 /* moknow.db */,
 				990716041B94885C00D1A903 /* AppDelegate.swift */,
 				990716081B94885C00D1A903 /* Main.storyboard */,
 				9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */,
 				990716101B94885C00D1A903 /* Info.plist */,
 			);
-			name = Settings;
+			name = settings;
 			sourceTree = "<group>";
 		};
-		990719B11DE7379B00C9DF79 /* ThirdParty */ = {
+		990719B11DE7379B00C9DF79 /* third_parties */ = {
 			isa = PBXGroup;
 			children = (
 				99E4B2EE1DE7442B0085718A /* iCarousel.h */,
 				99E4B2EF1DE7442B0085718A /* iCarousel.m */,
-				99E4B2ED1DE7442A0085718A /* PasteBook-Bridging-Header.h */,
 			);
-			name = ThirdParty;
+			name = third_parties;
 			sourceTree = "<group>";
 		};
-		993E61C71CCA3EBE0055E7D5 /* Web */ = {
+		993E61C71CCA3EBE0055E7D5 /* web */ = {
 			isa = PBXGroup;
 			children = (
 				157292C21DE6FD210070D52C /* styles */,
@@ -418,19 +415,18 @@
 				99BDF8761C3AC53500C4D768 /* marked.min.js */,
 				99FC8A191C3EBE0600596BB3 /* page.css */,
 			);
-			name = Web;
+			name = web;
 			path = ..;
 			sourceTree = "<group>";
 		};
-		993E61CE1CCD16E90055E7D5 /* DataBase */ = {
+		993E61CE1CCD16E90055E7D5 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				990716381B94A72400D1A903 /* DBUtil.swift */,
 				993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */,
 				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
 				99A0365C1DEA86B100A74C88 /* Models.swift */,
 			);
-			name = DataBase;
+			name = models;
 			sourceTree = "<group>";
 		};
 		99CD3D4F1CE94576008250FD /* Components */ = {
@@ -443,9 +439,10 @@
 			name = Components;
 			sourceTree = "<group>";
 		};
-		99CD3D501CE9458B008250FD /* ViewControllers */ = {
+		99CD3D501CE9458B008250FD /* views */ = {
 			isa = PBXGroup;
 			children = (
+				99CD3D4F1CE94576008250FD /* Components */,
 				151B895B1CFD40B200630EF8 /* TagTourVC.swift */,
 				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
 				990716061B94885C00D1A903 /* ContentDetailVC.swift */,
@@ -454,16 +451,16 @@
 				991E34771CEA017B00316B55 /* AddNewTagVC.swift */,
 				15B608351CEEEAD600D19210 /* HomeViewController.swift */,
 			);
-			name = ViewControllers;
+			name = views;
 			sourceTree = "<group>";
 		};
-		99CD3D511CE9459F008250FD /* Utils */ = {
+		99CD3D511CE9459F008250FD /* utils */ = {
 			isa = PBXGroup;
 			children = (
 				99CD3D521CE945B8008250FD /* Extensions.swift */,
 				991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */,
 			);
-			name = Utils;
+			name = utils;
 			sourceTree = "<group>";
 		};
 		AA59E43E38BC80D0E67A07A9 /* Frameworks */ = {
@@ -703,7 +700,6 @@
 				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
 				993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */,
 				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
-				990716391B94A72400D1A903 /* DBUtil.swift in Sources */,
 				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
 				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
 				99A0365D1DEA86B100A74C88 /* Models.swift in Sources */,

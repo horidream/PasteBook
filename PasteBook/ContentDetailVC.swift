@@ -38,13 +38,14 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
     }
     
     func escapeString(_ str:String)->String{
-        return str
-            .replacingOccurrences(of: "\\",with: "\\\\")
-            .replacingOccurrences(of: "\n",with: "\\n")
-            .replacingOccurrences(of: "\r",with: "\\r")
-            .replacingOccurrences(of: "\t",with: "\\t")
-            .replacingOccurrences(of: "\"",with: "\\\"")
-            .replacingOccurrences(of: "\'",with: "\\\'")
+        return str.unescape()
+
+//            .replacingOccurrences(of: "\\",with: "\\\\")
+//            .replacingOccurrences(of: "\n",with: "\\n")
+//            .replacingOccurrences(of: "\r",with: "\\r")
+//            .replacingOccurrences(of: "\t",with: "\\t")
+//            .replacingOccurrences(of: "\"",with: "\\\"")
+//            .replacingOccurrences(of: "\'",with: "\\\'")
         
     }
     
