@@ -18,7 +18,6 @@ class PBDBHandler: BaseDBHandler, FileManagerDelegate {
         let bundlePath = Bundle.main.path(forResource: "moknow", ofType: ".db")!
         do{
             if(!fm.fileExists(atPath: path)){
-                print("copying db to folder")
                 try fm.copyItem(atPath: bundlePath, toPath: path)
             }
         }catch{}

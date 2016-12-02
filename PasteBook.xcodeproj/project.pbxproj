@@ -103,6 +103,7 @@
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
 		993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
+		9970A7511DF1CAD0004DEE25 /* PBDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */; };
 		99A0365D1DEA86B100A74C88 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0365C1DEA86B100A74C88 /* Models.swift */; };
 		99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */; };
 		99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */; };
@@ -217,6 +218,7 @@
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
 		993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
+		9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBManager.swift; sourceTree = "<group>"; };
 		99A0365C1DEA86B100A74C88 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewItemVC.swift; sourceTree = "<group>"; };
 		99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTagsVC.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */,
 				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
 				99A0365C1DEA86B100A74C88 /* Models.swift */,
+				9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
 				15A47B8F1DE715B1004D7397 /* TitleCell.swift in Sources */,
 				990716051B94885C00D1A903 /* AppDelegate.swift in Sources */,
+				9970A7511DF1CAD0004DEE25 /* PBDBManager.swift in Sources */,
 				99E4B2F01DE7442B0085718A /* iCarousel.m in Sources */,
 				15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */,
 				99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */,
