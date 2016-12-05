@@ -22,4 +22,11 @@ class PBDBManager:BaseDBHandler{
         }catch{}
         return PBDBManager(dbPath:path)
     }()
+    
+    
+    // MARK -
+    
+//    func insertArticle(_ article:Article){
+//        return queryChange("INSERT INTO items (title, content) VALUES (?, ?)", args:[article.title, article.content])
+//    }
 }
