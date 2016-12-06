@@ -32,7 +32,9 @@ class TitleCell: FoldingCell {
         self.accessoryView?.backgroundColor = self.containerView.backgroundColor
         self.backViewColor = UIColor.lightGray
         iconBg.layer.cornerRadius = iconBg.layer.frame.width / 2
-        iconBg.backgroundColor = UIColor.randomColor()
+        iconBg.layer.borderColor = UIColor.gray.cgColor
+        iconBg.layer.borderWidth = 1.0
+        iconBg.backgroundColor = UIColor.white
         
         
         
