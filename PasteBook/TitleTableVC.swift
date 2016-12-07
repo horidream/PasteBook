@@ -148,10 +148,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         cell.tableView = self.tableView
         cell.title.text = data[(indexPath as NSIndexPath).row].title
         cell.iconTitle.textColor = UIColor.randomColor()
-        cell.iconTitle.text = (data[(indexPath as NSIndexPath).row].title[1..<3]).capitalized
-        //        cell.textLabel?.numberOfLines = 0;
-        //        cell.textLabel?.lineBreakMode = .byWordWrapping;
-        //        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title
+//        cell.iconTitle.lineWidth = 1
+        cell.iconTitle.text = (data[(indexPath as NSIndexPath).row].title[0..<2]).capitalized
         return cell
     }
     
@@ -183,7 +181,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print("accessory button tapped")
         performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
         searchController.searchBar.resignFirstResponder()
     }

@@ -13,7 +13,7 @@ import EZSwiftExtensions
 class TitleCell: FoldingCell {
 
     @IBOutlet weak var iconBg: UIView!
-    @IBOutlet weak var iconTitle: UILabel!
+    @IBOutlet weak var iconTitle: OutlineLabel!
     @IBOutlet weak var title: UILabel!
 
     @IBOutlet weak var detailBtn: UIButton!
@@ -22,15 +22,25 @@ class TitleCell: FoldingCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // close
         let foreLayer = self.foregroundView.layer
         foreLayer.cornerRadius = 10
         foreLayer.shadowOffset = CGSize(width: 0, height: 0)
         foreLayer.shadowRadius = 2
         foreLayer.shadowOpacity = 0.7
-        self.containerView.layer.cornerRadius = 10
-        self.containerView.layer.contents = #imageLiteral(resourceName: "cell_open").cgImage
-        self.accessoryView?.backgroundColor = self.containerView.backgroundColor
-        self.backViewColor = UIColor.lightGray
+
+        // open
+        let containerLayer = self.containerView.layer
+        containerLayer.cornerRadius = 10
+        containerLayer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        containerLayer.borderWidth = 1
+        
+        
+        // back
+        self.backViewColor = UIColor.lightGray.withAlphaComponent(0.5)
+        
+        // icon
         iconBg.layer.cornerRadius = iconBg.layer.frame.width / 2
         iconBg.layer.borderColor = UIColor.gray.cgColor
         iconBg.layer.borderWidth = 1.0
@@ -43,7 +53,6 @@ class TitleCell: FoldingCell {
     }
     
     func onShowDetail(tap:UITapGestureRecognizer){
-        print("\(self) detail button is tapped")
         if let tableView = tableView{
             tableView.delegate?.tableView!(tableView, accessoryButtonTappedForRowWith: tableView.indexPath(for: self)!)
         }

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="409" height="375"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KZu-Rl-qKr" id="GAF-hl-Jwh">
-                <rect key="frame" x="0.0" y="0.0" width="409" height="374"/>
+                <rect key="frame" x="0.0" y="0.0" width="409" height="375"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azb-dG-49p" customClass="RotatedView" customModule="FoldingCell">
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="8" y="8" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Py" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-2K-z9g">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Py" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-2K-z9g" customClass="OutlineLabel" customModule="PasteBook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="8" width="64" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
@@ -39,7 +39,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016-11-29 18:17:00.569243 PasteBook[4977:1932914] Cannot snapshot view" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKP-bo-Pt6">
                                 <rect key="frame" x="95" y="8" width="260" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -54,9 +54,41 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkR-jI-QSs">
-                        <rect key="frame" x="8" y="80" width="393" height="240"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="frame" x="8" y="100" width="393" height="240"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9xY-78-OSn">
+                                <rect key="frame" x="279" y="8" width="106" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pM-gK-Bhu">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                        <color key="backgroundColor" red="0.55685897740000001" green="0.75966430740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="n4k-Nt-Csx"/>
+                                            <constraint firstAttribute="width" constant="48" id="xx0-1S-8pU"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjK-cg-CXo">
+                                        <rect key="frame" x="58" y="0.0" width="48" height="48"/>
+                                        <color key="backgroundColor" red="0.55685897740000001" green="0.75966430740000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="e8B-EK-dfc"/>
+                                            <constraint firstAttribute="width" constant="48" id="gmS-8z-zlW"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="siZ-03-4NA" customClass="SeperatorLineView" customModule="PasteBook" customModuleProvider="target">
+                                <rect key="frame" x="8" y="67" width="377" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9xY-78-OSn" secondAttribute="trailing" constant="8" id="A8a-iu-hvh"/>
+                            <constraint firstItem="9xY-78-OSn" firstAttribute="top" secondItem="GkR-jI-QSs" secondAttribute="top" constant="8" id="TiL-8d-br3"/>
                             <constraint firstAttribute="height" constant="240" id="ucJ-XV-V7m"/>
                         </constraints>
                     </view>
@@ -67,7 +99,7 @@
                     <constraint firstItem="azb-dG-49p" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="12" identifier="ForegroundViewTop" id="SnE-7X-32G"/>
                     <constraint firstItem="azb-dG-49p" firstAttribute="leading" secondItem="GAF-hl-Jwh" secondAttribute="leading" constant="8" id="Xd8-kE-sXX"/>
                     <constraint firstAttribute="leadingMargin" secondItem="GkR-jI-QSs" secondAttribute="leading" id="tgu-xh-mZD"/>
-                    <constraint firstItem="GkR-jI-QSs" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="80" identifier="containerViewTop" id="z2w-fF-GDw"/>
+                    <constraint firstItem="GkR-jI-QSs" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="100" identifier="containerViewTop" id="z2w-fF-GDw"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

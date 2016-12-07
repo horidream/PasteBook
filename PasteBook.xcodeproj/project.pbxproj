@@ -92,6 +92,8 @@
 		15A47B911DE715F0004D7397 /* TitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15A47B901DE715F0004D7397 /* TitleCell.xib */; };
 		15A876081DEDA860001720D4 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 15A876071DEDA860001720D4 /* highlight.pack.js */; };
 		15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B608351CEEEAD600D19210 /* HomeViewController.swift */; };
+		15C498D81DF7CF9400976720 /* OutlineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D71DF7CF9400976720 /* OutlineLabel.swift */; };
+		15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D91DF81CA200976720 /* SeperatorLineView.swift */; };
 		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
 		990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716061B94885C00D1A903 /* ContentDetailVC.swift */; };
@@ -204,6 +206,8 @@
 		15A47B901DE715F0004D7397 /* TitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
 		15A876071DEDA860001720D4 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highlight.pack.js; sourceTree = "<group>"; };
 		15B608351CEEEAD600D19210 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		15C498D71DF7CF9400976720 /* OutlineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineLabel.swift; sourceTree = "<group>"; };
+		15C498D91DF81CA200976720 /* SeperatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeperatorLineView.swift; sourceTree = "<group>"; };
 		45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig"; sourceTree = "<group>"; };
 		6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PasteBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990716011B94885C00D1A903 /* PasteBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -438,6 +442,8 @@
 				99A6E6161CD0F9FE00218213 /* TagCell.swift */,
 				15A47B8E1DE715B1004D7397 /* TitleCell.swift */,
 				15A47B901DE715F0004D7397 /* TitleCell.xib */,
+				15C498D71DF7CF9400976720 /* OutlineLabel.swift */,
+				15C498D91DF81CA200976720 /* SeperatorLineView.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -705,9 +711,11 @@
 				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
 				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
 				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
+				15C498D81DF7CF9400976720 /* OutlineLabel.swift in Sources */,
 				99A0365D1DEA86B100A74C88 /* Models.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
 				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
+				15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */,
 				99CD3D531CE945B8008250FD /* Extensions.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,

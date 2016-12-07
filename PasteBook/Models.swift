@@ -60,23 +60,27 @@ struct Tag{
 }
 
 struct Article{
-    var isSaved:Saved
     var title:String
     var content:String
-    var category:Category
+    
     var createdTime:Date
     var updatedTime:Date
-    var isFavorite:Bool
+    var isSaved:Saved
     
+    var isFavorite:Bool
+    var category:Category
+    var tags:[Tag]
     
     init(title:String, content:String){
         self.isSaved = .notYet
         self.title = title
         self.content = content
         self.category = Category.default
+        
         let currentDate = Date()
         self.createdTime = currentDate
         self.updatedTime = currentDate
         self.isFavorite = false
+        self.tags = []
     }
 }
