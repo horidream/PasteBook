@@ -147,7 +147,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
         cell.tableView = self.tableView
         cell.title.text = data[(indexPath as NSIndexPath).row].title
-        cell.iconTitle.text = data[(indexPath as NSIndexPath).row].title[1..<3]
+        cell.iconTitle.textColor = UIColor.randomColor()
+        cell.iconTitle.text = (data[(indexPath as NSIndexPath).row].title[1..<3]).capitalized
         //        cell.textLabel?.numberOfLines = 0;
         //        cell.textLabel?.lineBreakMode = .byWordWrapping;
         //        cell.textLabel?.text = data[(indexPath as NSIndexPath).row].title

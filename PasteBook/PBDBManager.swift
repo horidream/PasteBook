@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import FMDB
 
-
-class PBDBManager:BaseDBHandler{
+class PBDBManager{
+    
     static let `default`:PBDBManager = {
         let fm = FileManager.default
         let documentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as String
@@ -23,10 +24,34 @@ class PBDBManager:BaseDBHandler{
         return PBDBManager(dbPath:path)
     }()
     
+    private var database:FMDatabase
+    private var lastInsertRowId:NSNumber?
+    init(dbPath:String){
+        self.database = FMDatabase(path: dbPath)
+    }
+    
     
     // MARK -
     
-//    func insertArticle(_ article:Article){
-//        return queryChange("INSERT INTO items (title, content) VALUES (?, ?)", args:[article.title, article.content])
-//    }
+    private func lastRowOf(table:String)->FMResultSet{
+        let lastRowId = self.database.lastInsertRowId()
+        return database.executeQuery("SELECT * FROM \(table) WHERE ROWID=?", withArgumentsIn:[lastRowId])
+    }
+    
+    func addArticle( _ article: Article)->FMResultSet?{
+        guard self.database.open() == true else{
+            return nil
+        }
+        defer{
+            self.database.close()
+        }
+        
+        do{
+            try database.executeQuery("INSERT INTO items (title, content) VALUES (?, ?)", values: [article.title, article.content])
+        }catch{
+            return nil
+        }
+        return lastRowOf(table: "items")
+    }
+    
 }

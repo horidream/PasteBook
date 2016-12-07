@@ -45,7 +45,6 @@ class BaseDBHandler: NSObject{
         defer{
             self.database.close()
         }
-        print("will change with query : \(sql) and args: \(args)")
         let result = database.executeQuery(sql, withArgumentsIn: args)
         // must have
         result?.next()
