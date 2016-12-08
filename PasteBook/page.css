@@ -96,7 +96,7 @@ code {
 }
 pre {
     display: block;
-    padding: 14px;
+    padding: 3px;
     margin: 0 0 18px;
     line-height: 16px;
     font-size: 12px;
@@ -140,7 +140,7 @@ em{
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 18px;
   margin-bottom: 10px;
   color: #eee;
   text-shadow: 0 1px 0 #ccc,

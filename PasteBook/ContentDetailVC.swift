@@ -38,14 +38,13 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
     }
     
     func escapeString(_ str:String)->String{
-        return str.unescape()
-
-//            .replacingOccurrences(of: "\\",with: "\\\\")
-//            .replacingOccurrences(of: "\n",with: "\\n")
-//            .replacingOccurrences(of: "\r",with: "\\r")
-//            .replacingOccurrences(of: "\t",with: "\\t")
-//            .replacingOccurrences(of: "\"",with: "\\\"")
-//            .replacingOccurrences(of: "\'",with: "\\\'")
+        return str
+            .replacingOccurrences(of: "\\",with: "\\\\")
+            .replacingOccurrences(of: "\n",with: "\\n")
+            .replacingOccurrences(of: "\r",with: "\\r")
+            .replacingOccurrences(of: "\t",with: "\\t")
+            .replacingOccurrences(of: "\"",with: "\\\"")
+            .replacingOccurrences(of: "\'",with: "\\\'")
         
     }
     
@@ -54,11 +53,13 @@ class ContentDetailVC: UIViewController, UIWebViewDelegate {
             return
         }
         self.title = contentTitle
+        
+        let title = "## \(contentTitle!)\n\n"
         let tagsMark = self.tags.map { (item) -> String in
             "*"+item.name+"*"
             }.joined(separator: " ") + "\n\n"
         
-        let jsCode = "document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+contentDetail))\\n\\n\")"
+        let jsCode = "document.body.style.zoom = 1.25;document.getElementById('content').innerHTML=marked(\"\(escapeString(title+tagsMark+contentDetail))\\n\\n\")"
         webView.stringByEvaluatingJavaScript(from: "document.getElementById('content').innerHTML="+jsCode)
         webView.stringByEvaluatingJavaScript(from: "$('pre code').each(function(i, block) {hljs.highlightBlock(block);});")
         

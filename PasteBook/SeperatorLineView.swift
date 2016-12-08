@@ -10,7 +10,7 @@ import UIKit
 
 class SeperatorLineView: UIView {
 
-    var color:UIColor = .black
+    var color:UIColor = .lightGray
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
         path.move(to: CGPoint(x:rect.x,y:rect.y + rect.height/2))

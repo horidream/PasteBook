@@ -34,7 +34,7 @@ class SensibleTableViewControl:NSObject {
     }
     
     func keyboardWillShow(_ aNotification:Notification){
-        if keyboardShown{
+        if keyboardShown || self.tableView.window == nil{
             return
         }
         keyboardShown = true
@@ -86,7 +86,7 @@ class SensibleTableViewControl:NSObject {
     }
     
     func keyboardWillHide(_ aNotification:NSNotification){
-        if(!keyboardShown){
+        if(!keyboardShown) || self.tableView.window == nil{
             return
         }
         keyboardShown = false

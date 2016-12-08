@@ -11,15 +11,6 @@ import Foundation
 // MARK: - extensions
 
 
-private let escapeMap:[String:String] = [
-    "\\":"\\\\",
-    "\n":"\\n",
-    "\r":"\\r",
-    "\t":"\\t",
-    "\0":"\\0",
-    "\"":"\\\"",
-    "\'":"\\\'"
-]
 extension String {
     
     // java, javascript, PHP use 'split' name, why not in Swift? :)
@@ -32,14 +23,6 @@ extension String {
         } catch {
             return []
         }
-    }
-    
-    func unescape() -> String {
-        var str = self
-        for (escaped_char, unescaped_char) in escapeMap {
-            str = str.replacingOccurrences(of: escaped_char, with: unescaped_char)
-        }
-        return str
     }
 }
 

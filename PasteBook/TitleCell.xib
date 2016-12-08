@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azb-dG-49p" customClass="RotatedView" customModule="FoldingCell">
-                        <rect key="frame" x="8" y="12" width="393" height="80"/>
+                        <rect key="frame" x="16" y="12" width="377" height="80"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6k2-3B-guz">
                                 <rect key="frame" x="8" y="8" width="64" height="64"/>
@@ -37,14 +36,14 @@
                                 <color key="backgroundColor" red="1" green="0.15634022221783517" blue="0.26770668885500626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016-11-29 18:17:00.569243 PasteBook[4977:1932914] Cannot snapshot view" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKP-bo-Pt6">
-                                <rect key="frame" x="95" y="8" width="260" height="64"/>
+                                <rect key="frame" x="91" y="8" width="248" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-wS-zjX">
-                                <rect key="frame" x="363" y="29" width="22" height="22"/>
+                                <rect key="frame" x="347" y="29" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </button>
                         </subviews>
@@ -54,10 +53,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkR-jI-QSs">
-                        <rect key="frame" x="8" y="100" width="393" height="240"/>
+                        <rect key="frame" x="16" y="100" width="377" height="240"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9xY-78-OSn">
-                                <rect key="frame" x="279" y="8" width="106" height="48"/>
+                                <rect key="frame" x="263" y="8" width="106" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pM-gK-Bhu">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -80,8 +79,8 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="siZ-03-4NA" customClass="SeperatorLineView" customModule="PasteBook" customModuleProvider="target">
-                                <rect key="frame" x="8" y="67" width="377" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="8" y="67" width="361" height="2"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -94,11 +93,11 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="azb-dG-49p" secondAttribute="trailing" constant="8" id="0Di-ey-ujR"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="GkR-jI-QSs" secondAttribute="trailing" id="4LL-v4-4Jn"/>
+                    <constraint firstAttribute="trailing" secondItem="azb-dG-49p" secondAttribute="trailing" constant="16" id="0Di-ey-ujR"/>
+                    <constraint firstAttribute="trailing" secondItem="GkR-jI-QSs" secondAttribute="trailing" constant="16" id="4LL-v4-4Jn"/>
                     <constraint firstItem="azb-dG-49p" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="12" identifier="ForegroundViewTop" id="SnE-7X-32G"/>
-                    <constraint firstItem="azb-dG-49p" firstAttribute="leading" secondItem="GAF-hl-Jwh" secondAttribute="leading" constant="8" id="Xd8-kE-sXX"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="GkR-jI-QSs" secondAttribute="leading" id="tgu-xh-mZD"/>
+                    <constraint firstItem="azb-dG-49p" firstAttribute="leading" secondItem="GAF-hl-Jwh" secondAttribute="leading" constant="16" id="Xd8-kE-sXX"/>
+                    <constraint firstAttribute="leading" secondItem="GkR-jI-QSs" secondAttribute="leading" constant="-16" id="tgu-xh-mZD"/>
                     <constraint firstItem="GkR-jI-QSs" firstAttribute="top" secondItem="GAF-hl-Jwh" secondAttribute="top" constant="100" identifier="containerViewTop" id="z2w-fF-GDw"/>
                 </constraints>
             </tableViewCellContentView>
