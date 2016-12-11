@@ -31,7 +31,7 @@ struct Category{
     var isSaved:Saved
     var name:String
     
-    static let `default` = Category(name:"__default__")
+    static let unsaved = Category(name:"__unsaved__")
     
     init(name:String){
         self.name = name
@@ -42,20 +42,18 @@ struct Category{
 struct Tag{
     var isSaved:Saved
     var name:String
-    var createdTime:Date?
-    var updatedTime:Date?
+    var color:UInt64
     
     init(name:String){
         self.isSaved = .notYet
         self.name = name
-        let currentDate = Date()
-        self.createdTime = currentDate
-        self.updatedTime = currentDate
+        self.color = 0
     }
     
     init(fetchResult:FMResultSet){
         self.isSaved = .local(id:fetchResult.unsignedLongLongInt(forColumn: "id"))
-        self.name = fetchResult.string(forColumn: "name")!
+        self.name = fetchResult.string(forColumn: "tag_name")!
+        self.color = fetchResult.unsignedLongLongInt(forColumn: "tag_color")
     }
 }
 
@@ -69,18 +67,28 @@ struct Article{
     
     var isFavorite:Bool
     var category:Category
-    var tags:[Tag]
+    var tags:[Tag]?
     
     init(title:String, content:String){
         self.isSaved = .notYet
         self.title = title
         self.content = content
-        self.category = Category.default
+        self.category = Category.unsaved
         
         let currentDate = Date()
         self.createdTime = currentDate
         self.updatedTime = currentDate
         self.isFavorite = false
-        self.tags = []
+    }
+    
+    init(fetchResult:FMResultSet){
+        self.isSaved = .local(id:fetchResult.unsignedLongLongInt(forColumn: "article_id"))
+        self.title = fetchResult.string(forColumn: "article_title")!
+        self.content = fetchResult.string(forColumn: "article_content")!
+        self.category = Category(name: fetchResult.string(forColumn: "category_name")!)
+        self.category.isSaved = .local(id: fetchResult.unsignedLongLongInt(forColumn: "category_id"))
+        self.createdTime = fetchResult.date(forColumn: "created_time")!
+        self.updatedTime = fetchResult.date(forColumn: "updated_time")!
+        self.isFavorite = fetchResult.bool(forColumn: "favorite")
     }
 }

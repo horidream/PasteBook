@@ -63,11 +63,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         super.viewDidLoad()
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
         
-        //        self.refreshControl = UIRefreshControl()
-        //        self.refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
-        //        self.tableView.addSubview(self.refreshControl!)
-        
-//        self.tableView.register(TitleCell.self, forCellReuseIdentifier: "myCell")
         tableView.register(UINib.init(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier:"myCell")
         self.tableView.separatorStyle = .none
         self.tableView.dataSource = self

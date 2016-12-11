@@ -9,7 +9,7 @@
 import Foundation
 import FMDB
 
-class PBDBManager{
+class PBDBManager:BaseDBHandler{
     
     static let `default`:PBDBManager = {
         let fm = FileManager.default
@@ -24,34 +24,40 @@ class PBDBManager{
         return PBDBManager(dbPath:path)
     }()
     
-    private var database:FMDatabase
-    private var lastInsertRowId:NSNumber?
-    init(dbPath:String){
-        self.database = FMDatabase(path: dbPath)
+    
+    
+    // MARK - fetch
+    func fetchAllArticleTitles()->Array<(id:Int, title:String)>{
+        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:Int, title:String) in
+            (id:Int(rs.int(forColumn: "article_id")),title:rs.string(forColumn: "article_title")!)
+        }
+        return result
     }
     
-    
-    // MARK -
-    
-    private func lastRowOf(table:String)->FMResultSet{
-        let lastRowId = self.database.lastInsertRowId()
-        return database.executeQuery("SELECT * FROM \(table) WHERE ROWID=?", withArgumentsIn:[lastRowId])
+    func fetchArticle(id:UInt64)->Article{
+        let articles = queryFetch("select * from article where article_id=\(id)", mapTo: {(rs)->Article in
+            var article =  Article(fetchResult: rs)
+            article.tags = []
+            return article
+        })
+        return articles.first!
     }
     
-    func addArticle( _ article: Article)->FMResultSet?{
-        guard self.database.open() == true else{
-            return nil
-        }
-        defer{
-            self.database.close()
-        }
+
+    func fetchArticle(categoryName name:String)->[Article]{
+        let query = "select article_id as id, article_title, article_content, category.category_id, category.category_name, updated_time, created_time from article inner join category where article.category_id=category.category_id and category.category_name = \"\(name)\""
         
-        do{
-            try database.executeQuery("INSERT INTO items (title, content) VALUES (?, ?)", values: [article.title, article.content])
-        }catch{
-            return nil
-        }
-        return lastRowOf(table: "items")
+        let articles = queryFetch(query, mapTo: {(rs)->Article in
+            var article =  Article(fetchResult: rs)
+            article.tags = []
+            return article
+        })
+        return articles
     }
+    
+//    func fetchTags(articleId id:UInt64)->[Tag]{
+//        var tags = queryFetch("select * from tags inner join", mapTo: <#T##(FMResultSet) -> T#>)
+//    }
+    
     
 }

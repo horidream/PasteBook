@@ -4,10 +4,8 @@ import shutil
 import sys
 
 
-if platform.system() == "Windows":
-    rootpath = r"~\GIT\myPrototype\Moknow"
-elif platform.system() == "Darwin":
-    rootpath = r"~/Documents/Projects/myPrototype/Moknow"
+
+rootpath = r"~/Documents/Projects/myPrototype/Moknow"
 src = os.path.expanduser(os.path.join(rootpath, r"moknow.db"))
 dst = os.path.expanduser(os.path.join(sys.argv[1], "PasteBook/moknow.db"))
 
