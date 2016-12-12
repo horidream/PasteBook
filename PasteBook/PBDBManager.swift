@@ -35,9 +35,13 @@ class PBDBManager:BaseDBHandler{
     }
     
     func fetchArticle(id:UInt64)->Article{
-        let articles = queryFetch("select * from article where article_id=\(id)", mapTo: {(rs)->Article in
+        let query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"
+        let articles = queryFetch(query, mapTo: {(rs)->Article in
             var article =  Article(fetchResult: rs)
-            article.tags = []
+            let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
+            let tag_names = rs.string(forColumn: "tag_ids").split(",")
+            let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
+            article.tags = Tag.createTags(ids: tag_ids, names: tag_names, colors: tag_colors)
             return article
         })
         return articles.first!
@@ -49,15 +53,15 @@ class PBDBManager:BaseDBHandler{
         
         let articles = queryFetch(query, mapTo: {(rs)->Article in
             var article =  Article(fetchResult: rs)
-            article.tags = []
+            let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
+            let tag_names = rs.string(forColumn: "tag_ids").split(",") 
+            let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
+            article.tags = Tag.createTags(ids: tag_ids, names: tag_names, colors: tag_colors)
             return article
         })
         return articles
     }
     
-//    func fetchTags(articleId id:UInt64)->[Tag]{
-//        var tags = queryFetch("select * from tags inner join", mapTo: <#T##(FMResultSet) -> T#>)
-//    }
-    
+
     
 }
