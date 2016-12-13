@@ -114,6 +114,8 @@
 		99BDF8781C3AC53500C4D768 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99BDF8761C3AC53500C4D768 /* marked.min.js */; };
 		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
 		99CD3D531CE945B8008250FD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CD3D521CE945B8008250FD /* Extensions.swift */; };
+		99E124A61E00567300605117 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E124A51E00567300605117 /* Regex.swift */; };
+		99E124A81E00597100605117 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E124A71E00597000605117 /* libsqlite3.0.tbd */; };
 		99E4B2F01DE7442B0085718A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E4B2EF1DE7442B0085718A /* iCarousel.m */; };
 		99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* page.css */; };
 		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
@@ -231,6 +233,8 @@
 		99BDF8761C3AC53500C4D768 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = PasteBook/marked.min.js; sourceTree = "<group>"; };
 		99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableVC.swift; sourceTree = "<group>"; };
 		99CD3D521CE945B8008250FD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		99E124A51E00567300605117 /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		99E124A71E00597000605117 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		99E4B2ED1DE7442A0085718A /* PasteBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteBook-Bridging-Header.h"; sourceTree = "<group>"; };
 		99E4B2EE1DE7442B0085718A /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
 		99E4B2EF1DE7442B0085718A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = SOURCE_ROOT; };
@@ -244,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E124A81E00597100605117 /* libsqlite3.0.tbd in Frameworks */,
 				54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +473,7 @@
 			children = (
 				99CD3D521CE945B8008250FD /* Extensions.swift */,
 				991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */,
+				99E124A51E00567300605117 /* Regex.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 		AA59E43E38BC80D0E67A07A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99E124A71E00597000605117 /* libsqlite3.0.tbd */,
 				6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */,
 			);
 			name = Frameworks;
@@ -707,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
+				99E124A61E00567300605117 /* Regex.swift in Sources */,
 				993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */,
 				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
 				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,

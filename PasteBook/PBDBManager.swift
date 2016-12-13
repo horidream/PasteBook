@@ -27,9 +27,9 @@ class PBDBManager:BaseDBHandler{
     
     
     // MARK - fetch
-    func fetchAllArticleTitles()->Array<(id:Int, title:String)>{
-        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:Int, title:String) in
-            (id:Int(rs.int(forColumn: "article_id")),title:rs.string(forColumn: "article_title")!)
+    func fetchAllArticleTitles()->Array<(id:UInt64, title:String)>{
+        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
+            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
         }
         return result
     }

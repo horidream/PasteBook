@@ -54,7 +54,7 @@ fileprivate struct C {
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
-    var data:Array<(id:Int,title:String)> = []
+    var data:Array<(id:UInt64,title:String)> = []
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
     var firstLaunch:Bool = true
@@ -66,7 +66,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         tableView.register(UINib.init(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier:"myCell")
         self.tableView.separatorStyle = .none
         self.tableView.dataSource = self
-        data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
+        
+        
+        data = PBDBManager.default.fetchAllArticleTitles().reversed()
+//        data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
         cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
@@ -101,9 +104,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     func refreshData(){
-        self.refreshControl?.beginRefreshing()
-        data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
-        self.refreshControl!.endRefreshing()
+        data = PBDBManager.default.fetchAllArticleTitles().reversed()
         self.tableView.reloadSections(IndexSet(integer:0), with: .bottom)
     }
     
@@ -182,7 +183,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            PBDBHandler.sharedInstance.removeItemWithId(self.data[(indexPath as NSIndexPath).row].id)
+//            PBDBHandler.sharedInstance.removeItemWithId(self.data[(indexPath as NSIndexPath).row].id)
             self.data.remove(at: (indexPath as NSIndexPath).row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -201,7 +202,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     // MARK: search result
     func updateSearchResults(for searchController: UISearchController) {
-        self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
+//        self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
         self.tableView.reloadData()
     }
     

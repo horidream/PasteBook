@@ -15,6 +15,28 @@ class BaseDBHandler: NSObject{
     private var lastInsertRowId:NSNumber?
     init(dbPath:String){
         self.database = FMDatabase(path: dbPath)
+        database.makeFunctionNamed("regexp", maximumArguments: 2, with: {
+            context, argc, argv in
+            
+            
+            autoreleasepool {
+                let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+                let con = OpaquePointer(context)
+                // http://stackoverflow.com/a/26884081/1271826
+                let arr = Array(UnsafeBufferPointer(start: argv, count: Int(argc)))
+                let p = arr[0]
+                let v = arr[1]
+                if let pattern = p?.assumingMemoryBound(to: String.self), let value = v?.assumingMemoryBound(to: String.self){
+                    if(Regex(pattern.pointee).test(value.pointee)){
+                        sqlite3_result_text(con, (value.pointee as NSString).utf8String, -1, SQLITE_TRANSIENT)
+                    }else{
+                        sqlite3_result_null(con)
+                    }
+                } else {
+                    sqlite3_result_null(con)
+                }
+            }
+        })
     }
     
     func queryFetch<T>(_ sql:String, args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
