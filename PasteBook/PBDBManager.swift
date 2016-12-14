@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FMDB
 
 class PBDBManager:BaseDBHandler{
     
@@ -21,18 +20,28 @@ class PBDBManager:BaseDBHandler{
                 try fm.copyItem(atPath: bundlePath, toPath: path)
             }
         }catch{}
-        return PBDBManager(dbPath:path)
+        return PBDBManager(dbPath:bundlePath)
     }()
     
     
     
     // MARK - fetch
     func fetchAllArticleTitles()->Array<(id:UInt64, title:String)>{
-        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
+        let result = queryFetch("select article_id,article_title from article where article_title regexp \".*find.*\"") { (rs) -> (id:UInt64, title:String) in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
         }
         return result
     }
+    
+//    func fetchArticleTitles(with keywords:String)->Array<(id:UInt64, title:String)>{
+//        
+//        var matches = keywords.split(.whitespaces)
+//        
+//        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
+//            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
+//            return result
+//    }
+
     
     func fetchArticle(id:UInt64)->Article{
         let query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"

@@ -106,6 +106,7 @@
 		993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
 		9970A7511DF1CAD0004DEE25 /* PBDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */; };
+		999822D71E01A0EC00C4F2E8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */; };
 		99A0365D1DEA86B100A74C88 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0365C1DEA86B100A74C88 /* Models.swift */; };
 		99A6E6131CCE5CFD00218213 /* CreateNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */; };
 		99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */; };
@@ -115,8 +116,8 @@
 		99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */; };
 		99CD3D531CE945B8008250FD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CD3D521CE945B8008250FD /* Extensions.swift */; };
 		99E124A61E00567300605117 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E124A51E00567300605117 /* Regex.swift */; };
-		99E124A81E00597100605117 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E124A71E00597000605117 /* libsqlite3.0.tbd */; };
 		99E4B2F01DE7442B0085718A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E4B2EF1DE7442B0085718A /* iCarousel.m */; };
+		99E9C3031E0195640072968B /* Sandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E9C3021E0195640072968B /* Sandbox.swift */; };
 		99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* page.css */; };
 		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
 /* End PBXBuildFile section */
@@ -225,6 +226,7 @@
 		993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
 		9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBManager.swift; sourceTree = "<group>"; };
+		999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		99A0365C1DEA86B100A74C88 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewItemVC.swift; sourceTree = "<group>"; };
 		99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTagsVC.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		99E4B2ED1DE7442A0085718A /* PasteBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteBook-Bridging-Header.h"; sourceTree = "<group>"; };
 		99E4B2EE1DE7442B0085718A /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
 		99E4B2EF1DE7442B0085718A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = SOURCE_ROOT; };
+		99E9C3021E0195640072968B /* Sandbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sandbox.swift; sourceTree = "<group>"; };
 		99FC8A191C3EBE0600596BB3 /* page.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = page.css; path = PasteBook/page.css; sourceTree = "<group>"; };
 		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
 		F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,7 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99E124A81E00597100605117 /* libsqlite3.0.tbd in Frameworks */,
+				999822D71E01A0EC00C4F2E8 /* libsqlite3.tbd in Frameworks */,
 				54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +406,7 @@
 				990716081B94885C00D1A903 /* Main.storyboard */,
 				9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */,
 				990716101B94885C00D1A903 /* Info.plist */,
+				99E9C3021E0195640072968B /* Sandbox.swift */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -481,6 +485,7 @@
 		AA59E43E38BC80D0E67A07A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */,
 				99E124A71E00597000605117 /* libsqlite3.0.tbd */,
 				6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */,
 			);
@@ -723,6 +728,7 @@
 				99A0365D1DEA86B100A74C88 /* Models.swift in Sources */,
 				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
 				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
+				99E9C3031E0195640072968B /* Sandbox.swift in Sources */,
 				15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */,
 				99CD3D531CE945B8008250FD /* Extensions.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,

@@ -5,7 +5,7 @@ import sys
 
 
 
-rootpath = r"~/Documents/Projects/myPrototype/Moknow"
+rootpath = r"~/Documents/Projects/myPrototype/Moknow2"
 src = os.path.expanduser(os.path.join(rootpath, r"moknow.db"))
 dst = os.path.expanduser(os.path.join(sys.argv[1], "PasteBook/moknow.db"))
 
