@@ -27,20 +27,23 @@ class PBDBManager:BaseDBHandler{
     
     // MARK - fetch
     func fetchAllArticleTitles()->Array<(id:UInt64, title:String)>{
-        let result = queryFetch("select article_id,article_title from article where article_title regexp \".*find.*\"") { (rs) -> (id:UInt64, title:String) in
+        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
         }
         return result
     }
     
-//    func fetchArticleTitles(with keywords:String)->Array<(id:UInt64, title:String)>{
-//        
-//        var matches = keywords.split(.whitespaces)
-//        
-//        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
-//            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
-//            return result
-//    }
+    func fetchArticleTitles(withKeywords keywords:String)->Array<(id:UInt64, title:String)>{
+        
+        let matches = keywords.split(",")
+        let condition = matches.map{"whole_content like \"%\($0)%\""}.joined(separator: " and ")
+        let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content from article inner join category where \(condition) group by article.article_id"
+
+        let result = queryFetch(query) { (rs) -> (id:UInt64, title:String) in
+            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
+        }
+        return result
+    }
 
     
     func fetchArticle(id:UInt64)->Article{

@@ -202,6 +202,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     // MARK: search result
     func updateSearchResults(for searchController: UISearchController) {
+        self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!)
 //        self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
         self.tableView.reloadData()
     }
