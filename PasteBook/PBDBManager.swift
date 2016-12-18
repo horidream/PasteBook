@@ -35,8 +35,8 @@ class PBDBManager:BaseDBHandler{
     
     func fetchArticleTitles(withKeywords keywords:String)->Array<(id:UInt64, title:String)>{
         
-        let matches = keywords.split(",")
-        let condition = matches.map{"whole_content like \"%\($0)%\""}.joined(separator: " and ")
+        let matches = keywords.split("  ")
+        let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
         let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content from article inner join category where \(condition) group by article.article_id"
 
         let result = queryFetch(query) { (rs) -> (id:UInt64, title:String) in
@@ -47,7 +47,7 @@ class PBDBManager:BaseDBHandler{
 
     
     func fetchArticle(id:UInt64)->Article{
-        let query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"
+        let query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids ,group_concat(tag.tag_color) as tag_colors from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"
         let articles = queryFetch(query, mapTo: {(rs)->Article in
             var article =  Article(fetchResult: rs)
             let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]

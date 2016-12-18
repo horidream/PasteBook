@@ -117,13 +117,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             switch id {
             case "showDetail":
                 let nv = segue.destination as! UINavigationController
-                let vc = nv.viewControllers[0] as! ContentDetailVC
-                let id = ((sender as AnyObject).value(forKey: "id") as! Int)
-                let detail = PBDBHandler.sharedInstance.fetchDetail(id)
-                vc.tags = PBDBHandler.sharedInstance.fetchTagsById(id)
-                vc.contentTitle = detail.title
-                vc.contentDetail = detail.detail
-                vc.itemID = id
+                let vc = nv.viewControllers[0] as! ArticleDetailViewController
+                let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
+                let article = PBDBManager.default.fetchArticle(id: id)
+                vc.article = article
             case "CreateNew":
                 let cnvc = segue.destination as! CreateNewItemVC
                 cnvc.isNewItem = true
