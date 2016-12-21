@@ -25,7 +25,9 @@ class PBDBManager:BaseDBHandler{
     
     
     
-    // MARK - fetch
+    // MARK: -
+    
+    
     func fetchAllArticleTitles()->Array<(id:UInt64, title:String)>{
         let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
@@ -74,6 +76,32 @@ class PBDBManager:BaseDBHandler{
         return articles
     }
     
-
+    
+    // MARK: - 
+    func addArticle(_ article:Article, to category:Category)->Article{
+        
+        var _article = article
+        let _category = addCategory(category)
+        if case let Saved.local(id: category_id) = _category.isSaved{
+            let dic = queryChange("INSERT INTO article (article_title, article_content, category_id) VALUES (\(article.title), \(article.content), \(category_id))")
+            _article.isSaved = .local(id: dic?["article_id"] as! UInt64)
+        }
+        return _article
+    }
+    
+    func addCategory(_ category:Category) -> Category{
+        var _category = category
+        switch category.isSaved {
+        case .notYet:
+            let result = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (\(category.name))")
+            if let result = result{
+                let category_id = result["category_id"] as! UInt64
+                _category.isSaved = .local(id: category_id)
+            }
+        default:
+            break
+        }
+        return _category
+    }
     
 }
