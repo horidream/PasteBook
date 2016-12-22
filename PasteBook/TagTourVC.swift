@@ -16,10 +16,10 @@ class TagTourVC: UIViewController {
     var data:[Tag] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = PBDBHandler.sharedInstance.fetchAllTags()
-        tagCarousel.type = .coverFlow2
-        tagCarousel.dataSource = self
-        tagCarousel.delegate = self
+//        data = PBDBHandler.sharedInstance.fetchAllTags()
+//        tagCarousel.type = .coverFlow2
+//        tagCarousel.dataSource = self
+//        tagCarousel.delegate = self
         
         
         

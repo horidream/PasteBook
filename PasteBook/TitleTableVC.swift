@@ -54,7 +54,7 @@ fileprivate struct C {
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
-    var data:Array<(id:UInt64,title:String)> = []
+    var data:Array<(id:UInt64,title:String,category:String)> = []
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
     var firstLaunch:Bool = true
@@ -142,7 +142,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         cell.title.text = data[(indexPath as NSIndexPath).row].title
         cell.iconTitle.textColor = UIColor.randomColor()
 //        cell.iconTitle.lineWidth = 1
-        cell.iconTitle.text = (data[(indexPath as NSIndexPath).row].title[0..<2]).capitalized
+        cell.iconTitle.text = (data[(indexPath as NSIndexPath).row].category[0..<2]).capitalized
         return cell
     }
     

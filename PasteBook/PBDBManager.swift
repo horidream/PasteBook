@@ -28,21 +28,21 @@ class PBDBManager:BaseDBHandler{
     // MARK: -
     
     
-    func fetchAllArticleTitles()->Array<(id:UInt64, title:String)>{
-        let result = queryFetch("select article_id,article_title from article") { (rs) -> (id:UInt64, title:String) in
-            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
+    func fetchAllArticleTitles()->Array<(id:UInt64, title:String, category:String)>{
+        let result = queryFetch("select article_id, article_title, category_name from article inner join category where article.category_id=category.category_id") { (rs) -> (id:UInt64, title:String, category:String) in
+            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!, category: rs.string(forColumn: "category_name")!)
         }
         return result
     }
     
-    func fetchArticleTitles(withKeywords keywords:String)->Array<(id:UInt64, title:String)>{
+    func fetchArticleTitles(withKeywords keywords:String)->Array<(id:UInt64, title:String, category:String)>{
         
         let matches = keywords.split("  ")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
-        let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content from article inner join category where \(condition) group by article.article_id"
+        let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content, category_name from article inner join category where \(condition) group by article.article_id"
 
-        let result = queryFetch(query) { (rs) -> (id:UInt64, title:String) in
-            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!)
+        let result = queryFetch(query) { (rs) -> (id:UInt64, title:String, category:String) in
+            (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!,category: rs.string(forColumn: "category_name")!)
         }
         return result
     }
@@ -53,7 +53,7 @@ class PBDBManager:BaseDBHandler{
         let articles = queryFetch(query, mapTo: {(rs)->Article in
             var article =  Article(fetchResult: rs)
             let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
-            let tag_names = rs.string(forColumn: "tag_ids").split(",")
+            let tag_names = rs.string(forColumn: "tag_names").split(",")
             let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
             article.tags = Tag.createTags(ids: tag_ids, names: tag_names, colors: tag_colors)
             return article
@@ -83,8 +83,11 @@ class PBDBManager:BaseDBHandler{
         var _article = article
         let _category = addCategory(category)
         if case let Saved.local(id: category_id) = _category.isSaved{
-            let dic = queryChange("INSERT INTO article (article_title, article_content, category_id) VALUES (\(article.title), \(article.content), \(category_id))")
-            _article.isSaved = .local(id: dic?["article_id"] as! UInt64)
+            _ = queryChange("INSERT INTO article (article_title, article_content, category_id) VALUES (\(article.title), \(article.content), \(category_id))")
+            let articleId = queryFetch("SELECT article_id from article where article_title = \(article.title) and article_content = \(article.content)", mapTo: {
+                $0.unsignedLongLongInt(forColumn: "article_id")
+            }).first!
+            _article.isSaved = .local(id: articleId)
         }
         return _article
     }
@@ -93,15 +96,32 @@ class PBDBManager:BaseDBHandler{
         var _category = category
         switch category.isSaved {
         case .notYet:
-            let result = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (\(category.name))")
-            if let result = result{
-                let category_id = result["category_id"] as! UInt64
-                _category.isSaved = .local(id: category_id)
-            }
+            _ = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (\(category.name))")
+            let categoryId = queryFetch("SELECT category_id from category where category_name = \(category.name)", mapTo: {
+                $0.unsignedLongLongInt(forColumn: "category_id")
+            }).first!
+            _category.isSaved = .local(id: categoryId)
+
         default:
             break
         }
         return _category
+    }
+    
+    func addTag(_ tag:Tag) -> Tag{
+        var _tag = tag
+        switch tag.isSaved {
+        case .notYet:
+            _ = queryChange("INSERT OR IGNORE INTO category (tag_name) VALUES (\(tag.name))")
+            let tagId = queryFetch("SELECT tag_id from category where tag_name = \(tag.name)", mapTo: {
+                $0.unsignedLongLongInt(forColumn: "tag_id")
+            }).first!
+            _tag.isSaved = .local(id: tagId)
+            
+        default:
+            break
+        }
+        return _tag
     }
     
 }

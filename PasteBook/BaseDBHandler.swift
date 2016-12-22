@@ -44,7 +44,7 @@ class BaseDBHandler: NSObject{
         guard self.database.open() == true else{
             return result
         }
-        defineRegexp()
+//        defineRegexp()
         if let rs = database.executeQuery(sql, withArgumentsIn: args) {
             while rs.next() {
                 
@@ -59,32 +59,41 @@ class BaseDBHandler: NSObject{
     
     
     
-    
-    func queryChange(_ sql:String, args:[AnyObject]? = nil)->NSDictionary?{
+    func queryChange(_ sql:String, args:[AnyObject]? = nil)->FMResultSet?{
         guard self.database.open() == true else{
             return nil
         }
         defer{
             self.database.close()
         }
-        let result = database.executeQuery(sql, withArgumentsIn: args)
-        // must have
-        result?.next()
-        let arr = sql.split("\\s+")
-        if arr[0].lowercased() != "insert"{
-            return nil
-        }
-        lastInsertRowId = NSNumber(value: self.database.lastInsertRowId() as Int64)
-        let idx = arr.map{$0.lowercased()}.index(of: "into")
-        if let insertedId = lastInsertRowId , idx != nil{
-            let tableName = arr[idx! + 1]
-            let resultSet = database.executeQuery("SELECT * FROM \(tableName) WHERE ROWID=?", withArgumentsIn:[insertedId])
-            resultSet?.next()
-            return resultSet?.resultDictionary() as NSDictionary?
-        }else{
-            return nil
-        }
-        
+        return database.executeQuery(sql, withArgumentsIn: args)
     }
+    
+//    func queryChange(_ sql:String, args:[AnyObject]? = nil)->NSDictionary?{
+//        guard self.database.open() == true else{
+//            return nil
+//        }
+//        defer{
+//            self.database.close()
+//        }
+//        let result = database.executeQuery(sql, withArgumentsIn: args)
+//        // must have
+//        result?.next()
+//        let arr = sql.split("\\s+")
+//        if arr[0].lowercased() != "insert"{
+//            return nil
+//        }
+//        lastInsertRowId = NSNumber(value: self.database.lastInsertRowId() as Int64)
+//        let idx = arr.map{$0.lowercased()}.index(of: "into")
+//        if let insertedId = lastInsertRowId , idx != nil{
+//            let tableName = arr[idx! + 1]
+//            let resultSet = database.executeQuery("SELECT * FROM \(tableName) WHERE ROWID=?", withArgumentsIn:[insertedId])
+//            resultSet?.next()
+//            return resultSet?.resultDictionary() as NSDictionary?
+//        }else{
+//            return nil
+//        }
+//        
+//    }
 
 }

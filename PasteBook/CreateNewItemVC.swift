@@ -71,9 +71,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     func didCreateNewItem(){
         var shouldRefresh = false
         if( isNewItem){
-            if let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text ?? ""){
-                shouldRefresh = true
-                print(insertedRow)
+//            if let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text ?? ""){
+//                shouldRefresh = true
+//                print(insertedRow)
 //                if let changes = tagChanges{
 //                    for tag in changes.addedTags{
 //                        print("will add new tag \(tag.id) with item id \(insertedRow["id"])")
@@ -81,11 +81,11 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
 //                    }
 //                }
                 
-            }
+//            }
             
         }else{
-            PBDBHandler.sharedInstance.updateItemWithId(item!.id, title: titleTF.text!, content: contentTextView.text)
-            let cv:ContentDetailVC = self.contentVC!
+//            PBDBHandler.sharedInstance.updateItemWithId(item!.id, title: titleTF.text!, content: contentTextView.text)
+//            let cv:ContentDetailVC = self.contentVC!
 //            cv.tags = tagChanges?.selectedTags ?? (item?.tags)!
             
 //            if let changes = tagChanges{
@@ -99,9 +99,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
 //                }
 //                
 //            }
-            cv.contentTitle = titleTF.text!
-            cv.contentDetail = contentTextView.text
-            cv.refreshDisplay()
+//            cv.contentTitle = titleTF.text!
+//            cv.contentDetail = contentTextView.text
+//            cv.refreshDisplay()
         }
         
         
