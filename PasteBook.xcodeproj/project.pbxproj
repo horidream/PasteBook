@@ -96,13 +96,13 @@
 		15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D91DF81CA200976720 /* SeperatorLineView.swift */; };
 		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
-		990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716061B94885C00D1A903 /* ContentDetailVC.swift */; };
 		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
 		9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9907160B1B94885C00D1A903 /* Assets.xcassets */; };
 		9907160F1B94885C00D1A903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9907160D1B94885C00D1A903 /* LaunchScreen.storyboard */; };
 		9912BFA01E06B47A00C0C73E /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912BF9F1E06B47A00C0C73E /* ArticleDetailViewController.swift */; };
 		991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34771CEA017B00316B55 /* AddNewTagVC.swift */; };
 		991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */; };
+		993D3DE61E0CB117002F5B79 /* jquery.highlight-5.js in Resources */ = {isa = PBXBuildFile; fileRef = 993D3DE51E0CB117002F5B79 /* jquery.highlight-5.js */; };
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
 		993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */; };
 		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
@@ -216,7 +216,6 @@
 		6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PasteBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990716011B94885C00D1A903 /* PasteBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		990716041B94885C00D1A903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		990716061B94885C00D1A903 /* ContentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailVC.swift; sourceTree = "<group>"; };
 		990716091B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9907160B1B94885C00D1A903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9907160E1B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -224,6 +223,7 @@
 		9912BF9F1E06B47A00C0C73E /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		991E34771CEA017B00316B55 /* AddNewTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTagVC.swift; sourceTree = "<group>"; };
 		991E34791CEA069F00316B55 /* SensibleTableViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensibleTableViewControl.swift; sourceTree = "<group>"; };
+		993D3DE51E0CB117002F5B79 /* jquery.highlight-5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery.highlight-5.js"; sourceTree = "<group>"; };
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
 		993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDBHandler.swift; sourceTree = "<group>"; };
 		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
@@ -429,6 +429,7 @@
 				99BDF8751C3AC53500C4D768 /* template.html */,
 				15A876071DEDA860001720D4 /* highlight.pack.js */,
 				99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */,
+				993D3DE51E0CB117002F5B79 /* jquery.highlight-5.js */,
 				99BDF8761C3AC53500C4D768 /* marked.min.js */,
 				99FC8A191C3EBE0600596BB3 /* page.css */,
 			);
@@ -465,12 +466,11 @@
 				99CD3D4F1CE94576008250FD /* Components */,
 				151B895B1CFD40B200630EF8 /* TagTourVC.swift */,
 				99BDF87B1C3C098E00C4D768 /* TitleTableVC.swift */,
-				990716061B94885C00D1A903 /* ContentDetailVC.swift */,
+				9912BF9F1E06B47A00C0C73E /* ArticleDetailViewController.swift */,
 				99A6E6121CCE5CFD00218213 /* CreateNewItemVC.swift */,
 				99A6E6141CCFAE9F00218213 /* SelectTagsVC.swift */,
 				991E34771CEA017B00316B55 /* AddNewTagVC.swift */,
 				15B608351CEEEAD600D19210 /* HomeViewController.swift */,
-				9912BF9F1E06B47A00C0C73E /* ArticleDetailViewController.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -622,6 +622,7 @@
 				15A47B911DE715F0004D7397 /* TitleCell.xib in Resources */,
 				1572935B1DE6FD210070D52C /* tomorrow-night-bright.css in Resources */,
 				157293261DE6FD210070D52C /* atelier-savanna-dark.css in Resources */,
+				993D3DE61E0CB117002F5B79 /* jquery.highlight-5.js in Resources */,
 				157293401DE6FD210070D52C /* hopscotch.css in Resources */,
 				157293501DE6FD210070D52C /* purebasic.css in Resources */,
 				157293221DE6FD210070D52C /* atelier-lakeside-dark.css in Resources */,
@@ -724,7 +725,6 @@
 				99BDF87C1C3C098E00C4D768 /* TitleTableVC.swift in Sources */,
 				99E124A61E00567300605117 /* Regex.swift in Sources */,
 				993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */,
-				990716071B94885C00D1A903 /* ContentDetailVC.swift in Sources */,
 				991E34781CEA017B00316B55 /* AddNewTagVC.swift in Sources */,
 				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
 				15C498D81DF7CF9400976720 /* OutlineLabel.swift in Sources */,

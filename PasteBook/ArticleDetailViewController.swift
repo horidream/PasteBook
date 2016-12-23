@@ -12,7 +12,7 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     var article:Article?
-    
+    var searchText:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = Bundle.main.url(forResource: "template", withExtension: "html")!
@@ -42,8 +42,13 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
                 }.joined(separator: " ") ?? "")  + "\n\n"
             
             let jsCode = "document.body.style.zoom = 1.25;document.getElementById('content').innerHTML=marked(\"\(escapeString(title+tagsMark+article.content))\\n\\n\")"
-            webView.stringByEvaluatingJavaScript(from: "document.getElementById('content').innerHTML="+jsCode)
-            webView.stringByEvaluatingJavaScript(from: "$('pre code').each(function(i, block) {hljs.highlightBlock(block);});")
+            webView.stringByEvaluatingJavaScript(from:jsCode)
+            
+            var highlightCode = "$('pre code').each(function(i, block) {hljs.highlightBlock(block);});"
+            if let searchText = searchText, searchText.trimmed() != ""{
+                highlightCode +=  "setTimeout(function(){'\(searchText)'.split('  ').forEach(function(keyword){$('body').highlight(keyword);});}, 1000);"
+            }
+            webView.stringByEvaluatingJavaScript(from: highlightCode)
             
         }
         

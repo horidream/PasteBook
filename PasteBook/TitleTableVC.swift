@@ -121,6 +121,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
                 let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
                 let article = PBDBManager.default.fetchArticle(id: id)
                 vc.article = article
+                vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
             case "CreateNew":
                 let cnvc = segue.destination as! CreateNewItemVC
                 cnvc.isNewItem = true
@@ -138,11 +139,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
+        let cellData = data[(indexPath as NSIndexPath).row]
         cell.tableView = self.tableView
-        cell.title.text = data[(indexPath as NSIndexPath).row].title
+        cell.title.text = cellData.title
         cell.iconTitle.textColor = UIColor.randomColor()
-//        cell.iconTitle.lineWidth = 1
-        cell.iconTitle.text = (data[(indexPath as NSIndexPath).row].category[0..<2]).capitalized
+        cell.iconTitle.text = cellData.category[0..<2].capitalized
+//        print("\(cellData.title):\(cellData.category)")
         return cell
     }
     
@@ -153,6 +155,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     // MARK: table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id,
+                     "searchText":searchController.searchBar.text!])
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard case let cell as FoldingCell = tableView.cellForRow(at: indexPath) else {
             return
         }
@@ -171,11 +179,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
-    }
-    
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id])
-        searchController.searchBar.resignFirstResponder()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -199,8 +202,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     // MARK: search result
     func updateSearchResults(for searchController: UISearchController) {
-        self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!)
-//        self.data = PBDBHandler.sharedInstance.fetchTitlesLike(searchController.searchBar.text!)
+        if let searchText = searchController.searchBar.text, searchText.trimmed() != ""{
+            self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchText)
+        }else{
+            self.data = PBDBManager.default.fetchAllArticleTitles()
+        }
         self.tableView.reloadData()
     }
     

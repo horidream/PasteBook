@@ -37,7 +37,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     var isNewItem:Bool = true
 //    var tagChanges:TagChanges?
     
-    var contentVC:ContentDetailVC?
+//    var contentVC:ContentDetailVC?
     
     override func viewDidLoad() {
         self.title = "Create New Item"

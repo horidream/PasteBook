@@ -39,11 +39,12 @@ class PBDBManager:BaseDBHandler{
         
         let matches = keywords.split("  ")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
-        let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content, category_name from article inner join category where \(condition) group by article.article_id"
+        let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content, category_name from article inner join category where \(condition)  and category.category_id=article.category_id group by article.article_id"
 
         let result = queryFetch(query) { (rs) -> (id:UInt64, title:String, category:String) in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!,category: rs.string(forColumn: "category_name")!)
         }
+        print("find \(result.count) results")
         return result
     }
 
