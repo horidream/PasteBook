@@ -12,44 +12,61 @@ import EZSwiftExtensions
 
 class TitleCell: FoldingCell {
 
-    @IBOutlet weak var iconBg: UIView!
-    @IBOutlet weak var iconTitle: OutlineLabel!
+    @IBOutlet weak var ribbonForClose: UIView!
+    @IBOutlet weak var ribbonForOpen: UIView!
     @IBOutlet weak var title: UILabel!
 
     @IBOutlet weak var detailBtn: UIButton!
+    @IBOutlet weak var closeDetailBtn: UIButton!
     
+    @IBOutlet weak var addFavoriteBtn: UIButton!
     weak var tableView:UITableView?
 
+    var ribbonColor:UIColor = UIColor.clear{
+        didSet{
+            ribbonForClose.backgroundColor = ribbonColor
+            ribbonForOpen.backgroundColor = ribbonColor
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let cornerLevel:CGFloat = 8
         // close
         let foreLayer = self.foregroundView.layer
-        foreLayer.cornerRadius = 10
-        foreLayer.shadowOffset = CGSize(width: 0, height: 0)
-        foreLayer.shadowRadius = 2
-        foreLayer.shadowOpacity = 0.7
+        foreLayer.cornerRadius = cornerLevel
+//        foreLayer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+//        foreLayer.borderWidth = 1
+        
+        // containerView has already set masksToBounds to true
+        foreLayer.masksToBounds = true
+//        foreLayer.shadowOffset = CGSize(width: 0, height: 0)
+//        foreLayer.shadowRadius = 1
+//        foreLayer.shadowOpacity = 0.5
 
         // open
         let containerLayer = self.containerView.layer
-        containerLayer.cornerRadius = 10
-        containerLayer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        containerLayer.borderWidth = 1
+        containerLayer.cornerRadius = cornerLevel
+//        containerLayer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+//        containerLayer.borderWidth = 1
         
         
         // back
         self.backViewColor = UIColor.lightGray.withAlphaComponent(0.5)
         
         // icon
-        iconBg.layer.cornerRadius = iconBg.layer.frame.width / 2
-        iconBg.layer.borderColor = UIColor.gray.cgColor
-        iconBg.layer.borderWidth = 1.0
-        iconBg.backgroundColor = UIColor.white
+//        iconBg.layer.cornerRadius = iconBg.layer.frame.width / 2
+//        iconBg.layer.borderColor = UIColor.gray.cgColor
+//        iconBg.layer.borderWidth = 1.0
+        
         
         
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(onShowDetail(tap:)))
         detailBtn.addGestureRecognizer(tap)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(onShowDetail(tap:)))
+        closeDetailBtn.transform = CGAffineTransform(scaleX: 1, y: -1)
+        closeDetailBtn.addGestureRecognizer(tap2)
     }
     
     func onShowDetail(tap:UITapGestureRecognizer){

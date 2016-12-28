@@ -46,8 +46,8 @@ func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
 
 fileprivate struct C {
     struct CellHeight {
-        static let close: CGFloat = 100 // equal or greater foregroundView height
-        static let open: CGFloat = 270 // equal or greater containerView height
+        static let close: CGFloat = 74 // equal or greater foregroundView height (66)
+        static let open: CGFloat = 206 // equal or greater containerView height (198)
     }
 }
 
@@ -74,6 +74,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.searchBar.delegate = self
+
+        self.searchController.searchBar.barTintColor = .white
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.searchBar.returnKeyType = .done
@@ -142,8 +144,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         let cellData = data[(indexPath as NSIndexPath).row]
         cell.tableView = self.tableView
         cell.title.text = cellData.title
-        cell.iconTitle.textColor = UIColor.randomColor()
-        cell.iconTitle.text = cellData.category[0..<2].capitalized
+        cell.ribbonColor = UIColor.randomColor()
 //        print("\(cellData.title):\(cellData.category)")
         return cell
     }
