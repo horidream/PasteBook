@@ -54,7 +54,7 @@ fileprivate struct C {
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
-    var data:Array<(id:UInt64,title:String,category:String)> = []
+    var data:Array<(id:UInt64,title:String,color:UInt64)> = []
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
     var firstLaunch:Bool = true
@@ -82,7 +82,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         
         self.definesPresentationContext = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))
-        self.navigationItem.title = "Manage Your Knowledge"
+        self.navigationItem.title = "MoKnow"
         let searchBar = searchController.searchBar
         self.tableView.tableHeaderView = searchBar
         self.tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
@@ -144,8 +144,9 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         let cellData = data[(indexPath as NSIndexPath).row]
         cell.tableView = self.tableView
         cell.title.text = cellData.title
-        cell.ribbonColor = UIColor.randomColor()
-//        print("\(cellData.title):\(cellData.category)")
+        print("COLOR: \(cellData.color)")
+        cell.ribbonColor = UIColor(UInt(cellData.color))
+        //        print("\(cellData.title):\(cellData.category)")
         return cell
     }
     

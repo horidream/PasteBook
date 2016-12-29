@@ -34,7 +34,7 @@
                                 <color key="backgroundColor" red="1" green="0.15634022221783517" blue="0.26770668885500626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-wS-zjX">
-                                <rect key="frame" x="353" y="17" width="32" height="32"/>
+                                <rect key="frame" x="353" y="19" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="down_arrow"/>
                             </button>
@@ -69,7 +69,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="siZ-03-4NA" customClass="SeperatorLineView" customModule="PasteBook" customModuleProvider="target">
-                                <rect key="frame" x="8" y="43" width="377" height="1"/>
+                                <rect key="frame" x="22" y="43" width="363" height="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -118,7 +118,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="down_arrow" width="8" height="6"/>
+        <image name="down_arrow" width="12" height="7"/>
         <image name="star_big_normal" width="15" height="15"/>
     </resources>
 </document>

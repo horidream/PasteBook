@@ -34,3 +34,13 @@ func delay(_ delay:Double, queue:DispatchQueue? = nil, closure:@escaping ()->())
         deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(delay/1000)), execute: closure)
 }
 
+
+public extension UIColor {
+    convenience init(_ hexColor:UInt, alpha:CGFloat = 1.0) {
+        let r = CGFloat(hexColor >> 16 & 0xFF)/255.0
+        let g = CGFloat(hexColor >> 8 & 0xFF)/255.0
+        let b = CGFloat(hexColor >> 0 & 0xFF)/255.0
+        self.init(red:r,green:g,blue:b,alpha:alpha)
+    }
+}
+

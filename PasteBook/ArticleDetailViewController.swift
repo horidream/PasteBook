@@ -41,7 +41,7 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
                 return "*"+tag.name+"*"
                 }.joined(separator: " ") ?? "")  + "\n\n"
             
-            let jsCode = "document.body.style.zoom = 1.25;document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+article.content))\\n\\n\")"
+            let jsCode = "document.body.style.zoom = 1.1;document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+article.content))\\n\\n\")"
             webView.stringByEvaluatingJavaScript(from:jsCode)
             
             var highlightCode = "$('pre code').each(function(i, block) {hljs.highlightBlock(block);});"
