@@ -36,6 +36,11 @@ struct Category{
         self.name = name
         self.isSaved = .notYet
     }
+    
+    init(name:String, id:UInt64){
+        self.name = name
+        self.isSaved = Saved.local(id:id)
+    }
 }
 
 struct Tag{

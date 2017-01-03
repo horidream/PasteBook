@@ -105,7 +105,6 @@
 		993D3DE61E0CB117002F5B79 /* jquery.highlight-5.js in Resources */ = {isa = PBXBuildFile; fileRef = 993D3DE51E0CB117002F5B79 /* jquery.highlight-5.js */; };
 		993E61C91CCA88400055E7D5 /* moknow.db in Resources */ = {isa = PBXBuildFile; fileRef = 993E61C81CCA88400055E7D5 /* moknow.db */; };
 		993E61CB1CCD116A0055E7D5 /* BaseDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */; };
-		993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */; };
 		9970A7511DF1CAD0004DEE25 /* PBDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */; };
 		999822D71E01A0EC00C4F2E8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */; };
 		99A0365D1DEA86B100A74C88 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0365C1DEA86B100A74C88 /* Models.swift */; };
@@ -226,7 +225,6 @@
 		993D3DE51E0CB117002F5B79 /* jquery.highlight-5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery.highlight-5.js"; sourceTree = "<group>"; };
 		993E61C81CCA88400055E7D5 /* moknow.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = moknow.db; sourceTree = "<group>"; };
 		993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDBHandler.swift; sourceTree = "<group>"; };
-		993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBHandler.swift; sourceTree = "<group>"; };
 		9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBDBManager.swift; sourceTree = "<group>"; };
 		999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		99A0365C1DEA86B100A74C88 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -441,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */,
-				993E61CC1CCD15F40055E7D5 /* PBDBHandler.swift */,
 				99A0365C1DEA86B100A74C88 /* Models.swift */,
 				9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */,
 			);
@@ -729,7 +726,6 @@
 				151B895C1CFD40B200630EF8 /* TagTourVC.swift in Sources */,
 				15C498D81DF7CF9400976720 /* OutlineLabel.swift in Sources */,
 				99A0365D1DEA86B100A74C88 /* Models.swift in Sources */,
-				993E61CD1CCD15F40055E7D5 /* PBDBHandler.swift in Sources */,
 				991E347A1CEA069F00316B55 /* SensibleTableViewControl.swift in Sources */,
 				9912BFA01E06B47A00C0C73E /* ArticleDetailViewController.swift in Sources */,
 				99E9C3031E0195640072968B /* Sandbox.swift in Sources */,

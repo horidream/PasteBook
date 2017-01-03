@@ -55,8 +55,13 @@ fileprivate struct C {
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
     var data:Array<(id:UInt64,title:String,color:UInt64)> = []
+    var categoryData:Array<(id:UInt64, name:String, color:UInt64,count:UInt64)> = []
+    var currentCategory:Category?
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
+    
+    
+    
     var firstLaunch:Bool = true
     var lastShowingIndex:Int?
     override func viewDidLoad() {
@@ -69,7 +74,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         
         
         data = PBDBManager.default.fetchAllArticleTitles().reversed()
-//        data = PBDBHandler.sharedInstance.fetchAllTitle().reversed()
+        categoryData = PBDBManager.default.fetchAllCategories()
         cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
@@ -93,17 +98,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.tableView.estimatedRowHeight = 75
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        // stop refresh when done
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //        if firstLaunch{
-        //            self.splitViewController?.performSegue(withIdentifier: "HomeView", sender: self)
-        //            firstLaunch = false
-        //        }
-        
-    }
     
     func refreshData(){
         data = PBDBManager.default.fetchAllArticleTitles().reversed()
@@ -113,21 +109,24 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     func addNewItem(){
         self.performSegue(withIdentifier: "CreateNew", sender: self)
     }
+    
+    
     // MARK: navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier{
-            switch id {
-            case "showDetail":
-                let nv = segue.destination as! UINavigationController
-                let vc = nv.viewControllers[0] as! ArticleDetailViewController
-                let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
-                let article = PBDBManager.default.fetchArticle(id: id)
-                vc.article = article
-                vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
-            case "CreateNew":
-                let cnvc = segue.destination as! CreateNewItemVC
-                cnvc.isNewItem = true
-            default:()
+            if isSearching{
+                switch id {
+                case "showDetail":
+                    let vc = segue.destination as! ArticleDetailViewController
+                    let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
+                    let article = PBDBManager.default.fetchArticle(id: id)
+                    vc.article = article
+                    vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
+                case "CreateNew":
+                    let cnvc = segue.destination as! CreateNewItemVC
+                    cnvc.isNewItem = true
+                default:()
+                }
             }
         }
         
@@ -135,30 +134,49 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     // MARK: table view data source
+    
+
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return isSearching ? data.count : categoryData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
-        let cellData = data[(indexPath as NSIndexPath).row]
-        cell.tableView = self.tableView
-        cell.title.text = cellData.title
-        print("COLOR: \(cellData.color)")
-        cell.ribbonColor = UIColor(UInt(cellData.color))
-        //        print("\(cellData.title):\(cellData.category)")
-        return cell
+        if isSearching{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
+            let cellData = data[(indexPath as NSIndexPath).row]
+            cell.tableView = self.tableView
+            cell.title.text = cellData.title
+            cell.ribbonColor = UIColor(UInt(cellData.color))
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") ?? UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "CategoryCell")
+            let cellData = categoryData[(indexPath as NSIndexPath).row]
+            cell.textLabel?.text = cellData.name
+            cell.detailTextLabel?.text = "\(cellData.count) items"
+            return cell
+        }
     }
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
+        return isSearching ? cellHeights[indexPath.row] : 50
     }
     
     // MARK: table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id,
+        if isSearching{
+            performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id,
                      "searchText":searchController.searchBar.text!])
+        }else{
+            let d = categoryData[indexPath.row]
+            currentCategory = Category(name:d.name, id:d.id)
+            self.data = PBDBManager.default.fetchAllArticleTitles(category: currentCategory )
+            UIView.transition(with: self.view, duration: 0.5, options: [.transitionFlipFromLeft], animations: {
+                self.tableView.reloadData()
+            }, completion: nil)
+
+        }
         searchController.searchBar.resignFirstResponder()
     }
     
@@ -185,7 +203,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-//            PBDBHandler.sharedInstance.removeItemWithId(self.data[(indexPath as NSIndexPath).row].id)
             self.data.remove(at: (indexPath as NSIndexPath).row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -203,13 +220,23 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     
     // MARK: search result
-    func updateSearchResults(for searchController: UISearchController) {
+    var isSearching:Bool{
         if let searchText = searchController.searchBar.text, searchText.trimmed() != ""{
-            self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchText)
-        }else{
-            self.data = PBDBManager.default.fetchAllArticleTitles()
+            return true
         }
-        self.tableView.reloadData()
+        if currentCategory != nil{
+            return true
+        }
+        return false
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if isSearching{
+            self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!, category:currentCategory).reversed()
+        }else{
+            self.categoryData = PBDBManager.default.fetchAllCategories()
+        }
+        
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {

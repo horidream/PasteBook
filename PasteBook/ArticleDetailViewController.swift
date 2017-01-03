@@ -35,7 +35,7 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
         if let article = article{
             self.title = article.title
             
-            let title = "## \(article.title)\n\n"
+//            let title = "## \(article.title)\n\n"
             let tagsMark = (article.tags?.map {
                 tag in
                 return "*"+tag.name+"*"

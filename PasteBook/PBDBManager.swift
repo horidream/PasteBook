@@ -27,27 +27,35 @@ class PBDBManager:BaseDBHandler{
     
     // MARK: -
     
-    func fetchAllCategories()->Array<(name:String, color:UInt64, count:UInt64)>{
-        let query = "select category_name, category_color, (select count(article.category_id) from article where category.category_id == article.category_id) as category_count from category"
+    func fetchAllCategories()->Array<(id:UInt64, name:String, color:UInt64, count:UInt64)>{
+        let query = "select category_id, category_name, category_color, (select count(article.category_id) from article where category.category_id == article.category_id) as category_count from category"
         let result = queryFetch(query) { rs in
-            (name:rs.string(forColumn: "category_name")!, color: rs.unsignedLongLongInt(forColumn: "category_color") , count: rs.unsignedLongLongInt(forColumn: "category_count") )
+            (id: rs.unsignedLongLongInt(forColumn: "category_id"), name:rs.string(forColumn: "category_name")!, color: rs.unsignedLongLongInt(forColumn: "category_color") , count: rs.unsignedLongLongInt(forColumn: "category_count") )
         }
         return result
     }
     
     
-    func fetchAllArticleTitles()->Array<(id:UInt64, title:String, color:UInt64)>{
+    func fetchAllArticleTitles(category:Category? = nil)->Array<(id:UInt64, title:String, color:UInt64)>{
         let result = queryFetch("select article_id, article_title, category_color from article inner join category where article.category_id=category.category_id") { rs in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!, color: rs.unsignedLongLongInt(forColumn: "category_color"))
         }
         return result
     }
     
-    func fetchArticleTitles(withKeywords keywords:String)->Array<(id:UInt64, title:String, color:UInt64)>{
+    func fetchArticleTitles(withKeywords keywords:String, category:Category? = nil)->Array<(id:UInt64, title:String, color:UInt64)>{
         
         let matches = keywords.split("  ")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
-        let query = "select article_id,article_title, article_title || \"\n\" || article_content || \"\n\" ||  category_name as whole_content, category_color from article inner join category where \(condition)  and category.category_id=article.category_id group by article.article_id"
+        var categoryCondition = ""
+        var wholeContentColumn = "article_title || \"\n\" || article_content"
+        if let category = category{
+            if case let Saved.local(id: category_id) = category.isSaved{
+                categoryCondition = "and category_id=\(category_id)"
+                wholeContentColumn += " || \"\n\" ||  category_name"
+            }
+        }
+        let query = "select article_id,article_title, \(wholeContentColumn) as whole_content, category_color from article inner join category where \(condition)  and category.category_id=article.category_id \(categoryCondition) group by article.article_id"
 
         let result = queryFetch(query) { (rs) -> (id:UInt64, title:String, color:UInt64) in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!,color: rs.unsignedLongLongInt(forColumn: "category_color"))
