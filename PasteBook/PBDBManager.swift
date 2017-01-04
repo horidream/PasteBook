@@ -37,7 +37,13 @@ class PBDBManager:BaseDBHandler{
     
     
     func fetchAllArticleTitles(category:Category? = nil)->Array<(id:UInt64, title:String, color:UInt64)>{
-        let result = queryFetch("select article_id, article_title, category_color from article inner join category where article.category_id=category.category_id") { rs in
+        var categoryCondition = ""
+        if let category = category{
+            if case let Saved.local(id: category_id) = category.isSaved{
+                categoryCondition = "and article.category_id=\(category_id)"
+            }
+        }
+        let result = queryFetch("select article_id, article_title, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!, color: rs.unsignedLongLongInt(forColumn: "category_color"))
         }
         return result
@@ -51,7 +57,7 @@ class PBDBManager:BaseDBHandler{
         var wholeContentColumn = "article_title || \"\n\" || article_content"
         if let category = category{
             if case let Saved.local(id: category_id) = category.isSaved{
-                categoryCondition = "and category_id=\(category_id)"
+                categoryCondition = "and category.category_id=\(category_id)"
                 wholeContentColumn += " || \"\n\" ||  category_name"
             }
         }
@@ -66,13 +72,23 @@ class PBDBManager:BaseDBHandler{
 
     
     func fetchArticle(id:UInt64)->Article{
-        let query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids ,group_concat(tag.tag_color) as tag_colors from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"
+        print("will fetch article with id \(id)")
+        var query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids ,group_concat(tag.tag_color) as tag_colors from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"
+        
+        let hasTag = queryFetch("SELECT article_id from tagged_article where article_id=?", args:[id], mapTo: {$0}).count >  0
+        if !hasTag{
+            query = "select article.article_id, article_title, article_content, category.category_name, article.category_id, created_time, updated_time, favorite from article inner join category where article.article_id = \(id) and article.category_id = category.category_id"
+        }
+        
+        
         let articles = queryFetch(query, mapTo: {(rs)->Article in
             var article =  Article(fetchResult: rs)
-            let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
-            let tag_names = rs.string(forColumn: "tag_names").split(",")
-            let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
-            article.tags = Tag.createTags(ids: tag_ids, names: tag_names, colors: tag_colors)
+            if hasTag{
+                let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
+                let tag_names = rs.string(forColumn: "tag_names").split(",")
+                let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
+                article.tags = Tag.createTags(ids: tag_ids, names: tag_names, colors: tag_colors)
+            }
             return article
         })
         return articles.first!
@@ -100,10 +116,12 @@ class PBDBManager:BaseDBHandler{
         var _article = article
         let _category = addCategory(category)
         if case let Saved.local(id: category_id) = _category.isSaved{
-            _ = queryChange("INSERT INTO article (article_title, article_content, category_id) VALUES (\(article.title), \(article.content), \(category_id))")
-            let articleId = queryFetch("SELECT article_id from article where article_title = \(article.title) and article_content = \(article.content)", mapTo: {
+            let query = "INSERT INTO article (article_title, article_content, category_id) VALUES (?, ?, ?)"
+            _ = queryChange(query, args:[_article.title, _article.content, category_id])
+            let articleId = queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[_article.title, article.content], mapTo: {
                 $0.unsignedLongLongInt(forColumn: "article_id")
             }).first!
+//            _ = queryChange("INSERT OR REPLACE INTO tagged_article (tag_id, article_id) VALUES (?,?)", args:[1, articleId])
             _article.isSaved = .local(id: articleId)
         }
         return _article
@@ -113,10 +131,11 @@ class PBDBManager:BaseDBHandler{
         var _category = category
         switch category.isSaved {
         case .notYet:
-            _ = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (\(category.name))")
-            let categoryId = queryFetch("SELECT category_id from category where category_name = \(category.name)", mapTo: {
+            _ = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (?)", args:[_category.name])
+            let categoryId = queryFetch("SELECT category_id from category where category_name=?", args:[_category.name], mapTo: {
                 $0.unsignedLongLongInt(forColumn: "category_id")
             }).first!
+            print("get categoryId \(categoryId)")
             _category.isSaved = .local(id: categoryId)
 
         default:

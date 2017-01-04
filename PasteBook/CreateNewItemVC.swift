@@ -32,15 +32,11 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var tagsTF: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
-    
-    var item:Item?
-    var isNewItem:Bool = true
-//    var tagChanges:TagChanges?
-    
-//    var contentVC:ContentDetailVC?
+    var currentCategory:Category?
+
     
     override func viewDidLoad() {
-        self.title = "Create New Item"
+        self.title = "New Article"
         // make the text view's border is same as text field
         contentTextView.layer.cornerRadius = 5
         contentTextView.layer.borderWidth = 1
@@ -52,61 +48,14 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didCreateNewItem))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        self.tagChanges = TagChanges(tags: isNewItem ? [] : (item?.tags)!)
-        refreshUI()
-        
-    }
-    
-    func refreshUI(){
-        if let item = self.item{
-            titleTF.text = item.title
-            contentTextView.text = item.content
-            tagsTF.text = item.tags.map{$0.name}.joined(separator: ", ")
-            self.title = "Update Item"
-        }
-    }    
+
     
     func didCreateNewItem(){
-        var shouldRefresh = false
-        if( isNewItem){
-//            if let insertedRow = PBDBHandler.sharedInstance.addItem(titleTF.text ?? "", content: contentTextView.text ?? ""){
-//                shouldRefresh = true
-//                print(insertedRow)
-//                if let changes = tagChanges{
-//                    for tag in changes.addedTags{
-//                        print("will add new tag \(tag.id) with item id \(insertedRow["id"])")
-//                        PBDBHandler.sharedInstance.addTag(tag.id, withItemID: insertedRow["id"] as! Int)
-//                    }
-//                }
-                
-//            }
-            
-        }else{
-//            PBDBHandler.sharedInstance.updateItemWithId(item!.id, title: titleTF.text!, content: contentTextView.text)
-//            let cv:ContentDetailVC = self.contentVC!
-//            cv.tags = tagChanges?.selectedTags ?? (item?.tags)!
-            
-//            if let changes = tagChanges{
-//                shouldRefresh = true
-//                for tag in changes.addedTags{
-//                    print("will add new tag \(tag.id) with item id \(item!.id)")
-//                    PBDBHandler.sharedInstance.addTag(tag.id, withItemID: item!.id)
-//                }
-//                for tag in changes.removedTags{
-//                    PBDBHandler.sharedInstance.removeTagWithId(tag.id)
-//                }
-//                
-//            }
-//            cv.contentTitle = titleTF.text!
-//            cv.contentDetail = contentTextView.text
-//            cv.refreshDisplay()
-        }
+        _ = PBDBManager.default.addArticle(Article(title:titleTF.text!, content:contentTextView.text), to: currentCategory ?? .unsaved)
         
         
         let _ = self.navigationController?.popViewController(animated: true)
-        if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC , shouldRefresh == true{
+        if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC{
             delay(0.3, closure: { 
                 titleVC.refreshData()
                 
@@ -118,9 +67,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SelectTag" {
             let navigationVC = segue.destination as! UINavigationController
-            let selectTagVC = navigationVC.viewControllers.first as! SelectTagsVC
-//            selectTagVC.currentItem = self.item
-//            selectTagVC.tagChanges = self.tagChanges
+//            let selectTagVC = navigationVC.viewControllers.first as! SelectTagsVC
             navigationVC.modalPresentationStyle = UIModalPresentationStyle.popover
             navigationVC.popoverPresentationController!.delegate = self
             

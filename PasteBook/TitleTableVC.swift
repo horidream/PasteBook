@@ -9,25 +9,25 @@
 import UIKit
 import FoldingCell
 
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-    switch (lhs, rhs) {
-    case let (l?, r?):
-        return l < r
-    case (nil, _?):
-        return true
-    default:
-        return false
-    }
-}
-
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-    switch (lhs, rhs) {
-    case let (l?, r?):
-        return l > r
-    default:
-        return rhs < lhs
-    }
-}
+//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//    switch (lhs, rhs) {
+//    case let (l?, r?):
+//        return l < r
+//    case (nil, _?):
+//        return true
+//    default:
+//        return false
+//    }
+//}
+//
+//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//    switch (lhs, rhs) {
+//    case let (l?, r?):
+//        return l > r
+//    default:
+//        return rhs < lhs
+//    }
+//}
 
 
 // define Item type
@@ -64,6 +64,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     var firstLaunch:Bool = true
     var lastShowingIndex:Int?
+    let rootTitle = "MOKNEW"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
@@ -73,9 +75,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.tableView.dataSource = self
         
         
-        data = PBDBManager.default.fetchAllArticleTitles().reversed()
-        categoryData = PBDBManager.default.fetchAllCategories()
-        cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
+        refresh()
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.searchBar.delegate = self
@@ -87,7 +87,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         
         self.definesPresentationContext = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))
-        self.navigationItem.title = "MoKnow"
+        self.navigationItem.title = rootTitle
         let searchBar = searchController.searchBar
         self.tableView.tableHeaderView = searchBar
         self.tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
@@ -102,8 +102,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     
     func refreshData(){
-        data = PBDBManager.default.fetchAllArticleTitles().reversed()
-        self.tableView.reloadSections(IndexSet(integer:0), with: .bottom)
+        refresh()
+//        self.tableView.reloadSections(IndexSet(integer:0), with: .bottom)
     }
     
     func addNewItem(){
@@ -124,7 +124,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
                 case "CreateNew":
                     let cnvc = segue.destination as! CreateNewItemVC
-                    cnvc.isNewItem = true
+                    cnvc.currentCategory = self.currentCategory
                 default:()
                 }
             }
@@ -169,15 +169,31 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id,
                      "searchText":searchController.searchBar.text!])
         }else{
+            let t = CATransition()
+            t.duration = 0.2
+            t.type = kCATransitionPush
+            t.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(t, forKey: nil)
+            
             let d = categoryData[indexPath.row]
             currentCategory = Category(name:d.name, id:d.id)
-            self.data = PBDBManager.default.fetchAllArticleTitles(category: currentCategory )
-            UIView.transition(with: self.view, duration: 0.5, options: [.transitionFlipFromLeft], animations: {
-                self.tableView.reloadData()
-            }, completion: nil)
-
+            self.navigationItem.title = currentCategory?.name
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.onBackBarPressed))
+            refresh()
         }
         searchController.searchBar.resignFirstResponder()
+    }
+    
+    func onBackBarPressed(){
+        let t = CATransition()
+        t.duration = 0.2
+        t.type = kCATransitionPush
+        t.subtype = kCATransitionFromLeft
+        self.view.window?.layer.add(t, forKey: nil)
+        self.currentCategory = nil
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.title = rootTitle
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -203,7 +219,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            self.data.remove(at: (indexPath as NSIndexPath).row)
+            if isSearching{
+                self.data.remove(at: (indexPath as NSIndexPath).row)
+            }else{
+                self.categoryData.remove(at: (indexPath as NSIndexPath).row)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -220,6 +240,21 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     
     // MARK: search result
+    
+    func refresh(){
+        if isSearching{
+            self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
+            })
+            
+        }else{
+            self.categoryData = PBDBManager.default.fetchAllCategories().sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
+            })
+            
+        }
+        cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
+        self.tableView.reloadData()
+    }
+    
     var isSearching:Bool{
         if let searchText = searchController.searchBar.text, searchText.trimmed() != ""{
             return true
@@ -231,12 +266,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        if isSearching{
-            self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!, category:currentCategory).reversed()
-        }else{
-            self.categoryData = PBDBManager.default.fetchAllCategories()
-        }
-        
+        refresh()
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {

@@ -39,7 +39,7 @@ class BaseDBHandler: NSObject{
         
     }
     
-    func queryFetch<T>(_ sql:String, args:[AnyObject]? = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
+    func queryFetch<T>(_ sql:String, args:[Any]! = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{
         var result:Array<T> = []
         guard self.database.open() == true else{
             return result
@@ -52,21 +52,25 @@ class BaseDBHandler: NSObject{
             }
             
         }
-        self.database.close()
+//        self.database.close()
         return result
         
     }
     
     
     
-    func queryChange(_ sql:String, args:[AnyObject]? = nil)->FMResultSet?{
+    func queryChange(_ sql:String, args:[Any]! = nil)->Bool{
         guard self.database.open() == true else{
-            return nil
+            return false
         }
-        defer{
-            self.database.close()
+//        defer{
+//            self.database.close()
+//        }
+        if let result = database.executeQuery(sql, withArgumentsIn: args)
+        {
+            return result.next()
         }
-        return database.executeQuery(sql, withArgumentsIn: args)
+        return false
     }
     
 //    func queryChange(_ sql:String, args:[AnyObject]? = nil)->NSDictionary?{

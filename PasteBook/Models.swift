@@ -30,7 +30,7 @@ struct Category{
     var isSaved:Saved
     var name:String
     
-    static let unsaved = Category(name:"__unsaved__")
+    static let unsaved = Category(name:"UNDEFINED")
     
     init(name:String){
         self.name = name
@@ -80,7 +80,7 @@ struct Tag{
     }
 }
 
-struct Article{
+struct Article:CustomStringConvertible{
     var title:String
     var content:String
     
@@ -113,5 +113,9 @@ struct Article{
         self.createdTime = fetchResult.date(forColumn: "created_time")!
         self.updatedTime = fetchResult.date(forColumn: "updated_time")!
         self.isFavorite = fetchResult.bool(forColumn: "favorite")
+    }
+    
+    var description: String{
+        return "Article: {title: \(title), content: \(content)}"
     }
 }
