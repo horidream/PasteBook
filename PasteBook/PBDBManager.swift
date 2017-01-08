@@ -8,7 +8,11 @@
 
 import Foundation
 
+typealias CategoryInfo = (id:UInt64, name:String, color:UInt64, count:UInt64)
+typealias ArticleTitleInfo = (id:UInt64, title:String, color:UInt64)
+
 class PBDBManager:BaseDBHandler{
+    
     
     static let `default`:PBDBManager = {
         let fm = FileManager.default
@@ -27,7 +31,7 @@ class PBDBManager:BaseDBHandler{
     
     // MARK: -
     
-    func fetchAllCategories()->Array<(id:UInt64, name:String, color:UInt64, count:UInt64)>{
+    func fetchAllCategories()->Array<CategoryInfo>{
         let query = "select category_id, category_name, category_color, (select count(article.category_id) from article where category.category_id == article.category_id) as category_count from category"
         let result = queryFetch(query) { rs in
             (id: rs.unsignedLongLongInt(forColumn: "category_id"), name:rs.string(forColumn: "category_name")!, color: rs.unsignedLongLongInt(forColumn: "category_color") , count: rs.unsignedLongLongInt(forColumn: "category_count") )
@@ -36,7 +40,7 @@ class PBDBManager:BaseDBHandler{
     }
     
     
-    func fetchAllArticleTitles(category:Category? = nil)->Array<(id:UInt64, title:String, color:UInt64)>{
+    func fetchAllArticleTitles(category:Category? = nil)->Array<ArticleTitleInfo>{
         var categoryCondition = ""
         if let category = category{
             if case let Saved.local(id: category_id) = category.isSaved{
@@ -49,7 +53,7 @@ class PBDBManager:BaseDBHandler{
         return result
     }
     
-    func fetchArticleTitles(withKeywords keywords:String, category:Category? = nil)->Array<(id:UInt64, title:String, color:UInt64)>{
+    func fetchArticleTitles(withKeywords keywords:String, category:Category? = nil)->Array<ArticleTitleInfo>{
         
         let matches = keywords.split("  ")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
@@ -121,7 +125,6 @@ class PBDBManager:BaseDBHandler{
             let articleId = queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[_article.title, article.content], mapTo: {
                 $0.unsignedLongLongInt(forColumn: "article_id")
             }).first!
-//            _ = queryChange("INSERT OR REPLACE INTO tagged_article (tag_id, article_id) VALUES (?,?)", args:[1, articleId])
             _article.isSaved = .local(id: articleId)
         }
         return _article
@@ -159,5 +162,28 @@ class PBDBManager:BaseDBHandler{
         }
         return _tag
     }
+    
+    
+    // MARK: - DELETE
+    
+    func deleteArticleById(id:UInt64){
+        _ = queryChange("DELETE FROM tagged_article where article_id=?", args: [id])
+        _ = queryChange("DELETE FROM article where article_id=?", args: [id])
+    }
+    
+    
+    // MARK: - UPDATE
+    func updateArticle(_ article:Article, with category:Category)->Article{
+        let _article = article
+        let _category = addCategory(category)
+        
+        
+        if case let Saved.local(id: category_id) = _category.isSaved, case let Saved.local(id: article_id) = _article.isSaved{
+            let query = "UPDATE article set article_title=?, article_content=?, category_id=? WHERE article_id=?"
+            _ = queryChange(query, args:[_article.title, _article.content, category_id, article_id])
+        }
+        return _article
+    }
+    
     
 }

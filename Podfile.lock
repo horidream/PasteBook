@@ -1,4 +1,5 @@
 PODS:
+  - Dropper (2.7.5)
   - EZSwiftExtensions (1.7)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -6,15 +7,17 @@ PODS:
   - FoldingCell (2.0.1)
 
 DEPENDENCIES:
+  - Dropper
   - EZSwiftExtensions
   - FMDB
-  - FoldingCell (~> 2.0.1)
+  - FoldingCell
 
 SPEC CHECKSUMS:
+  Dropper: 6fb3bd5977f2ade0a332321b6846180d59e75000
   EZSwiftExtensions: 4afef248066a036903d8496bf07bc355b22ce766
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FoldingCell: cfa0c9b0f1ee94d4443e3679bd6e5ebe3b386ebf
 
-PODFILE CHECKSUM: 6c56d29ed6854dd18a755f953c33552a25663918
+PODFILE CHECKSUM: 379a8e5966c1e549fda4358184d87eb00f32d32a
 
 COCOAPODS: 1.1.1

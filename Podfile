@@ -5,7 +5,8 @@ target 'PasteBook' do
 use_frameworks!
 	pod 'EZSwiftExtensions'
     pod 'FMDB'
-	pod 'FoldingCell', '~> 2.0.1'
+    pod 'Dropper'
+	pod 'FoldingCell'
 end
 
 

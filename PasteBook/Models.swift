@@ -116,6 +116,6 @@ struct Article:CustomStringConvertible{
     }
     
     var description: String{
-        return "Article: {title: \(title), content: \(content)}"
+        return "Article: {title: \(title), content: \(content), isSaved:\(isSaved)}"
     }
 }

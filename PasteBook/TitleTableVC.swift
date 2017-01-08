@@ -9,40 +9,7 @@
 import UIKit
 import FoldingCell
 
-//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//    switch (lhs, rhs) {
-//    case let (l?, r?):
-//        return l < r
-//    case (nil, _?):
-//        return true
-//    default:
-//        return false
-//    }
-//}
-//
-//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//    switch (lhs, rhs) {
-//    case let (l?, r?):
-//        return l > r
-//    default:
-//        return rhs < lhs
-//    }
-//}
 
-
-// define Item type
-//typealias Tag = (id:Int, name:String)
-typealias Item = (id:Int, title:String, content:String, tags:[Tag])
-
-func == <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
-{
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (tuple1.2 == tuple2.2) && (tuple1.3 == tuple2.3)
-}
-
-func != <T:Equatable> (tuple1:(T,T,T,T),tuple2:(T,T,T,T)) -> Bool
-{
-    return !(tuple1==tuple2)
-}
 
 fileprivate struct C {
     struct CellHeight {
@@ -75,7 +42,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.tableView.dataSource = self
         
         
-        refresh()
+        
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.searchBar.delegate = self
@@ -100,10 +67,9 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         
     }
     
-    
-    func refreshData(){
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         refresh()
-//        self.tableView.reloadSections(IndexSet(integer:0), with: .bottom)
     }
     
     func addNewItem(){
@@ -114,13 +80,14 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     // MARK: navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier{
-            if isSearching{
+            if shouldShowCategory{
                 switch id {
                 case "showDetail":
                     let vc = segue.destination as! ArticleDetailViewController
                     let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
                     let article = PBDBManager.default.fetchArticle(id: id)
                     vc.article = article
+                    vc.currentCategory = self.currentCategory
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
                 case "CreateNew":
                     let cnvc = segue.destination as! CreateNewItemVC
@@ -135,14 +102,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     // MARK: table view data source
     
-
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? data.count : categoryData.count
+        return shouldShowCategory ? data.count : categoryData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isSearching{
+        if shouldShowCategory{
             let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
             let cellData = data[(indexPath as NSIndexPath).row]
             cell.tableView = self.tableView
@@ -160,12 +125,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return isSearching ? cellHeights[indexPath.row] : 50
+        return shouldShowCategory ? cellHeights[indexPath.row] : 50
     }
     
     // MARK: table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isSearching{
+        if shouldShowCategory{
             performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id,
                      "searchText":searchController.searchBar.text!])
         }else{
@@ -193,7 +158,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.currentCategory = nil
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.title = rootTitle
-        self.tableView.reloadData()
+        refresh()
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -219,8 +184,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            if isSearching{
+            if shouldShowCategory{
+                PBDBManager.default.deleteArticleById(id: data[indexPath.row].id)
                 self.data.remove(at: (indexPath as NSIndexPath).row)
+                
+                
             }else{
                 self.categoryData.remove(at: (indexPath as NSIndexPath).row)
             }
@@ -242,20 +210,20 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     // MARK: search result
     
     func refresh(){
-        if isSearching{
+        if shouldShowCategory{
             self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
             })
+            cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
             
         }else{
             self.categoryData = PBDBManager.default.fetchAllCategories().sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             })
             
         }
-        cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
         self.tableView.reloadData()
     }
     
-    var isSearching:Bool{
+    private var shouldShowCategory:Bool{
         if let searchText = searchController.searchBar.text, searchText.trimmed() != ""{
             return true
         }
