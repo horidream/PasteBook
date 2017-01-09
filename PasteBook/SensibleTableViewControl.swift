@@ -117,7 +117,6 @@ class SensibleTableViewControl:NSObject {
                 animationDuration = animationDuration * Double(keyboardOverlap/keyboardRect.size.height)
             }
             UIView.animate(withDuration: animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
-                print("animate table view frame from \(self.tableView.frame) to \(tableFrame)")
                 self.tableView.frame = tableFrame
             }, completion: { (finished) in
                 self.tableAnimationEnded()

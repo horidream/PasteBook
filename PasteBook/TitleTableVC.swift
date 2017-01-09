@@ -31,14 +31,14 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     var firstLaunch:Bool = true
     var lastShowingIndex:Int?
-    let rootTitle = "MOKNEW"
+    let rootTitle = "Knoma"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tvControl = SensibleTableViewControl(self.tableView, self.inputAccessoryView)
         
         tableView.register(UINib.init(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier:"myCell")
-        self.tableView.separatorStyle = .none
+        
         self.tableView.dataSource = self
         
         
@@ -57,7 +57,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.navigationItem.title = rootTitle
         let searchBar = searchController.searchBar
         self.tableView.tableHeaderView = searchBar
-        self.tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
+        self.tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height + 1)
         
         self.splitViewController?.preferredDisplayMode = .allVisible
         self.splitViewController?.delegate = self
@@ -214,11 +214,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
             })
             cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
-            
+            self.tableView.separatorStyle = .none
         }else{
             self.categoryData = PBDBManager.default.fetchAllCategories().sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             })
-            
+            self.tableView.separatorStyle = .singleLineEtched
         }
         self.tableView.reloadData()
     }

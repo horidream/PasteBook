@@ -1,7 +1,7 @@
 
 # platform :ios, '9.3'
 
-target 'PasteBook' do
+target 'Knoma' do
 use_frameworks!
 	pod 'EZSwiftExtensions'
     pod 'FMDB'

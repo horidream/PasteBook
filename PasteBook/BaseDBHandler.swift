@@ -14,7 +14,17 @@ class BaseDBHandler: NSObject{
     private var database:FMDatabase
     private var lastInsertRowId:NSNumber?
     init(dbPath:String){
-        self.database = FMDatabase(path: dbPath)
+        let fm = FileManager.default
+        let documentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as String
+        let path = NSString(string: documentsFolder).appendingPathComponent("moknow.db")
+        let bundlePath = Bundle.main.path(forResource: "moknow", ofType: ".db")!
+        do{
+            if(!fm.fileExists(atPath: path)){
+                try fm.copyItem(atPath: bundlePath, toPath: path)
+            }
+        }catch{}
+
+        self.database = FMDatabase(path: path)
 
     }
     

@@ -95,6 +95,7 @@
 		15C498D81DF7CF9400976720 /* OutlineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D71DF7CF9400976720 /* OutlineLabel.swift */; };
 		15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D91DF81CA200976720 /* SeperatorLineView.swift */; };
 		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
+		8FD52CC30705868E0181D021 /* Pods_Knoma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D08AACB786020BDF79A5AE /* Pods_Knoma.framework */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
 		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
 		9907160C1B94885C00D1A903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9907160B1B94885C00D1A903 /* Assets.xcassets */; };
@@ -123,6 +124,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00B940A1BE9BF385DB37EDB4 /* Pods-Knoma.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knoma.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Knoma/Pods-Knoma.debug.xcconfig"; sourceTree = "<group>"; };
 		151B895B1CFD40B200630EF8 /* TagTourVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTourVC.swift; sourceTree = "<group>"; };
 		157292BE1DE6F91A0070D52C /* copy_db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = copy_db.py; sourceTree = "<group>"; };
 		157292C31DE6FD210070D52C /* agate.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = agate.css; sourceTree = "<group>"; };
@@ -213,7 +215,7 @@
 		15C498D91DF81CA200976720 /* SeperatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeperatorLineView.swift; sourceTree = "<group>"; };
 		45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.debug.xcconfig"; sourceTree = "<group>"; };
 		6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PasteBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		990716011B94885C00D1A903 /* PasteBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		990716011B94885C00D1A903 /* Knoma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knoma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		990716041B94885C00D1A903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		990716091B94885C00D1A903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9907160B1B94885C00D1A903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -243,6 +245,8 @@
 		99E9C3021E0195640072968B /* Sandbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sandbox.swift; sourceTree = "<group>"; };
 		99FC8A191C3EBE0600596BB3 /* page.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = page.css; path = PasteBook/page.css; sourceTree = "<group>"; };
 		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
+		B4D08AACB786020BDF79A5AE /* Pods_Knoma.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knoma.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9328527E70F8CD87C285304 /* Pods-Knoma.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knoma.release.xcconfig"; path = "Pods/Target Support Files/Pods-Knoma/Pods-Knoma.release.xcconfig"; sourceTree = "<group>"; };
 		F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasteBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,6 +257,7 @@
 			files = (
 				999822D71E01A0EC00C4F2E8 /* libsqlite3.tbd in Frameworks */,
 				54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */,
+				8FD52CC30705868E0181D021 /* Pods_Knoma.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +365,8 @@
 			children = (
 				45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */,
 				F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */,
+				00B940A1BE9BF385DB37EDB4 /* Pods-Knoma.debug.xcconfig */,
+				C9328527E70F8CD87C285304 /* Pods-Knoma.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -378,7 +385,7 @@
 		990716021B94885C00D1A903 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				990716011B94885C00D1A903 /* PasteBook.app */,
+				990716011B94885C00D1A903 /* Knoma.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -488,6 +495,7 @@
 				999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */,
 				99E124A71E00597000605117 /* libsqlite3.0.tbd */,
 				6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */,
+				B4D08AACB786020BDF79A5AE /* Pods_Knoma.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -495,9 +503,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		990716001B94885C00D1A903 /* PasteBook */ = {
+		990716001B94885C00D1A903 /* Knoma */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBook" */;
+			buildConfigurationList = 990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "Knoma" */;
 			buildPhases = (
 				8980CA650F9F43A186DA3DE4 /* [CP] Check Pods Manifest.lock */,
 				157292C11DE6F9CE0070D52C /* Copy DB from Moknow */,
@@ -511,9 +519,9 @@
 			);
 			dependencies = (
 			);
-			name = PasteBook;
+			name = Knoma;
 			productName = PasteBook;
-			productReference = 990716011B94885C00D1A903 /* PasteBook.app */;
+			productReference = 990716011B94885C00D1A903 /* Knoma.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -533,7 +541,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "PasteBook" */;
+			buildConfigurationList = 990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "Knoma" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -546,7 +554,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				990716001B94885C00D1A903 /* PasteBook */,
+				990716001B94885C00D1A903 /* Knoma */,
 			);
 		};
 /* End PBXProject section */
@@ -665,7 +673,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Knoma/Pods-Knoma-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		157292C11DE6F9CE0070D52C /* Copy DB from Moknow */ = {
@@ -694,7 +702,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PasteBook/Pods-PasteBook-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Knoma/Pods-Knoma-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8980CA650F9F43A186DA3DE4 /* [CP] Check Pods Manifest.lock */ = {
@@ -856,7 +864,7 @@
 		};
 		9907162A1B94885C00D1A903 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45A645072F86156F7217E393 /* Pods-PasteBook.debug.xcconfig */;
+			baseConfigurationReference = 00B940A1BE9BF385DB37EDB4 /* Pods-Knoma.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -867,7 +875,7 @@
 				INFOPLIST_FILE = PasteBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.app.Knoma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
@@ -879,7 +887,7 @@
 		};
 		9907162B1B94885C00D1A903 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F461B43A6194F1D8F7CC9F7D /* Pods-PasteBook.release.xcconfig */;
+			baseConfigurationReference = C9328527E70F8CD87C285304 /* Pods-Knoma.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -890,7 +898,7 @@
 				INFOPLIST_FILE = PasteBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.PasteBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horidream.app.Knoma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PasteBook/PasteBook-Bridging-Header.h";
@@ -903,7 +911,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "PasteBook" */ = {
+		990715FC1B94885C00D1A903 /* Build configuration list for PBXProject "Knoma" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				990716271B94885C00D1A903 /* Debug */,
@@ -912,7 +920,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "PasteBook" */ = {
+		990716291B94885C00D1A903 /* Build configuration list for PBXNativeTarget "Knoma" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9907162A1B94885C00D1A903 /* Debug */,

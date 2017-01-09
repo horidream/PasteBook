@@ -17,14 +17,15 @@ class PBDBManager:BaseDBHandler{
     static let `default`:PBDBManager = {
         let fm = FileManager.default
         let documentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as String
-        let path = NSString(string: documentsFolder).appendingPathComponent("moknow.db")
+        let fn = "moknow.db"
+        let path = NSString(string: documentsFolder).appendingPathComponent(fn)
         let bundlePath = Bundle.main.path(forResource: "moknow", ofType: ".db")!
         do{
             if(!fm.fileExists(atPath: path)){
                 try fm.copyItem(atPath: bundlePath, toPath: path)
             }
         }catch{}
-        return PBDBManager(dbPath:bundlePath)
+        return PBDBManager(dbPath:fn)
     }()
     
     
@@ -70,7 +71,6 @@ class PBDBManager:BaseDBHandler{
         let result = queryFetch(query) { (rs) -> (id:UInt64, title:String, color:UInt64) in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!,color: rs.unsignedLongLongInt(forColumn: "category_color"))
         }
-        print("find \(result.count) results")
         return result
     }
 

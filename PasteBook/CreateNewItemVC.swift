@@ -45,21 +45,22 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         self.title = "New Article"
         // make the text view's border is same as text field
         
-        contentTextView.layer.cornerRadius = 5
-        contentTextView.layer.borderWidth = 1
-        let borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
-        contentTextView.layer.borderColor = borderColor.cgColor
+//        contentTextView.layer.cornerRadius = 5
+//        contentTextView.layer.borderWidth = 1
+//        let borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+//        contentTextView.layer.borderColor = borderColor.cgColor
         
         
         // done button
-        
+        self.prepareAutoScrollContentTextView()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didCreateNewArticle))
         
         
         categorySelector.addTarget(self, action: #selector(onSelectCategory), for: UIControlEvents.touchUpInside)
-        dropper = Dropper(width: categorySelector.frame.width, height: 200)
-        dropper.theme = .black(categorySelector.backgroundColor ?? .black)
-        dropper.border = (width: 2, color:.black)
+        dropper = Dropper(width: 150, height: 200)
+        dropper.theme = .black(.gray)
+        dropper.border = (width: 1, color:.white)
+        dropper.cellTextSize = 14
         dropper.spacing = 0
         dropper.maxHeight = 200
         dropper.delegate = self
@@ -82,7 +83,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func onSelectCategory(_ sender:UIButton){
         if dropper.status == .hidden {
-            dropper.showWithAnimation(0.15, options: .center, button: sender)
+            dropper.showWithAnimation(0.15, options: .left, button: sender)
         }else{
             dropper.hideWithAnimation(0.1)
         }
@@ -117,7 +118,6 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         }else{
             currentArticle?.title = titleTF.text!
             currentArticle?.content = contentTextView.text
-            print(currentCategory)
             let article = PBDBManager.default.updateArticle(currentArticle!, with: currentCategory ?? .unsaved)
             _ = self.navigationController?.popViewController(animated: true)
             if let detailVC = self.navigationController?.viewControllers.last as? ArticleDetailViewController{
@@ -146,6 +146,45 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+}
+
+
+// MARK: - Auto Scroll contentTextView
+extension CreateNewItemVC: UITextViewDelegate{
+    
+    func prepareAutoScrollContentTextView() {
+        self.contentTextView.delegate = self
+        
+        // observe these 2 notification for the cases in either
+        // with soft keyboard or blue tooth keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewItemVC.updateTextView(notification:)), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewItemVC.updateTextView(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        // resign all in view
+        self.view.endEditing(true)
+    }
+    
+    func updateTextView(notification:Notification){
+        let userInfo = notification.userInfo!
+        // value is a NSValue , needs cast
+        var keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        // the rect is not count on the orientation, so we need to convert it base on windows
+        keyboardRect = self.view.convert(keyboardRect, to: self.view.window)
+        
+        if notification.name == Notification.Name.UIKeyboardWillHide{
+            self.contentTextView.contentInset = .zero
+        }else{
+            // inset minus the keyboard height
+            self.contentTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
+            self.contentTextView.scrollIndicatorInsets = self.contentTextView.contentInset
+        }
+        // scroll to the selection
+        self.contentTextView.scrollRangeToVisible(self.contentTextView.selectedRange)
     }
 }
 
