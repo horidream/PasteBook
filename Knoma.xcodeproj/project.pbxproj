@@ -119,6 +119,8 @@
 		99E124A61E00567300605117 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E124A51E00567300605117 /* Regex.swift */; };
 		99E4B2F01DE7442B0085718A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E4B2EF1DE7442B0085718A /* iCarousel.m */; };
 		99E9C3031E0195640072968B /* Sandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E9C3021E0195640072968B /* Sandbox.swift */; };
+		99F1A8581E2D1FC200232EB7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1A8571E2D1FC200232EB7 /* CloudKit.framework */; };
+		99F1A85A1E2D2CF500232EB7 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1A8591E2D2CF500232EB7 /* CloudKitManager.swift */; };
 		99FC8A1A1C3EBE0600596BB3 /* page.css in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A191C3EBE0600596BB3 /* page.css */; };
 		99FC8A1E1C3EC12200596BB3 /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */; };
 /* End PBXBuildFile section */
@@ -243,6 +245,9 @@
 		99E4B2EE1DE7442B0085718A /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
 		99E4B2EF1DE7442B0085718A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = SOURCE_ROOT; };
 		99E9C3021E0195640072968B /* Sandbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sandbox.swift; sourceTree = "<group>"; };
+		99F1A8561E2D1FAA00232EB7 /* Knoma.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Knoma.entitlements; path = ../Knoma.entitlements; sourceTree = "<group>"; };
+		99F1A8571E2D1FC200232EB7 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		99F1A8591E2D2CF500232EB7 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		99FC8A191C3EBE0600596BB3 /* page.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = page.css; path = PasteBook/page.css; sourceTree = "<group>"; };
 		99FC8A1D1C3EC12200596BB3 /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.1.4.min.js"; path = "PasteBook/jquery-2.1.4.min.js"; sourceTree = "<group>"; };
 		B4D08AACB786020BDF79A5AE /* Pods_Knoma.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knoma.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				999822D71E01A0EC00C4F2E8 /* libsqlite3.tbd in Frameworks */,
+				99F1A8581E2D1FC200232EB7 /* CloudKit.framework in Frameworks */,
 				54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */,
 				8FD52CC30705868E0181D021 /* Pods_Knoma.framework in Frameworks */,
 			);
@@ -407,6 +413,7 @@
 		990716371B94A6EB00D1A903 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				99F1A8561E2D1FAA00232EB7 /* Knoma.entitlements */,
 				99E4B2ED1DE7442A0085718A /* PasteBook-Bridging-Header.h */,
 				993E61C81CCA88400055E7D5 /* moknow.db */,
 				990716041B94885C00D1A903 /* AppDelegate.swift */,
@@ -448,6 +455,7 @@
 				993E61CA1CCD116A0055E7D5 /* BaseDBHandler.swift */,
 				99A0365C1DEA86B100A74C88 /* Models.swift */,
 				9970A7501DF1CAD0004DEE25 /* PBDBManager.swift */,
+				99F1A8591E2D2CF500232EB7 /* CloudKitManager.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -492,6 +500,7 @@
 		AA59E43E38BC80D0E67A07A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99F1A8571E2D1FC200232EB7 /* CloudKit.framework */,
 				999822D61E01A0EC00C4F2E8 /* libsqlite3.tbd */,
 				99E124A71E00597000605117 /* libsqlite3.0.tbd */,
 				6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */,
@@ -538,6 +547,17 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 5296P9QS3C;
 						LastSwiftMigration = 0810;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -738,6 +758,7 @@
 				9912BFA01E06B47A00C0C73E /* ArticleDetailViewController.swift in Sources */,
 				99E9C3031E0195640072968B /* Sandbox.swift in Sources */,
 				15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */,
+				99F1A85A1E2D2CF500232EB7 /* CloudKitManager.swift in Sources */,
 				99CD3D531CE945B8008250FD /* Extensions.swift in Sources */,
 				99A6E6171CD0F9FE00218213 /* TagCell.swift in Sources */,
 				99A6E6151CCFAE9F00218213 /* SelectTagsVC.swift in Sources */,
@@ -866,9 +887,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00B940A1BE9BF385DB37EDB4 /* Pods-Knoma.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Knoma.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\"";
@@ -889,9 +911,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9328527E70F8CD87C285304 /* Pods-Knoma.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Knoma.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\"";

@@ -8,6 +8,7 @@
 
 import Foundation
 import FMDB
+import CloudKit
 
 // MARK: - saved enum
 enum Saved{
@@ -113,6 +114,17 @@ struct Article:CustomStringConvertible{
         self.createdTime = fetchResult.date(forColumn: "created_time")!
         self.updatedTime = fetchResult.date(forColumn: "updated_time")!
         self.isFavorite = fetchResult.bool(forColumn: "favorite")
+    }
+    
+    var record :CKRecord {
+        get{
+            let record = CKRecord(recordType: "article")
+            record.setValue(title, forKey: "article_title")
+            record.setValue(content, forKey: "article_content")
+            
+            return record
+        }
+        
     }
     
     var description: String{
