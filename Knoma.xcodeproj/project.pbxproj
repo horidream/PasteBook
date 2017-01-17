@@ -94,7 +94,6 @@
 		15B608361CEEEAD600D19210 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B608351CEEEAD600D19210 /* HomeViewController.swift */; };
 		15C498D81DF7CF9400976720 /* OutlineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D71DF7CF9400976720 /* OutlineLabel.swift */; };
 		15C498DA1DF81CA200976720 /* SeperatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C498D91DF81CA200976720 /* SeperatorLineView.swift */; };
-		54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E064DA690C1423B07C5E887 /* Pods_PasteBook.framework */; };
 		8FD52CC30705868E0181D021 /* Pods_Knoma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D08AACB786020BDF79A5AE /* Pods_Knoma.framework */; };
 		990716051B94885C00D1A903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990716041B94885C00D1A903 /* AppDelegate.swift */; };
 		9907160A1B94885C00D1A903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990716081B94885C00D1A903 /* Main.storyboard */; };
@@ -262,7 +261,6 @@
 			files = (
 				999822D71E01A0EC00C4F2E8 /* libsqlite3.tbd in Frameworks */,
 				99F1A8581E2D1FC200232EB7 /* CloudKit.framework in Frameworks */,
-				54DA19EF1B029B422DBE6156 /* Pods_PasteBook.framework in Frameworks */,
 				8FD52CC30705868E0181D021 /* Pods_Knoma.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

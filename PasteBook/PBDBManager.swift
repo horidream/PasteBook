@@ -21,10 +21,11 @@ class PBDBManager:BaseDBHandler{
         let path = NSString(string: documentsFolder).appendingPathComponent(fn)
         let bundlePath = Bundle.main.path(forResource: "moknow", ofType: ".db")!
         do{
-            if(!fm.fileExists(atPath: path)){
+            if(fm.fileExists(atPath: path)){
+                try fm.removeItem(atPath: path)
                 try fm.copyItem(atPath: bundlePath, toPath: path)
             }
-        }catch{}
+        }catch let error{print(error)}
         return PBDBManager(dbPath:fn)
     }()
     
