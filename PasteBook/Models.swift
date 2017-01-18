@@ -15,6 +15,17 @@ enum Saved{
     case cloud(id:UInt64)
     case local(id:UInt64)
     case notYet
+    
+    var id:UInt64?{
+        switch self{
+        case .notYet:
+            return nil
+        case .cloud(id: let id):
+            return id
+        case .local(id: let id):
+            return id
+        }
+    }
 }
 
 func == (lhs: Saved, rhs: Saved) -> Bool {
@@ -81,7 +92,7 @@ struct Tag{
     }
 }
 
-struct Article:CustomStringConvertible{
+class Article:CustomStringConvertible{
     var title:String
     var content:String
     
@@ -116,6 +127,12 @@ struct Article:CustomStringConvertible{
         self.isFavorite = fetchResult.bool(forColumn: "favorite")
     }
     
+    func saveToCloud(){
+        let db = CKContainer.default().privateCloudDatabase
+        db.save(record) { (record, error) in
+            self.isSaved = .cloud(id: self.isSaved.id!)
+        }
+    }
     var record :CKRecord {
         get{
             let record = CKRecord(recordType: "article")
