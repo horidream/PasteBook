@@ -218,7 +218,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         }else{
             self.categoryData = PBDBManager.default.fetchAllCategories().sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             })
-            self.tableView.separatorStyle = .singleLineEtched
+            self.tableView.separatorStyle = .singleLine
         }
         self.tableView.reloadData()
     }
@@ -239,5 +239,23 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
+    }
+    
+    
+    // MARK - 
+    func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+        let currentCollation = UILocalizedIndexedCollation.current() as UILocalizedIndexedCollation
+        let sectionTitles = currentCollation.sectionTitles as NSArray
+        return sectionTitles.object(at: section) as! String
+    }
+    
+    func sectionIndexTitlesForTableView(tableView: UITableView!) -> NSArray! {
+        let currentCollation = UILocalizedIndexedCollation.current() as UILocalizedIndexedCollation
+        return currentCollation.sectionIndexTitles as NSArray
+    }
+    
+    func tableView(tableView: UITableView!, sectionForSectionIndexTitle title: String!, atIndex index: Int) -> Int {
+        let currentCollation = UILocalizedIndexedCollation.current() as UILocalizedIndexedCollation
+        return currentCollation.section(forSectionIndexTitle: index)
     }
 }

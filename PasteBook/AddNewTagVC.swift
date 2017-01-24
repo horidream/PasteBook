@@ -17,7 +17,7 @@ class AddNewTagVC: UIViewController {
     }
     
     func onAddNewTag(){
-        if let newTag = self.newTagInput.text{
+        if self.newTagInput.text != nil{
 //            let newTag = PBDBHandler.sharedInstance.createNewTag(newTag)
 //            let _ = self.navigationController?.popViewController(animated: true)
 //            if let tagsVC = self.navigationController?.viewControllers.last as? SelectTagsVC, let newTag = newTag{

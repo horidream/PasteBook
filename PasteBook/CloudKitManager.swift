@@ -16,10 +16,15 @@ class CloudKitManager{
     let privateDB = CKContainer.default().privateCloudDatabase
     
     init() {
-        let article = Article(title: "hello", content: "Baoli")
-        privateDB.save(article.record) { (record, error) in
-        }
+        
     }
     
+    func fetchAllArticleTitles(category:Category? = nil){
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "article", predicate: predicate)
+        privateDB.perform(query, inZoneWith: nil) { records, error in
+            print("-- new cloudkit records --  \n\(records) \n  \(error)")
+        }
+    }
     
 }
