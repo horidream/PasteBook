@@ -57,7 +57,7 @@ class PBDBManager:BaseDBHandler{
     
     func fetchArticleTitles(withKeywords keywords:String, category:Category? = nil)->Array<ArticleTitleInfo>{
         
-        let matches = keywords.split("  ")
+        let matches = keywords.split("[,，。；;]")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
         var categoryCondition = ""
         var wholeContentColumn = "article_title || \"\n\" || article_content"

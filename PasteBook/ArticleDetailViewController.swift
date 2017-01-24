@@ -47,7 +47,7 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
             
             var highlightCode = "$('pre code').each(function(i, block) {hljs.highlightBlock(block);});"
             if let searchText = searchText, searchText.trimmed() != ""{
-                highlightCode +=  "setTimeout(function(){'\(searchText)'.split('  ').forEach(function(keyword){$('body').highlight(keyword);});}, 1000);"
+                highlightCode +=  "setTimeout(function(){'\(searchText)'.split(/[,，。；;]/).forEach(function(keyword){$('body').highlight(keyword);});}, 1000);"
             }
             webView.stringByEvaluatingJavaScript(from: highlightCode)
             
