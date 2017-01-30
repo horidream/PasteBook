@@ -149,7 +149,7 @@ class PBDBManager:BaseDBHandler{
     }
     
     func addTag(_ tag:Tag) -> Tag{
-        var _tag = tag
+        let _tag = tag
         switch tag.isSaved {
         case .notYet:
             _ = queryChange("INSERT OR IGNORE INTO category (tag_name) VALUES (\(tag.name))")

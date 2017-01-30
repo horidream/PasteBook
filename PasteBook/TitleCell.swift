@@ -20,8 +20,10 @@ class TitleCell: FoldingCell {
     @IBOutlet weak var closeDetailBtn: UIButton!
     
     @IBOutlet weak var addFavoriteBtn: UIButton!
+    @IBOutlet weak var cloudBtn: UIButton!
     weak var tableView:UITableView?
-
+    weak var article:Article?
+    
     var ribbonColor:UIColor = UIColor.clear{
         didSet{
             ribbonForClose.backgroundColor = ribbonColor

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         sandbox()
-        // Override point for customization after application launch.
+        let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
+        application.registerUserNotificationSettings(notificationOptions)
+        application.registerForRemoteNotifications()
         return true
+    }
+    
+    
+    // MARK: remote notifications
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        if let stringObjectUserInfo = userInfo as? [String : NSObject] {
+            let cloudKitZoneNotificationUserInfo = CKRecordZoneNotification(fromRemoteNotificationDictionary: stringObjectUserInfo)
+            
+            if cloudKitZoneNotificationUserInfo.recordZoneID != nil {
+                
+                let completionBlockOperation = BlockOperation {
+                    completionHandler(UIBackgroundFetchResult.newData)
+                }
+                
+                print("completionBlockOperation: \(completionBlockOperation)")
+                // cloudKitManager?.syncZone(recordZoneID.zoneName, completionBlockOperation: completionBlockOperation)
+            }
+        }
+        else {
+            completionHandler(UIBackgroundFetchResult.noData)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

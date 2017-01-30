@@ -12,10 +12,21 @@ import CloudKit
 class CloudKitManager{
     static let instance:CloudKitManager = CloudKitManager()
     
-    let publicDB = CKContainer.default().publicCloudDatabase
-    let privateDB = CKContainer.default().privateCloudDatabase
-    
+        var privateDB:CKDatabase
+    var queue:OperationQueue
     init() {
+        let container = CKContainer.default()
+        privateDB = container.privateCloudDatabase
+        queue = OperationQueue()
+        container.accountStatus { (status:CKAccountStatus, error: Error?) in
+            switch status{
+            case .available:
+                print("available")
+            case .noAccount:
+                print("no account")
+            default:()
+            }
+        }
         
     }
     
