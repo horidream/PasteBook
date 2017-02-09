@@ -43,6 +43,14 @@ class Article:CustomStringConvertible{
         self.isFavorite = fetchResult.bool(forColumn: "favorite")
     }
     
+//    init(record:CKRecord){
+//        self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
+//        self.title = record.value(forKey: "article_title") as! String
+//        self.content = record.value(forKey: "article_content") as! String
+//        self.createdTime = record.value(forKey: "created_time") as! Date
+//        self.updatedTime = record.value(forKey: "updated_time") as! Date
+//        self.isFavorite = record.value(forKey: "favorite") as! Bool
+//    }
     
     // MARK - save to icloud
     func saveToCloud(){

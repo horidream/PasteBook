@@ -64,11 +64,23 @@ class TitleCell: FoldingCell {
         
         
         
+        
+        setup()
+    }
+    
+    func setup(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(onShowDetail(tap:)))
         detailBtn.addGestureRecognizer(tap)
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(onShowDetail(tap:)))
         closeDetailBtn.transform = CGAffineTransform(scaleX: 1, y: -1)
         closeDetailBtn.addGestureRecognizer(tap2)
+        
+        cloudBtn.addTarget(self, action: #selector(onCloudBtnClicked(sender:)), for: .touchUpInside)
+        
+    }
+    
+    func onCloudBtnClicked(sender:UIButton){
+        
     }
     
     func onShowDetail(tap:UITapGestureRecognizer){

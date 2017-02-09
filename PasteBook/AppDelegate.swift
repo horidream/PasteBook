@@ -17,28 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         sandbox()
-        let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
-        application.registerUserNotificationSettings(notificationOptions)
+//        let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
+//        application.registerUserNotificationSettings(notificationOptions)
         application.registerForRemoteNotifications()
+        CloudKitManager.instance.registerSubscription()
         return true
     }
     
     
+    
     // MARK: remote notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
         if let stringObjectUserInfo = userInfo as? [String : NSObject] {
-            let cloudKitZoneNotificationUserInfo = CKRecordZoneNotification(fromRemoteNotificationDictionary: stringObjectUserInfo)
+            let cknotify = CKQueryNotification(fromRemoteNotificationDictionary: stringObjectUserInfo)
+            print("get ck notify")
+            print("\(cknotify.recordID)")
             
-            if cloudKitZoneNotificationUserInfo.recordZoneID != nil {
-                
-                let completionBlockOperation = BlockOperation {
-                    completionHandler(UIBackgroundFetchResult.newData)
-                }
-                
-                print("completionBlockOperation: \(completionBlockOperation)")
-                // cloudKitManager?.syncZone(recordZoneID.zoneName, completionBlockOperation: completionBlockOperation)
-            }
+             completionHandler(UIBackgroundFetchResult.newData)
         }
         else {
             completionHandler(UIBackgroundFetchResult.noData)
