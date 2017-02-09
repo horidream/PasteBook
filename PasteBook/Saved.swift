@@ -8,6 +8,11 @@
 
 
 // MARK: - saved enum
+
+import CloudKit
+import FMDB
+
+
 enum Saved{
     case cloud(id:Data)
     case local(id:UInt64)
@@ -23,6 +28,17 @@ enum Saved{
             return id
         }
     }
+}
+
+protocol CloudManageable {
+    init(record:CKRecord)
+    func saveToCloud(_ completionHandler:@escaping (CKRecord?, Error?) -> Void)
+    var record:CKRecord { get }
+}
+
+protocol SQLManageable {
+    init(result:FMResultSet)
+    func saveToLocal()
 }
 
 func == (lhs: Saved, rhs: Saved) -> Bool {

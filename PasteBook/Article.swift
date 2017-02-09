@@ -67,6 +67,8 @@ class Article:CustomStringConvertible{
             record.setValue(title, forKey: "article_title")
             record.setValue(content, forKey: "article_content")
             record.setValue(isFavorite, forKey:"isFavorite")
+            
+//            _ = CKReference(record: <#T##CKRecord#>, action: <#T##CKReferenceAction#>)
             return record
         }
         
