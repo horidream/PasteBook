@@ -8,7 +8,7 @@
 import CloudKit
 import FMDB
 
-class Article:CustomStringConvertible{
+class Article:CustomStringConvertible, CloudManageable, SQLManageable{
     var title:String
     var content:String
     
@@ -32,27 +32,32 @@ class Article:CustomStringConvertible{
         self.isFavorite = false
     }
     
-    init(fetchResult:FMResultSet){
-        self.isSaved = .local(id:fetchResult.unsignedLongLongInt(forColumn: "article_id"))
-        self.title = fetchResult.string(forColumn: "article_title")!
-        self.content = fetchResult.string(forColumn: "article_content")!
-        self.category = Category(name: fetchResult.string(forColumn: "category_name")!)
-        self.category.isSaved = .local(id: fetchResult.unsignedLongLongInt(forColumn: "category_id"))
-        self.createdTime = fetchResult.date(forColumn: "created_time")!
-        self.updatedTime = fetchResult.date(forColumn: "updated_time")!
-        self.isFavorite = fetchResult.bool(forColumn: "favorite")
+    // MARK: -
+    required init(result:FMResultSet){
+        self.isSaved = .local(id:result.unsignedLongLongInt(forColumn: "article_id"))
+        self.title = result.string(forColumn: "article_title")!
+        self.content = result.string(forColumn: "article_content")!
+        self.category = Category(name: result.string(forColumn: "category_name")!)
+        self.category.isSaved = .local(id: result.unsignedLongLongInt(forColumn: "category_id"))
+        self.createdTime = result.date(forColumn: "created_time")!
+        self.updatedTime = result.date(forColumn: "updated_time")!
+        self.isFavorite = result.bool(forColumn: "favorite")
     }
     
-//    init(record:CKRecord){
-//        self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
-//        self.title = record.value(forKey: "article_title") as! String
-//        self.content = record.value(forKey: "article_content") as! String
-//        self.createdTime = record.value(forKey: "created_time") as! Date
-//        self.updatedTime = record.value(forKey: "updated_time") as! Date
-//        self.isFavorite = record.value(forKey: "favorite") as! Bool
-//    }
+    func saveToLocal() {
+        
+    }
     
-    // MARK - save to icloud
+    // MARK: -
+    required init(record:CKRecord){
+        self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
+        self.title = record.value(forKey: "article_title") as! String
+        self.content = record.value(forKey: "article_content") as! String
+        self.createdTime = record.value(forKey: "created_time") as! Date
+        self.updatedTime = record.value(forKey: "updated_time") as! Date
+        self.isFavorite = record.value(forKey: "favorite") as! Bool
+    }
+    
     func saveToCloud(){
         let db = CKContainer.default().privateCloudDatabase
         db.save(record) { (record:CKRecord?, error:Error?) in
@@ -61,6 +66,7 @@ class Article:CustomStringConvertible{
             }
         }
     }
+    
     var record :CKRecord {
         get{
             let record = CKRecord(recordType: "article")
@@ -68,7 +74,8 @@ class Article:CustomStringConvertible{
             record.setValue(content, forKey: "article_content")
             record.setValue(isFavorite, forKey:"isFavorite")
             
-//            _ = CKReference(record: <#T##CKRecord#>, action: <#T##CKReferenceAction#>)
+            let categoryRef = CKReference(record: self.category.record, action: .none)
+            record.setValue(categoryRef, forKey:"category")
             return record
         }
         
