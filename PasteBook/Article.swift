@@ -56,9 +56,10 @@ class Article:CustomStringConvertible, CloudManageable, SQLManageable{
         self.createdTime = record.value(forKey: "created_time") as! Date
         self.updatedTime = record.value(forKey: "updated_time") as! Date
         self.isFavorite = record.value(forKey: "favorite") as! Bool
+        self.category = Category(record:record)
     }
     
-    func saveToCloud(){
+    func saveToCloud(_ completionHandler:@escaping (CKRecord?, Error?) -> Void){
         let db = CKContainer.default().privateCloudDatabase
         db.save(record) { (record:CKRecord?, error:Error?) in
             if let record = record{

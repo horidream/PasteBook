@@ -87,7 +87,7 @@ class PBDBManager:BaseDBHandler{
         
         
         let articles = queryFetch(query, mapTo: {(rs)->Article in
-            let article =  Article(fetchResult: rs)
+            let article =  Article(result: rs)
             if hasTag{
                 let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
                 let tag_names = rs.string(forColumn: "tag_names").split(",")
@@ -104,7 +104,7 @@ class PBDBManager:BaseDBHandler{
         let query = "select article_id as id, article_title, article_content, category.category_id, category.category_name, updated_time, created_time from article inner join category where article.category_id=category.category_id and category.category_name = \"\(name)\""
         
         let articles = queryFetch(query, mapTo: {(rs)->Article in
-            let article =  Article(fetchResult: rs)
+            let article =  Article(result: rs)
             let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
             let tag_names = rs.string(forColumn: "tag_ids").split(",") 
             let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
@@ -132,7 +132,7 @@ class PBDBManager:BaseDBHandler{
     }
     
     func addCategory(_ category:Category) -> Category{
-        var _category = category
+        let _category = category
         switch category.isSaved {
         case .notYet:
             _ = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (?)", args:[_category.name])

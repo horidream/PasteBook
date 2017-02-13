@@ -11,7 +11,7 @@ import FMDB
 import CloudKit
 
 // MARK: - db entity
-struct Category: SQLManageable{
+class Category: SQLManageable, CloudManageable{
     var isSaved:Saved
     var name:String
     var color:UInt = 0
@@ -27,7 +27,7 @@ struct Category: SQLManageable{
         self.isSaved = Saved.local(id:id)
     }
 
-    init(result: FMResultSet) {
+    required init(result: FMResultSet) {
         self.name = "__"
         self.isSaved = .notYet
     }
@@ -46,4 +46,21 @@ struct Category: SQLManageable{
         record.setValue(self.color, forKey: "category_color")
         return record
     }
+    
+    required init(record:CKRecord){
+        self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
+        self.name = "to do"
+        self.color = 0
+        
+    }
+    
+    func saveToCloud(_ completionHandler:@escaping (CKRecord?, Error?) -> Void){
+        let db = CKContainer.default().privateCloudDatabase
+        db.save(record) { (record:CKRecord?, error:Error?) in
+            if let record = record{
+                self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
+            }
+        }
+    }
+    
 }
