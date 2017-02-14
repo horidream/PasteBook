@@ -41,10 +41,16 @@ class Category: SQLManageable, CloudManageable{
     
     
     var record: CKRecord{
-        let record = CKRecord(recordType: "category")
-        record.setValue(self.name, forKey: "category_name")
-        record.setValue(self.color, forKey: "category_color")
-        return record
+        get {
+            let record = CKRecord(recordType: "category")
+            record.setValue(self.name, forKey: "category_name")
+            record.setValue(self.color, forKey: "category_color")
+            return record
+            
+        }
+        set{
+            
+        }
     }
     
     required init(record:CKRecord){

@@ -31,15 +31,22 @@ enum Saved{
 }
 
 protocol CloudManageable {
+    var record:CKRecord{ get set }
     init(record:CKRecord)
-    func saveToCloud(_ completionHandler:@escaping (CKRecord?, Error?) -> Void)
-    var record:CKRecord { get }
 }
 
 protocol SQLManageable {
     init(result:FMResultSet)
     func saveToLocal()
+    func deleteFromLocal()
 }
+
+
+extension SQLManageable{
+    func saveToLocal(){}
+    func deleteFromLocal(){}
+}
+
 
 func == (lhs: Saved, rhs: Saved) -> Bool {
     switch (lhs, rhs) {

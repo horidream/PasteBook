@@ -21,8 +21,8 @@ fileprivate struct C {
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
-    var data:Array<(id:UInt64,title:String,color:UInt64)> = []
-    var categoryData:Array<(id:UInt64, name:String, color:UInt64,count:UInt64)> = []
+    var data:Array<ArticleTitleInfo> = []
+    var categoryData:Array<CategoryInfo> = []
     var currentCategory:Category?
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
@@ -86,6 +86,9 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
                     let vc = segue.destination as! ArticleDetailViewController
                     let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
                     let article = PBDBManager.default.fetchArticle(id: id)
+                    article.saveToCloud(completionHandler: { (rec, err) in
+                        print("saved")
+                    })
                     vc.article = article
                     vc.currentCategory = self.currentCategory
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
@@ -170,6 +173,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             cellHeights[indexPath.row] = C.CellHeight.open
             cell.selectedAnimation(true, animated: true, completion: nil)
             duration = 0.5
+            
         } else {// close cell
             cellHeights[indexPath.row] = C.CellHeight.close
             cell.selectedAnimation(false, animated: true, completion: nil)

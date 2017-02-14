@@ -20,6 +20,8 @@ class Article:CustomStringConvertible, CloudManageable, SQLManageable{
     var category:Category
     var tags:[Tag]?
     
+    private var _record:CKRecord?
+    
     init(title:String, content:String){
         self.isSaved = .notYet
         self.title = title
@@ -44,9 +46,7 @@ class Article:CustomStringConvertible, CloudManageable, SQLManageable{
         self.isFavorite = result.bool(forColumn: "favorite")
     }
     
-    func saveToLocal() {
-        
-    }
+    
     
     // MARK: -
     required init(record:CKRecord){
@@ -59,14 +59,6 @@ class Article:CustomStringConvertible, CloudManageable, SQLManageable{
         self.category = Category(record:record)
     }
     
-    func saveToCloud(_ completionHandler:@escaping (CKRecord?, Error?) -> Void){
-        let db = CKContainer.default().privateCloudDatabase
-        db.save(record) { (record:CKRecord?, error:Error?) in
-            if let record = record{
-                self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
-            }
-        }
-    }
     
     var record :CKRecord {
         get{
@@ -74,12 +66,19 @@ class Article:CustomStringConvertible, CloudManageable, SQLManageable{
             record.setValue(title, forKey: "article_title")
             record.setValue(content, forKey: "article_content")
             record.setValue(isFavorite, forKey:"isFavorite")
-            
             let categoryRef = CKReference(record: self.category.record, action: .none)
             record.setValue(categoryRef, forKey:"category")
             return record
         }
+        set{
+            _record = newValue
+        }
         
+    }
+    
+    
+    func saveToCloud(completionHandler: @escaping (CKRecord?, Error?) -> Void){
+        CKContainer.default().privateCloudDatabase.save(self.record, completionHandler: completionHandler)
     }
     
     var description: String{

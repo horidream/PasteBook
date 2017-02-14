@@ -12,7 +12,7 @@ import CloudKit
 class CloudKitManager{
     static let instance:CloudKitManager = CloudKitManager()
     
-        var privateDB:CKDatabase
+    var privateDB:CKDatabase
     var queue:OperationQueue
     init() {
         let container = CKContainer.default()
@@ -46,6 +46,8 @@ class CloudKitManager{
         }
         
     }
+    
+
     
     func fetchAllArticleTitles(category:Category? = nil){
         let predicate = NSPredicate(value: true)
