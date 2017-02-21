@@ -8,42 +8,63 @@
 import CloudKit
 import FMDB
 
-class Article:CustomStringConvertible, CloudManageable, SQLManageable{
-    var title:String
-    var content:String
+struct ColumnKey{
+    static let ARTICLE_ID:String = "article_id"
+    static let ARTICLE_TITLE:String = "article_title"
+    static let ARTICLE_CONTENT:String = "article_content"
+    static let FAVORITE:String = "favorite"
     
+    
+    
+    static let CATEGORY_ID:String = "category_id"
+    static let CATEGORY_NAME:String = "category_name"
+    static let CATEGORY_COLOR:String = "category_color"
+    
+    
+    static let CREATED_TIME:String = "created_time"
+    static let UPDATED_TIME:String = "updated_time"
+    static let CLOUD_ID:String = "cloud_record_id"
+    
+}
+
+
+class Article: BaseEntity{
+    var content:String
     var createdTime:Date
     var updatedTime:Date
-    var isSaved:Saved
+    var isFavorite:Bool = false
     
-    var isFavorite:Bool
     var category:Category
-    var tags:[Tag]?
+    var tags:[Tag]
     
     private var _record:CKRecord?
     
+    
     init(title:String, content:String){
-        self.isSaved = .notYet
-        self.title = title
+        self.name = title
         self.content = content
-        self.category = Category.unsaved
         
         let currentDate = Date()
         self.createdTime = currentDate
         self.updatedTime = currentDate
-        self.isFavorite = false
+        
+        self.category = Category.unsaved
+        self.tags = []
     }
     
     // MARK: -
-    required init(result:FMResultSet){
-        self.isSaved = .local(id:result.unsignedLongLongInt(forColumn: "article_id"))
-        self.title = result.string(forColumn: "article_title")!
-        self.content = result.string(forColumn: "article_content")!
-        self.category = Category(name: result.string(forColumn: "category_name")!)
-        self.category.isSaved = .local(id: result.unsignedLongLongInt(forColumn: "category_id"))
-        self.createdTime = result.date(forColumn: "created_time")!
-        self.updatedTime = result.date(forColumn: "updated_time")!
-        self.isFavorite = result.bool(forColumn: "favorite")
+    required init(_ articleResult:FMResultSet, categoryResult:FMResultSet, tagResults:[FMResultSet]){
+        self.name = result.string(forColumn: ColumnKey.ARTICLE_TITLE)!
+        self.content = result.string(forColumn: ColumnKey.ARTICLE_CONTENT)!
+        self.localId = result.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
+        self.cloudId = result.unsignedLongLongInt(forColumn: ColumnKey.CLOUD_ID)
+        self.isFavorite = result.bool(forColumn: ColumnKey.FAVORITE)
+        self.createdTime = result.date(forColumn: ColumnKey.CREATED_TIME)!
+        self.updatedTime = result.date(forColumn: ColumnKey.UPDATED_TIME)!
+        
+        self.category = Category(name: result.string(forColumn: ColumnKey.CATEGORY_NAME)!)
+        self.category.isSaved = .local(id: result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID))
+        
     }
     
     
@@ -51,11 +72,11 @@ class Article:CustomStringConvertible, CloudManageable, SQLManageable{
     // MARK: -
     required init(record:CKRecord){
         self.isSaved = .cloud(id: NSKeyedArchiver.archivedData(withRootObject: record.recordID))
-        self.title = record.value(forKey: "article_title") as! String
-        self.content = record.value(forKey: "article_content") as! String
-        self.createdTime = record.value(forKey: "created_time") as! Date
-        self.updatedTime = record.value(forKey: "updated_time") as! Date
-        self.isFavorite = record.value(forKey: "favorite") as! Bool
+        self.title = record.value(forKey: ColumnKey.ARTICLE_TITLE) as! String
+        self.content = record.value(forKey: ColumnKey.ARTICLE_CONTENT) as! String
+        self.createdTime = record.value(forKey: ColumnKey.CREATED_TIME) as! Date
+        self.updatedTime = record.value(forKey: ColumnKey.UPDATED_TIME) as! Date
+        self.isFavorite = record.value(forKey: ColumnKey.FAVORITE) as! Bool
         self.category = Category(record:record)
     }
     

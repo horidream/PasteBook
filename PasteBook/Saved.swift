@@ -30,22 +30,13 @@ enum Saved{
     }
 }
 
-protocol CloudManageable {
-    var record:CKRecord{ get set }
-    init(record:CKRecord)
+
+class BaseEntity{
+    var localId:UInt64?
+    var cloudId:UInt64?
+    var name:String
 }
 
-protocol SQLManageable {
-    init(result:FMResultSet)
-    func saveToLocal()
-    func deleteFromLocal()
-}
-
-
-extension SQLManageable{
-    func saveToLocal(){}
-    func deleteFromLocal(){}
-}
 
 
 func == (lhs: Saved, rhs: Saved) -> Bool {
