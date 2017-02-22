@@ -8,8 +8,7 @@
 
 import Foundation
 
-typealias CategoryInfo = (id:UInt64, name:String, color:UInt64, count:UInt64)
-typealias ArticleTitleInfo = (id:UInt64, title:String, color:UInt64)
+
 
 class PBDBManager:BaseDBHandler{
     
@@ -33,10 +32,10 @@ class PBDBManager:BaseDBHandler{
     
     // MARK: -
     
-    func fetchAllCategories()->Array<CategoryInfo>{
+    func fetchAllCategories()->Array<Category>{
         let query = "select category_id, category_name, category_color, (select count(article.category_id) from article where category.category_id == article.category_id) as category_count from category"
-        let result = queryFetch(query) { rs in
-            (id: rs.unsignedLongLongInt(forColumn: "category_id"), name:rs.string(forColumn: "category_name")!, color: rs.unsignedLongLongInt(forColumn: "category_color") , count: rs.unsignedLongLongInt(forColumn: "category_count") )
+        let result = queryFetch(query).map{
+            Category($0)
         }
         return result
     }
@@ -45,9 +44,7 @@ class PBDBManager:BaseDBHandler{
     func fetchAllArticleTitles(category:Category? = nil)->Array<ArticleTitleInfo>{
         var categoryCondition = ""
         if let category = category{
-            if case let Saved.local(id: category_id) = category.isSaved{
-                categoryCondition = "and article.category_id=\(category_id)"
-            }
+            categoryCondition = "and article.category_id=\(category.localId)"
         }
         let result = queryFetch("select article_id, article_title, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
             (id:rs.unsignedLongLongInt(forColumn: "article_id"),title:rs.string(forColumn: "article_title")!, color: rs.unsignedLongLongInt(forColumn: "category_color"))
@@ -55,14 +52,14 @@ class PBDBManager:BaseDBHandler{
         return result
     }
     
-    func fetchArticleTitles(withKeywords keywords:String, category:Category? = nil)->Array<ArticleTitleInfo>{
+    func fetchArticles(withKeywords keywords:String, category:Category? = nil)->Array<Article>{
         
         let matches = keywords.split("[,，。；;]")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
         var categoryCondition = ""
         var wholeContentColumn = "article_title || \"\n\" || article_content"
         if let category = category{
-            if case let Saved.local(id: category_id) = category.isSaved{
+            if let category_id = category.localId{
                 categoryCondition = "and category.category_id=\(category_id)"
                 wholeContentColumn += " || \"\n\" ||  category_name"
             }
@@ -87,7 +84,7 @@ class PBDBManager:BaseDBHandler{
         
         
         let articles = queryFetch(query, mapTo: {(rs)->Article in
-            let article =  Article(result: rs)
+            let article =  Article(rs)
             if hasTag{
                 let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
                 let tag_names = rs.string(forColumn: "tag_names").split(",")
@@ -150,16 +147,13 @@ class PBDBManager:BaseDBHandler{
     
     func addTag(_ tag:Tag) -> Tag{
         let _tag = tag
-        switch tag.isSaved {
-        case .notYet:
+        if tag.localId == nil {
             _ = queryChange("INSERT OR IGNORE INTO category (tag_name) VALUES (\(tag.name))")
             let tagId = queryFetch("SELECT tag_id from category where tag_name = \(tag.name)", mapTo: {
                 $0.unsignedLongLongInt(forColumn: "tag_id")
             }).first!
-            _tag.isSaved = .local(id: tagId)
             
-        default:
-            break
+            _tag.localId = tagId
         }
         return _tag
     }

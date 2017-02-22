@@ -34,13 +34,13 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
     
     func refreshDisplay(){
         if let article = article{
-            self.title = article.title
+            self.title = article.name
             
 //            let title = "## \(article.title)\n\n"
-            let tagsMark = (article.tags?.map {
+            let tagsMark = (article.tags.map {
                 tag in
                 return "*"+tag.name+"*"
-                }.joined(separator: " ") ?? "")  + "\n\n"
+                }.joined(separator: " ") )  + "\n\n"
             
             let jsCode = "document.body.style.zoom = 1.1;document.getElementById('content').innerHTML=marked(\"\(escapeString(tagsMark+article.content))\\n\\n\")"
             webView.stringByEvaluatingJavaScript(from:jsCode)

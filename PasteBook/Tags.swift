@@ -10,19 +10,18 @@ import Foundation
 import CloudKit
 import FMDB
 
-class Tag{
-    var name:String
+class Tag:BaseEntity{
     var color:UInt64
     
-    init(name:String){
-        self.name = name
+    init(_ name:String){
         self.color = 0
+        super.init(name: name)
     }
     
     
     init(_ fetchResult:FMResultSet){
-        self.localId = fetchResult.unsignedLongLongInt(forColumn: "id")
-        self.name = fetchResult.string(forColumn: "tag_name")!
         self.color = fetchResult.unsignedLongLongInt(forColumn: "tag_color")
+        super.init(name: fetchResult.string(forColumn: "tag_name")!)
+        self.localId = fetchResult.unsignedLongLongInt(forColumn: "id")
     }
 }

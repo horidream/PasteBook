@@ -11,19 +11,18 @@ import FMDB
 import CloudKit
 
 // MARK: - db entity
-class Category{
-    static let unsaved = Category(name:"UNDEFINED")
-    var name:String
-    var color:UInt
+class Category:BaseEntity{
+    static let unsaved = Category("UNDEFINED")
+    var color:UInt64
     
-    init(name:String){
-        self.name = name
+    init(_ name:String){
         self.color = 0
+        super.init(name: name)
     }
     
 
-    required init(_ result: FMResultSet) {
-        self.name = result.string(forColumn: ColumnKey.CATEGORY_NAME)
+    init(_ result: FMResultSet) {
         self.color = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_COLOR)
+        super.init(name:result.string(forColumn: ColumnKey.CATEGORY_NAME))
     }
 }

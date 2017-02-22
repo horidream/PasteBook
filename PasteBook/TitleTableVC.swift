@@ -86,9 +86,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
                     let vc = segue.destination as! ArticleDetailViewController
                     let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
                     let article = PBDBManager.default.fetchArticle(id: id)
-                    article.saveToCloud(completionHandler: { (rec, err) in
-                        print("saved")
-                    })
                     vc.article = article
                     vc.currentCategory = self.currentCategory
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String

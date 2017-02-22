@@ -35,6 +35,9 @@ class BaseEntity{
     var localId:UInt64?
     var cloudId:UInt64?
     var name:String
+    init(name:String){
+        self.name = name
+    }
 }
 
 
