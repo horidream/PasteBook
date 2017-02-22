@@ -21,8 +21,8 @@ fileprivate struct C {
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
-    var data:Array<ArticleTitleInfo> = []
-    var categoryData:Array<CategoryInfo> = []
+    var data:Array<Article> = []
+    var categoryData:Array<Category> = []
     var currentCategory:Category?
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
@@ -80,12 +80,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     // MARK: navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier{
-            if shouldShowCategory{
+            if shouldShowArticles{
                 switch id {
                 case "showDetail":
                     let vc = segue.destination as! ArticleDetailViewController
-                    let id = ((sender as AnyObject).value(forKey: "id") as! UInt64)
-                    let article = PBDBManager.default.fetchArticle(id: id)
+                    let article = ((sender as AnyObject).value(forKey: "id") as! Article)
                     vc.article = article
                     vc.currentCategory = self.currentCategory
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
@@ -103,16 +102,16 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     // MARK: table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shouldShowCategory ? data.count : categoryData.count
+        return shouldShowArticles ? data.count : categoryData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if shouldShowCategory{
+        if shouldShowArticles{
             let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
             let cellData = data[(indexPath as NSIndexPath).row]
             cell.tableView = self.tableView
             cell.title.text = cellData.title
-            cell.ribbonColor = UIColor(UInt(cellData.color))
+            cell.ribbonColor = cellData.color
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") ?? UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "CategoryCell")
@@ -125,14 +124,13 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return shouldShowCategory ? cellHeights[indexPath.row] : 50
+        return shouldShowArticles ? cellHeights[indexPath.row] : 50
     }
     
     // MARK: table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if shouldShowCategory{
-            performSegue(withIdentifier: "showDetail", sender: ["id":data[(indexPath as NSIndexPath).row].id,
-                     "searchText":searchController.searchBar.text!])
+        if shouldShowArticles{
+            performSegue(withIdentifier: "showDetail", sender: ["category":data[(indexPath as NSIndexPath).row], "searchText":searchController.searchBar.text!])
         }else{
             let t = CATransition()
             t.duration = 0.2
@@ -140,8 +138,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             t.subtype = kCATransitionFromRight
             self.view.window?.layer.add(t, forKey: nil)
             
-            let d = categoryData[indexPath.row]
-            currentCategory = Category(name:d.name, id:d.id)
+            currentCategory = categoryData[indexPath.row]
             self.navigationItem.title = currentCategory?.name
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.onBackBarPressed))
             refresh()
@@ -185,8 +182,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            if shouldShowCategory{
-                PBDBManager.default.deleteArticleById(id: data[indexPath.row].id)
+            if shouldShowArticles{
+                PBDBManager.default.deleteArticleById(id: data[indexPath.row].localId!)
                 self.data.remove(at: (indexPath as NSIndexPath).row)
                 
                 
@@ -211,8 +208,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     // MARK: search result
     
     func refresh(){
-        if shouldShowCategory{
-            self.data = PBDBManager.default.fetchArticleTitles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
+        if shouldShowArticles{
+            self.data = PBDBManager.default.fetchArticles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
             })
             cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
             self.tableView.separatorStyle = .none
@@ -224,7 +221,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.tableView.reloadData()
     }
     
-    private var shouldShowCategory:Bool{
+    private var shouldShowArticles:Bool{
         if let searchText = searchController.searchBar.text, searchText.trimmed() != ""{
             return true
         }

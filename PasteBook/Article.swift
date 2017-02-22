@@ -33,9 +33,22 @@ class Article: BaseEntity{
     var createdTime:Date
     var updatedTime:Date
     var isFavorite:Bool = false
+    var categoryId:UInt64?
     
-    var category:Category
-    var tags:[Tag]
+    
+    var color:UIColor{
+        return .black
+    }
+    var category:Category{
+        if let categoryId = self.categoryId{
+            return Category(localId: categoryId)
+        }else{
+            return Category.undefined
+        }
+    }
+    var tags:[Tag]{
+        return []
+    }
     
     private var _record:CKRecord?
     
@@ -54,24 +67,28 @@ class Article: BaseEntity{
         let currentDate = Date()
         self.createdTime = currentDate
         self.updatedTime = currentDate
-        
-        self.category = Category.unsaved
-        self.tags = []
-        
+//        self.categoryId
         super.init(name:title)
     }
     
+    
+    
     // MARK: -
-    init(_ articleResult:FMResultSet, categoryResult:FMResultSet, tagResults:[FMResultSet]){
+    convenience init(localId:UInt64){
+        if let rst = PBDBManager.default.execute("select * from article where article_id == \(localId)"){
+            self.init(rst)
+        }else{
+            self.init(title:"", content:"")
+        }
+    }
+    
+    init(_ articleResult:FMResultSet){
         self.content = articleResult.string(forColumn: ColumnKey.ARTICLE_CONTENT)!
         self.isFavorite = articleResult.bool(forColumn: ColumnKey.FAVORITE)
         self.createdTime = articleResult.date(forColumn: ColumnKey.CREATED_TIME)!
         self.updatedTime = articleResult.date(forColumn: ColumnKey.UPDATED_TIME)!
+        self.categoryId =  articleResult.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
         
-        self.category = Category(categoryResult)
-        self.tags = tagResults.map({ (rst) -> Tag in
-            Tag(rst)
-        })
         
         super.init(name:articleResult.string(forColumn: ColumnKey.ARTICLE_TITLE)!)
         self.localId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
