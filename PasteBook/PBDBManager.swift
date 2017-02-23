@@ -42,7 +42,7 @@ class PBDBManager:BaseDBHandler{
         if let category = category{
             categoryCondition = "and article.category_id=\(category.localId)"
         }
-        let result = queryFetch("select article_id, article_title, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
+        let result = queryFetch("select article_id,article_title, article_content, created_time, updated_time, favorite, article.cloud_record_id, article.category_id, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
             return Article(rs)
         }
         return result
@@ -56,11 +56,11 @@ class PBDBManager:BaseDBHandler{
         var wholeContentColumn = "article_title || \"\n\" || article_content"
         if let category = category{
             if let category_id = category.localId{
-                categoryCondition = "and category.category_id=\(category_id)"
+                categoryCondition = "and article.category_id=\(category_id)"
                 wholeContentColumn += " || \"\n\" ||  category_name"
             }
         }
-        let query = "select article_id,article_title, \(wholeContentColumn) as whole_content, category_color from article inner join category where \(condition)  and category.category_id=article.category_id \(categoryCondition) group by article.article_id"
+        let query = "select article_id,article_title, article_content, created_time, updated_time, favorite, article.cloud_record_id, article.category_id, category_color, \(wholeContentColumn) as whole_content from article inner join category where \(condition)  and category.category_id=article.category_id \(categoryCondition) group by article.article_id"
 
         let result = queryFetch(query) { rs in
             return Article(rs)

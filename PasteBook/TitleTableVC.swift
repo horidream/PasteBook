@@ -84,7 +84,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
                 switch id {
                 case "showDetail":
                     let vc = segue.destination as! ArticleDetailViewController
-                    let article = ((sender as AnyObject).value(forKey: "id") as! Article)
+                    let article = ((sender as AnyObject).value(forKey: "article") as! Article)
                     vc.article = article
                     vc.currentCategory = self.currentCategory
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
@@ -130,7 +130,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     // MARK: table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if shouldShowArticles{
-            performSegue(withIdentifier: "showDetail", sender: ["category":data[(indexPath as NSIndexPath).row], "searchText":searchController.searchBar.text!])
+            performSegue(withIdentifier: "showDetail", sender: ["article":data[(indexPath as NSIndexPath).row], "searchText":searchController.searchBar.text!])
         }else{
             let t = CATransition()
             t.duration = 0.2
@@ -211,6 +211,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         if shouldShowArticles{
             self.data = PBDBManager.default.fetchArticles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
             })
+            print(self.data.count, currentCategory)
             cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
             self.tableView.separatorStyle = .none
         }else{

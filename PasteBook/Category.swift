@@ -33,5 +33,6 @@ class Category:BaseEntity{
     init(_ result: FMResultSet) {
         self.color = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_COLOR)
         super.init(name:result.string(forColumn: ColumnKey.CATEGORY_NAME))
+        self.localId = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
     }
 }
