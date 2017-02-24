@@ -53,7 +53,12 @@ class BaseDBHandler: NSObject{
         guard self.database.open() == true else{
             return nil
         }
-        return database.executeQuery(sql, withArgumentsIn: args)
+        if let result = database.executeQuery(sql, withArgumentsIn: args){
+            if result.next(){
+                return result
+            }
+        }
+        return nil
     }
     
     func queryFetch<T>(_ sql:String, args:[Any]! = nil, mapTo mapBlock:(FMResultSet)->T)->Array<T>{

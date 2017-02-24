@@ -27,7 +27,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
     
-    
+    lazy var swipeGesture:UISwipeGestureRecognizer = {
+        let g = UISwipeGestureRecognizer(target: self, action: #selector(self.onBackBarPressed))
+        g.direction = .right
+        return g
+    }()
     
     var firstLaunch:Bool = true
     var lastShowingIndex:Int?
@@ -65,6 +69,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.tableView.estimatedRowHeight = 75
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        refresh()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +89,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             if shouldShowArticles{
                 switch id {
                 case "showDetail":
-                    let vc = segue.destination as! ArticleDetailViewController
+                    let nav = segue.destination as! UINavigationController
+                    let vc = nav.topViewController as! ArticleDetailViewController
                     let article = ((sender as AnyObject).value(forKey: "article") as! Article)
                     vc.article = article
                     vc.currentCategory = self.currentCategory
@@ -136,22 +143,26 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             t.duration = 0.2
             t.type = kCATransitionPush
             t.subtype = kCATransitionFromRight
-            self.view.window?.layer.add(t, forKey: nil)
+            tableView.layer.add(t, forKey: nil)
             
             currentCategory = categoryData[indexPath.row]
             self.navigationItem.title = currentCategory?.name
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.onBackBarPressed))
+            let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.onBackBarPressed))
+            backButton.image = #imageLiteral(resourceName: "BackButton")
+            self.navigationItem.leftBarButtonItem = backButton
+            self.tableView.addGestureRecognizer(self.swipeGesture)
             refresh()
         }
         searchController.searchBar.resignFirstResponder()
     }
     
-    func onBackBarPressed(){
+    func onBackBarPressed(sender:Any?){
+        self.tableView.removeGestureRecognizer(swipeGesture)
         let t = CATransition()
         t.duration = 0.2
         t.type = kCATransitionPush
         t.subtype = kCATransitionFromLeft
-        self.view.window?.layer.add(t, forKey: nil)
+        self.tableView.layer.add(t, forKey: nil)
         self.currentCategory = nil
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.title = rootTitle
@@ -211,7 +222,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         if shouldShowArticles{
             self.data = PBDBManager.default.fetchArticles(withKeywords: searchController.searchBar.text!, category:currentCategory).sorted(by: { $0.title.localizedCaseInsensitiveCompare( $1.title) == ComparisonResult.orderedAscending
             })
-            print(self.data.count, currentCategory)
             cellHeights = (0..<data.count).map { _ in C.CellHeight.close }
             self.tableView.separatorStyle = .none
         }else{

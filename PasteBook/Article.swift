@@ -37,7 +37,7 @@ class Article: BaseEntity{
     
     
     var color:UIColor{
-        return .black
+        return UIColor(category.color)
     }
     var category:Category{
         if let categoryId = self.categoryId{

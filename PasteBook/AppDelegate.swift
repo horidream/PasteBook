@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sandbox()
 //        let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
 //        application.registerUserNotificationSettings(notificationOptions)
-        application.registerForRemoteNotifications()
-        CloudKitManager.instance.registerSubscription()
+//        application.registerForRemoteNotifications()
+//        CloudKitManager.instance.registerSubscription()
         return true
     }
     

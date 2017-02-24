@@ -13,12 +13,12 @@ import CloudKit
 // MARK: - db entity
 class Category:BaseEntity{
     static let undefined = Category("UNDEFINED")
-    var color:UInt64
+    var color:UInt
     var count:UInt{
         return 0
     }
     init(_ name:String){
-        self.color = 0
+        self.color = 0xFFFFFF
         super.init(name: name)
     }
     
@@ -31,7 +31,7 @@ class Category:BaseEntity{
     }
     
     init(_ result: FMResultSet) {
-        self.color = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_COLOR)
+        self.color = UInt(result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_COLOR))
         super.init(name:result.string(forColumn: ColumnKey.CATEGORY_NAME))
         self.localId = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
     }

@@ -10,6 +10,6 @@ import Foundation
 import FMDB
 
 func sandbox(){
-    CloudKitManager.instance.fetchAllArticleTitles()
+//    CloudKitManager.instance.fetchAllArticleTitles()
 }
 
