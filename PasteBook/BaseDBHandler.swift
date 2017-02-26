@@ -74,7 +74,6 @@ class BaseDBHandler: NSObject{
             }
             
         }
-//        self.database.close()
         return result
         
     }
@@ -85,41 +84,10 @@ class BaseDBHandler: NSObject{
         guard self.database.open() == true else{
             return false
         }
-//        defer{
-//            self.database.close()
-//        }
         if let result = database.executeQuery(sql, withArgumentsIn: args)
         {
             return result.next()
         }
         return false
     }
-    
-//    func queryChange(_ sql:String, args:[AnyObject]? = nil)->NSDictionary?{
-//        guard self.database.open() == true else{
-//            return nil
-//        }
-//        defer{
-//            self.database.close()
-//        }
-//        let result = database.executeQuery(sql, withArgumentsIn: args)
-//        // must have
-//        result?.next()
-//        let arr = sql.split("\\s+")
-//        if arr[0].lowercased() != "insert"{
-//            return nil
-//        }
-//        lastInsertRowId = NSNumber(value: self.database.lastInsertRowId() as Int64)
-//        let idx = arr.map{$0.lowercased()}.index(of: "into")
-//        if let insertedId = lastInsertRowId , idx != nil{
-//            let tableName = arr[idx! + 1]
-//            let resultSet = database.executeQuery("SELECT * FROM \(tableName) WHERE ROWID=?", withArgumentsIn:[insertedId])
-//            resultSet?.next()
-//            return resultSet?.resultDictionary() as NSDictionary?
-//        }else{
-//            return nil
-//        }
-//        
-//    }
-
 }

@@ -67,7 +67,6 @@ class Article: BaseEntity{
         let currentDate = Date()
         self.createdTime = currentDate
         self.updatedTime = currentDate
-//        self.categoryId
         super.init(name:title)
     }
     
@@ -93,10 +92,27 @@ class Article: BaseEntity{
         super.init(name:articleResult.string(forColumn: ColumnKey.ARTICLE_TITLE)!)
         self.localId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
         self.cloudId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.CLOUD_ID)
-        
+        self.needsUpdate = false
         
     }
     
+    
+    func saveToLocal(){
+        self.category.saveToLocal()
+        if localId == nil{
+            let query = "INSERT INTO article (article_title, article_content, category_id, update_time, created_time) VALUES (?, ?, ?, ?, ? )"
+            _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, createdTime])
+            let articleId = PBDBManager.default.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
+                $0.unsignedLongLongInt(forColumn: "article_id")
+            }).first!
+            self.localId = articleId
+        }else if needsUpdate{
+            let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=? WHERE article_id=?"
+            _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.localId!])
+        }
+        
+        self.needsUpdate = false
+    }
     
     
 }

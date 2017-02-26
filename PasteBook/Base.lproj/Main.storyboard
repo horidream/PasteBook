@@ -155,9 +155,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="BHK-TR-JKn" kind="showDetail" identifier="showDetail" id="LU8-ci-hwJ"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -168,6 +165,7 @@
                     <navigationItem key="navigationItem" id="rAK-LR-Jvd"/>
                     <connections>
                         <segue destination="ex1-yM-NCH" kind="showDetail" identifier="CreateNew" id="5Tm-FO-Wer"/>
+                        <segue destination="BHK-TR-JKn" kind="showDetail" identifier="showDetail" id="5ei-lY-L3f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFp-ir-dKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +223,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="5ei-lY-L3f"/>
         <segue reference="5Tm-FO-Wer"/>
-        <segue reference="LU8-ci-hwJ"/>
     </inferredMetricsTieBreakers>
 </document>

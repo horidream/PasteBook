@@ -12,7 +12,7 @@ import FMDB
 
 class Tag:BaseEntity{
     var color:UInt64
-    
+    var targetArticle:Article?
     init(_ name:String){
         self.color = 0
         super.init(name: name)

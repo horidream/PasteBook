@@ -15,7 +15,12 @@ class Category:BaseEntity{
     static let undefined = Category("UNDEFINED")
     var color:UInt
     var count:UInt{
-        return 0
+        if let localId = self.localId{
+            let result = PBDBManager.default.execute("select count(article.category_id) as article_count from article where category_id = \(localId)")
+            return UInt(result?.unsignedLongLongInt(forColumn: "article_count") ?? 0)
+        }else{
+            return 0
+        }
     }
     init(_ name:String){
         self.color = 0xFFFFFF
@@ -34,5 +39,22 @@ class Category:BaseEntity{
         self.color = UInt(result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_COLOR))
         super.init(name:result.string(forColumn: ColumnKey.CATEGORY_NAME))
         self.localId = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
+        self.needsUpdate = false
+    }
+    
+    
+    func saveToLocal(){
+        if localId == nil {
+            _ = PBDBManager.default.queryChange("INSERT OR IGNORE INTO category (category_name, category_color) VALUES (?, ?)", args:[self.name, self.color])
+            let categoryId = PBDBManager.default.queryFetch("SELECT category_id from category where category_name=?", args:[self.name], mapTo: {
+                $0.unsignedLongLongInt(forColumn: "category_id")
+            }).first!
+            self.localId = categoryId
+        }else if needsUpdate{
+            let query = "UPDATE category set category_name=?, cagegory_color=? WHERE category_id=?"
+            _ = PBDBManager.default.queryChange(query, args:[self.name, self.color, self.localId!])
+        }
+        self.needsUpdate = false
+
     }
 }

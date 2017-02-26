@@ -55,6 +55,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.searchBar.returnKeyType = .done
+        // add input accessor view for search 
+        let toolbar = UIToolbar(frame: CGRect(x:0, y:0, width:self.view.frame.size.width, height: 50))
+        
+        toolbar.items = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))]
+        self.searchController.searchBar.inputAccessoryView = toolbar
         
         self.definesPresentationContext = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))
@@ -217,6 +222,12 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     
     
     // MARK: search result
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.text = ""
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
     
     func refresh(){
         if shouldShowArticles{

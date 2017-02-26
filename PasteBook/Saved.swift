@@ -31,11 +31,19 @@ enum Saved{
 }
 
 
+protocol CloudManageable {
+    var isCloudSynced:Bool{get set}
+    var needsUpdateToCloud:Bool{get set}
+    func saveToCloud()
+}
+
 class BaseEntity{
     var localId:UInt64?
     var cloudId:UInt64?
     var name:String
+    var needsUpdate:Bool
     init(name:String){
+        self.needsUpdate = true
         self.name = name
     }
 }
