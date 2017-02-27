@@ -58,7 +58,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         // add input accessor view for search 
         let toolbar = UIToolbar(frame: CGRect(x:0, y:0, width:self.view.frame.size.width, height: 50))
         
-        toolbar.items = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))]
+        let cameraIcon = "\u{F118}".icon(fontSize: 30, fontColor: .blue)
+        toolbar.items = [
+            UIBarButtonItem(image:cameraIcon, style:.plain , target: self, action: #selector(addNewItem))
+        ]
         self.searchController.searchBar.inputAccessoryView = toolbar
         
         self.definesPresentationContext = true

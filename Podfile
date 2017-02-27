@@ -7,6 +7,7 @@ use_frameworks!
     pod 'FMDB'
     pod 'Dropper'
 	pod 'FoldingCell'
+    pod 'ALCameraViewController', :git => "https://github.com/horidream/ALCameraViewController.git"
 end
 
 

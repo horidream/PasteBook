@@ -24,6 +24,26 @@ extension String {
             return []
         }
     }
+    
+    func icon(fontSize:CGFloat, fontColor:UIColor) -> UIImage{
+        let font = UIFont(name: "ionicons", size: fontSize)
+        let style = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        style.alignment = .left
+        let attr = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: fontColor,
+            NSParagraphStyleAttributeName: style
+        ]
+        
+        let size = self.size(attributes: attr)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        let rect = CGRect(origin: .zero, size: size)
+        self.draw(in: rect, withAttributes: attr)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+
 }
 
 
