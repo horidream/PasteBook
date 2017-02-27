@@ -12,7 +12,12 @@ import CloudKit
 
 // MARK: - db entity
 class Category:BaseEntity{
-    static let undefined = Category("UNDEFINED")
+    static let undefined:Category = {
+        let c = Category("UNDEFINED")
+        c.saveToLocal()
+        return c
+    }()
+    
     var color:UInt
     var count:UInt{
         if let localId = self.localId{
@@ -23,7 +28,7 @@ class Category:BaseEntity{
         }
     }
     init(_ name:String){
-        self.color = 0xFFFFFF
+        self.color = 0xFF0000
         super.init(name: name)
     }
     

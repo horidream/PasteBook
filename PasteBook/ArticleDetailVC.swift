@@ -13,11 +13,11 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     var article:Article?
     var searchText:String?
-    var currentCategory:Category?
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = Bundle.main.url(forResource: "template", withExtension: "html")!
         webView.loadRequest(URLRequest(url: url))
+        webView.scalesPageToFit = true
         webView.delegate = self
     }
 
@@ -63,7 +63,6 @@ class ArticleDetailViewController: UIViewController, UIWebViewDelegate {
         if segue.identifier == "EditItem"{
             let editVC = segue.destination as! CreateNewItemVC
             editVC.currentArticle = article
-            editVC.currentCategory = currentCategory
         }
     }
 

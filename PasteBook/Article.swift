@@ -40,10 +40,17 @@ class Article: BaseEntity{
         return UIColor(category.color)
     }
     var category:Category{
-        if let categoryId = self.categoryId{
-            return Category(localId: categoryId)
-        }else{
-            return Category.undefined
+        get{
+            if let categoryId = self.categoryId{
+                return Category(localId: categoryId)
+            }else{
+                return Category.undefined
+            }
+        }
+        set{
+            if let id = newValue.localId{
+                self.localId = id
+            }
         }
     }
     var tags:[Tag]{
@@ -100,8 +107,8 @@ class Article: BaseEntity{
     func saveToLocal(){
         self.category.saveToLocal()
         if localId == nil{
-            let query = "INSERT INTO article (article_title, article_content, category_id, update_time, created_time) VALUES (?, ?, ?, ?, ? )"
-            _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, createdTime])
+            let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time) VALUES (?, ?, ?, ?, ? )"
+            _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate])
             let articleId = PBDBManager.default.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
                 $0.unsignedLongLongInt(forColumn: "article_id")
             }).first!

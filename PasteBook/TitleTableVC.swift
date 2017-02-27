@@ -101,11 +101,11 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
                     let vc = nav.topViewController as! ArticleDetailViewController
                     let article = ((sender as AnyObject).value(forKey: "article") as! Article)
                     vc.article = article
-                    vc.currentCategory = self.currentCategory
                     vc.searchText = ((sender as AnyObject).value(forKey: "searchText")) as? String
                 case "CreateNew":
-                    let cnvc = segue.destination as! CreateNewItemVC
-                    cnvc.currentCategory = self.currentCategory
+                    let navi = segue.destination as! UINavigationController
+                    let cnvc = navi.viewControllers.first as! CreateNewItemVC
+                    cnvc.selectedCategory = self.currentCategory
                 default:()
                 }
             }

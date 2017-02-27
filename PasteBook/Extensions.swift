@@ -26,10 +26,10 @@ extension String {
     }
     
     func icon(fontSize:CGFloat, fontColor:UIColor) -> UIImage{
-        let font = UIFont(name: "ionicons", size: fontSize)
+        let font = UIFont(name: "ionicons", size: fontSize)!
         let style = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         style.alignment = .left
-        let attr = [
+        let attr:[String:Any] = [
             NSFontAttributeName: font,
             NSForegroundColorAttributeName: fontColor,
             NSParagraphStyleAttributeName: style

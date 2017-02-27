@@ -10,24 +10,6 @@ import UIKit
 import QuartzCore
 import Dropper
 
-//class SegueFromLeft: UIStoryboardSegue {
-//    
-//    override func perform() {
-//        let src: UIViewController = self.source
-//        let dst: UIViewController = self.destination
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.25
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromLeft
-//        src.navigationController!.view.layer.add(transition, forKey: kCATransition)
-//        src.navigationController!.pushViewController(dst, animated: false)
-//    }
-//    
-//}
-
-
 class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate,DropperDelegate  {
 
     @IBOutlet weak var titleTF: UITextField!
@@ -36,7 +18,6 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     @IBOutlet weak var categorySelector: UIButton!
     
     
-    var currentCategory:Category?
     var currentArticle:Article?
     private var dropper:Dropper!
     var categories:Array<Category> = []
@@ -64,7 +45,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.backBarButtonItem?.title = "BACK"
-        categorySelector.setTitle(currentCategory?.name ?? Category.undefined.name, for: .normal)
+        categorySelector.setTitle(self.currentArticle?.category.name ?? Category.undefined.name, for: .normal)
         categories = PBDBManager.default.fetchAllCategories()
         dropper.items = categories.map{$0.name}
         
@@ -85,7 +66,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func DropperSelectedRow(_ path: IndexPath, contents: String, tag: Int) {
         selectedCategory = categories[path.row]
-        currentCategory = selectedCategory
+        currentArticle?.categoryId = selectedCategory?.localId
         categorySelector.setTitle(selectedCategory?.name, for: .normal)
     }
     
@@ -99,9 +80,17 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func didCreateNewArticle(){
         if isCreatingNew{
-            _ = PBDBManager.default.addArticle(Article(title:titleTF.text!, content:contentTextView.text), to: currentCategory ?? .undefined)
-            _ = self.navigationController?.popViewController(animated: true)
+
+            let article = Article(title:titleTF.text!, content:contentTextView.text)
+            article.category.localId = selectedCategory?.localId
+            article.saveToLocal()
+            self.currentArticle = article
             if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC{
+                delay(0.3, closure: {
+                    titleVC.refresh()
+                    
+                })
+            }else if let titleVC = self.splitViewController?.viewControllers.first?.childViewControllers.first as? TitleTableVC{
                 delay(0.3, closure: {
                     titleVC.refresh()
                     
@@ -110,7 +99,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         }else{
             currentArticle?.title = titleTF.text!
             currentArticle?.content = contentTextView.text
-            let article = PBDBManager.default.updateArticle(currentArticle!, with: currentCategory ?? .undefined)
+            let article = PBDBManager.default.updateArticle(currentArticle!, with: self.currentArticle?.category ?? .undefined)
             _ = self.navigationController?.popViewController(animated: true)
             if let detailVC = self.navigationController?.viewControllers.last as? ArticleDetailViewController{
                 delay(0.3, closure: {
@@ -119,20 +108,14 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
                 })
             }
         }
-        
-        
+        self.performSegue(withIdentifier: "showDetail", sender: self)
     }
     
     // MARK: popover delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SelectTag" {
-            let navigationVC = segue.destination as! UINavigationController
-            navigationVC.modalPresentationStyle = UIModalPresentationStyle.popover
-            navigationVC.popoverPresentationController!.delegate = self
-            
-            if let popoverPresentationController = segue.destination.popoverPresentationController, let sourceView = sender as? UIView {
-                popoverPresentationController.sourceRect = sourceView.bounds
-            }
+        if segue.identifier == "showDetail" {
+            let advc = segue.destination as! ArticleDetailViewController
+            advc.article = self.currentArticle
         }
     }
     
