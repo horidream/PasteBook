@@ -28,7 +28,16 @@ struct ColumnKey{
 }
 
 
-class Article: BaseEntity{
+
+class Article: BaseEntity, Equatable{
+    var title:String{
+        get{
+            return self.name
+        }
+        set{
+            self.name = title
+        }
+    }
     var content:String
     var createdTime:Date
     var updatedTime:Date
@@ -57,17 +66,12 @@ class Article: BaseEntity{
         return []
     }
     
-    private var _record:CKRecord?
-    
-    var title:String{
-        get{
-            return self.name
-        }
-        set{
-            self.name = title
-        }
+    // MARK: -
+    static func == (lhs: Article, rhs: Article) -> Bool{
+        return lhs.name == rhs.name && lhs.content == rhs.content && lhs.isFavorite == rhs.isFavorite && lhs.categoryId == rhs.categoryId
+        
     }
-
+    
     init(title:String, content:String){
         self.content = content
 
@@ -79,7 +83,8 @@ class Article: BaseEntity{
     
     
     
-    // MARK: -
+    
+    // MARK: - local
     convenience init(localId:UInt64){
         if let rst = PBDBManager.default.execute("select * from article where article_id == \(localId)"){
             self.init(rst)
@@ -98,11 +103,9 @@ class Article: BaseEntity{
         
         super.init(name:articleResult.string(forColumn: ColumnKey.ARTICLE_TITLE)!)
         self.localId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
-        self.cloudId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.CLOUD_ID)
-        self.needsUpdate = false
+        self.needsUpdateToLocal = false
         
     }
-    
     
     func saveToLocal(){
         self.category.saveToLocal()
@@ -113,12 +116,12 @@ class Article: BaseEntity{
                 $0.unsignedLongLongInt(forColumn: "article_id")
             }).first!
             self.localId = articleId
-        }else if needsUpdate{
+        }else if needsUpdateToLocal{
             let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=? WHERE article_id=?"
             _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.localId!])
         }
         
-        self.needsUpdate = false
+        self.needsUpdateToLocal = false
     }
     
     

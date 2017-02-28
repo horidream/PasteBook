@@ -191,7 +191,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aYr-nh-6fU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ENx-X5-CUt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ENx-X5-CUt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -209,7 +209,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BHK-TR-JKn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Son-BT-yTW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Son-BT-yTW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -228,7 +228,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5o-PJ-7SJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T7m-N4-C5M" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Li9-ZK-hVk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Li9-ZK-hVk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -244,6 +244,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="rwv-LF-S4F"/>
         <segue reference="5ei-lY-L3f"/>
-        <segue reference="5vM-YY-IBG"/>
+        <segue reference="gCD-K1-jot"/>
     </inferredMetricsTieBreakers>
 </document>

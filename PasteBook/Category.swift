@@ -44,7 +44,7 @@ class Category:BaseEntity{
         self.color = UInt(result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_COLOR))
         super.init(name:result.string(forColumn: ColumnKey.CATEGORY_NAME))
         self.localId = result.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
-        self.needsUpdate = false
+        self.needsUpdateToLocal = false
     }
     
     
@@ -55,11 +55,11 @@ class Category:BaseEntity{
                 $0.unsignedLongLongInt(forColumn: "category_id")
             }).first!
             self.localId = categoryId
-        }else if needsUpdate{
+        }else if needsUpdateToLocal{
             let query = "UPDATE category set category_name=?, cagegory_color=? WHERE category_id=?"
             _ = PBDBManager.default.queryChange(query, args:[self.name, self.color, self.localId!])
         }
-        self.needsUpdate = false
+        self.needsUpdateToLocal = false
 
     }
 }
