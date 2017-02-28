@@ -45,7 +45,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.backBarButtonItem?.title = "BACK"
-        categorySelector.setTitle(self.currentArticle?.category.name ?? Category.undefined.name, for: .normal)
+        categorySelector.setTitle(self.selectedCategory?.name ?? Category.undefined.name, for: .normal)
         categories = PBDBManager.default.fetchAllCategories()
         dropper.items = categories.map{$0.name}
         
@@ -108,7 +108,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
                 })
             }
         }
-        self.performSegue(withIdentifier: "showDetail", sender: self)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: popover delegate

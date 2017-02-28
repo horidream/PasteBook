@@ -13,7 +13,7 @@
         <!--Article Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ArticleDetailViewController" customModule="Knoma" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" id="BYZ-38-t0r" customClass="ArticleDetailViewController" customModule="Knoma" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -40,7 +40,7 @@
         <!--Create New ItemVC-->
         <scene sceneID="guk-Ep-gwz">
             <objects>
-                <viewController id="ex1-yM-NCH" customClass="CreateNewItemVC" customModule="Knoma" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="edit" id="ex1-yM-NCH" customClass="CreateNewItemVC" customModule="Knoma" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jp5-sD-ngr"/>
                         <viewControllerLayoutGuide type="bottom" id="lf8-Co-0cx"/>
@@ -117,7 +117,6 @@
                         <outlet property="categorySelector" destination="B4o-mX-89A" id="fU9-rQ-6sd"/>
                         <outlet property="contentTextView" destination="g8e-Of-0yD" id="OIl-QH-MCK"/>
                         <outlet property="titleTF" destination="bbO-bs-iYi" id="k3Q-t2-FIk"/>
-                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="showDetail" action="showViewController:sender:" id="5vM-YY-IBG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ppl-mj-Yl0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -165,7 +164,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="rAK-LR-Jvd"/>
                     <connections>
-                        <segue destination="T7m-N4-C5M" kind="showDetail" identifier="CreateNew" id="5Tm-FO-Wer"/>
                         <segue destination="BHK-TR-JKn" kind="showDetail" identifier="showDetail" id="5ei-lY-L3f"/>
                     </connections>
                 </tableViewController>
@@ -207,7 +205,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ngU-JW-Zne">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BHK-TR-JKn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="detailNavigation" automaticallyAdjustsScrollViewInsets="NO" id="BHK-TR-JKn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Son-BT-yTW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -222,28 +220,8 @@
             </objects>
             <point key="canvasLocation" x="1466" y="2065"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="TSx-Wg-3qf">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O5o-PJ-7SJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T7m-N4-C5M" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Li9-ZK-hVk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ex1-yM-NCH" kind="relationship" relationship="rootViewController" id="rwv-LF-S4F"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="2910" y="1200"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rwv-LF-S4F"/>
         <segue reference="5ei-lY-L3f"/>
-        <segue reference="gCD-K1-jot"/>
     </inferredMetricsTieBreakers>
 </document>

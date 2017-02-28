@@ -87,7 +87,16 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     }
     
     func addNewItem(){
-        self.performSegue(withIdentifier: "CreateNew", sender: self)
+//        let detail:ArticleDetailViewController = (UIStoryboard.mainStoryboard?.instantiateViewController(withIdentifier: "detail"))! as! ArticleDetailViewController
+//        CATransaction.begin()
+//        CATransaction.setDisableActions(true)
+//        self.splitViewController?.showDetailViewController(detail, sender: self)
+//        CATransaction.commit()
+        if let edit:CreateNewItemVC = UIStoryboard.mainStoryboard?.instantiateViewController(withIdentifier: "edit") as? CreateNewItemVC{
+            edit.selectedCategory = self.currentCategory
+            self.splitViewController?.showDetailViewController(edit, sender: self)
+            
+        }
     }
     
     
