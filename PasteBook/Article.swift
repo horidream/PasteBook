@@ -8,6 +8,8 @@
 import CloudKit
 import FMDB
 
+
+
 struct ColumnKey{
     static let ARTICLE_ID:String = "article_id"
     static let ARTICLE_TITLE:String = "article_title"
@@ -26,8 +28,6 @@ struct ColumnKey{
     static let CLOUD_ID:String = "cloud_record_id"
     
 }
-
-
 
 class Article: BaseEntity, Equatable{
     var title:String{
@@ -124,5 +124,32 @@ class Article: BaseEntity, Equatable{
         self.needsUpdateToLocal = false
     }
     
+    // MARK: - 
+    func saveToCloud() {
+        self.category.saveToCloud()
+        let record:CKRecord
+        if cloudRecord == nil{
+            record = CKRecord(recordType: "article")
+            needsUpdateToCloud = true
+        }else{
+            record = self.cloudRecord!
+        }
+        if needsUpdateToCloud{
+            record["article_title"] = self.title as CKRecordValue
+            record["article_content"] = self.content as CKRecordValue
+            record["category"] = CKReference(record: category.cloudRecord!, action: .none)
+            record[ColumnKey.UPDATED_TIME] = self.updatedTime as CKRecordValue
+            record[ColumnKey.CREATED_TIME] = self.createdTime as CKRecordValue
+            let db = CloudKitManager.instance.privateDB
+            db.save(record, completionHandler: { (savedRecord, err) in
+                if(err == nil){
+                    self.cloudRecord = savedRecord
+                    self.needsUpdateToCloud = false
+                }else{
+                    //TODO: handle save error
+                }
+            })
+        }
+    }
     
 }

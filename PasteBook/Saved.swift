@@ -32,7 +32,7 @@ enum Saved{
 
 
 protocol CloudManageable {
-    var cloudId:CKRecordID?{get set}
+    var cloudRecord:CKRecord?{get set}
     var needsUpdateToCloud:Bool{get set}
     func saveToCloud()
 }
@@ -48,14 +48,21 @@ extension LocalManageable{
     func saveToLocal(){}
 }
 
-class BaseEntity: LocalManageable{
+extension CloudManageable{
+    func saveToCloud(){}
+}
+
+class BaseEntity: LocalManageable, CloudManageable{
     var localId:UInt64?
+    var cloudRecord: CKRecord?
+    var needsUpdateToCloud: Bool
     var needsUpdateToLocal:Bool
     
     
     var name:String
     init(name:String){
         self.needsUpdateToLocal = true
+        self.needsUpdateToCloud = true
         self.name = name
     }
 }
