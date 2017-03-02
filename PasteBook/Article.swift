@@ -100,8 +100,11 @@ class Article: BaseEntity, Equatable{
         self.updatedTime = articleResult.date(forColumn: ColumnKey.UPDATED_TIME)!
         self.categoryId =  articleResult.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
         
+       
         
         super.init(name:articleResult.string(forColumn: ColumnKey.ARTICLE_TITLE)!)
+        let recStr:String = articleResult.string(forColumn: ColumnKey.CLOUD_ID) ?? ""
+        self.cloudRecord = CKRecord(recordType: "article", recordID: CKRecordID.parseString(str: recStr)!)
         self.localId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
         self.needsUpdateToLocal = false
         
@@ -110,18 +113,23 @@ class Article: BaseEntity, Equatable{
     func saveToLocal(){
         self.category.saveToLocal()
         if localId == nil{
-            let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time) VALUES (?, ?, ?, ?, ? )"
-            _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate])
-            let articleId = PBDBManager.default.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
-                $0.unsignedLongLongInt(forColumn: "article_id")
-            }).first!
-            self.localId = articleId
+            let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time, cloud_record_id) VALUES (?, ?, ?, ?, ?, ?)"
+            
+            if PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate, self.cloudIDStringRepresentation]){
+                let articleId = PBDBManager.default.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
+                    $0.unsignedLongLongInt(forColumn: "article_id")
+                }).first!
+                self.localId = articleId
+                self.needsUpdateToLocal = false
+            }
         }else if needsUpdateToLocal{
-            let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=? WHERE article_id=?"
-            _ = PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.localId!])
+            let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=?, cloud_record_id=? WHERE article_id=?"
+            if PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, self.cloudIDStringRepresentation , self.localId!]){
+                self.needsUpdateToLocal = false
+                
+            }
         }
         
-        self.needsUpdateToLocal = false
     }
     
     // MARK: - 
@@ -145,6 +153,7 @@ class Article: BaseEntity, Equatable{
                 if(err == nil){
                     self.cloudRecord = savedRecord
                     self.needsUpdateToCloud = false
+                    self.saveToLocal()
                 }else{
                     //TODO: handle save error
                 }

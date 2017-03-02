@@ -50,6 +50,9 @@ extension LocalManageable{
 
 extension CloudManageable{
     func saveToCloud(){}
+    var cloudIDStringRepresentation:String{
+        return self.cloudRecord?.recordID.toString() ?? ""
+    }
 }
 
 class BaseEntity: LocalManageable, CloudManageable{

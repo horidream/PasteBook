@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import CloudKit
 
-// MARK: - extensions
 
+
+// MARK: - Foundation
 
 extension String {
     
@@ -45,6 +47,27 @@ extension String {
     }
 
 }
+
+
+// MARK: - cloudkit
+extension CKRecordID{
+    func toString()->String{
+        let zoneID:CKRecordZoneID = self.zoneID
+        return self.recordName+"::"+zoneID.zoneName+"::"+zoneID.ownerName
+    }
+    
+    class func parseString(str:String)->CKRecordID?{
+        let parts:Array<String> = str.split("::")
+        if let recordName:String = parts.get(0), let zoneName = parts.get(1), let ownerName = parts.get(2){
+            
+            let zoneID = CKRecordZoneID(zoneName: zoneName, ownerName: ownerName)
+            return CKRecordID(recordName: recordName, zoneID: zoneID)
+        }
+        return nil
+        
+    }
+}
+
 
 
 // MARK: - global functions
