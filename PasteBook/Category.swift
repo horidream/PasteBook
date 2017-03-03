@@ -28,10 +28,25 @@ class Category:BaseEntity{
         }
     }
     init(_ name:String){
-        self.color = 0xFF0000
+        self.color = 0xFF9900
         super.init(name: name)
     }
+    override var localId: UInt64?{
+        didSet{
+            if(localId != nil){
+                Category.localCategories[localId!] = self
+            }
+        }
+    }
     
+    // MARK: - class level
+    
+    static var localCategories:[UInt64:Category] = [:]
+    class func getCategory(localId:UInt64)->Category{
+        return localCategories[localId] ?? Category.init(localId: localId)
+    }
+    
+    // MARK: -
     convenience init(localId:UInt64){
         if let rst = PBDBManager.default.execute("select * from category where category_id=\(localId)"){
             self.init(rst)
@@ -63,6 +78,31 @@ class Category:BaseEntity{
 
     }
     
+    // MARK: - 
+    func saveToCloud() {
+        let record:CKRecord
+        if cloudRecord == nil{
+            record = CKRecord(recordType: "category")
+            needsUpdateToCloud = true
+        }else{
+            record = self.cloudRecord!
+        }
+        if needsUpdateToCloud{
+            record["category_name"] = self.name as CKRecordValue
+            record["category_color"] = self.color as CKRecordValue
+            let db = CloudKitManager.instance.privateDB
+            db.save(record, completionHandler: { (savedRecord, err) in
+                if(err == nil){
+                    self.cloudRecord = savedRecord
+                    self.needsUpdateToCloud = false
+                    self.saveToLocal()
+                }else{
+                    //TODO: handle saving error
+                }
+            })
+        }
+
+    }
     
     
 }

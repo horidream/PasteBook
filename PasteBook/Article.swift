@@ -38,11 +38,35 @@ class Article: BaseEntity, Equatable{
             self.name = title
         }
     }
-    var content:String
-    var createdTime:Date
-    var updatedTime:Date
-    var isFavorite:Bool = false
-    var categoryId:UInt64?
+    var content:String{
+        didSet{
+            checkNeedsUpdate(oldValue, with: content)
+        }
+    }
+    var createdTime:Date{
+        didSet{
+            checkNeedsUpdate(oldValue, with: createdTime)
+        }
+    }
+
+    var updatedTime:Date{
+        didSet{
+            checkNeedsUpdate(oldValue, with: updatedTime)
+        }
+    }
+
+    var isFavorite:Bool = false{
+        didSet{
+            checkNeedsUpdate(oldValue, with: isFavorite)
+        }
+    }
+
+    var categoryId:UInt64?{
+        didSet{
+            checkNeedsUpdate(oldValue, with: categoryId)
+        }
+    }
+
     
     
     var color:UIColor{
@@ -112,11 +136,12 @@ class Article: BaseEntity, Equatable{
     
     func saveToLocal(){
         self.category.saveToLocal()
+        let db = PBDBManager.default
         if localId == nil{
             let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time, cloud_record_id) VALUES (?, ?, ?, ?, ?, ?)"
             
-            if PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate, self.cloudIDStringRepresentation]){
-                let articleId = PBDBManager.default.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
+            if db.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate, self.cloudIDStringRepresentation]){
+                let articleId = db.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
                     $0.unsignedLongLongInt(forColumn: "article_id")
                 }).first!
                 self.localId = articleId
@@ -124,12 +149,20 @@ class Article: BaseEntity, Equatable{
             }
         }else if needsUpdateToLocal{
             let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=?, cloud_record_id=? WHERE article_id=?"
-            if PBDBManager.default.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, self.cloudIDStringRepresentation , self.localId!]){
+            if db.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, self.cloudIDStringRepresentation , self.localId!]){
                 self.needsUpdateToLocal = false
                 
             }
         }
         
+    }
+    
+    func deleteFromLocal() {
+        if let id = localId{
+            let db = PBDBManager.default
+            _ = db.execute("DELETE FROM tagged_article where article_id=?", args: [id])
+            _ = db.execute("DELETE FROM article where article_id=?", args: [id])
+        }
     }
     
     // MARK: - 
@@ -155,7 +188,7 @@ class Article: BaseEntity, Equatable{
                     self.needsUpdateToCloud = false
                     self.saveToLocal()
                 }else{
-                    //TODO: handle save error
+                    //TODO: handle saving error
                 }
             })
         }

@@ -13,22 +13,7 @@ import CloudKit
 import FMDB
 
 
-enum Saved{
-    case cloud(id:Data)
-    case local(id:UInt64)
-    case notYet
-    
-    var id:Any?{
-        switch self{
-        case .notYet:
-            return nil
-        case .cloud(id: let id):
-            return id
-        case .local(id: let id):
-            return id
-        }
-    }
-}
+
 
 
 protocol CloudManageable {
@@ -42,10 +27,12 @@ protocol LocalManageable{
     var localId:UInt64?{get set}
     var needsUpdateToLocal:Bool{get set}
     func saveToLocal()
+    func deleteFromLocal()
 }
 
 extension LocalManageable{
     func saveToLocal(){}
+    func deleteFromLocal(){}
 }
 
 extension CloudManageable{
@@ -56,13 +43,27 @@ extension CloudManageable{
 }
 
 class BaseEntity: LocalManageable, CloudManageable{
-    var localId:UInt64?
+    internal var localId:UInt64?
     var cloudRecord: CKRecord?
-    var needsUpdateToCloud: Bool
-    var needsUpdateToLocal:Bool
+    internal var needsUpdateToCloud: Bool
+    internal var needsUpdateToLocal:Bool
     
     
-    var name:String
+    var name:String{
+        didSet{
+            checkNeedsUpdate(oldValue, with: name)
+        }
+    }
+    
+    internal func checkNeedsUpdate<T:Equatable>(_ oldValue:T?, with neoValue:T?){
+        if(oldValue != neoValue){
+            needsUpdateToLocal = true
+            if(cloudRecord != nil){
+                needsUpdateToCloud = true
+            }
+        }
+    }
+    
     init(name:String){
         self.needsUpdateToLocal = true
         self.needsUpdateToCloud = true
@@ -71,15 +72,6 @@ class BaseEntity: LocalManageable, CloudManageable{
 }
 
 
-
-func == (lhs: Saved, rhs: Saved) -> Bool {
-    switch (lhs, rhs) {
-    case (.cloud(let a),   .cloud(let b))   where a == b: return true
-    case (.local(let a), .local(let b)) where a == b: return true
-    case (.notYet, .notYet): return true
-    default: return false
-    }
-}
 
 
 
