@@ -136,12 +136,11 @@ class Article: BaseEntity, Equatable{
     
     func saveToLocal(){
         self.category.saveToLocal()
-        let db = PBDBManager.default
         if localId == nil{
             let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time, cloud_record_id) VALUES (?, ?, ?, ?, ?, ?)"
             
-            if db.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate, self.cloudIDStringRepresentation]){
-                let articleId = db.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
+            if localDB.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate, self.cloudIDStringRepresentation]){
+                let articleId = localDB.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
                     $0.unsignedLongLongInt(forColumn: "article_id")
                 }).first!
                 self.localId = articleId
@@ -149,7 +148,7 @@ class Article: BaseEntity, Equatable{
             }
         }else if needsUpdateToLocal{
             let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=?, cloud_record_id=? WHERE article_id=?"
-            if db.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, self.cloudIDStringRepresentation , self.localId!]){
+            if localDB.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime, self.cloudIDStringRepresentation , self.localId!]){
                 self.needsUpdateToLocal = false
                 
             }
@@ -159,13 +158,24 @@ class Article: BaseEntity, Equatable{
     
     func deleteFromLocal() {
         if let id = localId{
-            let db = PBDBManager.default
-            _ = db.execute("DELETE FROM tagged_article where article_id=?", args: [id])
-            _ = db.execute("DELETE FROM article where article_id=?", args: [id])
+            _ = localDB.execute("DELETE FROM tagged_article where article_id=?", args: [id])
+            _ = localDB.execute("DELETE FROM article where article_id=?", args: [id])
         }
     }
     
     // MARK: - 
+    init(_ record:CKRecord){
+        self.content = record[ColumnKey.ARTICLE_CONTENT] as! String
+        self.isFavorite = record[ColumnKey.FAVORITE] as? Bool ?? false
+        self.createdTime = record[ColumnKey.CREATED_TIME] as! Date
+        self.updatedTime = record[ColumnKey.UPDATED_TIME] as! Date
+        self.categoryId =  record[ColumnKey.CATEGORY_ID] as? UInt64
+        
+        super.init(name:record[ColumnKey.ARTICLE_TITLE] as! String)
+        self.cloudRecord = record
+        self.needsUpdateToCloud = false
+        
+    }
     func saveToCloud() {
         self.category.saveToCloud()
         let record:CKRecord
@@ -181,8 +191,7 @@ class Article: BaseEntity, Equatable{
             record["category"] = CKReference(record: category.cloudRecord!, action: .none)
             record[ColumnKey.UPDATED_TIME] = self.updatedTime as CKRecordValue
             record[ColumnKey.CREATED_TIME] = self.createdTime as CKRecordValue
-            let db = CloudKitManager.instance.privateDB
-            db.save(record, completionHandler: { (savedRecord, err) in
+            cloudDB.save(record, completionHandler: { (savedRecord, err) in
                 if(err == nil){
                     self.cloudRecord = savedRecord
                     self.needsUpdateToCloud = false

@@ -1,11 +1,11 @@
 PODS:
   - ALCameraViewController (1.2.8)
-  - Dropper (2.7.5)
-  - EZSwiftExtensions (1.7)
+  - Dropper (2.7.6)
+  - EZSwiftExtensions (1.9)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - FoldingCell (2.0.1)
+  - FoldingCell (2.0.3)
 
 DEPENDENCIES:
   - ALCameraViewController (from `https://github.com/horidream/ALCameraViewController.git`)
@@ -25,10 +25,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ALCameraViewController: a805368c1c6e2cbaf5ae05747690f149be87fc78
-  Dropper: 6fb3bd5977f2ade0a332321b6846180d59e75000
-  EZSwiftExtensions: 4afef248066a036903d8496bf07bc355b22ce766
+  Dropper: 52a020beb6fef2e4b1d55447f17099e5776954ef
+  EZSwiftExtensions: ce22bf6fc5c6e7c883fec413300b006e123735d0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  FoldingCell: cfa0c9b0f1ee94d4443e3679bd6e5ebe3b386ebf
+  FoldingCell: 2f3113051609167776743415fc00ed877ac6d62c
 
 PODFILE CHECKSUM: 9ae9f9b208fb3cedd6c828db38a2986b6d12dc6a
 

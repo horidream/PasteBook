@@ -59,7 +59,7 @@ extension CKRecordID{
     
     class func parseString(str:String)->CKRecordID?{
         let parts:Array<String> = str.split("::")
-        if let recordName:String = parts.get(0), let zoneName = parts.get(1), let ownerName = parts.get(2){
+        if let recordName:String = parts.get(at: 0), let zoneName = parts.get(at: 1), let ownerName = parts.get(at: 2){
             
             let zoneID = CKRecordZoneID(zoneName: zoneName, ownerName: ownerName)
             return CKRecordID(recordName: recordName, zoneID: zoneID)

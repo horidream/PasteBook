@@ -13,7 +13,7 @@ import CloudKit
 
 class CloudKitManager{
     static let instance:CloudKitManager = CloudKitManager()
-    
+    static var articles:[Article] = []
     var privateDB:CKDatabase
     var queue:OperationQueue
     init() {
@@ -51,12 +51,45 @@ class CloudKitManager{
     
 
     
-    func fetchAllArticleTitles(category:Category? = nil){
+    func fetchAllArticles(completionHanlder:@escaping ()->Void){
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "article", predicate: predicate)
-        privateDB.perform(query, inZoneWith: nil) { records, error in
-//            print("-- new cloudkit records --  \n\(records) \n  \(error)")
+        let queryOperation = CKQueryOperation(query: query)
+        let fetchBlock:(CKRecord)->Void = {
+            record in
+            CloudKitManager.articles.append(Article(record))
         }
+
+        
+        func nextQueryOperation(cursor:CKQueryCursor?, error:Error?)->CKQueryOperation?
+        {
+            if cursor != nil && error == nil{
+                let qo = CKQueryOperation(cursor: cursor!)
+                qo.recordFetchedBlock = fetchBlock
+                qo.queryCompletionBlock = {
+                    cursor, error in
+                    if let qo = nextQueryOperation(cursor: cursor, error: error){
+                        self.privateDB.add(qo)
+                    }else{
+                        completionHanlder()
+                    }
+                }
+
+                return qo
+            }
+            return nil
+        }
+        queryOperation.recordFetchedBlock = fetchBlock
+        queryOperation.queryCompletionBlock = {
+            cursor, error in
+            if let qo = nextQueryOperation(cursor: cursor, error: error){
+                self.privateDB.add(qo)
+            }else{
+                completionHanlder()
+            }
+        }
+        privateDB.add(queryOperation)
+        
     }
     
 }

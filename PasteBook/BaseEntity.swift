@@ -45,6 +45,8 @@ extension CloudManageable{
 class BaseEntity: LocalManageable, CloudManageable{
     internal var localId:UInt64?
     var cloudRecord: CKRecord?
+    internal let localDB:PBDBManager = PBDBManager.default
+    internal let cloudDB:CKDatabase = CloudKitManager.instance.privateDB
     internal var needsUpdateToCloud: Bool
     internal var needsUpdateToLocal:Bool
     
