@@ -6,6 +6,7 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - FoldingCell (2.0.3)
+  - Shifu (0.1.0)
 
 DEPENDENCIES:
   - ALCameraViewController (from `https://github.com/horidream/ALCameraViewController.git`)
@@ -13,10 +14,13 @@ DEPENDENCIES:
   - EZSwiftExtensions
   - FMDB
   - FoldingCell
+  - Shifu (from `./shifu`)
 
 EXTERNAL SOURCES:
   ALCameraViewController:
     :git: https://github.com/horidream/ALCameraViewController.git
+  Shifu:
+    :path: "./shifu"
 
 CHECKOUT OPTIONS:
   ALCameraViewController:
@@ -29,7 +33,8 @@ SPEC CHECKSUMS:
   EZSwiftExtensions: ce22bf6fc5c6e7c883fec413300b006e123735d0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FoldingCell: 2f3113051609167776743415fc00ed877ac6d62c
+  Shifu: 79c5067b796657711ca253e9a91ea4727a797ef4
 
-PODFILE CHECKSUM: 9ae9f9b208fb3cedd6c828db38a2986b6d12dc6a
+PODFILE CHECKSUM: 26765783010de9091a5298e8ecfc68f68406a628
 
 COCOAPODS: 1.1.1

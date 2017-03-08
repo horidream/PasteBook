@@ -8,6 +8,7 @@ use_frameworks!
     pod 'Dropper'
 	pod 'FoldingCell'
     pod 'ALCameraViewController', :git => "https://github.com/horidream/ALCameraViewController.git"
+    pod 'Shifu', :path => "./shifu"
 end
 
 
