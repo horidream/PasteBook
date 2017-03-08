@@ -80,7 +80,8 @@ class TitleCell: FoldingCell {
     }
     
     func onCloudBtnClicked(sender:UIButton){
-        
+        print("saving to cloud")
+        self.article?.saveToCloud()
     }
     
     func onShowDetail(tap:UITapGestureRecognizer){

@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         sandbox()
-//        let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
-//        application.registerUserNotificationSettings(notificationOptions)
-//        application.registerForRemoteNotifications()
-//        CloudKitManager.instance.registerSubscription()
+        let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
+        application.registerUserNotificationSettings(notificationOptions)
+        application.registerForRemoteNotifications()
+        CloudKitManager.instance.registerSubscription()
         return true
     }
     
