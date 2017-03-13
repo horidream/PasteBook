@@ -76,7 +76,6 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         
         self.tableView.estimatedRowHeight = 75
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
         refresh()
         
     }

@@ -92,11 +92,7 @@ class Article: BaseEntity, Equatable{
     
     // MARK: -
     static func == (lhs: Article, rhs: Article) -> Bool{
-        if let cr1 = lhs.cloudRecord, let cr2 = rhs.cloudRecord{
-            return cr1 == cr2
-        }
-        return lhs.name == rhs.name && lhs.content == rhs.content && lhs.isFavorite == rhs.isFavorite && lhs.categoryId == rhs.categoryId
-        
+        return lhs.cloudRecord == rhs.cloudRecord && lhs.name == rhs.name && lhs.content == rhs.content && lhs.isFavorite == rhs.isFavorite && lhs.categoryId == rhs.categoryId
     }
     
     init(title:String, content:String){

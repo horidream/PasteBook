@@ -14,11 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    lazy var knomaModel:KnomaModel! = {
+        let knomaModel = KnomaModel()
+        return knomaModel
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let notificationOptions = UIUserNotificationSettings(types: [.alert], categories: nil)
         application.registerUserNotificationSettings(notificationOptions)
         application.registerForRemoteNotifications()
+        knomaModel = KnomaModel()
 //        CloudKitManager.instance.registerSubscription()
         
         delay(1) { 
