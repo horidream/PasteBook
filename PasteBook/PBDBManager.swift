@@ -37,7 +37,7 @@ class PBDBManager:BaseDBHandler{
     }
     
     
-    func fetchAllArticleTitles(category:Category? = nil)->Array<Article>{
+    func fetchAllArticles(category:Category? = nil)->Array<Article>{
         var categoryCondition = ""
         if let category = category{
             categoryCondition = "and article.category_id=\(category.localId)"

@@ -29,6 +29,11 @@ struct ColumnKey{
     
 }
 
+struct ArticleSet{
+    let local:Article?
+    let cloud:Article?
+}
+
 class Article: BaseEntity, Equatable{
     var title:String{
         get{

@@ -20,6 +20,7 @@ protocol CloudManageable {
     var cloudRecord:CKRecord?{get set}
     var needsUpdateToCloud:Bool{get set}
     func saveToCloud()
+    func deleteFromCloud()
 }
 
 
@@ -37,6 +38,7 @@ extension LocalManageable{
 
 extension CloudManageable{
     func saveToCloud(){}
+    func deleteFromCloud(){}
     var cloudIDStringRepresentation:String{
         return self.cloudRecord?.recordID.toString() ?? ""
     }
