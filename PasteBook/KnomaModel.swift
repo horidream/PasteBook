@@ -12,18 +12,20 @@ import EZSwiftExtensions
 let namespace:String = "com.horidream.app.knoma"
 
 class KnomaModel{
-    private var localArticles:[Article] = []
-    private var cloudArticles:[Article] = []
+    private var localArticles:[LocalArticle] = []
+    private var cloudArticles:[CloudArticle] = []
     var articles:[ArticleSet] {
         return self.localArticles.map({ (article) -> ArticleSet in
-            if let index = self.cloudArticles.index(of: article){
+            if let index = (self.cloudArticles as [Article]).index(of: article){
                 return ArticleSet(local: article, cloud: self.cloudArticles[index])
             }else{
                 return ArticleSet(local: article, cloud: nil)
             }
+        }) + ((self.cloudArticles as [Article]).difference(self.localArticles as [Article]).map{
+            article in
+            return ArticleSet(local: nil, cloud: (article as! CloudArticle))
         })
     }
-    
     init () {
         let q = DispatchQueue(label:namespace)
         q.async {
@@ -64,6 +66,7 @@ class KnomaModel{
         }
 
         if(!cloudArticles.contains(article)){
+            article.saveToCloud()
             cloudArticles.append(article)
             broadcast()
         }

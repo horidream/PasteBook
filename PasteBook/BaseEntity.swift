@@ -18,7 +18,6 @@ import FMDB
 
 protocol CloudManageable {
     var cloudRecord:CKRecord?{get set}
-    var needsUpdateToCloud:Bool{get set}
     func saveToCloud()
     func deleteFromCloud()
 }
@@ -26,17 +25,22 @@ protocol CloudManageable {
 
 protocol LocalManageable{
     var localId:UInt64?{get set}
-    var needsUpdateToLocal:Bool{get set}
     func saveToLocal()
     func deleteFromLocal()
 }
 
 extension LocalManageable{
+    var localDB:PBDBManager{
+        return PBDBManager.default
+    }
     func saveToLocal(){}
     func deleteFromLocal(){}
 }
 
 extension CloudManageable{
+    var cloudDB:CKDatabase {
+        return CloudKitManager.instance.privateDB
+    }
     func saveToCloud(){}
     func deleteFromCloud(){}
     var cloudIDStringRepresentation:String{
@@ -44,15 +48,8 @@ extension CloudManageable{
     }
 }
 
-class BaseEntity: LocalManageable, CloudManageable{
-    internal var localId:UInt64?
-    var cloudRecord: CKRecord?
-    internal let localDB:PBDBManager = PBDBManager.default
-    internal let cloudDB:CKDatabase = CloudKitManager.instance.privateDB
-    internal var needsUpdateToCloud: Bool
-    internal var needsUpdateToLocal:Bool
-    
-    
+class BaseEntity{
+    internal var needsUpdate:Bool
     var name:String{
         didSet{
             checkNeedsUpdate(oldValue, with: name)
@@ -61,16 +58,12 @@ class BaseEntity: LocalManageable, CloudManageable{
     
     internal func checkNeedsUpdate<T:Equatable>(_ oldValue:T?, with neoValue:T?){
         if(oldValue != neoValue){
-            needsUpdateToLocal = true
-            if(cloudRecord != nil){
-                needsUpdateToCloud = true
-            }
+            needsUpdate = true
         }
     }
     
     init(name:String){
-        self.needsUpdateToLocal = true
-        self.needsUpdateToCloud = true
+        self.needsUpdate = true
         self.name = name
     }
 }

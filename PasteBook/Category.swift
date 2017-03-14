@@ -11,7 +11,12 @@ import FMDB
 import CloudKit
 
 // MARK: - db entity
-class Category:BaseEntity{
+class Category:BaseEntity, Equatable{
+    
+    static func == (lhs: Category, rhs: Category) -> Bool{
+        return lhs.name == rhs.name
+    }
+    
     static let undefined:Category = {
         let c = Category("UNDEFINED")
         c.saveToLocal()
