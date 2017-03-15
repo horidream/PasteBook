@@ -33,26 +33,28 @@ struct EntitySet<T,U> where T:LocalManageable, U:CloudManageable{
     let cloud:U?
 }
 typealias ArticleSet = EntitySet<LocalArticle, CloudArticle>
-
+//typealias CategorySet = EntitySet<
 class LocalArticle:Article, LocalManageable{
     var localId:UInt64?
+    var category:LocalCategory!
     convenience init?(localId:UInt64){
-        if let rst = localDB.execute("select * from article where article_id == \(localId)"){
+        if let rst = PBDBManager.default.execute("select * from article where article_id == \(localId)"){
             self.init(rst)
         }else{
             return nil
         }
     }
     
-    init(_ articleResult:FMResultSet){
+    convenience init(_ articleResult:FMResultSet){
+        let content = articleResult.string(forColumn: ColumnKey.ARTICLE_CONTENT)!
+        self.init(title:articleResult.string(forColumn: ColumnKey.ARTICLE_TITLE)!, content: content)
+        
         self.isFavorite = articleResult.bool(forColumn: ColumnKey.FAVORITE)
         self.createdTime = articleResult.date(forColumn: ColumnKey.CREATED_TIME)!
         self.updatedTime = articleResult.date(forColumn: ColumnKey.UPDATED_TIME)!
         self.localId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
         let categoryId =  articleResult.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
-        
-        let content = articleResult.string(forColumn: ColumnKey.ARTICLE_CONTENT)!
-        super.init(title:articleResult.string(forColumn: ColumnKey.ARTICLE_TITLE)!, content: content)
+        self.category = LocalCategory(localId:categoryId)
         
     }
     
@@ -89,13 +91,14 @@ class LocalArticle:Article, LocalManageable{
 
 class CloudArticle:Article, CloudManageable{
     var cloudRecord: CKRecord?
+    var category:CloudCategory!
     // MARK: -
-    init(_ record:CKRecord){
+    convenience init(_ record:CKRecord){
+        let content = record[ColumnKey.ARTICLE_CONTENT] as! String
+        self.init(title:record[ColumnKey.ARTICLE_TITLE] as! String, content:content)
         self.isFavorite = record[ColumnKey.FAVORITE] as? Bool ?? false
         self.createdTime = record[ColumnKey.CREATED_TIME] as! Date
         self.updatedTime = record[ColumnKey.UPDATED_TIME] as! Date
-        let content = record[ColumnKey.ARTICLE_CONTENT] as! String
-        super.init(title:record[ColumnKey.ARTICLE_TITLE] as! String, content:content)
         self.cloudRecord = record
         self.needsUpdate = false
         
@@ -151,7 +154,6 @@ class Article: BaseEntity, Equatable{
             checkNeedsUpdate(oldValue, with: isFavorite)
         }
     }
-    var category:Category!
     var createdTime:Date
     var updatedTime:Date
     var tags:[Tag]{
@@ -160,7 +162,7 @@ class Article: BaseEntity, Equatable{
     
     // MARK: -
     static func == (lhs: Article, rhs: Article) -> Bool{
-        return lhs.name == rhs.name && lhs.content == rhs.content && lhs.isFavorite == rhs.isFavorite && lhs.category == rhs.category
+        return lhs.name == rhs.name && lhs.content == rhs.content
     }
     
     init(title:String, content:String){

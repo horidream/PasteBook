@@ -134,13 +134,13 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             let cellData = data[(indexPath as NSIndexPath).row]
             cell.tableView = self.tableView
             cell.title.text = cellData.title
-            cell.ribbonColor = cellData.color
+//            cell.ribbonColor = cellData.color
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") ?? UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "CategoryCell")
             let cellData = categoryData[(indexPath as NSIndexPath).row]
             cell.textLabel?.text = cellData.name
-            cell.detailTextLabel?.text = "\(cellData.count) items"
+//            cell.detailTextLabel?.text = "\(cellData.count) items"
             return cell
         }
     }

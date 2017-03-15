@@ -45,39 +45,39 @@ class KnomaModel{
         
     }
     
-    func addLocal(article:Article){
-        if(!localArticles.contains(article)){
-            article.saveToLocal()
-            localArticles.append(article)
-            broadcast()
-        }
-    }
-    
-    func removeLocal(article:Article){
-        if let index = localArticles.index(of: article){
-            localArticles.remove(at: index).deleteFromLocal()
-            broadcast()
-        }
-    }
-    
-    func addCloud(article:Article){
-        guard article.cloudRecord != nil else{
-            return
-        }
-
-        if(!cloudArticles.contains(article)){
-            article.saveToCloud()
-            cloudArticles.append(article)
-            broadcast()
-        }
-    }
-    
-    func removeCloud(article:Article){
-        if let index = cloudArticles.index(of: article){
-            cloudArticles.remove(at: index).deleteFromCloud()
-            broadcast()
-        }
-    }
+//    func addLocal(article:Article){
+//        if(!localArticles.contains(article)){
+//            article.saveToLocal()
+//            localArticles.append(article)
+//            broadcast()
+//        }
+//    }
+//    
+//    func removeLocal(article:Article){
+//        if let index = localArticles.index(of: article){
+//            localArticles.remove(at: index).deleteFromLocal()
+//            broadcast()
+//        }
+//    }
+//    
+//    func addCloud(article:Article){
+//        guard article.cloudRecord != nil else{
+//            return
+//        }
+//
+//        if(!cloudArticles.contains(article)){
+//            article.saveToCloud()
+//            cloudArticles.append(article)
+//            broadcast()
+//        }
+//    }
+//    
+//    func removeCloud(article:Article){
+//        if let index = cloudArticles.index(of: article){
+//            cloudArticles.remove(at: index).deleteFromCloud()
+//            broadcast()
+//        }
+//    }
 }
 
 

@@ -37,18 +37,18 @@ class PBDBManager:BaseDBHandler{
     }
     
     
-    func fetchAllArticles(category:Category? = nil)->Array<Article>{
+    func fetchAllArticles(category:Category? = nil)->Array<LocalArticle>{
         var categoryCondition = ""
         if let category = category{
             categoryCondition = "and article.category_id=\(category.localId)"
         }
         let result = queryFetch("select article_id,article_title, article_content, created_time, updated_time, favorite, article.category_id, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
-            return Article(rs)
+            return LocalArticle(rs)
         }
         return result
     }
     
-    func fetchArticles(withKeywords keywords:String, category:Category? = nil)->Array<Article>{
+    func fetchArticles(withKeywords keywords:String, category:LocalCategory? = nil)->Array<LocalArticle>{
         
         let matches = keywords.split("[,，。；;]")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
@@ -63,40 +63,18 @@ class PBDBManager:BaseDBHandler{
         let query = "select article_id,article_title, article_content, created_time, updated_time, favorite, article.category_id, category_color, \(wholeContentColumn) as whole_content from article inner join category where \(condition)  and category.category_id=article.category_id \(categoryCondition) group by article.article_id"
 
         let result = queryFetch(query) { rs in
-            return Article(rs)
+            return LocalArticle(rs)
         }
         return result
     }
 
     
-//    func fetchArticle(id:UInt64)->Article{
-//        var query = "select article.article_id, article_title, article_content, category_name, article.category_id, created_time, updated_time, favorite, group_concat(tag.tag_name) as tag_names, group_concat(tag.tag_id) as tag_ids ,group_concat(tag.tag_color) as tag_colors from article  inner join tagged_article, tag, category where article.article_id = \(id) and article.category_id = category.category_id and tagged_article.article_id = article.article_id and tagged_article.tag_id = tag.tag_id group by article.article_id"
-//        
-//        let hasTag = queryFetch("SELECT article_id from tagged_article where article_id=?", args:[id], mapTo: {$0}).count >  0
-//        if !hasTag{
-//            query = "select article.article_id, article_title, article_content, category.category_name, article.category_id, created_time, updated_time, favorite from article inner join category where article.article_id = \(id) and article.category_id = category.category_id"
-//        }
-//        
-//        
-//        let articles = queryFetch(query, mapTo: {(rs)->Article in
-//            let article =  Article(rs)
-//            if hasTag{
-//                let tag_ids = rs.string(forColumn: "tag_ids").split(",").map({UInt64($0)}) as! [UInt64]
-//                let tag_names = rs.string(forColumn: "tag_names").split(",")
-//                let tag_colors = rs.string(forColumn: "tag_colors").split(",").map({UInt64($0)}) as! [UInt64]
-//                article.tags = Tag.createTags(ids: tag_ids, names: tag_names, colors: tag_colors)
-//            }
-//            return article
-//        })
-//        return articles.first!
-//    }
-    
 
-    func fetchArticles(categoryName name:String)->[Article]{
+    func fetchArticles(categoryName name:String)->[LocalArticle]{
         let query = "select article_id as id, article_title, article_content, category.category_id, category.category_name, updated_time, created_time from article inner join category where article.category_id=category.category_id and category.category_name = \"\(name)\""
         
-        let articles = queryFetch(query, mapTo: {(rs)->Article in
-            let article =  Article(rs)
+        let articles = queryFetch(query, mapTo: {(rs)->LocalArticle in
+            let article =  LocalArticle(rs)
             return article
         })
         return articles
@@ -104,7 +82,7 @@ class PBDBManager:BaseDBHandler{
     
     
     // MARK: - 
-    func addArticle(_ article:Article, to category:Category)->Article{
+    func addArticle(_ article:LocalArticle, to category:Category)->LocalArticle{
         
         let _article = article
         let _category = addCategory(category)
