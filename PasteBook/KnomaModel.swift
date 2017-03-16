@@ -26,6 +26,8 @@ class KnomaModel{
             return ArticleSet(local: nil, cloud: (article as! CloudArticle))
         })
     }
+    
+    var categories:[CategorySet] = []
     init () {
         let q = DispatchQueue(label:namespace)
         q.async {

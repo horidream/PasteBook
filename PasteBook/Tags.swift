@@ -10,18 +10,32 @@ import Foundation
 import CloudKit
 import FMDB
 
-class Tag:BaseEntity{
-    var color:UInt64
-    var targetArticle:Article?
-    init(_ name:String){
-        self.color = 0
-        super.init(name: name)
-    }
-    
-    
-    init(_ fetchResult:FMResultSet){
-        self.color = fetchResult.unsignedLongLongInt(forColumn: "tag_color")
-        super.init(name: fetchResult.string(forColumn: "tag_name")!)
+
+class LocalTag:Tag, LocalManageable{
+    var localId: UInt64?
+    convenience init(_ fetchResult:FMResultSet){
+        self.init(name: fetchResult.string(forColumn: "tag_name")!)
         self.localId = fetchResult.unsignedLongLongInt(forColumn: "id")
     }
+    
+    func saveToLocal() {
+        
+    }
+    func deleteFromLocal() {
+        
+    }
+}
+
+class CloudTag:Tag, CloudManageable{
+    var cloudRecord: CKRecord?
+
+    func saveToCloud() {
+        
+    }
+    func deleteFromCloud() {
+        
+    }
+}
+
+class Tag:BaseEntity{
 }

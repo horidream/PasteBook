@@ -30,14 +30,14 @@ class PBDBManager:BaseDBHandler{
     
     // MARK: -
     
-    func fetchAllCategories()->Array<Category>{
+    func fetchAllCategories()->Array<LocalCategory>{
         let query = "select category_id, category_name, category_color, (select count(article.category_id) from article where category.category_id == article.category_id) as category_count from category"
-        let result = queryFetch(query, mapTo: { Category($0)})
+        let result = queryFetch(query, mapTo: { LocalCategory($0)})
         return result
     }
     
     
-    func fetchAllArticles(category:Category? = nil)->Array<LocalArticle>{
+    func fetchAllArticles(category:LocalCategory? = nil)->Array<LocalArticle>{
         var categoryCondition = ""
         if let category = category{
             categoryCondition = "and article.category_id=\(category.localId)"
@@ -82,33 +82,33 @@ class PBDBManager:BaseDBHandler{
     
     
     // MARK: - 
-    func addArticle(_ article:LocalArticle, to category:Category)->LocalArticle{
-        
-        let _article = article
-        let _category = addCategory(category)
-        if let category_id = _category.localId{
-            let query = "INSERT INTO article (article_title, article_content, category_id) VALUES (?, ?, ?)"
-            _ = queryChange(query, args:[_article.title, _article.content, category_id])
-            let articleId = queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[_article.title, article.content], mapTo: {
-                $0.unsignedLongLongInt(forColumn: "article_id")
-            }).first!
-            _article.localId = articleId
-        }
-        return _article
-    }
+//    func addArticle(_ article:LocalArticle, to category:Category)->LocalArticle{
+//        
+//        let _article = article
+//        let _category = addCategory(category)
+//        if let category_id = _category.localId{
+//            let query = "INSERT INTO article (article_title, article_content, category_id) VALUES (?, ?, ?)"
+//            _ = queryChange(query, args:[_article.title, _article.content, category_id])
+//            let articleId = queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[_article.title, article.content], mapTo: {
+//                $0.unsignedLongLongInt(forColumn: "article_id")
+//            }).first!
+//            _article.localId = articleId
+//        }
+//        return _article
+//    }
 //
-    func addCategory(_ category:Category) -> Category{
-        let _category = category
-        if category.localId == nil {
-            _ = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (?)", args:[_category.name])
-            let categoryId = queryFetch("SELECT category_id from category where category_name=?", args:[_category.name], mapTo: {
-                $0.unsignedLongLongInt(forColumn: "category_id")
-            }).first!
-            _category.localId = categoryId
-
-        }
-        return _category
-    }
+//    func addCategory(_ category:LocalCategory) -> LocalCategory{
+//        let _category = category
+//        if category.localId == nil {
+//            _ = queryChange("INSERT OR IGNORE INTO category (category_name) VALUES (?)", args:[_category.name])
+//            let categoryId = queryFetch("SELECT category_id from category where category_name=?", args:[_category.name], mapTo: {
+//                $0.unsignedLongLongInt(forColumn: "category_id")
+//            }).first!
+//            _category.localId = categoryId
+//
+//        }
+//        return _category
+//    }
 //
 //    func addTag(_ tag:Tag) -> Tag{
 //        let _tag = tag
@@ -126,24 +126,24 @@ class PBDBManager:BaseDBHandler{
 //    
 //    // MARK: - DELETE
 //    
-    func deleteArticleById(id:UInt64){
-        _ = queryChange("DELETE FROM tagged_article where article_id=?", args: [id])
-        _ = queryChange("DELETE FROM article where article_id=?", args: [id])
-    }
+//    func deleteArticleById(id:UInt64){
+//        _ = queryChange("DELETE FROM tagged_article where article_id=?", args: [id])
+//        _ = queryChange("DELETE FROM article where article_id=?", args: [id])
+//    }
 //    
 //    
 //    // MARK: - UPDATE
-    func updateArticle(_ article:Article, with category:Category)->Article{
-        let _article = article
-        let _category = addCategory(category)
-        
-        
-        if let category_id = _category.localId, let article_id = _article.localId{
-            let query = "UPDATE article set article_title=?, article_content=?, category_id=? WHERE article_id=?"
-            _ = queryChange(query, args:[_article.title, _article.content, category_id, article_id])
-        }
-        return _article
-    }
+//    func updateArticle(_ article:LocalArticle, with category:LocalCategory)->LocalArticle{
+//        let _article = article
+//        let _category = addCategory(category)
+//        
+//        
+//        if let category_id = _category.localId, let article_id = _article.localId{
+//            let query = "UPDATE article set article_title=?, article_content=?, category_id=? WHERE article_id=?"
+//            _ = queryChange(query, args:[_article.title, _article.content, category_id, article_id])
+//        }
+//        return _article
+//    }
     
     
 }

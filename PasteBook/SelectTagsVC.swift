@@ -7,11 +7,11 @@
 
 import UIKit
 
-extension Sequence where Self.Iterator.Element == Tag{
-    func contains(_ tag:Tag)->Bool{
-        return self.contains {($0.localId == tag.localId) && ($0.name == tag.name)}
-    }
-}
+//extension Sequence where Self.Iterator.Element == Tag{
+//    func contains(_ tag:Tag)->Bool{
+//        return self.contains {($0.localId == tag.localId) && ($0.name == tag.name)}
+//    }
+//}
 
 class SelectTagsVC: UITableViewController {}
 

@@ -33,7 +33,10 @@ struct EntitySet<T,U> where T:LocalManageable, U:CloudManageable{
     let cloud:U?
 }
 typealias ArticleSet = EntitySet<LocalArticle, CloudArticle>
-//typealias CategorySet = EntitySet<
+typealias CategorySet = EntitySet<LocalCategory, CloudCategory>
+typealias TagSet = EntitySet<LocalTag, CloudTag>
+
+
 class LocalArticle:Article, LocalManageable{
     var localId:UInt64?
     var category:LocalCategory!
