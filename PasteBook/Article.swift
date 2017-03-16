@@ -40,6 +40,14 @@ typealias TagSet = EntitySet<LocalTag, CloudTag>
 class LocalArticle:Article, LocalManageable{
     var localId:UInt64?
     var category:LocalCategory!
+    
+    var clonedCounterPart:CloudArticle{
+        let article = CloudArticle(title: title, content: content)
+        article.createdTime = createdTime
+        article.updatedTime = updatedTime
+        article.isFavorite = isFavorite
+        return article
+    }
     convenience init?(localId:UInt64){
         if let rst = PBDBManager.default.execute("select * from article where article_id == \(localId)"){
             self.init(rst)
@@ -95,6 +103,15 @@ class LocalArticle:Article, LocalManageable{
 class CloudArticle:Article, CloudManageable{
     var cloudRecord: CKRecord?
     var category:CloudCategory!
+    
+    var clonedCounterPart:LocalArticle{
+        let article = LocalArticle(title: title, content: content)
+        article.createdTime = createdTime
+        article.updatedTime = updatedTime
+        article.isFavorite = isFavorite
+        return article
+    }
+    
     // MARK: -
     convenience init(_ record:CKRecord){
         let content = record[ColumnKey.ARTICLE_CONTENT] as! String
@@ -168,7 +185,7 @@ class Article: BaseEntity, Equatable{
         return lhs.name == rhs.name && lhs.content == rhs.content
     }
     
-    init(title:String, content:String){
+    required init(title:String, content:String){
         self.content = content
 
         let currentDate = Date()
@@ -177,11 +194,21 @@ class Article: BaseEntity, Equatable{
         super.init(name:title)
     }
     
-    
-    
-    
-    
-    
-    
-    
+}
+
+
+protocol Cloneable{
+    func clone()->Self
+}
+
+
+extension Article:Cloneable{
+    func clone()->Self{
+        let clazz = type(of:self)
+        let instance = clazz.init(title:title, content:content)
+        instance.createdTime = self.createdTime
+        instance.updatedTime = self.updatedTime
+        return instance
+
+    }
 }

@@ -22,7 +22,7 @@ class TitleCell: FoldingCell {
     @IBOutlet weak var addFavoriteBtn: UIButton!
     @IBOutlet weak var cloudBtn: UIButton!
     weak var tableView:UITableView?
-    weak var article:Article?
+    weak var articleSet:ArticleSet?
     
     var ribbonColor:UIColor = UIColor.clear{
         didSet{
