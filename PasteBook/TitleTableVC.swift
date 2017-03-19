@@ -133,7 +133,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
             let cellData = data[(indexPath as NSIndexPath).row]
             cell.tableView = self.tableView
-            cell.title.text = cellData.title
+            cell.title.text = cellData.any?.title
 //            cell.ribbonColor = cellData.color
             return cell
         }else{

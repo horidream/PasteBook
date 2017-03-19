@@ -31,10 +31,16 @@ struct ColumnKey{
 struct EntitySet<T,U> where T:LocalManageable, U:CloudManageable{
     let local:T?
     let cloud:U?
+    
+    var any:Any?{
+        return local ?? cloud
+    }
 }
 typealias ArticleSet = EntitySet<LocalArticle, CloudArticle>
 typealias CategorySet = EntitySet<LocalCategory, CloudCategory>
 typealias TagSet = EntitySet<LocalTag, CloudTag>
+
+
 
 
 class LocalArticle:Article, LocalManageable{
