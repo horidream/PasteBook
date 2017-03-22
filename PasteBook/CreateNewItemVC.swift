@@ -20,8 +20,8 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     var currentArticle:Article?
     private var dropper:Dropper!
-    var categories:Array<Category> = []
-    var selectedCategory:Category?
+    var categories:Array<CategorySet> = []
+    var selectedCategory:CategorySet?
     override func viewDidLoad() {
         self.title = "New Article"
         
@@ -45,9 +45,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.backBarButtonItem?.title = "BACK"
-        categorySelector.setTitle(self.selectedCategory?.name ?? Category.undefined.name, for: .normal)
+        categorySelector.setTitle(self.selectedCategory?.any?.name ?? "", for: .normal)
         categories = PBDBManager.default.fetchAllCategories()
-        dropper.items = categories.map{$0.name}
+        dropper.items = categories.map{$0.any?.name ?? ""}
         
         if let article = currentArticle{
             self.title = article.title
@@ -66,8 +66,8 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     func DropperSelectedRow(_ path: IndexPath, contents: String, tag: Int) {
         selectedCategory = categories[path.row]
-        currentArticle?.categoryId = selectedCategory?.localId
-        categorySelector.setTitle(selectedCategory?.name, for: .normal)
+//        currentArticle?.categoryId = selectedCategory?.localId
+        categorySelector.setTitle(selectedCategory?.any?.name, for: .normal)
     }
     
     

@@ -28,18 +28,35 @@ struct ColumnKey{
     
 }
 
-struct EntitySet<T,U> where T:LocalManageable, U:CloudManageable{
+struct EntitySet<T,U,V> where T:LocalManageable, U:CloudManageable{
+    typealias BaseClass = V
     let local:T?
     let cloud:U?
     
-    var any:Any?{
-        return local ?? cloud
+    var any:BaseClass?{
+        return local as? BaseClass ?? cloud as? BaseClass ?? nil
+    }
+    var every:[BaseClass]{
+        let arr:[Any?] = [local, cloud]
+        return arr.flatMap{
+            return $0 as? BaseClass ?? nil
+        }
     }
 }
-typealias ArticleSet = EntitySet<LocalArticle, CloudArticle>
-typealias CategorySet = EntitySet<LocalCategory, CloudCategory>
-typealias TagSet = EntitySet<LocalTag, CloudTag>
+typealias ArticleSet = EntitySet<LocalArticle, CloudArticle, Article>
+typealias CategorySet = EntitySet<LocalCategory, CloudCategory, Category>
+typealias TagSet = EntitySet<LocalTag, CloudTag, Tag>
 
+extension EntitySet{
+    func save(){
+        local?.saveToLocal()
+        cloud?.saveToCloud()
+    }
+    func delete(){
+        local?.deleteFromLocal()
+        cloud?.deleteFromCloud()
+    }
+}
 
 
 
@@ -200,6 +217,10 @@ class Article: BaseEntity, Equatable{
         super.init(name:title)
     }
     
+    
+    convenience init(article:Article){
+        self.init(title: article.title, content: article.content)
+    }
 }
 
 

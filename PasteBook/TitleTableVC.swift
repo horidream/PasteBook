@@ -22,8 +22,8 @@ fileprivate struct C {
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
     var data:Array<ArticleSet> = []
-    var categoryData:Array<Category>!
-    var currentCategory:Category?
+    var categoryData:Array<CategorySet>!
+    var currentCategory:CategorySet?
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
     
@@ -139,7 +139,7 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") ?? UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "CategoryCell")
             let cellData = categoryData[(indexPath as NSIndexPath).row]
-            cell.textLabel?.text = cellData.name
+            cell.textLabel?.text = cellData.any?.name
 //            cell.detailTextLabel?.text = "\(cellData.count) items"
             return cell
         }
@@ -210,7 +210,10 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
             if shouldShowArticles{
-                PBDBManager.default.deleteArticleById(id: data[indexPath.row].localId!)
+//                PBDBManager.default.deleteArticleById(id: data[indexPath.row].localId!)
+                let articleSet = data[indexPath.row]
+                articleSet.local?.deleteFromLocal()
+                
                 self.data.remove(at: (indexPath as NSIndexPath).row)
                 
                 
