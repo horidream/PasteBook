@@ -36,7 +36,7 @@ struct EntitySet<T,U,V> where T:LocalManageable, U:CloudManageable{
     var any:BaseClass?{
         return local as? BaseClass ?? cloud as? BaseClass ?? nil
     }
-    var every:[BaseClass]{
+    var all:[BaseClass]{
         let arr:[Any?] = [local, cloud]
         return arr.flatMap{
             return $0 as? BaseClass ?? nil

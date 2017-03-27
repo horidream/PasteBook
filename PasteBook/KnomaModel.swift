@@ -11,20 +11,25 @@ import EZSwiftExtensions
 
 let namespace:String = "com.horidream.app.knoma"
 
+protocol KnomaModelProtocal {
+    var articles:[Article]{get}
+    func articles(inCategory:Category)->[Article]
+    func articles(withKeyword:String, inCategory:Category?)->[Article]
+}
 
-class LocalModel{
-    lazy var articles:[LocalArticle] = {
+class LocalModel:KnomaModelProtocal{
+    lazy var articles:[Article] = {
        return PBDBManager.default.fetchAllArticles()
     }()
     
-    func articles(in category:Category)->[LocalArticle]{
+    func articles(inCategory category:Category)->[Article]{
         if let lc = category as? LocalCategory{
             return PBDBManager.default.fetchAllArticles(category: lc)
         }
         return []
     }
     
-    func articles(with keyword:String, in category:Category? = nil)->[LocalArticle]{
+    func articles(withKeyword keyword:String, inCategory category:Category? = nil)->[Article]{
         if let lc = category as? LocalCategory{
             return PBDBManager.default.fetchArticles(withKeywords: keyword, category: lc)
         }else{
@@ -34,7 +39,22 @@ class LocalModel{
 }
 
 
-class KnomaModel{
+// TODO: not implemented
+class CloudModel:KnomaModelProtocal{
+    lazy var articles:[Article] = {
+        return []
+    }()
+    
+    func articles(inCategory category:Category)->[Article]{
+        return []
+    }
+    
+    func articles(withKeyword keyword:String, inCategory category:Category? = nil)->[Article]{
+        return []
+    }
+}
+
+class KnomaModel:KnomaModelProtocal{
     private var localArticles:[LocalArticle] = []
     private var cloudArticles:[CloudArticle] = []
     var articles:[ArticleSet] {
@@ -69,40 +89,6 @@ class KnomaModel{
         NotificationCenter.default.post(name: .KNOMA_UPDATE, object: self)
         
     }
-    
-//    func addLocal(article:Article){
-//        if(!localArticles.contains(article)){
-//            article.saveToLocal()
-//            localArticles.append(article)
-//            broadcast()
-//        }
-//    }
-//    
-//    func removeLocal(article:Article){
-//        if let index = localArticles.index(of: article){
-//            localArticles.remove(at: index).deleteFromLocal()
-//            broadcast()
-//        }
-//    }
-//    
-//    func addCloud(article:Article){
-//        guard article.cloudRecord != nil else{
-//            return
-//        }
-//
-//        if(!cloudArticles.contains(article)){
-//            article.saveToCloud()
-//            cloudArticles.append(article)
-//            broadcast()
-//        }
-//    }
-//    
-//    func removeCloud(article:Article){
-//        if let index = cloudArticles.index(of: article){
-//            cloudArticles.remove(at: index).deleteFromCloud()
-//            broadcast()
-//        }
-//    }
 }
 
 
