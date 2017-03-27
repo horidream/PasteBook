@@ -11,6 +11,29 @@ import EZSwiftExtensions
 
 let namespace:String = "com.horidream.app.knoma"
 
+
+class LocalModel{
+    lazy var articles:[LocalArticle] = {
+       return PBDBManager.default.fetchAllArticles()
+    }()
+    
+    func articles(in category:Category)->[LocalArticle]{
+        if let lc = category as? LocalCategory{
+            return PBDBManager.default.fetchAllArticles(category: lc)
+        }
+        return []
+    }
+    
+    func articles(with keyword:String, in category:Category? = nil)->[LocalArticle]{
+        if let lc = category as? LocalCategory{
+            return PBDBManager.default.fetchArticles(withKeywords: keyword, category: lc)
+        }else{
+            return PBDBManager.default.fetchArticles(withKeywords: keyword)
+        }
+    }
+}
+
+
 class KnomaModel{
     private var localArticles:[LocalArticle] = []
     private var cloudArticles:[CloudArticle] = []
