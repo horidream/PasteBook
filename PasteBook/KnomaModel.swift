@@ -17,30 +17,8 @@ protocol KnomaModelProtocal {
     func articles(withKeyword:String, inCategory:Category?)->[Article]
 }
 
-class LocalModel:KnomaModelProtocal{
-    lazy var articles:[Article] = {
-       return PBDBManager.default.fetchAllArticles()
-    }()
-    
-    func articles(inCategory category:Category)->[Article]{
-        if let lc = category as? LocalCategory{
-            return PBDBManager.default.fetchAllArticles(category: lc)
-        }
-        return []
-    }
-    
-    func articles(withKeyword keyword:String, inCategory category:Category? = nil)->[Article]{
-        if let lc = category as? LocalCategory{
-            return PBDBManager.default.fetchArticles(withKeywords: keyword, category: lc)
-        }else{
-            return PBDBManager.default.fetchArticles(withKeywords: keyword)
-        }
-    }
-}
-
-
 // TODO: not implemented
-class CloudModel:KnomaModelProtocal{
+class KnomaModel:KnomaModelProtocal{
     lazy var articles:[Article] = {
         return []
     }()
@@ -54,42 +32,6 @@ class CloudModel:KnomaModelProtocal{
     }
 }
 
-class KnomaModel:KnomaModelProtocal{
-    private var localArticles:[LocalArticle] = []
-    private var cloudArticles:[CloudArticle] = []
-    var articles:[ArticleSet] {
-        return self.localArticles.map({ (article) -> ArticleSet in
-            if let index = (self.cloudArticles as [Article]).index(of: article){
-                return ArticleSet(local: article, cloud: self.cloudArticles[index])
-            }else{
-                return ArticleSet(local: article, cloud: nil)
-            }
-        }) + ((self.cloudArticles as [Article]).difference(self.localArticles as [Article]).map{
-            article in
-            return ArticleSet(local: nil, cloud: (article as! CloudArticle))
-        })
-    }
-    
-    var categories:[CategorySet] = []
-    init () {
-        let q = DispatchQueue(label:namespace)
-        q.async {
-            self.localArticles = PBDBManager.default.fetchAllArticles()
-            CloudKitManager.instance.fetchAllArticles {
-                self.cloudArticles = $0
-            }
-            self.broadcast()
-        }
-        
-        
-    }
-    
-    
-    func broadcast(){
-        NotificationCenter.default.post(name: .KNOMA_UPDATE, object: self)
-        
-    }
-}
 
 
 extension Notification.Name{

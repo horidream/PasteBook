@@ -30,25 +30,25 @@ class PBDBManager:BaseDBHandler{
     
     // MARK: -
     
-    func fetchAllCategories()->Array<LocalCategory>{
+    func fetchAllCategories()->Array<Category>{
         let query = "select category_id, category_name, category_color, (select count(article.category_id) from article where category.category_id == article.category_id) as category_count from category"
-        let result = queryFetch(query, mapTo: { LocalCategory($0)})
+        let result = queryFetch(query, mapTo: { Category($0)})
         return result
     }
     
     
-    func fetchAllArticles(category:LocalCategory? = nil)->Array<LocalArticle>{
+    func fetchAllArticles(category:Category? = nil)->Array<Article>{
         var categoryCondition = ""
         if let category = category{
             categoryCondition = "and article.category_id=\(category.localId)"
         }
         let result = queryFetch("select article_id,article_title, article_content, created_time, updated_time, favorite, article.category_id, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
-            return LocalArticle(rs)
+            return Article(rs)
         }
         return result
     }
     
-    func fetchArticles(withKeywords keywords:String, category:LocalCategory? = nil)->Array<LocalArticle>{
+    func fetchArticles(withKeywords keywords:String, category:Category? = nil)->Array<Article>{
         
         let matches = keywords.split("[,，。；;]")
         let condition = matches.map{"whole_content like \"%\($0.trimmed())%\""}.joined(separator: " and ")
@@ -63,18 +63,18 @@ class PBDBManager:BaseDBHandler{
         let query = "select article_id,article_title, article_content, created_time, updated_time, favorite, article.category_id, category_color, \(wholeContentColumn) as whole_content from article inner join category where \(condition)  and category.category_id=article.category_id \(categoryCondition) group by article.article_id"
 
         let result = queryFetch(query) { rs in
-            return LocalArticle(rs)
+            return Article(rs)
         }
         return result
     }
 
     
 
-    func fetchArticles(categoryName name:String)->[LocalArticle]{
+    func fetchArticles(categoryName name:String)->[Article]{
         let query = "select article_id as id, article_title, article_content, category.category_id, category.category_name, updated_time, created_time from article inner join category where article.category_id=category.category_id and category.category_name = \"\(name)\""
         
-        let articles = queryFetch(query, mapTo: {(rs)->LocalArticle in
-            let article =  LocalArticle(rs)
+        let articles = queryFetch(query, mapTo: {(rs)->Article in
+            let article =  Article(rs)
             return article
         })
         return articles

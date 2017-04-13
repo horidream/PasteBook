@@ -22,7 +22,7 @@ class TitleCell: FoldingCell {
     @IBOutlet weak var addFavoriteBtn: UIButton!
     @IBOutlet weak var cloudBtn: UIButton!
     weak var tableView:UITableView?
-    var articleSet:ArticleSet?
+    var article:Article?
     
     var ribbonColor:UIColor = UIColor.clear{
         didSet{
@@ -81,7 +81,7 @@ class TitleCell: FoldingCell {
     
     func onCloudBtnClicked(sender:UIButton){
         print("saving to cloud")
-        self.articleSet?.cloud?.saveToCloud()
+        self.article?.saveToCloud()
     }
     
     func onShowDetail(tap:UITapGestureRecognizer){

@@ -28,49 +28,9 @@ struct ColumnKey{
     
 }
 
-struct EntitySet<T,U,V> where T:LocalManageable, U:CloudManageable{
-    typealias BaseClass = V
-    let local:T?
-    let cloud:U?
-    
-    var any:BaseClass?{
-        return local as? BaseClass ?? cloud as? BaseClass ?? nil
-    }
-    var all:[BaseClass]{
-        let arr:[Any?] = [local, cloud]
-        return arr.flatMap{
-            return $0 as? BaseClass ?? nil
-        }
-    }
-}
-typealias ArticleSet = EntitySet<LocalArticle, CloudArticle, Article>
-typealias CategorySet = EntitySet<LocalCategory, CloudCategory, Category>
-typealias TagSet = EntitySet<LocalTag, CloudTag, Tag>
-
-extension EntitySet{
-    func save(){
-        local?.saveToLocal()
-        cloud?.saveToCloud()
-    }
-    func delete(){
-        local?.deleteFromLocal()
-        cloud?.deleteFromCloud()
-    }
-}
 
 
-
-class LocalArticle:Article, LocalManageable{
-    var localId:UInt64?
-    var category:LocalCategory!
-    
-    var clonedCounterPart:CloudArticle{
-        let article = CloudArticle(title: title, content: content)
-        article.createdTime = createdTime
-        article.updatedTime = updatedTime
-        article.isFavorite = isFavorite
-        return article
-    }
+extension Article: LocalManageable{
     convenience init?(localId:UInt64){
         if let rst = PBDBManager.default.execute("select * from article where article_id == \(localId)"){
             self.init(rst)
@@ -88,7 +48,7 @@ class LocalArticle:Article, LocalManageable{
         self.updatedTime = articleResult.date(forColumn: ColumnKey.UPDATED_TIME)!
         self.localId = articleResult.unsignedLongLongInt(forColumn: ColumnKey.ARTICLE_ID)
         let categoryId =  articleResult.unsignedLongLongInt(forColumn: ColumnKey.CATEGORY_ID)
-        self.category = LocalCategory(localId:categoryId)
+        self.category = Category(localId:categoryId)
         
     }
     
@@ -97,7 +57,7 @@ class LocalArticle:Article, LocalManageable{
         if localId == nil{
             let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time) VALUES (?, ?, ?, ?, ?)"
             
-            if localDB.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime as NSDate, self.createdTime as NSDate]){
+            if localDB.queryChange(query, args:[self.title, self.content, category?.localId!, self.updatedTime as NSDate, self.createdTime as NSDate]){
                 let articleId = localDB.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
                     $0.unsignedLongLongInt(forColumn: "article_id")
                 }).first!
@@ -106,7 +66,7 @@ class LocalArticle:Article, LocalManageable{
             }
         }else if needsUpdate{
             let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=? WHERE article_id=?"
-            if localDB.queryChange(query, args:[self.title, self.content, category.localId!, self.updatedTime , self.localId!]){
+            if localDB.queryChange(query, args:[self.title, self.content, category?.localId!, self.updatedTime , self.localId!]){
                 self.needsUpdate = false
                 
             }
@@ -123,17 +83,8 @@ class LocalArticle:Article, LocalManageable{
 }
 
 
-class CloudArticle:Article, CloudManageable{
-    var cloudRecord: CKRecord?
-    var category:CloudCategory!
-    
-    var clonedCounterPart:LocalArticle{
-        let article = LocalArticle(title: title, content: content)
-        article.createdTime = createdTime
-        article.updatedTime = updatedTime
-        article.isFavorite = isFavorite
-        return article
-    }
+extension Article: CloudManageable{
+
     
     // MARK: -
     convenience init(_ record:CKRecord){
@@ -158,7 +109,7 @@ class CloudArticle:Article, CloudManageable{
         if needsUpdate{
             record["article_title"] = self.title as CKRecordValue
             record["article_content"] = self.content as CKRecordValue
-            record["category"] = CKReference(record: category.cloudRecord!, action: .none)
+            record["category"] = CKReference(record: (category?.cloudRecord!)!, action: .none)
             record[ColumnKey.UPDATED_TIME] = self.updatedTime as CKRecordValue
             record[ColumnKey.CREATED_TIME] = self.createdTime as CKRecordValue
             cloudDB.save(record, completionHandler: { (savedRecord, err) in
@@ -178,6 +129,8 @@ class CloudArticle:Article, CloudManageable{
 }
 
 class Article: BaseEntity, Equatable{
+    var cloudRecord: CKRecord?
+    var localId:UInt64?
     var title:String{
         get{
             return self.name
@@ -199,10 +152,8 @@ class Article: BaseEntity, Equatable{
     }
     var createdTime:Date
     var updatedTime:Date
-    var tags:[Tag]{
-        return []
-    }
-    
+    var tags:[Tag] = []
+    var category:Category?
     // MARK: -
     static func == (lhs: Article, rhs: Article) -> Bool{
         return lhs.name == rhs.name && lhs.content == rhs.content

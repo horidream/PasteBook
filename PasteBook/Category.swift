@@ -11,16 +11,16 @@ import FMDB
 import CloudKit
 
 
-class LocalCategory:Category, LocalManageable{
+extension Category:LocalManageable{
     
-    static let undefined:LocalCategory = {
-        let c = LocalCategory("UNDEFINED")
+    static let undefined:Category = {
+        let c = Category("UNDEFINED")
         c.saveToLocal()
         return c
     }()
     
     
-    var localId: UInt64?
+    
     var count:UInt{
         if let localId = self.localId{
             let result = PBDBManager.default.execute("select count(article.category_id) as article_count from article where category_id = \(localId)")
@@ -61,8 +61,8 @@ class LocalCategory:Category, LocalManageable{
 }
 
 
-class CloudCategory:Category, CloudManageable{
-    var cloudRecord: CKRecord?
+extension Category:CloudManageable{
+    
     func saveToCloud() {
         let record:CKRecord
         if cloudRecord == nil{
@@ -90,7 +90,8 @@ class CloudCategory:Category, CloudManageable{
 }
 // MARK: - db entity
 class Category:BaseEntity, Equatable{
-    
+    var localId: UInt64?
+    var cloudRecord: CKRecord?
     static func == (lhs: Category, rhs: Category) -> Bool{
         return lhs.name == rhs.name
     }

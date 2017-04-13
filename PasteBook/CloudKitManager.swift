@@ -51,15 +51,15 @@ class CloudKitManager{
     
 
     
-    func fetchAllArticles(completionHanlder:@escaping (_ articles:[CloudArticle])->Void){
+    func fetchAllArticles(completionHanlder:@escaping (_ articles:[Article])->Void){
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "article", predicate: predicate)
         let queryOperation = CKQueryOperation(query: query)
-        var articles:[CloudArticle] = []
+        var articles:[Article] = []
         
         let fetchBlock:(CKRecord)->Void = {
             record in
-            articles.append(CloudArticle(record))
+            articles.append(Article(record))
         }
 
         

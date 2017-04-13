@@ -20,8 +20,8 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     
     var currentArticle:Article?
     private var dropper:Dropper!
-    var categories:Array<CategorySet> = []
-    var selectedCategory:CategorySet?
+    var categories:Array<Category> = []
+    var selectedCategory:Category?
     override func viewDidLoad() {
         self.title = "New Article"
         
@@ -45,9 +45,9 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.backBarButtonItem?.title = "BACK"
-        categorySelector.setTitle(self.selectedCategory?.any?.name ?? "", for: .normal)
+        categorySelector.setTitle(self.selectedCategory?.name ?? "", for: .normal)
         categories = PBDBManager.default.fetchAllCategories()
-        dropper.items = categories.map{$0.any?.name ?? ""}
+        dropper.items = categories.map{$0.name ?? ""}
         
         if let article = currentArticle{
             self.title = article.title
@@ -67,7 +67,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
     func DropperSelectedRow(_ path: IndexPath, contents: String, tag: Int) {
         selectedCategory = categories[path.row]
 //        currentArticle?.categoryId = selectedCategory?.localId
-        categorySelector.setTitle(selectedCategory?.any?.name, for: .normal)
+        categorySelector.setTitle(selectedCategory?.name, for: .normal)
     }
     
     
@@ -82,7 +82,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         if isCreatingNew{
 
             let article = Article(title:titleTF.text!, content:contentTextView.text)
-            article.category.localId = selectedCategory?.localId
+            article.category?.localId = selectedCategory?.localId
             article.saveToLocal()
             self.currentArticle = article
             if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC{
@@ -99,7 +99,8 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         }else{
             currentArticle?.title = titleTF.text!
             currentArticle?.content = contentTextView.text
-            let article = PBDBManager.default.updateArticle(currentArticle!, with: self.currentArticle?.category ?? .undefined)
+//            let article = PBDBManager.default.updateArticle(currentArticle!, with: self.currentArticle?.category ?? .undefined)
+            let article = currentArticle
             _ = self.navigationController?.popViewController(animated: true)
             if let detailVC = self.navigationController?.viewControllers.last as? ArticleDetailViewController{
                 delay(0.3, closure: {

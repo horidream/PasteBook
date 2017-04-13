@@ -21,9 +21,9 @@ fileprivate struct C {
 
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
-    var data:Array<ArticleSet> = []
-    var categoryData:Array<CategorySet>!
-    var currentCategory:CategorySet?
+    var data:Array<Article> = []
+    var categoryData:Array<Category>!
+    var currentCategory:Category?
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?
     
@@ -133,13 +133,13 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
             let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TitleCell
             let cellData = data[(indexPath as NSIndexPath).row]
             cell.tableView = self.tableView
-            cell.title.text = cellData.any?.title
+            cell.title.text = cellData.title
 //            cell.ribbonColor = cellData.color
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") ?? UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "CategoryCell")
             let cellData = categoryData[(indexPath as NSIndexPath).row]
-            cell.textLabel?.text = cellData.any?.name
+            cell.textLabel?.text = cellData.name
 //            cell.detailTextLabel?.text = "\(cellData.count) items"
             return cell
         }
@@ -211,8 +211,8 @@ class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchCont
         if(editingStyle == .delete){
             if shouldShowArticles{
 //                PBDBManager.default.deleteArticleById(id: data[indexPath.row].localId!)
-                let articleSet = data[indexPath.row]
-                articleSet.local?.deleteFromLocal()
+                let article = data[indexPath.row]
+                article.deleteFromLocal()
                 
                 self.data.remove(at: (indexPath as NSIndexPath).row)
                 
