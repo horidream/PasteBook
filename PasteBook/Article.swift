@@ -57,7 +57,7 @@ extension Article: LocalManageable{
         if localId == nil{
             let query = "INSERT INTO article (article_title, article_content, category_id, updated_time, created_time) VALUES (?, ?, ?, ?, ?)"
             
-            if localDB.queryChange(query, args:[self.title, self.content, category?.localId!, self.updatedTime as NSDate, self.createdTime as NSDate]){
+            if localDB.queryChange(query, args:[self.title, self.content, (category?.localId)!, self.updatedTime as NSDate, self.createdTime as NSDate]){
                 let articleId = localDB.queryFetch("SELECT article_id from article where article_title=? and article_content=?", args:[self.title, self.content], mapTo: {
                     $0.unsignedLongLongInt(forColumn: "article_id")
                 }).first!
@@ -66,7 +66,7 @@ extension Article: LocalManageable{
             }
         }else if needsUpdate{
             let query = "UPDATE article set article_title=?, article_content=?, category_id=?, updated_time=? WHERE article_id=?"
-            if localDB.queryChange(query, args:[self.title, self.content, category?.localId!, self.updatedTime , self.localId!]){
+            if localDB.queryChange(query, args:[self.title, self.content, (category?.localId)!, self.updatedTime , self.localId!]){
                 self.needsUpdate = false
                 
             }

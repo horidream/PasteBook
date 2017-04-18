@@ -22,7 +22,7 @@ fileprivate struct C {
 class TitleTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UISplitViewControllerDelegate {
     var cellHeights:[CGFloat]!
     var data:Array<Article> = []
-    var categoryData:Array<Category>!
+    var categoryData:Array<Category> = []
     var currentCategory:Category?
     let searchController = UISearchController(searchResultsController: nil)
     var tvControl:SensibleTableViewControl?

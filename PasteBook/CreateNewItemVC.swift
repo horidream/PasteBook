@@ -47,7 +47,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         self.navigationItem.backBarButtonItem?.title = "BACK"
         categorySelector.setTitle(self.selectedCategory?.name ?? "", for: .normal)
         categories = PBDBManager.default.fetchAllCategories()
-        dropper.items = categories.map{$0.name ?? ""}
+        dropper.items = categories.map{ $0.name }
         
         if let article = currentArticle{
             self.title = article.title
@@ -82,7 +82,7 @@ class CreateNewItemVC: UIViewController, UIPopoverPresentationControllerDelegate
         if isCreatingNew{
 
             let article = Article(title:titleTF.text!, content:contentTextView.text)
-            article.category?.localId = selectedCategory?.localId
+            article.category = selectedCategory
             article.saveToLocal()
             self.currentArticle = article
             if let titleVC = self.navigationController?.viewControllers.last as? TitleTableVC{

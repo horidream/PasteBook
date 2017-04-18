@@ -40,7 +40,7 @@ class PBDBManager:BaseDBHandler{
     func fetchAllArticles(category:Category? = nil)->Array<Article>{
         var categoryCondition = ""
         if let category = category{
-            categoryCondition = "and article.category_id=\(category.localId)"
+            categoryCondition = "and article.category_id=\(String(describing: category.localId))"
         }
         let result = queryFetch("select article_id,article_title, article_content, created_time, updated_time, favorite, article.category_id, category_color from article inner join category where article.category_id=category.category_id \(categoryCondition)") { rs in
             return Article(rs)

@@ -37,11 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: remote notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let stringObjectUserInfo = userInfo as? [String : NSObject] {
-            let cknotify = CKQueryNotification(fromRemoteNotificationDictionary: stringObjectUserInfo)
-            print("get ck notify")
-            print("\(cknotify.recordID)")
-            
-             completionHandler(UIBackgroundFetchResult.newData)
+            _ = CKQueryNotification(fromRemoteNotificationDictionary: stringObjectUserInfo)
+            completionHandler(UIBackgroundFetchResult.newData)
         }
         else {
             completionHandler(UIBackgroundFetchResult.noData)
